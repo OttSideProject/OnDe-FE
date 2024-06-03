@@ -21,7 +21,7 @@ const testStyle = css`
 function App() {
   return (
     <BrowserRouter>
-      <Global styles={reset} /> 
+      <Global styles={reset} />
       <Router />
       <div className="App" css={testStyle}>
         <nav>
@@ -32,7 +32,7 @@ function App() {
             </li>
             <li>
               {' '}
-              <Link to="/user/signup">회원가입</Link>{' '}
+              <Link to="/user/singup">회원가입</Link>{' '}
             </li>
             <li>
               {' '}
