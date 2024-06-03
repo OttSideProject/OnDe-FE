@@ -1,5 +1,4 @@
 /** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { z } from "zod";
 import { useForm } from 'react-hook-form';
@@ -106,7 +105,6 @@ export const SingupPage = () => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm<LoginType>({
     resolver: zodResolver(LoginSchema),
