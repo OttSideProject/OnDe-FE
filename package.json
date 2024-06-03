@@ -6,6 +6,8 @@
     "@craco/craco": "^7.1.0",
     "@emotion/css": "^11.11.2",
     "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@hookform/resolvers": "^3.4.2",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -14,14 +16,17 @@
     "@types/react": "^18.2.57",
     "@types/react-dom": "^18.2.19",
     "axios": "^1.6.7",
+    "emotion-normalize": "^11.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.51.5",
     "react-query": "^3.39.3",
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.1",
     "styled-components": "^6.0.7",
     "typescript": "^4.9.5",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "zod": "^3.23.8"
   },
   "scripts": {
     "start": "craco start",
