@@ -1,22 +1,42 @@
 /** @jsxImportSource @emotion/react */
-import styled from '@emotion/styled';
-import { z } from "zod";
+import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-
-// 핸드폰번호 유효성검사
-const phoneRegex = new RegExp(/^01([0|1|6|7|8|9])-([0-9]{3,4})-([0-9]{4})$/);
+import axios from 'axios'; // axios import 추가
+import {
+  PageWrapper,
+  Container,
+  Title,
+  Form,
+  InputWrapper,
+  Label,
+  Input,
+  ErrorMessage,
+} from '@styles/user/singup';
 
 const LoginSchema = z
   .object({
+    userId: z.string().min(1, { message: '아이디를 입력해주세요.' }),
     email: z
       .string()
       .min(1, { message: '메일을 입력해주세요.' })
       .email({ message: '올바른 이메일을 입력해주세요.' }),
-    name: z.string().min(2).max(10),
-    password: z.string().min(8),
-    checkPassword: z.string().min(8),
-    phone: z.string().regex(phoneRegex, '올바른 번호를 입력해주세요.'),
+    nickName: z.string().min(1, { message: '닉네임을 입력해주세요.' }),
+    password: z
+      .string()
+      .min(8)
+      .max(16, { message: '비밀번호를 8자 이상 16자 이하로 입력해 주세요.' }),
+    checkPassword: z.string().min(8).max(16),
+    gender: z.string().optional(),
+    // age: z.preprocess(
+    //   (value) => parseInt(z.string().parse(value), 10),
+    //   z.number().min(1, { message: '나이를 입력해주세요.' }),
+    // ),
+    nationality: z
+      .string()
+      .min(1, { message: '국적을 입력해주세요.' })
+      .optional(),
+    provider: z.string().optional(),
   })
   .superRefine(({ checkPassword, password }, ctx) => {
     if (checkPassword !== password) {
@@ -25,81 +45,9 @@ const LoginSchema = z
         message: '비밀번호가 일치하지 않습니다.',
         path: ['checkPassword'],
       });
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        message: '비밀번호가 일치하지 않습니다.',
-        path: ['password'],
-      });
     }
   });
-
 type LoginType = z.infer<typeof LoginSchema>;
-
-const PageWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: #f0f4f8;
-`;
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  width: 400px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-`;
-
-const Title = styled.h2`
-  color: gray;
-  margin-bottom: 20px;
-  text-align: center;
-`;
-
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-`;
-
-const InputWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const Label = styled.label`
-  color: gray;
-  margin-bottom: 5px;
-`;
-
-const Input = styled.input`
-  padding: 8px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  margin-bottom: 5px;
-`;
-
-const ErrorMessage = styled.span`
-  color: red;
-  font-size: 12px;
-`;
-
-const SubmitButton = styled.input`
-  padding: 10px;
-  border: none;
-  border-radius: 4px;
-  background-color: #f4f4f4;
-  color: gray;
-  font-weight: bold;
-  cursor: pointer;
-  margin-top: 10px;
-  &:hover {
-    background-color: #f2f2f2;
-  }
-`;
 
 export const SingupPage = () => {
   const {
@@ -108,33 +56,74 @@ export const SingupPage = () => {
     formState: { errors },
   } = useForm<LoginType>({
     resolver: zodResolver(LoginSchema),
+    defaultValues: {
+      provider: '',
+    },
   });
+
+  const onSubmit = async (data: LoginType) => {
+    console.log(data);
+    axios({
+      method: 'POST',
+      url: 'http://3.38.136.17:8080/users/join',
+      data: data,
+      withCredentials: true,
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*', // CORS 우회를 위한 헤더 추가
+      },
+    })
+      .then((result) => {
+        debugger;
+        console.log('요청성공');
+        console.log(result);
+      })
+      .catch((error) => {
+        console.log('요청실패');
+        console.log(error);
+      });
+  };
 
   return (
     <PageWrapper>
       <Container>
         <Title>회원가입</Title>
-        <Form onSubmit={handleSubmit((data) => console.log(data))}>
+        <Form onSubmit={handleSubmit(onSubmit)} autoComplete="false">
+          <InputWrapper>
+            <Label>아이디</Label>
+            <Input type="text" {...register('userId')} />
+            {errors.userId?.message && (
+              <ErrorMessage>{errors.userId?.message}</ErrorMessage>
+            )}
+          </InputWrapper>
           <InputWrapper>
             <Label>이메일</Label>
             <Input
               type="text"
-              {...register('email', {
-                onChange: (e) => console.log(e.target.value),
-              })}
-              autoComplete="off"
-            placeholder="email@test.com"
-            required />
-            {errors.email?.message && <ErrorMessage>{errors.email?.message}</ErrorMessage>}
+              {...register('email')}
+              autoComplete="false"
+              placeholder="email@test.com"
+              required
+            />
+            {errors.email?.message && (
+              <ErrorMessage>{errors.email?.message}</ErrorMessage>
+            )}
           </InputWrapper>
           <InputWrapper>
-            <Label>이름</Label>
-            <Input type="text" {...register('name')} />
+            <Label>닉네임</Label>
+            <Input type="text" {...register('nickName')} />
           </InputWrapper>
           <InputWrapper>
             <Label>비밀번호</Label>
-            <Input type="password" {...register('password')} />
-            {errors.password?.message && <ErrorMessage>{errors.password?.message}</ErrorMessage>}
+            <Input
+              type="password"
+              {...register('password')}
+              autoComplete="new-password"
+            />
+
+            {errors.password?.message && (
+              <ErrorMessage>{errors.password?.message}</ErrorMessage>
+            )}
           </InputWrapper>
           <InputWrapper>
             <Label>비밀번호확인</Label>
@@ -144,10 +133,43 @@ export const SingupPage = () => {
             )}
           </InputWrapper>
           <InputWrapper>
-            <Label>폰번호</Label>
-            <Input type="text" {...register('phone')} />
+            <Label>성별</Label>
+            <Input type="text" {...register('gender')} />
+            {/* <RadioGroup {...register('gender')}>
+              <Radio label="남성" value="male" name="gender" />
+              <Radio label="여성" value="female" name="gender" />
+            </RadioGroup> */}
+            {errors.gender?.message && (
+              <ErrorMessage>{errors.gender?.message}</ErrorMessage>
+            )}
           </InputWrapper>
-          <SubmitButton type="submit" value="회원가입" />
+          <InputWrapper>
+            <Label>국적</Label>
+            <select {...register('nationality')} defaultValue="">
+              <option value="" disabled hidden>
+                국적을 선택하세요
+              </option>
+              <option value="KR">대한민국</option>
+              <option value="US">미국</option>
+              <option value="CN">중국</option>
+              <option value="JP">일본</option>
+              <option value="GB">영국</option>
+            </select>
+            {errors.nationality?.message && (
+              <ErrorMessage>{errors.nationality?.message}</ErrorMessage>
+            )}
+          </InputWrapper>
+          <InputWrapper>
+            <Label>나이</Label>
+            <Input
+              type="number"
+              // {...register('age')}
+            />
+            {/* {errors.age?.message && (
+              <ErrorMessage>{errors.age?.message}</ErrorMessage>
+            )} */}
+          </InputWrapper>
+          <input type="submit" value="회원가입" />
         </Form>
       </Container>
     </PageWrapper>
