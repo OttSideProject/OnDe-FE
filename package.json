@@ -17,6 +17,7 @@
     "@types/react": "^18.2.57",
     "@types/react-dom": "^18.2.19",
     "axios": "^1.6.7",
+    "cors": "^2.8.5",
     "emotion-normalize": "^11.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -57,5 +58,6 @@
     "@babel/preset-react": "^7.24.1",
     "@emotion/babel-plugin": "^11.11.0",
     "craco-alias": "^3.0.1"
-  }
+  },
+  "proxy": "http://3.36.90.213:8080/"
 }

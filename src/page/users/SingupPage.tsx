@@ -65,13 +65,13 @@ export const SingupPage = () => {
     console.log(data);
     axios({
       method: 'POST',
-      url: 'http://3.38.136.17:8080/users/join',
+      url: 'users/join',
       data: data,
       withCredentials: true,
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*', // CORS 우회를 위한 헤더 추가
-      },
+      //headers: {
+      //  'Content-Type': 'application/json',
+      //  'Access-Control-Allow-Origin': '*', // CORS 우회를 위한 헤더 추가
+      //},
     })
       .then((result) => {
         debugger;
