@@ -58,6 +58,5 @@
     "@babel/preset-react": "^7.24.1",
     "@emotion/babel-plugin": "^11.11.0",
     "craco-alias": "^3.0.1"
-  },
-  "proxy": "http://3.36.90.213:8080/"
+  }
 }
