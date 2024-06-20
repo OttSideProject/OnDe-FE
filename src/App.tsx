@@ -32,11 +32,11 @@ function App() {
             </li>
             <li>
               {' '}
-              <Link to="/user/singup">회원가입</Link>{' '}
+              <Link to="/users/singup">회원가입</Link>{' '}
             </li>
             <li>
               {' '}
-              <Link to="/user/#">로그인</Link>{' '}
+              <Link to="/">로그인</Link>{' '}
             </li>
           </ul>
         </nav>
