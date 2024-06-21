@@ -4,7 +4,7 @@
 import { css, Global } from "@emotion/react";
 import reset from "@/styles/core/reset";
 import Link from "next/link";
-// import Header from "./header/Header";
+import Header from "./header/Header";
 
 const testStyle = css`
   li {
@@ -22,7 +22,7 @@ const Main = () => {
 	return (
 		<>
 			<Global styles={reset} />
-			{/* <Header /> */}
+			<Header />
 			<div className="Main" css={testStyle}>
 				<nav>
 					<ul>

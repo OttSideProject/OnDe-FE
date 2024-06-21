@@ -1,9 +1,9 @@
 "use client";
 
-import { ReactNode } from 'react';
+import { ReactNode } from "react";
 
-const ClientWrapper = ({ children }: {children : ReactNode}) => {
-	return <>{children}</>
-}
+const ClientWrapper = ({ children }: { children: ReactNode }) => {
+	return <>{children}</>;
+};
 
 export default ClientWrapper;
