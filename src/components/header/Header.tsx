@@ -1,8 +1,9 @@
 'use client';
 
 /** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react';
-const divStyle = css`
+import styled from '@emotion/styled';
+
+const DivStyle = styled.div`
   background-color: #f4f4f4;
   font-size: 24px;
   border-radius: 4px;
@@ -14,7 +15,7 @@ const divStyle = css`
 `;
 
 const Header = () => {
-  return <div css={divStyle}>Header</div>;
+  return <DivStyle>Header</DivStyle>;
 };
 
 export default Header;

@@ -1,13 +1,12 @@
 'use client';
 
 /** @jsxImportSource @emotion/react */
-import { css, Global } from '@emotion/react';
+import styled from '@emotion/styled';
 import Link from 'next/link';
 
 import Header from '@/components/header/Header';
-import reset from '@/styles/core/reset';
 
-const testStyle = css`
+const TestStyle = styled.div`
   li {
     font-size: 20px;
     border-radius: 4px;
@@ -22,9 +21,9 @@ const testStyle = css`
 const Main = () => {
   return (
     <>
-      <Global styles={reset} />
       <Header />
-      <div className="" css={testStyle}>
+      <TestStyle>
+        메인화면
         <nav>
           <ul>
             <li>
@@ -41,7 +40,7 @@ const Main = () => {
             </li>
           </ul>
         </nav>
-      </div>
+      </TestStyle>
     </>
   );
 };
