@@ -1,3 +1,5 @@
+'use client';
+
 /** @jsxImportSource @emotion/react */
 import styled from '@emotion/styled';
 import { ReactNode, forwardRef, ForwardedRef } from 'react'; // React 모듈에서 forwardRef와 ForwardedRef를 추가로 import

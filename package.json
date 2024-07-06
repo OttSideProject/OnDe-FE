@@ -1,14 +1,14 @@
 {
-  "name": "ott_fe",
+  "name": "onde_fe",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@craco/craco": "^7.1.0",
     "@emotion/css": "^11.11.2",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
     "@hookform/resolvers": "^3.4.2",
     "@radix-ui/react-radio-group": "^1.1.3",
+    "@tanstack/react-query": "^5.45.1",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -19,27 +19,25 @@
     "axios": "^1.6.7",
     "cors": "^2.8.5",
     "emotion-normalize": "^11.0.1",
+    "next": "^14.2.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.51.5",
-    "react-query": "^3.39.3",
     "react-router-dom": "^6.2.1",
-    "react-scripts": "5.0.1",
     "styled-components": "^6.0.7",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4",
     "zod": "^3.23.8"
   },
   "scripts": {
-    "start": "craco start",
-    "build": "craco build",
-    "test": "craco test",
-    "eject": "react-scripts eject"
+    "dev": "rimraf .next && next dev",
+    "build": "next build",
+    "lint": "next lint",
+    "test": "jest"
   },
   "eslintConfig": {
     "extends": [
-      "react-app",
-      "react-app/jest"
+      "next/core-web-vitals"
     ]
   },
   "browserslist": {
@@ -53,10 +51,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "@babel/preset-react": "^7.24.1",
-    "@emotion/babel-plugin": "^11.11.0",
-    "craco-alias": "^3.0.1"
   }
 }

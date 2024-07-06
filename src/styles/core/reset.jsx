@@ -1,4 +1,6 @@
-import { css } from "@emotion/react"
+'use client';
+
+import { css } from '@emotion/react';
 
 const reset = css`
   html,

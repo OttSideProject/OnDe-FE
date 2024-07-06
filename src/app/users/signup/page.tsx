@@ -1,3 +1,5 @@
+'use client';
+
 /** @jsxImportSource @emotion/react */
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
@@ -12,7 +14,7 @@ import {
   Label,
   Input,
   ErrorMessage,
-} from '@styles/user/singup';
+} from '@/styles/user/signup';
 
 const LoginSchema = z
   .object({
@@ -49,7 +51,7 @@ const LoginSchema = z
   });
 type LoginType = z.infer<typeof LoginSchema>;
 
-export const SingupPage = () => {
+const SingupPage = () => {
   const {
     register,
     handleSubmit,
@@ -175,3 +177,5 @@ export const SingupPage = () => {
     </PageWrapper>
   );
 };
+
+export default SingupPage;

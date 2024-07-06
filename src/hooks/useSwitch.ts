@@ -1,4 +1,4 @@
-import { Handler } from '_types/common';
+import { Handler } from '@/_types/common';
 import { useState } from 'react';
 
 export const useSwitch = (
