@@ -1,25 +1,25 @@
 'use client';
 
 import { ReactNode } from 'react';
-
 import { UseCustomQuery } from '@/hooks/useCustomQuery';
 import { useCustomMutation } from '@/hooks/useCustomMutation';
-
-import axios, { AxiosResponse } from 'axios';
+import Api from '@/api/core/Api'; // Api 모듈 import
+import { AxiosResponse } from 'axios';
 
 type ExampleData = {
   example: string;
 };
 
 const fetchData = async (): Promise<AxiosResponse<ExampleData>> => {
-  const response = await axios.get('/api/example'); // 실제 API 엔드포인트 사용
+  // 엔드포인트 경로를 Api.get, Api.post에 사용
+  const response = await Api.get('/');
   return response;
 };
 
 const postData = async (
   variables: any,
 ): Promise<AxiosResponse<ExampleData>> => {
-  const response = await axios.post('/api/example', variables); // 실제 API 엔드포인트 사용
+  const response = await Api.post('/', variables); // 실제 API 엔드포인트 경로 사용
   return response;
 };
 

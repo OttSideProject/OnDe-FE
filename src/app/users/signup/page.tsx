@@ -3,7 +3,7 @@
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import axios from 'axios'; // axios import 추가
+import Api from '@/api/core/Api'; // Api import 추가
 import {
   PageWrapper,
   Container,
@@ -64,18 +64,8 @@ const SingupPage = () => {
 
   const onSubmit = async (data: LoginType) => {
     console.log(data);
-    axios({
-      method: 'POST',
-      url: 'users/join',
-      data: data,
-      withCredentials: true,
-      //headers: {
-      //  'Content-Type': 'application/json',
-      //  'Access-Control-Allow-Origin': '*', // CORS 우회를 위한 헤더 추가
-      //},
-    })
+    Api.post('users/join', data) // Api를 사용하여 POST 요청
       .then((result) => {
-        debugger;
         console.log('요청성공');
         console.log(result);
       })
