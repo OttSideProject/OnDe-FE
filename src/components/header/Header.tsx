@@ -4,7 +4,6 @@
 import styled from '@emotion/styled';
 
 const DivStyle = styled.div`
-  background-color: #f4f4f4;
   font-size: 24px;
   border-radius: 4px;
   padding: 32px;

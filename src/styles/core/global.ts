@@ -85,6 +85,7 @@ export const globalStyle = css`
   mark,
   audio,
   video {
+    background-color: black;
     margin: 0;
     padding: 0;
     border: 0;
@@ -96,10 +97,11 @@ export const globalStyle = css`
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    font-family: 'Pretendard', sans-serif;
   }
+
   * {
     box-sizing: border-box;
-    font-family: 'Pretendard';
   }
   /* HTML5 display-role reset for older browsers */
   article,
@@ -114,9 +116,6 @@ export const globalStyle = css`
   nav,
   section {
     display: block;
-  }
-  body {
-    line-height: 1;
   }
   ol,
   ul {
@@ -280,4 +279,21 @@ export const globalStyle = css`
         format('truetype');
     font-display: swap;
   }
+
+  body {
+    font-family: 'Pretendard', sans-serif;
+    max-width: 600px;
+    margin: 0 auto;
+    border: 1px solid #292524;
+
+    padding: 8px 10px;
+  }
+
+  @media (min-width: 576px) {
+    body {
+      color: white;
+    }
+  }
 `;
+
+export default globalStyle;

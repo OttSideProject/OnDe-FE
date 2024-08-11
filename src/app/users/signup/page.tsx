@@ -1,5 +1,7 @@
 'use client';
 
+import Image from 'next/image';
+import genre_1 from '@/images/Ellipse 792.png';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -17,6 +19,8 @@ import {
   GenreContainer,
   Title2,
   Genre,
+  ColorText,
+  Caption,
   Button,
   Header,
 } from '@/styles/user/signup';
@@ -85,6 +89,14 @@ const SingStep1 = () => {
         안녕하세요! <br />
         어떤 장르를 선호하세요?
       </Title2>
+      <Image
+        src={genre_1}
+        alt="genreImg"
+        className="genreImg"
+        width={100}
+        height={100}
+        priority
+      />
       <GenreContainer>
         {genresList.map((genre) => (
           <Genre
@@ -96,7 +108,9 @@ const SingStep1 = () => {
           </Genre>
         ))}
       </GenreContainer>
-      <p>관심있는 장르를 3개 이상 선택해 주세요.</p>
+      <Caption>
+        관심있는 장르를 <ColorText>3개 이상</ColorText> 선택해 주세요.
+      </Caption>
       <Button
         onClick={() => alert(`선택된 장르: ${selectedGenres.join(', ')}`)}
         disabled={selectedGenres.length < 3}

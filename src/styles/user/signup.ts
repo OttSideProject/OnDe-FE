@@ -2,10 +2,6 @@
 
 import styled from '@emotion/styled';
 
-export const body = styled.body`
-  font-family: 'Pretendard';
-`;
-
 export const PageWrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -43,7 +39,6 @@ export const Label = styled.label`
 `;
 
 export const Input = styled.input`
-  padding: 8px;
   border-radius: 4px;
   border: 1px solid #ccc;
   margin-bottom: 5px;
@@ -55,7 +50,6 @@ export const ErrorMessage = styled.span`
 `;
 
 export const SubmitButton = styled.input`
-  padding: 10px;
   border: none;
   border-radius: 4px;
   background-color: #f4f4f4;
@@ -70,26 +64,36 @@ export const SubmitButton = styled.input`
 `;
 
 export const Container2 = styled.div`
+  font-size: 16px;
   display: flex;
-  width: 375px;
   margin: 0 auto;
   flex-direction: column;
   align-items: center;
   background-color: #000;
   color: #fff;
   height: 100vh;
-  padding: 20px;
 `;
+
+export const Caption = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`;
+
+export const ColorText = styled.div`
+  color: #adff2f;
+`;
+
 export const Header = styled.div`
-  margin-bottom: 20px;
   font-size: 16px;
   color: #e7e7e7;
 `;
 
 export const Title2 = styled.h1`
-  margin-bottom: 20px;
   font-size: 22px;
-  font-family: 'Pretendard';
+  font-weight: 500;
+  line-height: 30px;
+  width: 100%;
 `;
 
 export const GenreContainer = styled.div`
@@ -97,6 +101,7 @@ export const GenreContainer = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   gap: 10px;
+  height: 70%;
 `;
 
 interface GenreProps {
@@ -118,11 +123,14 @@ export const Button = styled.button`
   background-color: #adff2f;
   color: #000;
   border: none;
+  font-weight: bold;
   padding: 10px 20px;
   margin-top: 20px;
-  font-size: 16px;
+  font-size: 14px;
+
   cursor: pointer;
   border-radius: 5px;
+  width: 100%;
 
   &:hover {
     background-color: #7fff00;
