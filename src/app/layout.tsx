@@ -1,11 +1,21 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import localFont from 'next/font/local';
 
 import ClientLayout from '@/components/ClientLayout';
 
 import './globals.css';
 
-const inter = Inter({ subsets: ['latin'] });
+const pretendardRegular = localFont({
+  src: '../fonts/Pretendard-Regular.woff',
+  weight: '400',
+  display: 'swap',
+});
+
+const pretendardBold = localFont({
+  src: '../fonts/Pretendard-SemiBold.woff',
+  weight: '600',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -18,8 +28,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko">
-      <body className={inter.className}>
+    <html
+      lang="ko"
+      className={`${pretendardRegular.className} ${pretendardBold.className}`}
+    >
+      <body className={pretendardRegular.className}>
         <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
