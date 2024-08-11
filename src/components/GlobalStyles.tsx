@@ -1,10 +1,10 @@
 'use client';
 
-import reset from '@/styles/core/reset';
+import globalStyle from '@/styles/core/global';
 import { Global } from '@emotion/react';
 
 const GlobalStyles = () => {
-  return <Global styles={reset} />;
+  return <Global styles={globalStyle} />;
 };
 
 export default GlobalStyles;

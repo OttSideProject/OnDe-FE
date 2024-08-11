@@ -1,5 +1,7 @@
 'use client';
 
+import Image from 'next/image';
+import genre_1 from '@/images/Ellipse 792.png';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -13,7 +15,16 @@ import {
   Label,
   Input,
   ErrorMessage,
+  Container2,
+  GenreContainer,
+  Title2,
+  Genre,
+  ColorText,
+  Caption,
+  Button,
+  Header,
 } from '@/styles/user/signup';
+import { useState } from 'react';
 
 const LoginSchema = z
   .object({
@@ -50,7 +61,67 @@ const LoginSchema = z
   });
 type LoginType = z.infer<typeof LoginSchema>;
 
-const SingupPage = () => {
+const SingStep1 = () => {
+  const genresList = [
+    '공상과학',
+    '드라마',
+    '로맨스',
+    '애니메이션',
+    '판타지',
+    '액션',
+    '코미디',
+    '히어로',
+    '스릴러',
+    '예능',
+    '다큐',
+  ];
+  const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
+
+  const toggleGenre = (genre: string) => {
+    setSelectedGenres((prev) =>
+      prev.includes(genre) ? prev.filter((g) => g !== genre) : [...prev, genre],
+    );
+  };
+  return (
+    <Container2>
+      <Header>개인화 추천(1/2)</Header>
+      <Title2>
+        안녕하세요! <br />
+        어떤 장르를 선호하세요?
+      </Title2>
+      <Image
+        src={genre_1}
+        alt="genreImg"
+        className="genreImg"
+        width={100}
+        height={100}
+        priority
+      />
+      <GenreContainer>
+        {genresList.map((genre) => (
+          <Genre
+            key={genre}
+            selected={selectedGenres.includes(genre)}
+            onClick={() => toggleGenre(genre)}
+          >
+            {genre}
+          </Genre>
+        ))}
+      </GenreContainer>
+      <Caption>
+        관심있는 장르를 <ColorText>3개 이상</ColorText> 선택해 주세요.
+      </Caption>
+      <Button
+        onClick={() => alert(`선택된 장르: ${selectedGenres.join(', ')}`)}
+        disabled={selectedGenres.length < 3}
+      >
+        다음
+      </Button>
+    </Container2>
+  );
+};
+
+const SingStep2 = () => {
   const {
     register,
     handleSubmit,
@@ -164,6 +235,14 @@ const SingupPage = () => {
         </Form>
       </Container>
     </PageWrapper>
+  );
+};
+
+const SingupPage = () => {
+  return (
+    <Container>
+      <SingStep1 />
+    </Container>
   );
 };
 
