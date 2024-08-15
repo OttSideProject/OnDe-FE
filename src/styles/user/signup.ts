@@ -10,7 +10,7 @@ const ImageContainer = styled.div`
 `;
 
 const ImagesIcon = styled.div`
-  /* opacity: 30%; */
+  opacity: 30%;
 `;
 
 const GenreLabel = styled.span`
@@ -192,7 +192,7 @@ const GenreStep2 = styled.p`
 `;
 
 const Step2Container = styled.div`
-  padding: 20px;
+  padding: 0 20px;
   text-align: center;
 `;
 // //STEP2

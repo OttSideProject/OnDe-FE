@@ -171,12 +171,11 @@ const SignupProcess = () => {
             안녕하세요! <br /> 어떤 장르를 선호하세요?
           </signup.Title2>
           {svgGenres.map((item, index) => (
-            <signup.ImageContainer
-              key={index}
-              onClick={() => toggleGenre(item.genre)}
-              style={{ opacity: opacityMap[item.genre] }}
-            >
-              <signup.ImagesIcon>
+            <signup.ImageContainer key={index}>
+              <signup.ImagesIcon
+                onClick={() => toggleGenre(item.genre)}
+                style={{ opacity: opacityMap[item.genre] }}
+              >
                 <Image
                   src={item.file}
                   alt={item.genre}
