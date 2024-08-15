@@ -21,6 +21,21 @@ const svgGenres: SvgGenre[] = [
   { file: '/assets/images/icons/join-SkewedRectangle.svg', genre: '다큐' },
 ];
 
+interface Genre {
+  sentence: string;
+  color: string;
+}
+const genres_setp2: Genre[] = [
+  { sentence: '반전의 연속 충격적인 서스펜스', color: '#B433FB' },
+  { sentence: '싸늘해 내가 다 추워지는공포', color: '#5E86F3' },
+  { sentence: '함께보면 더 따뜻한 가족이야기', color: '#FBB920' },
+  { sentence: '두근두근 설렘 가득 로맨스', color: '#FFC2C2' },
+  { sentence: '주인공 버프 가득한 히어로물', color: '#FB52C2' },
+  { sentence: '너도? 나도, 공감백배 관찰예능', color: '#BAFB16' },
+  { sentence: '현실탈출 꿈같은 판타지 세계', color: '#16FBC5' },
+  { sentence: '힐링이 필요해 잔잔한 힐링영화', color: '#16FBF5' },
+];
+
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -68,6 +83,16 @@ const SignupProcess = () => {
   const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
   const [opacityMap, setOpacityMap] = useState<Record<string, number>>({});
   const [colorMap, setColorMap] = useState<Record<string, string>>({});
+  const [selectedIndexes, setSelectedIndexes] = useState<number[]>([]);
+  const handleSelect = (index: number) => {
+    if (selectedIndexes.includes(index)) {
+      // 이미 선택된 항목이라면 배열에서 제거
+      setSelectedIndexes(selectedIndexes.filter((i) => i !== index));
+    } else {
+      // 선택되지 않은 항목이라면 배열에 추가
+      setSelectedIndexes([...selectedIndexes, index]);
+    }
+  };
 
   // 장르를 클릭할 때 호출되는 함수
   const toggleGenre = (genre: string) => {
@@ -113,7 +138,7 @@ const SignupProcess = () => {
   return (
     <signup.Container2>
       <signup.Header>
-        <signup.HeaderInner>개인화 추천({step}/4)</signup.HeaderInner>
+        <signup.HeaderInner>개인화 추천({step}/2)</signup.HeaderInner>
         <signup.Close>
           <img
             src="/assets/images/icons/iconamoon_close-light.svg"
@@ -152,19 +177,43 @@ const SignupProcess = () => {
               </signup.ImageContainer>
             ))}
           </signup.Container>
-          <signup.Caption>
-            관심 있는 장르를 <signup.ColorText> 3개 이상 선택</signup.ColorText>
-            해 주세요.
-          </signup.Caption>
-          <signup.Button
-            onClick={handleNextClick}
-            disabled={selectedGenres.length < 3}
-          >
-            다음
-          </signup.Button>
         </>
       )}
-      {step === 2 && <>step2</>}
+
+      {step === 2 && (
+        <>
+          {' '}
+          <signup.Title2>어떤 문장을 선호하세요?</signup.Title2>
+          <signup.Step2Container>
+            {genres_setp2.map((genre, index) => (
+              <signup.GenreStep2
+                key={index}
+                style={{
+                  background: selectedIndexes.includes(index)
+                    ? genre.color
+                    : 'transparent',
+                  cursor: 'pointer',
+                  color: selectedIndexes.includes(index) ? 'black' : 'white',
+                }}
+                onClick={() => handleSelect(index)}
+              >
+                {genre.sentence}
+              </signup.GenreStep2>
+            ))}
+          </signup.Step2Container>
+        </>
+      )}
+      <signup.Caption>
+        관심 있는 장르를 <signup.ColorText> 3개 이상 선택</signup.ColorText>해
+        주세요.
+      </signup.Caption>
+      <signup.Button
+        onClick={handleNextClick}
+        disabled={selectedGenres.length < 3}
+      >
+        다음
+      </signup.Button>
+
       {step === 3 && <>step3</>}
     </signup.Container2>
   );

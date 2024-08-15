@@ -180,6 +180,26 @@ const Button = styled.button`
   }
 `;
 
+// STEP2
+const GenreStep2 = styled.p`
+  padding: 15px 20px;
+  border-radius: 50px;
+  color: black;
+  font-size: 24px;
+  font-weight: 300;
+  text-align: center;
+`;
+
+const Step2Container = styled.div`
+  display: inline-block;
+  /* display: flex; */
+  flex-direction: column;
+  /* gap: 10px; */
+  padding: 20px;
+  text-align: center;
+`;
+// //STEP2
+
 const signup = {
   PageWrapper,
   Container,
@@ -202,6 +222,8 @@ const signup = {
   ImagesIcon,
   Close,
   HeaderInner,
+  GenreStep2,
+  Step2Container,
 };
 
 export default signup;
