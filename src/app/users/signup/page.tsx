@@ -2,11 +2,11 @@
 
 import Image from 'next/image';
 
-// import Close from '/assets/images/icons/iconamoon_close-light.svg';
 interface SvgGenre {
   file: string;
   genre: string;
 }
+// TODO: JSON으로 변경
 const svgGenres: SvgGenre[] = [
   { file: '/assets/images/icons/join-Ellipse792.svg', genre: '공상과학' },
   { file: '/assets/images/icons/join-Frame.svg', genre: '드라마' },
@@ -25,6 +25,7 @@ interface Genre {
   sentence: string;
   color: string;
 }
+// TODO: JSON으로 변경
 const genres_setp2: Genre[] = [
   { sentence: '반전의 연속 충격적인 서스펜스', color: '#B433FB' },
   { sentence: '싸늘해 내가 다 추워지는공포', color: '#5E86F3' },
@@ -79,32 +80,26 @@ const LoginSchema = z
 type LoginType = z.infer<typeof LoginSchema>;
 
 const SignupProcess = () => {
-  const [step, setStep] = useState(1); //회원가입 단계
+  const [step, setStep] = useState(1);
   const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
+  const [selectedIndexes, setSelectedIndexes] = useState<number[]>([]);
   const [opacityMap, setOpacityMap] = useState<Record<string, number>>({});
   const [colorMap, setColorMap] = useState<Record<string, string>>({});
-  const [selectedIndexes, setSelectedIndexes] = useState<number[]>([]);
+
   const handleSelect = (index: number) => {
-    if (selectedIndexes.includes(index)) {
-      // 이미 선택된 항목이라면 배열에서 제거
-      setSelectedIndexes(selectedIndexes.filter((i) => i !== index));
-    } else {
-      // 선택되지 않은 항목이라면 배열에 추가
-      setSelectedIndexes([...selectedIndexes, index]);
-    }
+    setSelectedIndexes((prev) =>
+      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index],
+    );
   };
 
-  // 장르를 클릭할 때 호출되는 함수
   const toggleGenre = (genre: string) => {
     setSelectedGenres((prev) =>
       prev.includes(genre) ? prev.filter((g) => g !== genre) : [...prev, genre],
     );
-
     setOpacityMap((prev) => ({
       ...prev,
       [genre]: prev[genre] === 1 ? 0.3 : 1,
     }));
-
     setColorMap((prev) => ({
       ...prev,
       [genre]: prev[genre] === 'black' ? 'white' : 'black',
@@ -112,77 +107,93 @@ const SignupProcess = () => {
   };
 
   useEffect(() => {
-    const initialOpacityMap = svgGenres.reduce((acc, item) => {
-      acc[item.genre] = 0.3;
-      return acc;
-    }, {} as Record<string, number>);
+    const initializeMap = <T,>(defaultValue: T) =>
+      svgGenres.reduce((acc, item) => {
+        acc[item.genre] = defaultValue;
+        return acc;
+      }, {} as Record<string, T>);
 
-    const initialColorMap = svgGenres.reduce((acc, item) => {
-      acc[item.genre] = 'white';
-      return acc;
-    }, {} as Record<string, string>);
-
-    setOpacityMap(initialOpacityMap);
-    setColorMap(initialColorMap);
+    setOpacityMap(initializeMap(0.3));
+    setColorMap(initializeMap('white'));
   }, []);
 
   const handleNextClick = () => {
-    if (selectedGenres.length < 3) {
-      alert('장르를 3개 이상 선택해 주세요.');
-    } else {
-      alert(`선택된 장르: ${selectedGenres.join(', ')}`);
-      setStep(step + 1);
+    if (step === 1) {
+      if (selectedGenres.length < 3) {
+        alert('장르를 3개 이상 선택해 주세요.');
+      } else {
+        setStep(step + 1);
+      }
+    } else if (step === 2) {
+      if (selectedIndexes.length < 3) {
+        alert('문장을 3개 이상 선택해 주세요.');
+      } else {
+        const selectedSentences = selectedIndexes.map(
+          (index) => genres_setp2[index].sentence,
+        );
+        alert(
+          `선택된 장르: ${selectedGenres.join(
+            ', ',
+          )}\n선택된 문장: ${selectedSentences.join(', ')}`,
+        );
+        setStep(step + 1);
+      }
     }
   };
 
   return (
     <signup.Container2>
       <signup.Header>
+        {step !== 1 && (
+          <img
+            src="/assets/images/icons/material-symbols_arrow-back-ios-rounded.svg"
+            alt="뒤로가기"
+            onClick={() => setStep(step - 1)}
+            width={20}
+            height={20}
+          />
+        )}
         <signup.HeaderInner>개인화 추천({step}/2)</signup.HeaderInner>
         <signup.Close>
           <img
             src="/assets/images/icons/iconamoon_close-light.svg"
-            alt="닫기"
+            alt="메인으로"
+            onClick={() => (location.href = '/')}
             width={20}
             height={20}
           />
         </signup.Close>
       </signup.Header>
+
       {step === 1 && (
-        <>
-          <signup.Container>
-            <signup.Title2>
-              안녕하세요! <br />
-              어떤 장르를 선호하세요?
-            </signup.Title2>
-            {svgGenres.map((item, index) => (
-              <signup.ImageContainer
-                key={index}
-                onClick={() => toggleGenre(item.genre)}
-                style={{ opacity: opacityMap[item.genre] ?? 0.3 }}
-              >
-                <signup.ImagesIcon>
-                  <Image
-                    src={item.file}
-                    alt={`장르 ${index + 1}`}
-                    width={100}
-                    height={100}
-                  />
-                </signup.ImagesIcon>
-                <signup.GenreLabel
-                  style={{ color: colorMap[item.genre] ?? 'white' }}
-                >
-                  {item.genre}
-                </signup.GenreLabel>
-              </signup.ImageContainer>
-            ))}
-          </signup.Container>
-        </>
+        <signup.Container>
+          <signup.Title2>
+            안녕하세요! <br /> 어떤 장르를 선호하세요?
+          </signup.Title2>
+          {svgGenres.map((item, index) => (
+            <signup.ImageContainer
+              key={index}
+              onClick={() => toggleGenre(item.genre)}
+              style={{ opacity: opacityMap[item.genre] }}
+            >
+              <signup.ImagesIcon>
+                <Image
+                  src={item.file}
+                  alt={item.genre}
+                  width={100}
+                  height={100}
+                />
+              </signup.ImagesIcon>
+              <signup.GenreLabel style={{ color: colorMap[item.genre] }}>
+                {item.genre}
+              </signup.GenreLabel>
+            </signup.ImageContainer>
+          ))}
+        </signup.Container>
       )}
 
       {step === 2 && (
         <>
-          {' '}
           <signup.Title2>어떤 문장을 선호하세요?</signup.Title2>
           <signup.Step2Container>
             {genres_setp2.map((genre, index) => (
@@ -203,17 +214,27 @@ const SignupProcess = () => {
           </signup.Step2Container>
         </>
       )}
+
       <signup.Caption>
-        관심 있는 장르를 <signup.ColorText> 3개 이상 선택</signup.ColorText>해
-        주세요.
+        관심 있는 {step === 1 ? '장르를' : '문장을'}{' '}
+        <signup.ColorText> 3개 이상 선택</signup.ColorText>해 주세요.
       </signup.Caption>
       <signup.Button
         onClick={handleNextClick}
-        disabled={selectedGenres.length < 3}
+        disabled={
+          (step === 1 && selectedGenres.length < 3) ||
+          (step === 2 && selectedIndexes.length < 3)
+        }
+        style={{
+          backgroundColor:
+            (step === 1 && selectedGenres.length < 3) ||
+            (step === 2 && selectedIndexes.length < 3)
+              ? 'gray'
+              : '#d7ff50',
+        }}
       >
         다음
       </signup.Button>
-
       {step === 3 && <>step3</>}
     </signup.Container2>
   );
@@ -345,14 +366,5 @@ const SingStep2 = () => {
     </signup.PageWrapper>
   );
 };
-
-// // 회원가입 메인 컴포넌트
-// const SingupPage = () => {
-//   return (
-//     <signup.Container>
-// <SignupProcess />
-//     </signup.Container>
-//   );
-// };
 
 export default SignupProcess;

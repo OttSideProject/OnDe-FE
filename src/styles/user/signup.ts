@@ -162,7 +162,7 @@ const Genre = styled.div<GenreProps>`
 // const Button = (isDisabled: boolean) => styled.button`
 // background-color: ${isDisabled ? 'lightgray' : '#d7ff50'};
 const Button = styled.button`
-  background-color: '#d7ff50';
+  background-color: #d7ff50;
   color: #000;
   border: none;
   font-weight: 600;
@@ -188,13 +188,10 @@ const GenreStep2 = styled.p`
   font-size: 24px;
   font-weight: 300;
   text-align: center;
+  display: inline-block;
 `;
 
 const Step2Container = styled.div`
-  display: inline-block;
-  /* display: flex; */
-  flex-direction: column;
-  /* gap: 10px; */
   padding: 20px;
   text-align: center;
 `;

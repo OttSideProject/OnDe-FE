@@ -98,6 +98,7 @@ export const globalStyle = css`
     -ms-user-select: none;
     user-select: none;
     font-family: 'Pretendard', sans-serif;
+    font-weight: 300;
   }
 
   * {
@@ -146,6 +147,7 @@ export const globalStyle = css`
 
   body {
     font-family: 'Pretendard', sans-serif;
+    color: white;
     max-width: 600px;
     margin: 0 auto;
     border: 1px solid #292524;
