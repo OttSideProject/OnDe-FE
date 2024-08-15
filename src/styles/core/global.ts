@@ -85,7 +85,7 @@ export const globalStyle = css`
   mark,
   audio,
   video {
-    background-color: black;
+    background-color: #0c0a09;
     margin: 0;
     padding: 0;
     border: 0;
