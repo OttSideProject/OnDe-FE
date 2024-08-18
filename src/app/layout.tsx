@@ -6,13 +6,13 @@ import ClientLayout from '@/components/ClientLayout';
 import './globals.css';
 
 const pretendardRegular = localFont({
-  src: '../fonts/Pretendard-Regular.woff',
+  src: '../../public/assets/fonts/Pretendard-Regular.woff',
   weight: '400',
   display: 'swap',
 });
 
 const pretendardBold = localFont({
-  src: '../fonts/Pretendard-SemiBold.woff',
+  src: '../../public/assets/fonts/Pretendard-SemiBold.woff',
   weight: '600',
   display: 'swap',
 });
