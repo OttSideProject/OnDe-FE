@@ -144,13 +144,20 @@ export const globalStyle = css`
     -webkit-text-decoration-skip: objects;
   }
 
+  /* HTML, BODY 초기화 */
+  html {
+    height: 100%;
+    font-size: 62.5%; /* font-size: 10px */
+  }
+
   body {
     font-family: 'Pretendard', sans-serif;
     max-width: 600px;
     margin: 0 auto;
-    border: 1px solid #292524;
-
     padding: 8px 10px;
+    border: 1px solid #292524;
+    font-size: 1.4rem;
+    font-weight: 500;
   }
 
   @media (min-width: 576px) {
