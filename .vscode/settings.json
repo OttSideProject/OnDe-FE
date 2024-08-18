@@ -1,5 +1,73 @@
 {
-    "cSpell.words": [
-        "hookform"
+  "workbench.iconTheme": "material-icon-theme",
+  "editor.formatOnSave": true,
+  "editor.tabSize": 2,
+  "files.associations": {
+    "*.wsn": "html",
+    "*.wsr": "html",
+    "*.wsm": "html"
+  },
+  "[html]": {
+    "editor.formatOnSave": false,
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "terminal.integrated.env.osx": {},
+  "git.confirmSync": false,
+  "css.lint.unknownAtRules": "ignore",
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "scope": [
+          //following will be in italic (=FlottFlott)
+          "comment",
+          "entity.name.type.class", //class names
+          "keyword", //import, export, return…
+          "constant", //String, Number, Boolean…, this, super
+          "storage.modifier", //static keyword
+          "storage.type.class.js" //class keyword
+        ],
+        "settings": {
+          "fontStyle": "italic"
+        }
+      },
+      {
+        "scope": [
+          //following will be excluded from italics (VSCode has some defaults for italics)
+          "invalid",
+          "keyword.operator",
+          "constant.numeric.css",
+          "keyword.other.unit.px.css",
+          "constant.numeric.decimal.js",
+          "constant.numeric.json"
+        ],
+        "settings": {
+          "fontStyle": ""
+        }
+      }
     ]
+  },
+  "terminal.integrated.env.linux": {},
+  "npm.packageManager": "yarn",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "tabnine.experimentalAutoImports": true,
+  "extensions.ignoreRecommendations": true,
+  "editor.fontFamily": "'Fira Code','D2Coding'",
+  "editor.fontLigatures": true,
+  "liveServer.settings.donotShowInfoMsg": true,
+  "workbench.colorTheme": "OM Theme (No Italic)",
+  "editor.fontSize": 14,
+  "terminal.integrated.fontSize": 14,
+  "terminal.integrated.fontWeightBold": "normal",
+  "terminal.integrated.fontWeight": "normal",
+  "editor.fontWeight": "normal",
+  "liveServer.settings.donotVerifyTags": true,
+  "explorer.confirmDragAndDrop": false,
+  "window.confirmSaveUntitledWorkspace": false,
+  "security.workspace.trust.untrustedFiles": "newWindow",
+  "editor.wordWrap": "on",
+  "explorer.confirmDelete": false,
+  "gitlens.views.branches.files.layout": "tree",
+  "gitlens.views.branches.avatars": false,
+  "editor.codeLensFontFamily": "'Fira Code','D2Coding'",
+  "markdown.preview.fontSize": 13
 }

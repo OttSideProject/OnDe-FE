@@ -43,9 +43,9 @@ const ClientWrapper = ({ children }: { children: ReactNode }) => {
     <div>
       {isLoading && <p>Loading...</p>}
       {error && <p>Error: {error.message}</p>}
-      <button onClick={() => mutation.mutate({ example: 'data' })}>
+      {/* <button onClick={() => mutation.mutate({ example: 'data' })}>
         데이터 전송
-      </button>
+      </button> */}
       <div>{children}</div>
     </div>
   );

@@ -2,54 +2,80 @@
 
 import styled from '@emotion/styled';
 
-export const PageWrapper = styled.div`
+const ImageContainer = styled.div`
+  position: relative;
+  width: 90px;
+  height: 90px;
+  cursor: pointer;
+`;
+
+const ImagesIcon = styled.div`
+  opacity: 30%;
+`;
+
+const GenreLabel = styled.span`
+  position: absolute;
+  background-color: transparent;
+  color: white;
+  bottom: 50%;
+  left: 0;
+  right: 0;
+  font-weight: bold;
+  text-align: center;
+  font-size: 16px;
+`;
+
+const PageWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   color: white;
-  background-color: #000;
 `;
 
-export const Container = styled.div`
-  background-color: #0c0a09;
+const Container = styled.div`
+  /* padding: 24px 0; */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
 `;
 
-export const Title = styled.h2`
+const Title = styled.h2`
   color: white;
   margin-bottom: 20px;
   text-align: left;
   font-size: 22px;
 `;
 
-export const Form = styled.form`
+const Form = styled.form`
   display: flex;
   flex-direction: column;
   gap: 10px;
 `;
 
-export const InputWrapper = styled.div`
+const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
 `;
 
-export const Label = styled.label`
+const Label = styled.label`
   color: white;
   margin-bottom: 5px;
 `;
 
-export const Input = styled.input`
+const Input = styled.input`
   border-radius: 4px;
   border: 1px solid #ccc;
   margin-bottom: 5px;
 `;
 
-export const ErrorMessage = styled.span`
+const ErrorMessage = styled.span`
   color: red;
   font-size: 12px;
 `;
 
-export const SubmitButton = styled.input`
+const SubmitButton = styled.input`
   border: none;
   border-radius: 4px;
   background-color: #f4f4f4;
@@ -63,40 +89,54 @@ export const SubmitButton = styled.input`
   }
 `;
 
-export const Container2 = styled.div`
+const Container2 = styled.div`
   font-size: 16px;
   display: flex;
   margin: 0 auto;
   flex-direction: column;
   align-items: center;
-  background-color: #000;
   color: #fff;
-  height: 100vh;
 `;
 
-export const Caption = styled.div`
+const Caption = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 40px 0;
+  font-weight: 300;
+`;
+
+const ColorText = styled.div`
+  color: #d7ff50;
+  margin: 0 5px;
+`;
+
+const Header = styled.div`
+  padding: 20px;
   width: 100%;
   display: flex;
   justify-content: center;
 `;
 
-export const ColorText = styled.div`
-  color: #adff2f;
-`;
-
-export const Header = styled.div`
+const HeaderInner = styled.div`
   font-size: 16px;
   color: #e7e7e7;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 `;
 
-export const Title2 = styled.h1`
+const Close = styled.div``;
+
+const Title2 = styled.h1`
+  padding: 0 25px 40px 25px;
   font-size: 22px;
   font-weight: 500;
   line-height: 30px;
   width: 100%;
 `;
 
-export const GenreContainer = styled.div`
+const GenreContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -107,7 +147,7 @@ export const GenreContainer = styled.div`
 interface GenreProps {
   selected: boolean;
 }
-export const Genre = styled.div<GenreProps>`
+const Genre = styled.div<GenreProps>`
   background-color: ${(props) => (props.selected ? '#FFD700' : '#666')};
   padding: 10px 20px;
   border-radius: 10px;
@@ -119,20 +159,68 @@ export const Genre = styled.div<GenreProps>`
   }
 `;
 
-export const Button = styled.button`
-  background-color: #adff2f;
+// const Button = (isDisabled: boolean) => styled.button`
+// background-color: ${isDisabled ? 'lightgray' : '#d7ff50'};
+const Button = styled.button`
+  background-color: #d7ff50;
   color: #000;
   border: none;
-  font-weight: bold;
-  padding: 10px 20px;
+  font-weight: 600;
+  padding: 17px 70px;
   margin-top: 20px;
   font-size: 14px;
+  margin-bottom: 15px;
 
   cursor: pointer;
   border-radius: 5px;
   width: 100%;
 
   &:hover {
-    background-color: #7fff00;
+    background-color: #c1ff12;
   }
 `;
+
+// STEP2
+const GenreStep2 = styled.p`
+  padding: 15px 20px;
+  border-radius: 50px;
+  color: black;
+  font-size: 24px;
+  font-weight: 300;
+  text-align: center;
+  display: inline-block;
+`;
+
+const Step2Container = styled.div`
+  padding: 0 20px;
+  text-align: center;
+`;
+// //STEP2
+
+const signup = {
+  PageWrapper,
+  Container,
+  Title,
+  Form,
+  InputWrapper,
+  Label,
+  Input,
+  ErrorMessage,
+  Container2,
+  GenreContainer,
+  Title2,
+  Genre,
+  ColorText,
+  Caption,
+  Button,
+  Header,
+  ImageContainer,
+  GenreLabel,
+  ImagesIcon,
+  Close,
+  HeaderInner,
+  GenreStep2,
+  Step2Container,
+};
+
+export default signup;

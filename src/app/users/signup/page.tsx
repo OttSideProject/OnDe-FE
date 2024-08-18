@@ -1,30 +1,48 @@
 'use client';
 
 import Image from 'next/image';
-import genre_1 from '@/images/Ellipse 792.png';
+
+interface SvgGenre {
+  file: string;
+  genre: string;
+}
+// TODO: JSON으로 변경
+const svgGenres: SvgGenre[] = [
+  { file: '/assets/images/icons/join-Ellipse792.svg', genre: '공상과학' },
+  { file: '/assets/images/icons/join-Frame.svg', genre: '드라마' },
+  { file: '/assets/images/icons/join-Shield2.svg', genre: '로맨스' },
+  { file: '/assets/images/icons/join-Rectangle5761.svg', genre: '애니메이션' },
+  { file: '/assets/images/icons/join-Home3.svg', genre: '판타지' },
+  { file: '/assets/images/icons/join-Shell.svg', genre: '코미디' },
+  { file: '/assets/images/icons/join-House.svg', genre: '히어로' },
+  { file: '/assets/images/icons/join-Shield1.svg', genre: '액션' },
+  { file: '/assets/images/icons/join-Home2.svg', genre: '스릴러' },
+  { file: '/assets/images/icons/join-Polygon.svg', genre: '예능' },
+  { file: '/assets/images/icons/join-SkewedRectangle.svg', genre: '다큐' },
+];
+
+interface Genre {
+  sentence: string;
+  color: string;
+}
+// TODO: JSON으로 변경
+const genres_setp2: Genre[] = [
+  { sentence: '반전의 연속 충격적인 서스펜스', color: '#B433FB' },
+  { sentence: '싸늘해 내가 다 추워지는공포', color: '#5E86F3' },
+  { sentence: '함께보면 더 따뜻한 가족이야기', color: '#FBB920' },
+  { sentence: '두근두근 설렘 가득 로맨스', color: '#FFC2C2' },
+  { sentence: '주인공 버프 가득한 히어로물', color: '#FB52C2' },
+  { sentence: '너도? 나도, 공감백배 관찰예능', color: '#BAFB16' },
+  { sentence: '현실탈출 꿈같은 판타지 세계', color: '#16FBC5' },
+  { sentence: '힐링이 필요해 잔잔한 힐링영화', color: '#16FBF5' },
+];
+
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Api from '@/api/core/Api'; // Api import 추가
-import {
-  PageWrapper,
-  Container,
-  Title,
-  Form,
-  InputWrapper,
-  Label,
-  Input,
-  ErrorMessage,
-  Container2,
-  GenreContainer,
-  Title2,
-  Genre,
-  ColorText,
-  Caption,
-  Button,
-  Header,
-} from '@/styles/user/signup';
-import { useState } from 'react';
+import signup from '@/styles/user/signup';
+import { useEffect, useState } from 'react';
 
 const LoginSchema = z
   .object({
@@ -61,63 +79,163 @@ const LoginSchema = z
   });
 type LoginType = z.infer<typeof LoginSchema>;
 
-const SingStep1 = () => {
-  const genresList = [
-    '공상과학',
-    '드라마',
-    '로맨스',
-    '애니메이션',
-    '판타지',
-    '액션',
-    '코미디',
-    '히어로',
-    '스릴러',
-    '예능',
-    '다큐',
-  ];
+const SignupProcess = () => {
+  const [step, setStep] = useState(1);
   const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
+  const [selectedIndexes, setSelectedIndexes] = useState<number[]>([]);
+  const [opacityMap, setOpacityMap] = useState<Record<string, number>>({});
+  const [colorMap, setColorMap] = useState<Record<string, string>>({});
+
+  const handleSelect = (index: number) => {
+    setSelectedIndexes((prev) =>
+      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index],
+    );
+  };
 
   const toggleGenre = (genre: string) => {
     setSelectedGenres((prev) =>
       prev.includes(genre) ? prev.filter((g) => g !== genre) : [...prev, genre],
     );
+    setOpacityMap((prev) => ({
+      ...prev,
+      [genre]: prev[genre] === 1 ? 0.3 : 1,
+    }));
+    setColorMap((prev) => ({
+      ...prev,
+      [genre]: prev[genre] === 'black' ? 'white' : 'black',
+    }));
   };
+
+  useEffect(() => {
+    const initializeMap = <T,>(defaultValue: T) =>
+      svgGenres.reduce((acc, item) => {
+        acc[item.genre] = defaultValue;
+        return acc;
+      }, {} as Record<string, T>);
+
+    setOpacityMap(initializeMap(0.3));
+    setColorMap(initializeMap('white'));
+  }, []);
+
+  const handleNextClick = () => {
+    if (step === 1) {
+      if (selectedGenres.length < 3) {
+        alert('장르를 3개 이상 선택해 주세요.');
+      } else {
+        setStep(step + 1);
+      }
+    } else if (step === 2) {
+      if (selectedIndexes.length < 3) {
+        alert('문장을 3개 이상 선택해 주세요.');
+      } else {
+        const selectedSentences = selectedIndexes.map(
+          (index) => genres_setp2[index].sentence,
+        );
+        alert(
+          `선택된 장르: ${selectedGenres.join(
+            ', ',
+          )}\n선택된 문장: ${selectedSentences.join(', ')}`,
+        );
+        setStep(step + 1);
+      }
+    }
+  };
+
   return (
-    <Container2>
-      <Header>개인화 추천(1/2)</Header>
-      <Title2>
-        안녕하세요! <br />
-        어떤 장르를 선호하세요?
-      </Title2>
-      <Image
-        src={genre_1}
-        alt="genreImg"
-        className="genreImg"
-        width={100}
-        height={100}
-        priority
-      />
-      <GenreContainer>
-        {genresList.map((genre) => (
-          <Genre
-            key={genre}
-            selected={selectedGenres.includes(genre)}
-            onClick={() => toggleGenre(genre)}
-          >
-            {genre}
-          </Genre>
-        ))}
-      </GenreContainer>
-      <Caption>
-        관심있는 장르를 <ColorText>3개 이상</ColorText> 선택해 주세요.
-      </Caption>
-      <Button
-        onClick={() => alert(`선택된 장르: ${selectedGenres.join(', ')}`)}
-        disabled={selectedGenres.length < 3}
+    <signup.Container2>
+      <signup.Header>
+        {step !== 1 && (
+          <img
+            src="/assets/images/icons/material-symbols_arrow-back-ios-rounded.svg"
+            alt="뒤로가기"
+            onClick={() => setStep(step - 1)}
+            width={20}
+            height={20}
+          />
+        )}
+        <signup.HeaderInner>개인화 추천({step}/2)</signup.HeaderInner>
+        <signup.Close>
+          <img
+            src="/assets/images/icons/iconamoon_close-light.svg"
+            alt="메인으로"
+            onClick={() => (location.href = '/')}
+            width={20}
+            height={20}
+          />
+        </signup.Close>
+      </signup.Header>
+
+      {step === 1 && (
+        <signup.Container>
+          <signup.Title2>
+            안녕하세요! <br /> 어떤 장르를 선호하세요?
+          </signup.Title2>
+          {svgGenres.map((item, index) => (
+            <signup.ImageContainer key={index}>
+              <signup.ImagesIcon
+                onClick={() => toggleGenre(item.genre)}
+                style={{ opacity: opacityMap[item.genre] }}
+              >
+                <Image
+                  src={item.file}
+                  alt={item.genre}
+                  width={100}
+                  height={100}
+                />
+              </signup.ImagesIcon>
+              <signup.GenreLabel style={{ color: colorMap[item.genre] }}>
+                {item.genre}
+              </signup.GenreLabel>
+            </signup.ImageContainer>
+          ))}
+        </signup.Container>
+      )}
+
+      {step === 2 && (
+        <>
+          <signup.Title2>어떤 문장을 선호하세요?</signup.Title2>
+          <signup.Step2Container>
+            {genres_setp2.map((genre, index) => (
+              <signup.GenreStep2
+                key={index}
+                style={{
+                  background: selectedIndexes.includes(index)
+                    ? genre.color
+                    : 'transparent',
+                  cursor: 'pointer',
+                  color: selectedIndexes.includes(index) ? 'black' : 'white',
+                }}
+                onClick={() => handleSelect(index)}
+              >
+                {genre.sentence}
+              </signup.GenreStep2>
+            ))}
+          </signup.Step2Container>
+        </>
+      )}
+
+      <signup.Caption>
+        관심 있는 {step === 1 ? '장르를' : '문장을'}{' '}
+        <signup.ColorText> 3개 이상 선택</signup.ColorText>해 주세요.
+      </signup.Caption>
+      <signup.Button
+        onClick={handleNextClick}
+        disabled={
+          (step === 1 && selectedGenres.length < 3) ||
+          (step === 2 && selectedIndexes.length < 3)
+        }
+        style={{
+          backgroundColor:
+            (step === 1 && selectedGenres.length < 3) ||
+            (step === 2 && selectedIndexes.length < 3)
+              ? 'gray'
+              : '#d7ff50',
+        }}
       >
         다음
-      </Button>
-    </Container2>
+      </signup.Button>
+      {step === 3 && <>step3</>}
+    </signup.Container2>
   );
 };
 
@@ -135,7 +253,7 @@ const SingStep2 = () => {
 
   const onSubmit = async (data: LoginType) => {
     console.log(data);
-    Api.post('users/join', data) // Api를 사용하여 POST 요청
+    Api.post('users/join', data)
       .then((result) => {
         console.log('요청성공');
         console.log(result);
@@ -147,20 +265,22 @@ const SingStep2 = () => {
   };
 
   return (
-    <PageWrapper>
-      <Container>
-        <Title>회원가입</Title>
-        <Form onSubmit={handleSubmit(onSubmit)} autoComplete="false">
-          <InputWrapper>
-            <Label>아이디</Label>
-            <Input type="text" {...register('userId')} />
+    <signup.PageWrapper>
+      <signup.Container>
+        <signup.Title>회원가입</signup.Title>
+        <signup.Form onSubmit={handleSubmit(onSubmit)} autoComplete="false">
+          <signup.InputWrapper>
+            <signup.Label>아이디</signup.Label>
+            <signup.Input type="text" {...register('userId')} />
             {errors.userId?.message && (
-              <ErrorMessage>{errors.userId?.message}</ErrorMessage>
+              <signup.ErrorMessage>
+                {errors.userId?.message}
+              </signup.ErrorMessage>
             )}
-          </InputWrapper>
-          <InputWrapper>
-            <Label>이메일</Label>
-            <Input
+          </signup.InputWrapper>
+          <signup.InputWrapper>
+            <signup.Label>이메일</signup.Label>
+            <signup.Input
               type="text"
               {...register('email')}
               autoComplete="false"
@@ -168,45 +288,51 @@ const SingStep2 = () => {
               required
             />
             {errors.email?.message && (
-              <ErrorMessage>{errors.email?.message}</ErrorMessage>
+              <signup.ErrorMessage>{errors.email?.message}</signup.ErrorMessage>
             )}
-          </InputWrapper>
-          <InputWrapper>
-            <Label>닉네임</Label>
-            <Input type="text" {...register('nickName')} />
-          </InputWrapper>
-          <InputWrapper>
-            <Label>비밀번호</Label>
-            <Input
+          </signup.InputWrapper>
+          <signup.InputWrapper>
+            <signup.Label>닉네임</signup.Label>
+            <signup.Input type="text" {...register('nickName')} />
+          </signup.InputWrapper>
+          <signup.InputWrapper>
+            <signup.Label>비밀번호</signup.Label>
+            <signup.Input
               type="password"
               {...register('password')}
               autoComplete="new-password"
             />
 
             {errors.password?.message && (
-              <ErrorMessage>{errors.password?.message}</ErrorMessage>
+              <signup.ErrorMessage>
+                {errors.password?.message}
+              </signup.ErrorMessage>
             )}
-          </InputWrapper>
-          <InputWrapper>
-            <Label>비밀번호확인</Label>
-            <Input type="password" {...register('checkPassword')} />
+          </signup.InputWrapper>
+          <signup.InputWrapper>
+            <signup.Label>비밀번호확인</signup.Label>
+            <signup.Input type="password" {...register('checkPassword')} />
             {errors.checkPassword?.message && (
-              <ErrorMessage>{errors.checkPassword?.message}</ErrorMessage>
+              <signup.ErrorMessage>
+                {errors.checkPassword?.message}
+              </signup.ErrorMessage>
             )}
-          </InputWrapper>
-          <InputWrapper>
-            <Label>성별</Label>
-            <Input type="text" {...register('gender')} />
+          </signup.InputWrapper>
+          <signup.InputWrapper>
+            <signup.Label>성별</signup.Label>
+            <signup.Input type="text" {...register('gender')} />
             {/* <RadioGroup {...register('gender')}>
               <Radio label="남성" value="male" name="gender" />
               <Radio label="여성" value="female" name="gender" />
             </RadioGroup> */}
             {errors.gender?.message && (
-              <ErrorMessage>{errors.gender?.message}</ErrorMessage>
+              <signup.ErrorMessage>
+                {errors.gender?.message}
+              </signup.ErrorMessage>
             )}
-          </InputWrapper>
-          <InputWrapper>
-            <Label>국적</Label>
+          </signup.InputWrapper>
+          <signup.InputWrapper>
+            <signup.Label>국적</signup.Label>
             <select {...register('nationality')} defaultValue="">
               <option value="" disabled hidden>
                 국적을 선택하세요
@@ -218,32 +344,26 @@ const SingStep2 = () => {
               <option value="GB">영국</option>
             </select>
             {errors.nationality?.message && (
-              <ErrorMessage>{errors.nationality?.message}</ErrorMessage>
+              <signup.ErrorMessage>
+                {errors.nationality?.message}
+              </signup.ErrorMessage>
             )}
-          </InputWrapper>
-          <InputWrapper>
-            <Label>나이</Label>
-            <Input
+          </signup.InputWrapper>
+          <signup.InputWrapper>
+            <signup.Label>나이</signup.Label>
+            <signup.Input
               type="number"
               // {...register('age')}
             />
             {/* {errors.age?.message && (
               <ErrorMessage>{errors.age?.message}</ErrorMessage>
             )} */}
-          </InputWrapper>
-          <input type="submit" value="회원가입" />
-        </Form>
-      </Container>
-    </PageWrapper>
+          </signup.InputWrapper>
+          <signup.Input type="submit" value="회원가입" />
+        </signup.Form>
+      </signup.Container>
+    </signup.PageWrapper>
   );
 };
 
-const SingupPage = () => {
-  return (
-    <Container>
-      <SingStep1 />
-    </Container>
-  );
-};
-
-export default SingupPage;
+export default SignupProcess;
