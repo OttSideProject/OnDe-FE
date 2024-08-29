@@ -3,18 +3,20 @@ import localFont from 'next/font/local';
 
 import ClientLayout from '@/components/ClientLayout';
 
-import './globals.css';
+import '../styles/core/globals.css';
 
 const pretendardRegular = localFont({
   src: '../../public/assets/fonts/Pretendard-Regular.woff',
   weight: '400',
   display: 'swap',
+  variable: '--primary-font' /* CSS 변수로 폰트 설정 */,
 });
 
 const pretendardBold = localFont({
   src: '../../public/assets/fonts/Pretendard-SemiBold.woff',
   weight: '600',
   display: 'swap',
+  variable: '--primary-title-font' /* CSS 변수로 폰트 설정 */,
 });
 
 export const metadata: Metadata = {
@@ -30,9 +32,9 @@ export default function RootLayout({
   return (
     <html
       lang="ko"
-      className={`${pretendardRegular.className} ${pretendardBold.className}`}
+      className={`${pretendardRegular.variable} ${pretendardBold.variable}`}
     >
-      <body className={pretendardRegular.className}>
+      <body className={pretendardRegular.variable}>
         <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
