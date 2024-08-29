@@ -48,75 +48,62 @@ a {
   -webkit-text-decoration-skip: objects;
 }
 
-body {
-  font-family: var(--primary-font);
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 8px 10px;
-  color: var(--primary-white);
-  border: 1px solid #292524;
-  font-size: 1.4rem;
-  font-weight: 500;
-}
-
 /* 스크롤 동작 설정 */
 html {
   scroll-behavior: smooth;
 }
 
 :root {
-	/* Main colors */
-	--primary80: #d7ff50;
-	--primary: #c1ff12;
-	--primary100: #a4e600;
-	--primary200: #7fb800;
-	--primary500: #405c0b;
-	--primary600: #203400;
+  /* Main colors */
+  --primary80: #d7ff50;
+  --primary: #c1ff12;
+  --primary100: #a4e600;
+  --primary200: #7fb800;
+  --primary500: #405c0b;
+  --primary600: #203400;
 
-	/* Secondary colors */
-	--secondary: #922DFF;
-	--secondary10: #B266FF;
+  /* Secondary colors */
+  --secondary: #922dff;
+  --secondary10: #b266ff;
 
-		/* Red colors */
-	--red: #EA3F80; /* Error */
-	--red10: #FF669D;
-	
-	/* Blue */
-	--blue: #0170F0;
-	
+  /* Red colors */
+  --red: #ea3f80; /* Error */
+  --red10: #ff669d;
 
-	/* Neon colors */
---neon-marine: #16FBC5;
---neon-aqua: #16FBF5;
---neon-sky-blue: #3CCBFF;
---neon-blue: #5E86F3;
---neon-salmon: #FFC2C2;
---neon-orange: #FBB920;
---neon-pink: #FB52C2;
---neon-purple: #B433FB; 
+  /* Blue */
+  --blue: #0170f0;
 
-	/* Gray */
-	--gray50: #E4E6E1;
-	--gray100: #C2C4C0;
-	--gray200: #A9ABA6;
-	--gray400: #6C6E69;
-	--gray500: #464844;
-	--gray600: #393B38;
-	--gray700: #313330;
-	--gray750: #20211F;
-	--gray900: #0D0D0C;
+  /* Neon colors */
+  --neon-marine: #16fbc5;
+  --neon-aqua: #16fbf5;
+  --neon-sky-blue: #3ccbff;
+  --neon-blue: #5e86f3;
+  --neon-salmon: #ffc2c2;
+  --neon-orange: #fbb920;
+  --neon-pink: #fb52c2;
+  --neon-purple: #b433fb;
 
-	/* B&W */
-	--primary-white: #F2F2F2; /* Text */
-	--primary-black: #0B0B0B; /* Background */
+  /* Gray */
+  --gray50: #e4e6e1;
+  --gray100: #c2c4c0;
+  --gray200: #a9aba6;
+  --gray400: #6c6e69;
+  --gray500: #464844;
+  --gray600: #393b38;
+  --gray700: #313330;
+  --gray750: #20211f;
+  --gray900: #0d0d0c;
+
+  /* B&W */
+  --primary-white: #f2f2f2; /* Text */
+  --primary-black: #0b0b0b; /* Background */
 
   /* Font Style */
   --primary-font: 'Pretendard-Regular', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji',
+    'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Apple Color Emoji',
     'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji', sans-serif;
 
   --primary-title-font: 'Pretendard-SemiBold', sans-serif;
-
 }
 
 /* 텍스트 초기화 */
@@ -139,9 +126,13 @@ body {
   font-family: var(--primary-font);
   overflow-x: auto;
   overflow-y: auto;
+  max-width: 600px;
   min-height: 100%;
-  background-color: #0c0a09;
-  color: #fff;
+  margin: 0 auto;
+  padding: 8px 10px;
+  border: 1px solid #292524;
+  background-color: var(--primary-black);
+  color: var(--primary-white);
   font-size: 1.4rem;
   font-weight: 500;
 }
@@ -164,7 +155,6 @@ video {
   overflow: hidden;
   max-width: 100%;
   max-height: 100%;
-  object-fit: cover;
 }
 
 /* 링크 스타일 초기화 */
@@ -201,24 +191,15 @@ span {
 h1,
 h2 {
   margin-bottom: 0;
-  color: var(--primary-title-color);
+  color: var(--primary-white);
 }
 
 /* 입력 필드 및 텍스트 영역 스타일 설정*/
-textarea::placeholder {
-  color: #a8a8a8;
-}
-
-input:focus,
-textarea:focus {
-  border: 1px solid var(--accent-color);
-  outline: none;
-  outline-offset: 2px;
-}
 
 input,
 textarea {
   padding: 10px;
+  color: var(--primary-white);
 }
 
 /* 셀렉트 박스 스타일 설정 */
@@ -230,6 +211,23 @@ select {
   background-repeat: no-repeat;
   background-position: 98% 50%;
   background-size: 20px 20px;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--gray500);
+}
+
+/* 키보드로 포커스 시 */
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--primary80);
+}
+
+/* 마우스, 터치로 포커스 시 */
+input:focus:not(:focus-visible),
+textarea:focus:not(:focus-visible) {
+  outline: none;
 }
 
 /* 접근성 요소 숨김 처리*/
@@ -254,23 +252,10 @@ select {
   display: -webkit-box;
   line-height: 1.6em;
   height: 3.2em;
-  -webkit-line-clamp: 2; /* 라인수 */
+  -webkit-line-clamp: 2;
+  line-clamp: 2; /* 라인수 */
   -webkit-box-orient: vertical;
   white-space: unset;
-}
-
-.separator {
-  display: flex;
-  align-items: center;
-}
-
-/* 텍스트 구분 기호 */
-.separator::after {
-  content: '';
-  width: 1px;
-  height: 14px;
-  margin-left: 10px;
-  background-color: var(--primary-gray3);
 }
 
 /* scroll 커스텀 스타일 */
@@ -279,14 +264,14 @@ select {
   height: 2px;
 }
 .scrollbar::-webkit-scrollbar-thumb {
-  background-color: var(--primary-gray2);
+  background-color: var(--gray500);
 }
 .scrollbar::-webkit-scrollbar-track {
-  background-color: var(--primary-gray3);
+  background-color: var(--gray500);
 }
 
 @media (min-width: 576px) {
   body {
-    color: white;
+    color: var(--primary-white);
   }
 }
