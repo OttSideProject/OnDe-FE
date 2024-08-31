@@ -56,7 +56,7 @@ html {
 :root {
   /* Main colors */
   --primary80: #d7ff50;
-  --primary: #c1ff12;
+  --primary: #bfff00;
   --primary100: #a4e600;
   --primary200: #7fb800;
   --primary500: #405c0b;
@@ -135,6 +135,12 @@ body {
   color: var(--primary-white);
   font-size: 1.4rem;
   font-weight: 500;
+}
+
+/* storybook body */
+.sb-show-main {
+  width: 100%;
+  margin: 0 auto !important;
 }
 
 /* 리스트 스타일 초기화 */
