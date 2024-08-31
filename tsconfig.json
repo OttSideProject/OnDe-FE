@@ -17,8 +17,7 @@
     "jsx": "preserve",
     "baseUrl": "",
     "paths": {
-      "@/*": ["./src/*"],
-      "@assets/*": ["./public/assets/*"]
+      "@/*": ["./src/*"]
     },
     "typeRoots": ["./node_modules/@types", "./src/customTypes"],
     "incremental": true,
@@ -33,7 +32,8 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "fonts.d.ts"
+    "fonts.d.ts",
+		".storybook"
   ],
   "exclude": ["node_modules"]
 }
