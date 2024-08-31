@@ -12,7 +12,7 @@ const pretendardRegular = localFont({
   variable: '--primary-font' /* CSS 변수로 폰트 설정 */,
 });
 
-const pretendardBold = localFont({
+export const pretendardBold = localFont({
   src: '../../public/assets/fonts/Pretendard-SemiBold.woff',
   weight: '600',
   display: 'swap',

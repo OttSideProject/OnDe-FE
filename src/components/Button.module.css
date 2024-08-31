@@ -1,0 +1,60 @@
+/* src/components/Button.module.css */
+.btnBody {
+  font-family: var(--primary-title-font);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.btn {
+  font-family: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 355px;
+  height: 56px;
+  padding: 17px 70px;
+  background-color: var(--primary80);
+  border-radius: 14px;
+  color: var(--primary-black);
+  font-size: 1.6rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btnPrimary {
+  background-color: var(--primary80);
+}
+
+.btnSecondary {
+  background-color: var(--secondary10);
+}
+
+.btnSmall {
+  font-family: var(--primary-font);
+  max-width: 103px;
+  width: 50%;
+  height: 29px;
+  padding: 5px 12px;
+  font-size: 1rem;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+.btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.btnPrimaryActive {
+  background-color: var(--primary);
+}
+
+.btnSecondaryActive {
+  background-color: var(--secondary);
+}
