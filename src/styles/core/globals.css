@@ -1,0 +1,277 @@
+@charset "UTF-8";
+
+/* 기본 스타일 초기화 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  background-color: transparent;
+  -webkit-text-decoration-skip: objects;
+}
+
+/* 스크롤 동작 설정 */
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  /* Main colors */
+  --primary80: #d7ff50;
+  --primary: #c1ff12;
+  --primary100: #a4e600;
+  --primary200: #7fb800;
+  --primary500: #405c0b;
+  --primary600: #203400;
+
+  /* Secondary colors */
+  --secondary: #922dff;
+  --secondary10: #b266ff;
+
+  /* Red colors */
+  --red: #ea3f80; /* Error */
+  --red10: #ff669d;
+
+  /* Blue */
+  --blue: #0170f0;
+
+  /* Neon colors */
+  --neon-marine: #16fbc5;
+  --neon-aqua: #16fbf5;
+  --neon-sky-blue: #3ccbff;
+  --neon-blue: #5e86f3;
+  --neon-salmon: #ffc2c2;
+  --neon-orange: #fbb920;
+  --neon-pink: #fb52c2;
+  --neon-purple: #b433fb;
+
+  /* Gray */
+  --gray50: #e4e6e1;
+  --gray100: #c2c4c0;
+  --gray200: #a9aba6;
+  --gray400: #6c6e69;
+  --gray500: #464844;
+  --gray600: #393b38;
+  --gray700: #313330;
+  --gray750: #20211f;
+  --gray900: #0d0d0c;
+
+  /* B&W */
+  --primary-white: #f2f2f2; /* Text */
+  --primary-black: #0b0b0b; /* Background */
+
+  /* Font Style */
+  --primary-font: 'Pretendard-Regular', -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji', sans-serif;
+
+  --primary-title-font: 'Pretendard-SemiBold', sans-serif;
+}
+
+/* 텍스트 초기화 */
+p,
+span,
+h1,
+h2,
+h3 {
+  margin: 0;
+  padding: 0;
+}
+
+/* HTML, BODY 초기화 */
+html {
+  height: 100%;
+  font-size: 62.5%;
+}
+
+body {
+  font-family: var(--primary-font);
+  overflow-x: auto;
+  overflow-y: auto;
+  max-width: 600px;
+  min-height: 100%;
+  margin: 0 auto;
+  padding: 8px 10px;
+  border: 1px solid #292524;
+  background-color: var(--primary-black);
+  color: var(--primary-white);
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+
+/* 리스트 스타일 초기화 */
+dl,
+ul,
+ol,
+menu,
+li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* 반응형 이미지, 비디오 */
+img,
+video {
+  display: block;
+  overflow: hidden;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* 링크 스타일 초기화 */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* 버튼 스타일 초기화 */
+button {
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+/* Transition */
+a,
+button {
+  transition: all ease 0.5s;
+  -webkit-transition: all ease 0.5s;
+  -moz-transition: all ease 0.5s;
+  -ms-transition: all ease 0.5s;
+  -o-transition: all ease 0.5s;
+}
+
+/* 텍스트 스타일 초기화 */
+a,
+button,
+span {
+  letter-spacing: 0;
+}
+
+/* 제목 스타일 설정 */
+h1,
+h2 {
+  margin-bottom: 0;
+  color: var(--primary-white);
+}
+
+/* 입력 필드 및 텍스트 영역 스타일 설정*/
+
+input,
+textarea {
+  padding: 10px;
+  color: var(--primary-white);
+}
+
+/* 셀렉트 박스 스타일 설정 */
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  /* background-image: url("/assets/images/arrow-down.svg"); */
+  background-repeat: no-repeat;
+  background-position: 98% 50%;
+  background-size: 20px 20px;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--gray500);
+}
+
+/* 키보드로 포커스 시 */
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--primary80);
+}
+
+/* 마우스, 터치로 포커스 시 */
+input:focus:not(:focus-visible),
+textarea:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* 접근성 요소 숨김 처리*/
+.blind {
+  overflow: hidden;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  clip: rect(0 0 0 0);
+}
+
+/* 텍스트 말줄임 설정말줄임 */
+/* text ellipsis*/
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 다중 라인 텍스트 말줄임 (2줄) */
+.ellipsis.lineclamp {
+  display: -webkit-box;
+  line-height: 1.6em;
+  height: 3.2em;
+  -webkit-line-clamp: 2;
+  line-clamp: 2; /* 라인수 */
+  -webkit-box-orient: vertical;
+  white-space: unset;
+}
+
+/* scroll 커스텀 스타일 */
+.scrollbar::-webkit-scrollbar {
+  width: 0;
+  height: 2px;
+}
+.scrollbar::-webkit-scrollbar-thumb {
+  background-color: var(--gray500);
+}
+.scrollbar::-webkit-scrollbar-track {
+  background-color: var(--gray500);
+}
+
+@media (min-width: 576px) {
+  body {
+    color: var(--primary-white);
+  }
+}
