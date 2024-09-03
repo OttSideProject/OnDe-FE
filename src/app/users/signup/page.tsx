@@ -48,6 +48,7 @@ const SignupProcess = () => {
   const [selectedIndexes, setSelectedIndexes] = useState<number[]>([]);
   const [opacityMap, setOpacityMap] = useState<Record<string, number>>({});
   const [colorMap, setColorMap] = useState<Record<string, string>>({});
+
   const [userInfo, setUserInfo] = useState<{
     name: string;
     email: string;
@@ -275,6 +276,11 @@ const SignupProcess = () => {
       )}
 
       <signup.Caption>
+        {step === 4 &&
+          '걱정 마세요, 개인정보는 콘텐츠를 추천하기 위해서만 사용할게요.'}
+        {step === 3 && '회원님께 딱맞는 콘텐츠를 추천해 드릴게요.'}
+        {step === 2 && '관심 있는 문장을 3개 이상 선택해 주세요.'}
+        {step === 1 && `관심 있는 장르를 3개 이상 선택해 주세요.`}
         {step === 4 &&
           '걱정 마세요, 개인정보는 콘텐츠를 추천하기 위해서만 사용할게요.'}
         {step === 3 && '회원님께 딱맞는 콘텐츠를 추천해 드릴게요.'}

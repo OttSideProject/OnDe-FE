@@ -105,6 +105,7 @@ const Caption = styled.div`
   display: flex;
   justify-content: center;
   padding: 40px 45px;
+  padding: 40px 45px;
   font-weight: 300;
   text-align: center;
   white-space: pre-wrap;
