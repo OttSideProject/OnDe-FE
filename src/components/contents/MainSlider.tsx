@@ -5,6 +5,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import Slider from 'react-slick';
+import Button from '../shared/button-group/Button';
+
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import styles from './MainSlider.module.css';
@@ -56,6 +58,27 @@ const MainSlider: React.FC<MainSliderProps> = ({ slides }) => {
                   <h3>{slide.title}</h3>
                   <h4>{slide.subTitle.join(' · ')}</h4>
                 </figcaption>
+                <div className={styles.btnContainer}>
+                  {/* 첫 번째 버튼 */}
+                  <Button
+                    variant="primary"
+                    size="small"
+                    text="First Button"
+                    onClick={() => alert('First Button Clicked!')}
+                  >
+                    First Button
+                  </Button>
+
+                  {/* 두 번째 버튼 */}
+                  <Button
+                    variant="secondary"
+                    size="small"
+                    text="Second Button"
+                    onClick={() => alert('Second Button Clicked!')}
+                  >
+                    Second Button
+                  </Button>
+                </div>
               </figure>
             </Link>
           ))}

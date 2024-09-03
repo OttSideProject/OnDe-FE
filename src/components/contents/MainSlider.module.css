@@ -59,14 +59,14 @@
 .slide figcaption {
   position: absolute;
   z-index: 2;
-  bottom: 82px;
+  bottom: 52px;
   width: 100%;
 }
 
 .slide figcaption h3 {
   font-family: var(--primary-title-font);
   margin-bottom: 10px;
-  -webkit-text-stroke-width: 1;
+  -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: var(--gray400);
   font-size: 3.6rem;
   color: var(--primary-white);
@@ -76,6 +76,10 @@
   font-size: 1.2rem;
   color: var(--gray200);
   font-weight: 400;
+}
+
+.slide .btnContainer {
+  bottom: 15px;
 }
 
 @media screen and (max-width: 430px) {
@@ -114,5 +118,19 @@
 }
 
 .activeSlide figcaption {
-  bottom: 98px;
+  bottom: 62px;
+}
+
+.btnContainer {
+  position: absolute;
+  bottom: 19px;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.activeSlide .btnContainer {
+  flex-direction: row-reverse;
 }
