@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 56px;
+  padding: 0 15px;
+  font-size: 2.4rem;
+}
+
+.container h2 {
+  font-family: var(--primary-title-font);
+  font-size: inherit;
+}
