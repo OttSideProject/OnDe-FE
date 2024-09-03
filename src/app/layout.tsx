@@ -4,6 +4,7 @@ import localFont from 'next/font/local';
 import ClientLayout from '@/components/ClientLayout';
 
 import '../styles/core/globals.css';
+import '../styles/core/styles.css';
 
 const pretendardRegular = localFont({
   src: '../../public/assets/fonts/Pretendard-Regular.woff',
@@ -30,11 +31,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="ko"
-      className={`${pretendardRegular.variable} ${pretendardBold.variable}`}
-    >
-      <body className={pretendardRegular.variable}>
+    <html lang="ko">
+      <body
+        className={`${pretendardRegular.variable} ${pretendardBold.variable}`}
+      >
         <ClientLayout>{children}</ClientLayout>
       </body>
     </html>

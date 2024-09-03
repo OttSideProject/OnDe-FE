@@ -1,0 +1,36 @@
+/* react slick custom*/
+
+/* .slick-dots  */
+.slick-dots {
+  position: static !important;
+}
+
+.slick-dots li {
+  margin: 0 !important;
+}
+
+.slick-dots li button:before {
+  opacity: 1 !important;
+  width: 6px !important;
+  height: 6px !important;
+  color: var(--gray50) !important;
+}
+
+.slick-dots li.slick-active button:before {
+  color: var(--primary-white) !important;
+}
+
+/* slick-slider */
+
+.slick-slider {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.slick-list {
+  width: 845px;
+  height: 450px;
+  padding-bottom: 50px !important;
+}
