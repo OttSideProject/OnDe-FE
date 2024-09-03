@@ -37,47 +37,9 @@ const genres_setp2: Genre[] = [
   { sentence: '힐링이 필요해 잔잔한 힐링영화', color: '#16FBF5' },
 ];
 
-import { z } from 'zod';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
 import Api from '@/api/core/Api'; // Api import 추가
 import signup from '@/styles/user/signup';
 import { useEffect, useState } from 'react';
-
-const LoginSchema = z
-  .object({
-    userId: z.string().min(1, { message: '아이디를 입력해주세요.' }),
-    email: z
-      .string()
-      .min(1, { message: '메일을 입력해주세요.' })
-      .email({ message: '올바른 이메일을 입력해주세요.' }),
-    nickName: z.string().min(1, { message: '닉네임을 입력해주세요.' }),
-    password: z
-      .string()
-      .min(8)
-      .max(16, { message: '비밀번호를 8자 이상 16자 이하로 입력해 주세요.' }),
-    checkPassword: z.string().min(8).max(16),
-    gender: z.string().optional(),
-    // age: z.preprocess(
-    //   (value) => parseInt(z.string().parse(value), 10),
-    //   z.number().min(1, { message: '나이를 입력해주세요.' }),
-    // ),
-    nationality: z
-      .string()
-      .min(1, { message: '국적을 입력해주세요.' })
-      .optional(),
-    provider: z.string().optional(),
-  })
-  .superRefine(({ checkPassword, password }, ctx) => {
-    if (checkPassword !== password) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        message: '비밀번호가 일치하지 않습니다.',
-        path: ['checkPassword'],
-      });
-    }
-  });
-type LoginType = z.infer<typeof LoginSchema>;
 
 const SignupProcess = () => {
   const [step, setStep] = useState(1);
@@ -85,6 +47,21 @@ const SignupProcess = () => {
   const [selectedIndexes, setSelectedIndexes] = useState<number[]>([]);
   const [opacityMap, setOpacityMap] = useState<Record<string, number>>({});
   const [colorMap, setColorMap] = useState<Record<string, string>>({});
+  const [userInfo, setUserInfo] = useState<{
+    name: string;
+    email: string;
+    password: string;
+    confirmPassword: string;
+    gender: string;
+    age: number;
+  }>({
+    name: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+    gender: '',
+    age: 20,
+  });
 
   const handleSelect = (index: number) => {
     setSelectedIndexes((prev) =>
@@ -128,19 +105,39 @@ const SignupProcess = () => {
       if (selectedIndexes.length < 3) {
         alert('문장을 3개 이상 선택해 주세요.');
       } else {
-        const selectedSentences = selectedIndexes.map(
-          (index) => genres_setp2[index].sentence,
-        );
-        alert(
-          `선택된 장르: ${selectedGenres.join(
-            ', ',
-          )}\n선택된 문장: ${selectedSentences.join(', ')}`,
-        );
         setStep(step + 1);
+      }
+    } else if (step === 3) {
+      if (userInfo.gender === '') {
+        alert('성별을 선택해 주세요.');
+      } else {
+        setStep(step + 1);
+      }
+    } else if (step === 4) {
+      if (
+        !userInfo.name ||
+        !userInfo.email ||
+        !userInfo.password ||
+        userInfo.password !== userInfo.confirmPassword
+      ) {
+        alert('모든 정보를 정확하게 입력해 주세요.');
+      } else {
+        // 최종 제출 로직
+        alert('가입이 완료되었습니다!');
       }
     }
   };
 
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setUserInfo({ ...userInfo, [name]: value });
+  };
+
+  const handlePrevClick = () => {
+    setStep(step - 1);
+  };
+
+  const isSelected = (gender: string) => userInfo.gender === gender;
   return (
     <signup.Container2>
       <signup.Header>
@@ -148,12 +145,12 @@ const SignupProcess = () => {
           <img
             src="/assets/images/icons/material-symbols_arrow-back-ios-rounded.svg"
             alt="뒤로가기"
-            onClick={() => setStep(step - 1)}
+            onClick={handlePrevClick}
             width={20}
             height={20}
           />
         )}
-        <signup.HeaderInner>개인화 추천({step}/2)</signup.HeaderInner>
+        <signup.HeaderInner>개인화 추천({step}/4)</signup.HeaderInner>
         <signup.Close>
           <img
             src="/assets/images/icons/iconamoon_close-light.svg"
@@ -214,156 +211,93 @@ const SignupProcess = () => {
         </>
       )}
 
+      {step === 3 && (
+        <>
+          <signup.Title2>성별을 선택해 주세요.</signup.Title2>
+          <signup.Step3Container>
+            <signup.ImageContainer2
+              isSelected={isSelected('여성')}
+              onClick={() => setUserInfo({ ...userInfo, gender: '여성' })}
+            >
+              <Image
+                src="/assets/images/icons/join-2-woman.svg"
+                alt="여성"
+                width={100}
+                height={100}
+                style={{ objectFit: 'contain' }}
+              />
+              <signup.GenderLabel isSelected={isSelected('여성')}>
+                여성
+              </signup.GenderLabel>
+            </signup.ImageContainer2>
+            <signup.ImageContainer2
+              isSelected={isSelected('남성')}
+              onClick={() => setUserInfo({ ...userInfo, gender: '남성' })}
+            >
+              <Image
+                src="/assets/images/icons/join-2-man.svg"
+                alt="남성"
+                width={100}
+                height={100}
+                style={{ objectFit: 'contain' }}
+              />
+              <signup.GenderLabel isSelected={isSelected('남성')}>
+                남성
+              </signup.GenderLabel>
+            </signup.ImageContainer2>
+          </signup.Step3Container>
+        </>
+      )}
+
+      {step === 4 && (
+        <>
+          <signup.Title2>연령대를 선택해 주세요.</signup.Title2>
+          <signup.Container>
+            <p>선택하세요.</p>
+            <select
+              name="ageRange"
+              value={userInfo.age}
+              onChange={(e) => handleInputChange}
+              style={{ width: '100%', padding: '8px' }}
+            >
+              <option value="10대">10대</option>
+              <option value="20대">20대</option>
+              <option value="30대">30대</option>
+              <option value="40대">40대</option>
+              <option value="50대">50대</option>
+              <option value="60대 이상">60대 이상</option>
+            </select>
+          </signup.Container>
+        </>
+      )}
+
       <signup.Caption>
-        관심 있는 {step === 1 ? '장르를' : '문장을'}{' '}
-        <signup.ColorText> 3개 이상 선택</signup.ColorText>해 주세요.
+        {step === 4 &&
+          '걱정 마세요, 개인정보는 콘텐츠를 추천하기 위해서만 사용할게요.'}
+        {step === 3 && '회원님께 딱맞는 콘텐츠를 추천해 드릴게요.'}
+        {step === 2 && '관심 있는 문장을 3개 이상 선택해 주세요.'}
+        {step === 1 && `관심 있는 장르를 3개 이상 선택해 주세요.`}
       </signup.Caption>
       <signup.Button
         onClick={handleNextClick}
         disabled={
           (step === 1 && selectedGenres.length < 3) ||
-          (step === 2 && selectedIndexes.length < 3)
+          (step === 2 && selectedIndexes.length < 3) ||
+          (step === 3 && !userInfo.gender)
         }
         style={{
           backgroundColor:
             (step === 1 && selectedGenres.length < 3) ||
-            (step === 2 && selectedIndexes.length < 3)
+            (step === 2 && selectedIndexes.length < 3) ||
+            (step === 3 && !userInfo.gender) ||
+            (step === 4 && !userInfo.age)
               ? 'gray'
               : '#d7ff50',
         }}
       >
-        다음
+        {step === 6 ? '가입 완료' : '다음'}
       </signup.Button>
-      {step === 3 && <>step3</>}
     </signup.Container2>
   );
 };
-
-const SingStep2 = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<LoginType>({
-    resolver: zodResolver(LoginSchema),
-    defaultValues: {
-      provider: '',
-    },
-  });
-
-  const onSubmit = async (data: LoginType) => {
-    console.log(data);
-    Api.post('users/join', data)
-      .then((result) => {
-        console.log('요청성공');
-        console.log(result);
-      })
-      .catch((error) => {
-        console.log('요청실패');
-        console.log(error);
-      });
-  };
-
-  return (
-    <signup.PageWrapper>
-      <signup.Container>
-        <signup.Title>회원가입</signup.Title>
-        <signup.Form onSubmit={handleSubmit(onSubmit)} autoComplete="false">
-          <signup.InputWrapper>
-            <signup.Label>아이디</signup.Label>
-            <signup.Input type="text" {...register('userId')} />
-            {errors.userId?.message && (
-              <signup.ErrorMessage>
-                {errors.userId?.message}
-              </signup.ErrorMessage>
-            )}
-          </signup.InputWrapper>
-          <signup.InputWrapper>
-            <signup.Label>이메일</signup.Label>
-            <signup.Input
-              type="text"
-              {...register('email')}
-              autoComplete="false"
-              placeholder="email@test.com"
-              required
-            />
-            {errors.email?.message && (
-              <signup.ErrorMessage>{errors.email?.message}</signup.ErrorMessage>
-            )}
-          </signup.InputWrapper>
-          <signup.InputWrapper>
-            <signup.Label>닉네임</signup.Label>
-            <signup.Input type="text" {...register('nickName')} />
-          </signup.InputWrapper>
-          <signup.InputWrapper>
-            <signup.Label>비밀번호</signup.Label>
-            <signup.Input
-              type="password"
-              {...register('password')}
-              autoComplete="new-password"
-            />
-
-            {errors.password?.message && (
-              <signup.ErrorMessage>
-                {errors.password?.message}
-              </signup.ErrorMessage>
-            )}
-          </signup.InputWrapper>
-          <signup.InputWrapper>
-            <signup.Label>비밀번호확인</signup.Label>
-            <signup.Input type="password" {...register('checkPassword')} />
-            {errors.checkPassword?.message && (
-              <signup.ErrorMessage>
-                {errors.checkPassword?.message}
-              </signup.ErrorMessage>
-            )}
-          </signup.InputWrapper>
-          <signup.InputWrapper>
-            <signup.Label>성별</signup.Label>
-            <signup.Input type="text" {...register('gender')} />
-            {/* <RadioGroup {...register('gender')}>
-              <Radio label="남성" value="male" name="gender" />
-              <Radio label="여성" value="female" name="gender" />
-            </RadioGroup> */}
-            {errors.gender?.message && (
-              <signup.ErrorMessage>
-                {errors.gender?.message}
-              </signup.ErrorMessage>
-            )}
-          </signup.InputWrapper>
-          <signup.InputWrapper>
-            <signup.Label>국적</signup.Label>
-            <select {...register('nationality')} defaultValue="">
-              <option value="" disabled hidden>
-                국적을 선택하세요
-              </option>
-              <option value="KR">대한민국</option>
-              <option value="US">미국</option>
-              <option value="CN">중국</option>
-              <option value="JP">일본</option>
-              <option value="GB">영국</option>
-            </select>
-            {errors.nationality?.message && (
-              <signup.ErrorMessage>
-                {errors.nationality?.message}
-              </signup.ErrorMessage>
-            )}
-          </signup.InputWrapper>
-          <signup.InputWrapper>
-            <signup.Label>나이</signup.Label>
-            <signup.Input
-              type="number"
-              // {...register('age')}
-            />
-            {/* {errors.age?.message && (
-              <ErrorMessage>{errors.age?.message}</ErrorMessage>
-            )} */}
-          </signup.InputWrapper>
-          <signup.Input type="submit" value="회원가입" />
-        </signup.Form>
-      </signup.Container>
-    </signup.PageWrapper>
-  );
-};
-
 export default SignupProcess;

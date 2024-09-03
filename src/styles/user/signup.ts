@@ -96,14 +96,17 @@ const Container2 = styled.div`
   flex-direction: column;
   align-items: center;
   color: #fff;
+  justify-content: space-between;
+  height: 100vh;
 `;
 
 const Caption = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-  padding: 40px 0;
+  padding: 40px 45px;
   font-weight: 300;
+  text-align: center;
 `;
 
 const ColorText = styled.div`
@@ -169,7 +172,7 @@ const Button = styled.button`
   padding: 17px 70px;
   margin-top: 20px;
   font-size: 14px;
-  margin-bottom: 15px;
+  margin-bottom: 50px;
 
   cursor: pointer;
   border-radius: 5px;
@@ -197,6 +200,33 @@ const Step2Container = styled.div`
 `;
 // //STEP2
 
+// STEP3
+const Step3Container = styled.div`
+  padding: 120px 20px;
+  text-align: center;
+  display: flex;
+`;
+
+const ImageContainer2 = styled.div<{ isSelected: boolean }>`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin: 10px;
+  opacity: ${({ isSelected }) => (isSelected ? 1 : 0.5)};
+  transition: opacity 0.3s ease;
+`;
+
+// STEP4
+const GenderLabel = styled.div<{ isSelected: boolean }>`
+  margin-top: 8px;
+  font-size: 16px;
+  color: ${({ isSelected }) => (isSelected ? 'white' : 'white')};
+  opacity: ${({ isSelected }) => (isSelected ? 1 : 0.5)};
+  transition: opacity 0.3s ease;
+`;
+
 const signup = {
   PageWrapper,
   Container,
@@ -221,6 +251,9 @@ const signup = {
   HeaderInner,
   GenreStep2,
   Step2Container,
+  ImageContainer2,
+  Step3Container,
+  GenderLabel,
 };
 
 export default signup;
