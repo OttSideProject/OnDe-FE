@@ -17,6 +17,7 @@
   max-width: 175px;
   width: 29.2vw;
   height: 210px;
+  border-radius: 2px 2px 0px 0px;
   transition: transform 0.3s ease-in-out;
 }
 
@@ -24,6 +25,11 @@
   width: inherit;
   max-width: inherit;
   height: inherit;
+  border-radius: inherit;
+  -webkit-border-radius: inherit;
+  -moz-border-radius: inherit;
+  -ms-border-radius: inherit;
+  -o-border-radius: inherit;
 }
 
 .emptySlide {
