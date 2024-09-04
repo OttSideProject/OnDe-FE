@@ -1,6 +1,5 @@
 'use client';
 
-import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -11,14 +10,16 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import styles from './SectionSlider.module.css';
 
+/* 슬라이드를 위한 타입 */
 export type SectionSlide = {
   id: number;
-  url: string;
+	url: string;
 };
 
+/* 슬라이더 컴포넌트를 위한 타입 */
 export type SectionSliderProps = {
-  sectionSlides: SectionSlide[];
-};
+	sectionSlides: SectionSlide[];
+}
 
 const SectionSlider: React.FC<SectionSliderProps> = ({ sectionSlides }) => {
   const settings = {
@@ -27,15 +28,7 @@ const SectionSlider: React.FC<SectionSliderProps> = ({ sectionSlides }) => {
     slidesToShow: 8,
     slidesToScroll: 1,
     swipeToSlide: true,
-    // responsive: [
-    //   {
-    //     breakpoint: 500,
-    //     settings: {
-    //       slidesToShow: 6,
-    //       slidesToScroll: 1,
-    //     },
-    //   },
-    // ],
+    initialSlide: 2,
   };
 
   return (
@@ -43,14 +36,24 @@ const SectionSlider: React.FC<SectionSliderProps> = ({ sectionSlides }) => {
       <div className={`${styles.slider} section-slider`}>
         <Slider {...settings}>
           {sectionSlides.map((sectionSlide, index) => (
-            <Link key={index} href={''} className={styles.cardLink}>
-              <figure className={`${styles.slide}`}>
-                <Image
-                  src={sectionSlide.url}
-                  alt={`Slide ${sectionSlide.id}`}
-                  width={104}
-                  height={156}
-                />
+            <Link
+              key={index}
+              href={sectionSlide.url}
+              className={styles.cardLink}
+            >
+              <figure
+                className={`${styles.slide} ${
+                  !sectionSlide.url ? styles.emptySlide : ''
+                }`}
+              >
+                {sectionSlide.url && (
+                  <Image
+                    src={sectionSlide.url}
+                    alt={`Slide ${sectionSlide.id} ${index}`}
+                    width={104}
+                    height={156}
+                  />
+                )}
                 <div
                   className={styles.btnContainer}
                   style={{ display: 'none' }}

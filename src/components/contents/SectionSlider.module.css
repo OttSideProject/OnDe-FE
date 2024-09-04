@@ -6,10 +6,6 @@
   padding-bottom: 30px;
 }
 
-.slider {
-  /* margin: 0 8px; */
-}
-
 .cardLink {
   display: block;
   max-width: 175px !important;
@@ -30,10 +26,26 @@
   height: inherit;
 }
 
+.emptySlide {
+  opacity: 0;
+  pointer-events: none; /* 클릭 불가능하게 설정 */
+}
+
 .slide .btnContainer {
   bottom: 15px;
 }
 
+.btnContainer {
+  position: absolute;
+  bottom: 19px;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+}
+
+/* 반응형 */
 @media only screen and (max-width: 560px) and (min-width: 500px) {
   .slide {
     width: 175px !important;
@@ -49,14 +61,4 @@
     width: 104px;
     height: 156px;
   }
-}
-
-.btnContainer {
-  position: absolute;
-  bottom: 19px;
-  z-index: 2;
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  width: 100%;
 }
