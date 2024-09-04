@@ -4,7 +4,7 @@ import localFont from 'next/font/local';
 import ClientLayout from '@/components/ClientLayout';
 
 import '../styles/core/globals.css';
-import '../styles/core/styles.css';
+import '../styles/core/custom.css'; /* 슬라이더 커스텀 css */
 
 const pretendardRegular = localFont({
   src: '../../public/assets/fonts/Pretendard-Regular.woff',
