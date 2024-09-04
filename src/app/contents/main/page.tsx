@@ -6,9 +6,11 @@ import SectionSlider, {
 } from '@/components/contents/SectionSlider';
 import SubHeader from '@/components/contents/header/SubHeader';
 
-const headerText = '오늘의 Dimi Pick';
+const headerText = '오늘의 Dimi pick';
 
 const userName = '디미';
+
+const iconUrl = '/assets/images/icons/dimi-lime.svg';
 
 const slides: Slide[] = [
   {
@@ -191,7 +193,7 @@ const sections: Section[] = [
 const HomePage: React.FC = () => {
   return (
     <div className={styles.container}>
-      <Header headerText={headerText} />
+      <Header headerText={headerText} iconUrl={iconUrl} />
       <MainSlider slides={slides} />
       {sections.map((section) => (
         <div key={section.id}>

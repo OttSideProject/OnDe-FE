@@ -9,5 +9,10 @@
 
 .container h2 {
   font-family: var(--primary-title-font);
+  display: flex;
   font-size: inherit;
+}
+
+.container h2 img {
+  margin-left: 4.5px;
 }
