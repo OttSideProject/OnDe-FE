@@ -1,6 +1,9 @@
 import MainSlider, { Slide } from '@/components/contents/MainSlider';
+import Header from '@/components/contents/header/Header';
 import styles from './page.module.css';
-import Header  from '@/components/contents/header/Header';
+import SectionSlider, {
+  SectionSlide,
+} from '@/components/contents/SectionSlider';
 
 const headerText = '콘텐츠 헤더';
 
@@ -36,12 +39,35 @@ const slides: Slide[] = [
     url: 'https://picsum.photos/240/360?random=5',
   },
 ];
+const sectionSlides: SectionSlide[] = [
+  {
+    id: 1,
+    url: 'https://picsum.photos/104/156?random=1',
+  },
+  {
+    id: 2,
+    url: 'https://picsum.photos/104/156?random=2',
+  },
+  {
+    id: 3,
+    url: 'https://picsum.photos/104/156?random=3',
+  },
+  {
+    id: 4,
+    url: 'https://picsum.photos/104/156?random=4',
+  },
+  {
+    id: 5,
+    url: 'https://picsum.photos/104/156?random=5',
+  },
+];
 
 const HomePage: React.FC = () => {
   return (
     <div className={styles.container}>
       <Header headerText={headerText} />
       <MainSlider slides={slides} />
+      <SectionSlider sectionSlides={sectionSlides} />
     </div>
   );
 };

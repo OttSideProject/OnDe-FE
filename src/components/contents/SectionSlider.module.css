@@ -1,0 +1,62 @@
+.container {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-bottom: 30px;
+}
+
+.slider {
+  /* margin: 0 8px; */
+}
+
+.cardLink {
+  display: block;
+  max-width: 175px !important;
+  margin: 0 auto;
+}
+
+.slide {
+  position: relative;
+  max-width: 175px;
+  width: 29.2vw;
+  height: 210px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.slide img {
+  width: inherit;
+  max-width: inherit;
+  height: inherit;
+}
+
+.slide .btnContainer {
+  bottom: 15px;
+}
+
+@media only screen and (max-width: 560px) and (min-width: 500px) {
+  .slide {
+    width: 175px !important;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .cardLink {
+    width: 104px !important;
+  }
+
+  .slide {
+    width: 104px;
+    height: 156px;
+  }
+}
+
+.btnContainer {
+  position: absolute;
+  bottom: 19px;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+}
