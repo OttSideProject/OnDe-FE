@@ -6,22 +6,15 @@ import ClientLayout from '@/components/ClientLayout';
 import '../styles/core/globals.css';
 import '../styles/core/custom.css'; /* 슬라이더 커스텀 css */
 
-const pretendardRegular = localFont({
+const pretendard = localFont({
   src: '../../public/assets/fonts/Pretendard-Regular.woff',
   weight: '400',
   display: 'swap',
   variable: '--primary-font' /* CSS 변수로 폰트 설정 */,
 });
 
-const pretendardBold = localFont({
-  src: '../../public/assets/fonts/Pretendard-SemiBold.woff',
-  weight: '600',
-  display: 'swap',
-  variable: '--primary-title-font' /* CSS 변수로 폰트 설정 */,
-});
-
-/* 디자인 폰트를 메인 홈 페이지에서만  사용*/
-const IBMPlexSansKR = localFont({
+/* 디자인 폰트를 메인 홈 페이지에서만  사용 */
+const ibmPlexSanskr = localFont({
   src: '../../public/assets/fonts/IBMPlexSansKR-Bold.woff2',
   weight: '700',
   display: 'swap',
@@ -49,7 +42,7 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body
-        className={`${pretendardRegular.variable} ${pretendardBold.variable} ${IBMPlexSansKR.variable} ${suit.variable}`}
+        className={`${pretendard.variable} ${ibmPlexSanskr.variable} ${suit.variable}`}
       >
         <ClientLayout>{children}</ClientLayout>
       </body>

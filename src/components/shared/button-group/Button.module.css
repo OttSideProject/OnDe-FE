@@ -1,5 +1,4 @@
 .btnInner {
-  font-family: var(--primary-title-font);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -56,5 +55,3 @@
 .btnSecondaryActive {
   background-color: var(--secondary);
 }
-
-
