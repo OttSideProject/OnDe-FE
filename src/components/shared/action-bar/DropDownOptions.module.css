@@ -1,0 +1,56 @@
+.container {
+  position: fixed;
+  bottom: 0;
+  z-index: 100;
+  width: 94%;
+  min-width: 320px;
+  height: 300px;
+  padding: 24px 0 60px;
+  background-color: var(--gray780);
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
+}
+
+.inner {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 240px;
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
+}
+
+.inner > div {
+  height: 100%;
+  font-size: 1.8rem;
+  color: var(--gray50);
+}
+
+.inner h4 {
+  height: 60px;
+  padding: 24px 18px;
+  font-size: inherit;
+  font-weight: 700;
+}
+
+.inner ul {
+  overflow-y: auto;
+  width: 100%;
+  height: 100%;
+  font-size: inherit;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  height: 60px;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+.option img {
+  margin-right: 12px;
+}
