@@ -5,22 +5,14 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import Slider from 'react-slick';
+
 import Button from '../shared/button-group/Button';
+
+import { MainSliderProps } from '@/_types/contents/contents';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import styles from './MainSlider.module.css';
-
-export type Slide = {
-  id: number;
-  url: string;
-  title: string;
-  subTitle: string[];
-};
-
-export type MainSliderProps = {
-  slides: Slide[];
-};
 
 const MainSlider: React.FC<MainSliderProps> = ({ slides }) => {
   const [activeSlide, setActiveSlide] = useState<number>(0);
@@ -63,20 +55,22 @@ const MainSlider: React.FC<MainSliderProps> = ({ slides }) => {
                   <Button
                     variant="primary"
                     size="small"
-                    text="First Button"
+                    text="모아보기"
+                    iconUrl="/assets/images/icons/collect-box.svg"
                     onClick={() => alert('First Button Clicked!')}
                   >
-                    First Button
+                    모아보기
                   </Button>
 
                   {/* 두 번째 버튼 */}
                   <Button
-                    variant="secondary"
+                    variant="default"
                     size="small"
-                    text="Second Button"
+                    text="모아보기"
+                    iconUrl="/assets/images/icons/collect-box.svg"
                     onClick={() => alert('Second Button Clicked!')}
                   >
-                    Second Button
+                    모아보기
                   </Button>
                 </div>
               </figure>

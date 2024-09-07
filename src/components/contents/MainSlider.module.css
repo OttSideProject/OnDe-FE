@@ -66,7 +66,7 @@
 .slide figcaption h3 {
   font-family: var(--design-font);
   margin-bottom: 5px;
-  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-width: 0.5px;
   -webkit-text-stroke-color: var(--gray400);
   font-size: 3.6rem;
   color: var(--primary-white);
