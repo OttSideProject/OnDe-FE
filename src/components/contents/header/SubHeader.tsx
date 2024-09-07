@@ -1,10 +1,8 @@
 import Link from 'next/link';
-import styles from './SubHeader.module.css';
 
-export type SubHeaderProps = {
-  title: string;
-  linkText: string;
-};
+import type { SubHeaderProps } from '@/_types/contents/contents';
+
+import styles from './SubHeader.module.css';
 
 const SubHeader: React.FC<SubHeaderProps> = ({
   title,

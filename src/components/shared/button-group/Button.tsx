@@ -1,20 +1,15 @@
 import { useState } from 'react';
+
+import { ButtonProps } from '@/_types/contents/contents';
+
 import styles from './Button.module.css';
 
-type ButtonProps = {
-  variant?: 'primary' | 'secondary';
-  size?: 'small' | 'default';
-  text?: string;
-  isActive?: boolean;
-  children: React.ReactNode;
-  onClick?: () => void;
-};
-
 export default function Button({
-  variant = 'primary',
+  variant = 'default',
   size = 'default',
   isActive = false,
   children,
+  iconUrl,
   onClick,
 }: ButtonProps) {
   const [active, setIsActive] = useState(() => isActive);
@@ -54,6 +49,7 @@ export default function Button({
   return (
     <div className={styles.btnInner}>
       <button className={className} onClick={handleClick}>
+        {iconUrl && <img src={iconUrl} alt="icon" className={styles.icon} />}
         <span>{children}</span>
       </button>
     </div>
