@@ -92,6 +92,7 @@ html {
   --gray600: #393b38;
   --gray700: #313330;
   --gray750: #20211f;
+  --gray780: #191a18;
   --gray900: #0d0d0c;
 
   /* B&W */
@@ -284,7 +285,7 @@ textarea:focus:not(:focus-visible) {
   display: inline-block;
   width: 24px;
   height: 24px;
-  background-image: url('/assets/images/view-more-btn.svg');
+  background-image: url('/assets/images/icons/view-more.svg');
   background-repeat: no-repeat;
   background-size: 100%;
 }

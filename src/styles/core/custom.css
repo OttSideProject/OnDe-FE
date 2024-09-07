@@ -57,7 +57,7 @@
 @media screen and (max-width: 480px) {
   .section-slider .slick-list {
     width: 902px;
-    height: 156px;
+    min-height: 156px;
   }
 }
 
