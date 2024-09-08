@@ -15,26 +15,32 @@ const sections: Section[] = [
     id: 1,
     title: '님이 즐겨찾는 콘텐츠',
     linkText: '모아보기 더보기',
+    linkUrl: '/contents/collect-view',
     sectionSlides: [
       {
         id: 1,
-        url: 'https://picsum.photos/104/156?random=1',
+        imgUrl: 'https://picsum.photos/104/156?random=1',
+        detailUrl: '/contents/collect-view/detail/1',
       },
       {
         id: 2,
-        url: 'https://picsum.photos/104/156?random=2',
+        imgUrl: 'https://picsum.photos/104/156?random=2',
+        detailUrl: '/contents/collect-view/detail/2',
       },
       {
         id: 3,
-        url: '',
+        imgUrl: '',
+        detailUrl: '',
       },
       {
         id: 4,
-        url: '',
+        imgUrl: '',
+        detailUrl: '',
       },
       {
         id: 5,
-        url: '',
+        imgUrl: '',
+        detailUrl: '',
       },
     ],
   },
@@ -42,26 +48,32 @@ const sections: Section[] = [
     id: 2,
     title: '소년만화 좋아하시죠?',
     linkText: '추천 더보기',
+    linkUrl: '/contents/recommend',
     sectionSlides: [
       {
         id: 1,
-        url: 'https://picsum.photos/104/156?random=1',
+        imgUrl: 'https://picsum.photos/104/156?random=1',
+        detailUrl: '/contents/recommend/detail/1',
       },
       {
         id: 2,
-        url: 'https://picsum.photos/104/156?random=2',
+        imgUrl: 'https://picsum.photos/104/156?random=2',
+        detailUrl: '/contents/recommend/detail/2',
       },
       {
         id: 3,
-        url: 'https://picsum.photos/104/156?random=3',
+        imgUrl: 'https://picsum.photos/104/156?random=3',
+        detailUrl: '/contents/recommend/detail/3',
       },
       {
         id: 4,
-        url: 'https://picsum.photos/104/156?random=4',
+        imgUrl: 'https://picsum.photos/104/156?random=4',
+        detailUrl: '/contents/recommend/detail/4',
       },
       {
         id: 5,
-        url: 'https://picsum.photos/104/156?random=5',
+        imgUrl: 'https://picsum.photos/104/156?random=5',
+        detailUrl: '/contents/recommend/detail/5',
       },
     ],
   },
@@ -69,26 +81,32 @@ const sections: Section[] = [
     id: 3,
     title: 'NEW! 따끈따끈한 신작',
     linkText: '신작 더보기',
+    linkUrl: '/contents/new',
     sectionSlides: [
       {
         id: 1,
-        url: 'https://picsum.photos/104/156?random=1',
+        imgUrl: 'https://picsum.photos/104/156?random=1',
+        detailUrl: '/contents/new/detail/1',
       },
       {
         id: 2,
-        url: 'https://picsum.photos/104/156?random=2',
+        imgUrl: 'https://picsum.photos/104/156?random=2',
+        detailUrl: '/contents/new/detail/2',
       },
       {
         id: 3,
-        url: 'https://picsum.photos/104/156?random=3',
+        imgUrl: 'https://picsum.photos/104/156?random=3',
+        detailUrl: '/contents/new/detail/3',
       },
       {
         id: 4,
-        url: 'https://picsum.photos/104/156?random=4',
+        imgUrl: 'https://picsum.photos/104/156?random=4',
+        detailUrl: '/contents/new/detail/4',
       },
       {
         id: 5,
-        url: 'https://picsum.photos/104/156?random=5',
+        imgUrl: 'https://picsum.photos/104/156?random=5',
+        detailUrl: '/contents/new/detail/5',
       },
     ],
   },
@@ -96,26 +114,32 @@ const sections: Section[] = [
     id: 4,
     title: '지금 가장 인기있는 시리즈',
     linkText: '드라마 랭킹 더보기',
+    linkUrl: '/contents/popular-dramas',
     sectionSlides: [
       {
         id: 1,
-        url: 'https://picsum.photos/104/156?random=1',
+        imgUrl: 'https://picsum.photos/104/156?random=1',
+        detailUrl: '/contents/popular-dramas/detail/1',
       },
       {
         id: 2,
-        url: 'https://picsum.photos/104/156?random=2',
+        imgUrl: 'https://picsum.photos/104/156?random=2',
+        detailUrl: '/contents/popular-dramas/detail/2',
       },
       {
         id: 3,
-        url: 'https://picsum.photos/104/156?random=3',
+        imgUrl: 'https://picsum.photos/104/156?random=3',
+        detailUrl: '/contents/popular-dramas/detail/3',
       },
       {
         id: 4,
-        url: 'https://picsum.photos/104/156?random=4',
+        imgUrl: 'https://picsum.photos/104/156?random=4',
+        detailUrl: '/contents/popular-dramas/detail/4',
       },
       {
         id: 5,
-        url: 'https://picsum.photos/104/156?random=5',
+        imgUrl: 'https://picsum.photos/104/156?random=5',
+        detailUrl: '/contents/popular-dramas/detail/5',
       },
     ],
   },
@@ -123,26 +147,32 @@ const sections: Section[] = [
     id: 5,
     title: '지금 가장 인기있는 영화',
     linkText: '영화 랭킹 더보기',
+    linkUrl: '/contents/popular-movies',
     sectionSlides: [
       {
         id: 1,
-        url: 'https://picsum.photos/104/156?random=1',
+        imgUrl: 'https://picsum.photos/104/156?random=1',
+        detailUrl: '/contents/popular-movies/detail/1',
       },
       {
         id: 2,
-        url: 'https://picsum.photos/104/156?random=2',
+        imgUrl: 'https://picsum.photos/104/156?random=2',
+        detailUrl: '/contents/popular-movies/detail/2',
       },
       {
         id: 3,
-        url: 'https://picsum.photos/104/156?random=3',
+        imgUrl: 'https://picsum.photos/104/156?random=3',
+        detailUrl: '/contents/popular-movies/detail/3',
       },
       {
         id: 4,
-        url: 'https://picsum.photos/104/156?random=4',
+        imgUrl: 'https://picsum.photos/104/156?random=4',
+        detailUrl: '/contents/popular-movies/detail/4',
       },
       {
         id: 5,
-        url: 'https://picsum.photos/104/156?random=5',
+        imgUrl: 'https://picsum.photos/104/156?random=5',
+        detailUrl: '/contents/popular-movies/detail/5',
       },
     ],
   },
@@ -211,6 +241,7 @@ const SectionSliderContainer: React.FC = () => {
               section.id === 1 ? `${userName}${section.title}` : section.title
             }
             linkText={section.linkText}
+            linkUrl={section.linkUrl}
           />
           <SectionSlider
             sectionSlides={section.sectionSlides}

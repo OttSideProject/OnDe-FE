@@ -6,12 +6,13 @@ import styles from './SubHeader.module.css';
 
 const SubHeader: React.FC<SubHeaderProps> = ({
   title,
+  linkUrl,
   linkText = '더보기',
 }) => {
   return (
     <header className={styles.container}>
       <h3>{title}</h3>
-      <Link href="#" className={styles.link}>
+      <Link href={linkUrl} className={styles.link}>
         {linkText} <span className="view-more" />
       </Link>
     </header>

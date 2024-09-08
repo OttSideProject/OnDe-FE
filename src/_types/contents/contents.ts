@@ -31,6 +31,7 @@ export type MainSliderProps = {
 export type SubHeaderProps = {
   title: string;
   linkText: string;
+  linkUrl: string;
 };
 
 /* SectionSlider type */
@@ -38,6 +39,7 @@ export type Section = {
   id: number;
   title: string;
   linkText: string;
+	linkUrl: string;
   sectionSlides: SectionSlide[];
 };
 
@@ -48,7 +50,8 @@ export type SectionSliderProps = {
 
 export type SectionSlide = {
   id: number;
-  url: string;
+  imgUrl: string;
+	detailUrl: string;
 };
 
 /* IconButton type */
@@ -82,4 +85,12 @@ export type Option = {
 export type DropDownOptionsProps = {
   options: Option[];
   onSelect: (id: number) => void;
+};
+
+/* DetailPage type */
+export type DetailData = {
+  id: number;
+  title: string;
+  description: string;
+  imageUrl: string;
 };

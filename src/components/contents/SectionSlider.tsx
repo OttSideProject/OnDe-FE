@@ -32,22 +32,22 @@ const SectionSlider: React.FC<SectionSliderProps> = ({
         <Slider {...settings}>
           {sectionSlides.map((sectionSlide, index) => (
             <>
-              <Link key={index} href="#" className={styles.cardLink}>
+              <Link key={index} href={sectionSlide.detailUrl} className={styles.cardLink}>
                 <figure
                   className={`${styles.slide} ${
-                    !sectionSlide.url ? styles.emptySlide : ''
+                    !sectionSlide.imgUrl ? styles.emptySlide : ''
                   }`}
                 >
-                  {sectionSlide.url && (
+                  {sectionSlide.imgUrl && (
                     <Image
-                      src={sectionSlide.url}
+                      src={sectionSlide.imgUrl}
                       alt={`Slide ${sectionSlide.id} ${index}`}
                       width={104}
                       height={156}
                     />
                   )}
                 </figure>
-                {showActionBar && sectionSlide.url && <ActionBar />}
+                {showActionBar && sectionSlide.imgUrl && <ActionBar />}
               </Link>
             </>
           ))}
