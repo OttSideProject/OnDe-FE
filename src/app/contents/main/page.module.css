@@ -1,0 +1,36 @@
+.container {
+  padding-bottom: 15px;
+}
+
+.recommendContainer {
+  margin-bottom: 30px;
+  padding-bottom: 37px;
+  font-size: 1.4rem;
+  background-image: url('/assets/images/icons/dimi-group.svg');
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: 50%;
+}
+
+.recommendContainer p {
+  margin: 0 10px;
+  color: var(--gray100);
+  text-align: center;
+  line-height: 170%;
+}
+
+.recommendContainer strong {
+  color: var(--primary-white);
+}
+
+.fullButton {
+  display: block;
+  height: 56px;
+  margin: 0 10px;
+  padding: 17px 0px;
+  font-size: 1.8rem;
+  color: var(--gray50);
+  border-radius: 15px;
+  border: 1.4px solid var(--gray50);
+  text-align: center;
+}

@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 13px;
+  padding: 0 10px;
+  font-size: 1.6rem;
+}
+
+.container h3 {
+  font-family: var(--primary-font);
+  font-size: inherit;
+}
+
+.container h3 + a {
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+  font-size: 1.2rem;
+  color: var(--gray100);
+}

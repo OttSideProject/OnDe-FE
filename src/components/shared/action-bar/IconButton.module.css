@@ -1,0 +1,9 @@
+.iconButton {
+  padding: 5px 10px;
+}
+
+.iconButton img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}

@@ -17,8 +17,7 @@
     "jsx": "preserve",
     "baseUrl": "",
     "paths": {
-      "@/*": ["./src/*"],
-      "@assets/*": ["./public/assets/*"]
+      "@/*": ["./src/*"]
     },
     "typeRoots": ["./node_modules/@types", "./src/customTypes"],
     "incremental": true,
