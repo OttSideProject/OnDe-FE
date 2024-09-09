@@ -7,7 +7,7 @@ import styles from './IconButton.module.css';
 const InfoIconButton: React.FC<InfoIconButtonProps> = () => {
   return (
     <button className={styles.iconButton} >
-      <img src="/assets/images/icons/info.svg" alt="정보" />
+      <img src="/assets/images/icons/info.svg" alt="icon" />
     </button>
   );
 };

@@ -1,3 +1,4 @@
+import Link from 'next/link';
 /* Components */
 import Header from '@/components/contents/header/Header';
 import MainSlider from '@/components/contents/MainSlider';
@@ -46,14 +47,22 @@ const slides: Slide[] = [
   },
 ];
 
-
 const HomePage: React.FC = () => {
-	
   return (
     <div className={styles.container}>
       <Header headerText={headerText} iconUrl={iconUrl} />
       <MainSlider slides={slides} />
-			<SectionSliderContainer />
+      <SectionSliderContainer />
+      <div className={styles.recommendContainer}>
+        <p>
+          <strong>원하는 콘텐츠를 찾지 못하셨나요? </strong> <br />
+          <strong>Dimi</strong>가 직접 추천하는 당신만을 위한 콘텐츠를
+          확인해보세요.
+        </p>
+      </div>
+      <Link href="" title="추천 바로가기" className={styles.fullButton}>
+        추천 바로가기
+      </Link>
     </div>
   );
 };

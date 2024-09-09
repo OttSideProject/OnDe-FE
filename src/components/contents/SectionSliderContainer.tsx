@@ -9,6 +9,8 @@ import { Section } from '@/_types/contents/contents';
 /* Zustand store */
 import useDropDownStore from '@/stores/useDropDownStore';
 import DropDownOptions from '../shared/action-bar/DropDownOptions';
+/* Styles */
+import styles from './SectionSliderContainer.module.css';
 
 const sections: Section[] = [
   {
@@ -224,7 +226,7 @@ const SectionSliderContainer: React.FC = () => {
   };
 
   return (
-    <>
+    <div className={styles.container}>
       {/* DropDown이 열려있을 때 DimmedBackground 표시 */}
       {isDropDownOpen && (
         <>
@@ -249,7 +251,7 @@ const SectionSliderContainer: React.FC = () => {
           />
         </div>
       ))}
-    </>
+    </div>
   );
 };
 

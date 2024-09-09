@@ -7,6 +7,7 @@
 .btn {
   font-family: inherit;
   display: flex;
+  justify-content: center;
   align-items: center;
   flex-shrink: 0;
   width: 100%;
@@ -39,6 +40,10 @@
 .btnPrimary > span,
 .btnSecondary > span {
   color: inherit;
+}
+
+.btnPrimary > img {
+  filter: invert(1);
 }
 
 .btnSmall {
