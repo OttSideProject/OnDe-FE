@@ -2,90 +2,20 @@
 
 import styled from '@emotion/styled';
 
-const ImageContainer = styled.div`
-  position: relative;
-  width: 90px;
-  height: 90px;
-  cursor: pointer;
-`;
-
-const ImagesIcon = styled.div`
-  opacity: 30%;
-`;
-
-const GenreLabel = styled.span`
-  position: absolute;
-  background-color: transparent;
-  color: white;
-  bottom: 50%;
-  left: 0;
-  right: 0;
-  font-weight: bold;
-  text-align: center;
-  font-size: 16px;
-`;
-
-const PageWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: calc(var(--vh, 1vh) * 100);
-  color: white;
-`;
+// Common styles
 
 const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
-`;
 
-const Title = styled.h2`
-  color: white;
-  margin-bottom: 20px;
-  text-align: left;
-  font-size: 22px;
-`;
+  ul {
+    padding: 100px 0;
+  }
 
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-`;
-
-const InputWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const Label = styled.label`
-  color: white;
-  margin-bottom: 5px;
-`;
-
-const Input = styled.input`
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  margin-bottom: 5px;
-`;
-
-const ErrorMessage = styled.span`
-  color: red;
-  font-size: 12px;
-`;
-
-const SubmitButton = styled.input`
-  border: none;
-  border-radius: 4px;
-  background-color: #f4f4f4;
-  color: gray;
-  font-weight: bold;
-  cursor: pointer;
-  margin-top: 10px;
-
-  &:hover {
-    background-color: #94a3b8;
-    color: white;
+  li {
+    margin-bottom: 30px;
   }
 `;
 
@@ -98,21 +28,6 @@ const Container2 = styled.div`
   color: #f2f2f2;
   justify-content: space-between;
   height: 100vh;
-`;
-
-const Caption = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  padding: 40px 45px;
-  padding: 40px 45px;
-  font-weight: 300;
-  text-align: center;
-  white-space: pre-wrap;
-`;
-
-const ColorText = styled.div`
-  margin: 0 5px;
 `;
 
 const Header = styled.div`
@@ -140,48 +55,46 @@ const Title2 = styled.h1`
   width: 100%;
 `;
 
-const GenreContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-  height: 70%;
-`;
-
-interface GenreProps {
-  selected: boolean;
-}
-
-const Genre = styled.div<GenreProps>`
-  background-color: ${(props) => (props.selected ? '#FFD700' : '#666')};
-  padding: 10px 20px;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-
-  &:hover {
-    background-color: #ffd700;
-  }
-`;
-
-const Button = styled.button`
-  color: var(--primary-black);
-  border: none;
-  font-weight: 600;
-  padding: 17px 70px;
-  margin-top: 20px;
-  font-size: 14px;
-  margin-bottom: 50px;
-  cursor: pointer;
-  border-radius: 5px;
+const Caption = styled.div`
   width: 100%;
-
-  &:hover {
-    background-color: #c1ff12;
-  }
+  display: flex;
+  justify-content: center;
+  padding: 40px 45px;
+  font-weight: 300;
+  text-align: center;
+  white-space: pre-wrap;
 `;
 
-// STEP 2 Components
+// Step 1 styles
+const ImageContainer = styled.div`
+  position: relative;
+  width: 90px;
+  height: 90px;
+  cursor: pointer;
+`;
+
+const ImagesIcon = styled.div`
+  opacity: 30%;
+`;
+
+const GenreLabel = styled.span`
+  position: absolute;
+  background-color: transparent;
+  color: white;
+  bottom: 50%;
+  left: 0;
+  right: 0;
+  font-weight: bold;
+  text-align: center;
+  font-size: 16px;
+`;
+
+// Step 2 styles
+const Step2Container = styled.div`
+  padding: 0 20px;
+  text-align: center;
+`;
+
 const GenreStep2 = styled.p`
   padding: 15px 20px;
   border-radius: 50px;
@@ -192,12 +105,7 @@ const GenreStep2 = styled.p`
   display: inline-block;
 `;
 
-const Step2Container = styled.div`
-  padding: 0 20px;
-  text-align: center;
-`;
-
-// STEP 3 Components
+// Step 3 styles
 const Step3Container = styled.div`
   padding: 160px 20px;
   text-align: center;
@@ -215,15 +123,15 @@ const ImageContainer2 = styled.div<{ isSelected: boolean }>`
   transition: opacity 0.3s ease;
 `;
 
-// STEP 4 Components
 const GenderLabel = styled.div<{ isSelected: boolean }>`
   margin-top: 8px;
   font-size: 16px;
-  color: ${({ isSelected }) => (isSelected ? 'white' : 'white')};
+  color: white;
   opacity: ${({ isSelected }) => (isSelected ? 1 : 0.5)};
   transition: opacity 0.3s ease;
 `;
 
+// Step 4 styles
 const SelectContainer = styled.div`
   position: relative;
   padding: 190px 25px;
@@ -277,36 +185,103 @@ const DropdownArrow = styled.div`
   }
 `;
 
+// Shared components
+const Button = styled.button`
+  color: var(--primary-black);
+  border: none;
+  font-weight: 600;
+  padding: 17px 70px;
+  margin-top: 20px;
+  font-size: 14px;
+  margin-bottom: 50px;
+  cursor: pointer;
+  border-radius: 5px;
+  width: 100%;
+
+  &:hover {
+    background-color: #c1ff12;
+  }
+`;
+
+const Genre = styled.div<{ selected: boolean }>`
+  background-color: ${(props) => (props.selected ? '#FFD700' : '#666')};
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #ffd700;
+  }
+`;
+
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;
+
+const Label = styled.label`
+  color: var(--primary);
+  margin-bottom: 5px;
+`;
+
+const Input = styled.input`
+  width: 100%;
+  margin-top: 15px;
+  padding: 8px;
+  margin-bottom: 1px;
+  font-size: 16px;
+  color: #f2f2f2;
+  background-color: var(--primary-black);
+  border: none;
+  border-bottom: 2px solid var(--primary);
+`;
+
+const EmailInput = styled.input`
+  width: 100%;
+  margin-top: 15px;
+  padding: 8px;
+  margin-bottom: 1px;
+  font-size: 16px;
+  color: #f2f2f2;
+  background-color: var(--primary-black);
+  border: none;
+  border-bottom: 2px solid var(--primary);
+`;
+
+const ErrorMessage = styled.span`
+  color: red;
+  font-size: 12px;
+`;
+
+// Exporting all styles
 const signup = {
-  PageWrapper,
   Container,
-  Title,
+  Container2,
+  Header,
+  HeaderInner,
+  Close,
+  Title2,
+  Caption,
+  ImageContainer,
+  ImagesIcon,
+  GenreLabel,
+  Step2Container,
+  GenreStep2,
+  Step3Container,
+  ImageContainer2,
+  GenderLabel,
+  SelectContainer,
+  Select,
+  DropdownArrow,
+  Button,
+  Genre,
   Form,
-  InputWrapper,
   Label,
   Input,
+  EmailInput,
   ErrorMessage,
-  Container2,
-  GenreContainer,
-  Title2,
-  Genre,
-  ColorText,
-  Caption,
-  Button,
-  Header,
-  ImageContainer,
-  GenreLabel,
-  ImagesIcon,
-  Close,
-  HeaderInner,
-  GenreStep2,
-  Step2Container,
-  ImageContainer2,
-  Step3Container,
-  GenderLabel,
-  Select,
-  SelectContainer,
-  DropdownArrow,
 };
 
 export default signup;

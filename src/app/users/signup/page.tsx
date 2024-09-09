@@ -1,6 +1,8 @@
 'use client';
 
 import Image from 'next/image';
+import AgeSelectOptions from './AgeSelect';
+import EmailInput from './EmailInput';
 
 interface SvgGenre {
   file: string;
@@ -39,7 +41,7 @@ const genres_setp2: Genre[] = [
 
 import Api from '@/api/core/Api'; // Api import 추가
 import signup from '@/styles/user/signup';
-import { useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 
 const SignupProcess = () => {
   const [step, setStep] = useState(1); //개인화추천단계
@@ -56,20 +58,39 @@ const SignupProcess = () => {
     confirmPassword: string;
     gender: string;
     age: number;
+    genres: string[];
+    sentence: string;
   }>({
     name: '',
     email: '',
     password: '',
     confirmPassword: '',
     gender: '',
-    age: 20,
+    age: 2000,
+    genres: selectedGenres,
+    sentence: '',
   });
+
+  useEffect(() => {
+    const selectedSentences = selectedIndexes
+      .map((index) => genres_setp2[index]?.sentence)
+      .filter(Boolean) as string[];
+
+    setUserInfo((prev) => ({
+      ...prev,
+      sentence: selectedSentences.join(', '),
+    }));
+  }, [selectedIndexes]);
 
   const handleSelect = (index: number) => {
     setSelectedIndexes((prev) =>
       prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index],
     );
   };
+
+  useEffect(() => {
+    setUserInfo((prev) => ({ ...prev, genres: selectedGenres }));
+  }, [selectedGenres]);
 
   const toggleGenre = (genre: string) => {
     setSelectedGenres((prev) =>
@@ -101,34 +122,55 @@ const SignupProcess = () => {
       if (selectedGenres.length < 3) {
         alert('장르를 3개 이상 선택해 주세요.');
       } else {
-        setStep(step + 1);
+        setStep(step + 1); // 다음 단계로 넘어감
       }
     } else if (step === 2) {
       if (selectedIndexes.length < 3) {
         alert('문장을 3개 이상 선택해 주세요.');
       } else {
-        setStep(step + 1);
+        setStep(step + 1); // 다음 단계로 넘어감
+      }
+    } else if (step === 3) {
+      if (!userInfo.gender) {
+        alert('성별을 선택해 주세요.');
+      } else {
+        setStep(step + 1); // 다음 단계로 넘어감
+      }
+    } else if (step === 4) {
+      if (!userInfo.age) {
+        alert('연령대를 선택해 주세요.');
+      } else {
+        setStep(step + 1); // 다음 단계로 넘어감 (이메일, 비밀번호 단계)
+      }
+    } else if (step === 5) {
+      // 이메일 검증
+      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+      if (!userInfo.email || !emailRegex.test(userInfo.email)) {
+        alert('유효한 이메일을 입력해 주세요.');
+        return;
+      }
+      // 비밀번호 및 비밀번호 확인 검증
+      if (!userInfo.password || !userInfo.confirmPassword) {
+        alert('모든 필드를 입력해 주세요.');
+        return;
+      } else if (userInfo.password !== userInfo.confirmPassword) {
+        alert('비밀번호가 일치하지 않습니다.');
+        return;
+      } else {
+        setStep(step + 1); // 다음 단계로 넘어감
+      }
+    } else if (step === 6) {
+      if (!userInfo.name) {
+        alert('닉네임을 입력해주세요.');
+      } else {
+        // JSON 형태로 userInfo 객체를 문자열로 변환
+        const userInfoJson = JSON.stringify(userInfo, null, 2);
+        alert('가입이 완료되었습니다!\n' + userInfoJson);
+        // 콘솔에 JSON 객체를 출력
+        console.log('가입이 완료되었습니다!', userInfo);
       }
     }
-    // else if (step === 3) {
-    //   if (userInfo.gender === '') {
-    //     alert('성별을 선택해 주세요.');
-    //   } else {
-    //     setStep(step + 1);
-    //   }
-    // } else if (step === 4) {
-    //   if (
-    //     !userInfo.name ||
-    //     !userInfo.email ||
-    //     !userInfo.password ||
-    //     userInfo.password !== userInfo.confirmPassword
-    //   ) {
-    //     alert('모든 정보를 정확하게 입력해 주세요.');
-    //   } else {
-    //     // 최종 제출 로직
-    //     alert('가입이 완료되었습니다!');
-    //   }
-    // }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -153,11 +195,12 @@ const SignupProcess = () => {
             height={20}
           />
         )}
-        {step != 3 && step < 3 ? (
+        {/* {step != 3 && step < 3 ? (
           <signup.HeaderInner>개인화 추천({step}/2)</signup.HeaderInner>
-        ) : (
-          <signup.HeaderInner>회원가입({joinStep}/4)</signup.HeaderInner>
-        )}
+        ) : ( */}
+
+        <signup.HeaderInner>회원가입({step}/4)</signup.HeaderInner>
+        {/* )} */}
 
         <signup.Close>
           <img
@@ -262,25 +305,100 @@ const SignupProcess = () => {
           <signup.Title2>연령대를 선택해 주세요.</signup.Title2>
           <signup.SelectContainer>
             <p>선택하세요.</p>
-            <signup.Select name="ageRange">
-              <option value="10대">10대</option>
-              <option value="20대">20대</option>
-              <option value="30대">30대</option>
-              <option value="40대">40대</option>
-              <option value="50대">50대</option>
-              <option value="60대 이상">60대 이상</option>
+            <signup.Select
+              name="age"
+              value={userInfo.age}
+              onChange={(e) =>
+                setUserInfo((prevUserInfo) => ({
+                  ...prevUserInfo,
+                  age: Number(e.target.value), // 나이를 숫자로 변환
+                }))
+              }
+            >
+              <AgeSelectOptions />
             </signup.Select>
             <signup.DropdownArrow />
           </signup.SelectContainer>
         </>
       )}
 
+      {step === 5 && (
+        <>
+          <signup.Title2>회원님만을 위한 컨텐츠 준비 완료!</signup.Title2>
+          <signup.Container>
+            <ul>
+              <li>
+                <signup.Label>이메일</signup.Label>
+                <EmailInput
+                  onChange={(e) =>
+                    setUserInfo((prevUserInfo) => ({
+                      ...prevUserInfo,
+                      email: e.target.value,
+                    }))
+                  }
+                />
+              </li>
+              <li>
+                <signup.Label>비밀번호</signup.Label>
+                <signup.Input
+                  type="password"
+                  name="password"
+                  autoComplete="false"
+                  placeholder="비밀번호를 입력해 주세요"
+                  value={userInfo.password}
+                  onChange={(e) =>
+                    setUserInfo((prevUserInfo) => ({
+                      ...prevUserInfo,
+                      password: e.target.value,
+                    }))
+                  }
+                />
+              </li>
+              <li>
+                <signup.Label>비밀번호 확인</signup.Label>
+                <signup.Input
+                  type="password"
+                  name="confirmPassword"
+                  placeholder="비밀번호를 다시 입력해 주세요"
+                  value={userInfo.confirmPassword}
+                  onChange={(e) =>
+                    setUserInfo((prevUserInfo) => ({
+                      ...prevUserInfo,
+                      confirmPassword: e.target.value,
+                    }))
+                  }
+                />
+              </li>
+            </ul>
+          </signup.Container>
+        </>
+      )}
+
+      {step === 6 && (
+        <>
+          <signup.Title2>
+            마지막 단계에요.
+            <br /> 뭐라고 불러드릴까요?
+          </signup.Title2>
+          <signup.SelectContainer>
+            <ul>
+              <li>
+                <signup.Label>닉네임</signup.Label>
+                <signup.Input
+                  onChange={(e) =>
+                    setUserInfo((prevUserInfo) => ({
+                      ...prevUserInfo,
+                      name: e.target.value,
+                    }))
+                  }
+                />
+              </li>
+            </ul>
+          </signup.SelectContainer>
+        </>
+      )}
+
       <signup.Caption>
-        {step === 4 &&
-          '걱정 마세요, 개인정보는 콘텐츠를 추천하기 위해서만 사용할게요.'}
-        {step === 3 && '회원님께 딱맞는 콘텐츠를 추천해 드릴게요.'}
-        {step === 2 && '관심 있는 문장을 3개 이상 선택해 주세요.'}
-        {step === 1 && `관심 있는 장르를 3개 이상 선택해 주세요.`}
         {step === 4 &&
           '걱정 마세요, 개인정보는 콘텐츠를 추천하기 위해서만 사용할게요.'}
         {step === 3 && '회원님께 딱맞는 콘텐츠를 추천해 드릴게요.'}
