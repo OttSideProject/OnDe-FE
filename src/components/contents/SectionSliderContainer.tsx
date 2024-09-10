@@ -231,7 +231,11 @@ const SectionSliderContainer: React.FC = () => {
       {isDropDownOpen && (
         <>
           <DimmedBackground onClick={closeDropDown} />
-          <DropDownOptions options={options} onSelect={handleOptionSelect} />
+          <DropDownOptions
+            options={options}
+            onSelect={handleOptionSelect}
+            title="작품 제목"
+          />
         </>
       )}
       {/* SectionSlider */}

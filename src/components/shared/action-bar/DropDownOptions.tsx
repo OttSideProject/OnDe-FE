@@ -5,13 +5,15 @@ import { DropDownOptionsProps } from '@/_types/contents/contents';
 import styles from './DropDownOptions.module.css';
 
 const DropDownOptions: React.FC<DropDownOptionsProps> = ({
+	title='',
+	height=300,
   options,
   onSelect,
 }) => {
   return (
-    <div className={styles.container}>
+    <div className={styles.container} style={{ height: `${height}px` }}>
       <div className={styles.inner}>
-        <h4>작품 제목</h4>
+        <h4>{title}</h4>
         <div className="scrollbar">
           <div className={styles.scrollBarInner}>
             <ul>
