@@ -55,11 +55,11 @@ const MainSlider: React.FC<MainSliderProps> = ({ slides }) => {
                   <Button
                     variant="primary"
                     size="small"
-                    text="모아보기"
-                    iconUrl="/assets/images/icons/collect-box.svg"
+                    text="바로가기"
+                    iconUrl="/assets/images/icons/play-icon.svg"
                     onClick={() => alert('First Button Clicked!')}
                   >
-                    모아보기
+                    바로가기
                   </Button>
 
                   {/* 두 번째 버튼 */}
