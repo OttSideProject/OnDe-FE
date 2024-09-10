@@ -9,7 +9,7 @@
   background-image: url('/assets/images/icons/dimi-group.svg');
   background-repeat: no-repeat;
   background-position: center bottom;
-  background-size: 50%;
+  background-size: auto;
 }
 
 .recommendContainer p {
@@ -33,4 +33,11 @@
   border-radius: 15px;
   border: 1.4px solid var(--gray50);
   text-align: center;
+}
+
+/* 반응형  */
+@media screen and (min-width: 576px) {
+  .recommendContainer {
+    background-size: auto 30px;
+  }
 }

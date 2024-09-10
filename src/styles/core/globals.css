@@ -263,8 +263,7 @@ textarea:focus:not(:focus-visible) {
 
 /* scroll 커스텀 스타일 */
 .scrollbar::-webkit-scrollbar {
-  width: 0;
-  height: 2px;
+  width: 4px;
 }
 .scrollbar::-webkit-scrollbar-thumb {
   background-color: var(--gray500);

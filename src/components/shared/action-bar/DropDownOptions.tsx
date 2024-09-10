@@ -11,20 +11,22 @@ const DropDownOptions: React.FC<DropDownOptionsProps> = ({
   return (
     <div className={styles.container}>
       <div className={styles.inner}>
+        <h4>작품 제목</h4>
         <div className="scrollbar">
-          <h4>메뉴를 선택해주세요!</h4>
-          <ul>
-            {options.map((option) => (
-              <li
-                key={option.id}
-                className={styles.option}
-                onClick={() => onSelect(option.id)}
-              >
-                {option.url && <img src={option.url} alt="option.label" />}
-                {option.label}
-              </li>
-            ))}
-          </ul>
+          <div className={styles.scrollBarInner}>
+            <ul>
+              {options.map((option) => (
+                <li
+                  key={option.id}
+                  className={styles.option}
+                  onClick={() => onSelect(option.id)}
+                >
+                  {option.url && <img src={option.url} alt="option.label" />}
+                  {option.label}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </div>
