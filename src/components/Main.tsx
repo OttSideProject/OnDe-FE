@@ -28,7 +28,7 @@ const Main = () => {
           <ul>
             <li>
               {' '}
-              <Link href="/">메인화면</Link>{' '}
+              <Link href="/contents/main">메인화면</Link>{' '}
             </li>
             <li>
               {' '}
@@ -37,6 +37,10 @@ const Main = () => {
             <li>
               {' '}
               <Link href="/">로그인</Link>{' '}
+            </li>
+            <li>
+              {' '}
+              <Link href="/board">게시판</Link>{' '}
             </li>
           </ul>
         </nav>

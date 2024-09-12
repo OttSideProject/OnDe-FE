@@ -130,9 +130,10 @@ body {
   overflow-x: auto;
   overflow-y: auto;
   max-width: 600px;
+  min-width: 320px;
   min-height: 100%;
   margin: 0 auto;
-  padding: 8px 10px;
+  /* padding: 8px 10px; */
   border: 1px solid #292524;
   background-color: var(--primary-black);
   color: var(--primary-white);
