@@ -1,46 +1,87 @@
-# Getting Started with Create React App
+# OnDe
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+온디는 쉽고 간편한 검색과 다양한 추천 서비스를 제공하는 OTT 정보 플랫폼 서비스입니다.
 
-## Available Scripts
+## OnDe-FE
 
-In the project directory, you can run:
+저희는 해당 서비스의 프론트엔드를 개발하고 있습니다
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<!-- 최종적으로 레이아웃이 완성되면 동작화면을 영상으로 업로드할 예정입니다.  -->
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 개발 환경
 
-### `npm test`
+* **Framewrok** : Node.js(>=18.18.0), Next.js 14(App Router)
+* **Language** : TypeScript
+* **상세기술스택** : 
+  * 상태 관리: Zustand, React useState
+  * 데이터 관리: TanStack React Query, Axios
+  * 스타일링: Emotion, CSS Modules, Global Styles
+  * 빌드 및 배포(예정): Vercel
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## 시작하기
+ 
+### 1. 저장소 클론
+~~~sh
+git clone https://github.com/OttSideProject/OnDe-FE.git
+~~~
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 2. node.js 설치(>=18.18.0)
+https://nodejs.org/en/download
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 3. 모듈 설치 & 실행 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+~~~sh
+npm install
+npm run dev
+~~~
 
-### `npm run eject`
+## 작업 브랜치
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+* Workflow: Feature Branch Workflow 기능별 브렌치를 만들어 작업합니다.
+  + 참고사이트: https://lhy.kr/git-workflow
+* 개발 작업 관련 Branch Name은 `feature/이름스펠링`으로 만듭니다. ex)feature/name1
+* 개발 작업 이외 Branch Name은 `feature/기능`으로 만듭니다. ex)feature/update-readme
+* Main으로 머지전 `Pull request(PR)`를 통하여 확인 후 진행합니다.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 협업 문서
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+* 프로젝트와 관련된 협업 및 논의는 GitHub Discussions에서 진행됩니다.
+https://github.com/OttSideProject/OnDe-FE/discussions
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+## 작업 영역
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 김예운
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### 정예원
+
+### 조윤우
+
+
+## Trouble Shooting 
+
+### 김예운
+
+### 정예원
+
+### 조윤우
+
+
+## 배포
+
+
+## 프로젝트 구조 (Tree)
+
+
+## 회고 
+
+### 김예운
+
+### 정예원
+
+### 조윤우
+
+<!-- ## 요구사항 명세서 -->
+
