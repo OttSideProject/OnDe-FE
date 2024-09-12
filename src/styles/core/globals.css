@@ -282,6 +282,8 @@ textarea:focus:not(:focus-visible) {
 /* 더 보기 */
 .view-more {
   display: inline-block;
+  position: relative;
+  top: 4px;
   width: 24px;
   height: 24px;
   background-image: url('/assets/images/icons/view-more.svg');

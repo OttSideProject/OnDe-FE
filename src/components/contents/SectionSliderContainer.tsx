@@ -16,7 +16,7 @@ const sections: Section[] = [
   {
     id: 1,
     title: '님이 즐겨찾는 콘텐츠',
-    linkText: '모아보기 더보기',
+    linkText: '모아보기',
     linkUrl: '/contents/collect-view',
     sectionSlides: [
       {
@@ -82,8 +82,8 @@ const sections: Section[] = [
   {
     id: 3,
     title: 'NEW! 따끈따끈한 신작',
-    linkText: '신작 더보기',
-    linkUrl: '/contents/new',
+    linkText: '',
+    linkUrl: '',
     sectionSlides: [
       {
         id: 1,

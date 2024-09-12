@@ -13,7 +13,7 @@ const SubHeader: React.FC<SubHeaderProps> = ({
     <header className={styles.container}>
       <h3>{title}</h3>
       <Link href={linkUrl} className={styles.link}>
-        {linkText} <span className="view-more" />
+        <span>{linkText}</span> {linkUrl && <span className="view-more" />}
       </Link>
     </header>
   );
