@@ -17,7 +17,7 @@
   * 상태 관리: Zustand, React useState
   * 데이터 관리: TanStack React Query, Axios
   * 스타일링: Emotion, CSS Modules, Global Styles
-  * 빌드 및 배포(예정): Vercel
+  * 빌드 및 배포(예정): [Vercel](https://vercel.com/)
 
 
 ## 시작하기
