@@ -1,0 +1,81 @@
+.btnInner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn {
+  font-family: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 355px;
+  height: 56px;
+  padding: 17px 70px;
+  border-radius: 14px;
+  color: var(--primary-black);
+  font-size: 1.6rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btnDefault {
+  background-color: var(--gray700);
+}
+
+.btnPrimary {
+  background-color: var(--primary80);
+}
+
+.btnSecondary {
+  background-color: var(--secondary10);
+}
+
+.btn:not(.btnPrimary, .btnSecondary) > span {
+  color: var(--primary-white);
+}
+
+.btnPrimary > span,
+.btnSecondary > span {
+  color: inherit;
+}
+
+.btnSmall {
+  font-family: var(--primary-font);
+  min-width: 103px;
+  width: 50%;
+  height: 29px;
+  padding: 5px 12px;
+  font-size: 1rem;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+.btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.btnDefaultActive {
+  background-color: var(--gray750);
+}
+
+.btnPrimaryActive {
+  background-color: var(--primary);
+}
+
+.btnSecondaryActive {
+  background-color: var(--secondary);
+}
+
+.btn > img {
+  width: 13px;
+  height: 13px;
+  margin-right: 5px;
+}
+
+.btn > span {
+  line-height: 13px;
+}
