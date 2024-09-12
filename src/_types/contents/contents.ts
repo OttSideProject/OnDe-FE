@@ -83,8 +83,8 @@ export type Option = {
 };
 
 export type DropDownOptionsProps = {
-	title?: string;
-	height?: number;
+  title?: string;
+  height?: number;
   options: Option[];
   onSelect: (id: number) => void;
 };
