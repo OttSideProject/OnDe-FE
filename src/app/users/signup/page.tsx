@@ -6,19 +6,30 @@ interface SvgGenre {
   file: string;
   genre: string;
 }
+
+const basePath = process.env.NODE_ENV === 'production' ? '/OnDe-FE' : '';
 // TODO: JSON으로 변경
 const svgGenres: SvgGenre[] = [
-  { file: '/assets/images/icons/join-Ellipse792.svg', genre: '공상과학' },
-  { file: '/assets/images/icons/join-Frame.svg', genre: '드라마' },
-  { file: '/assets/images/icons/join-Shield2.svg', genre: '로맨스' },
-  { file: '/assets/images/icons/join-Rectangle5761.svg', genre: '애니메이션' },
-  { file: '/assets/images/icons/join-Home3.svg', genre: '판타지' },
-  { file: '/assets/images/icons/join-Shell.svg', genre: '코미디' },
-  { file: '/assets/images/icons/join-House.svg', genre: '히어로' },
-  { file: '/assets/images/icons/join-Shield1.svg', genre: '액션' },
-  { file: '/assets/images/icons/join-Home2.svg', genre: '스릴러' },
-  { file: '/assets/images/icons/join-Polygon.svg', genre: '예능' },
-  { file: '/assets/images/icons/join-SkewedRectangle.svg', genre: '다큐' },
+  {
+    file: `${basePath}/assets/images/icons/join-Ellipse792.svg`,
+    genre: '공상과학',
+  },
+  { file: `${basePath}/assets/images/icons/join-Frame.svg`, genre: '드라마' },
+  { file: `${basePath}/assets/images/icons/join-Shield2.svg`, genre: '로맨스' },
+  {
+    file: `${basePath}/assets/images/icons/join-Rectangle5761.svg`,
+    genre: '애니메이션',
+  },
+  { file: `${basePath}/assets/images/icons/join-Home3.svg`, genre: '판타지' },
+  { file: `${basePath}/assets/images/icons/join-Shell.svg`, genre: '코미디' },
+  { file: `${basePath}/assets/images/icons/join-House.svg`, genre: '히어로' },
+  { file: `${basePath}/assets/images/icons/join-Shield1.svg`, genre: '액션' },
+  { file: `${basePath}/assets/images/icons/join-Home2.svg`, genre: '스릴러' },
+  { file: `${basePath}/assets/images/icons/join-Polygon.svg`, genre: '예능' },
+  {
+    file: `${basePath}/assets/images/icons/join-SkewedRectangle.svg`,
+    genre: '다큐',
+  },
 ];
 
 interface Genre {
@@ -146,7 +157,9 @@ const SignupProcess = () => {
       <signup.Header>
         {step !== 1 && (
           <img
-            src="/assets/images/icons/material-symbols_arrow-back-ios-rounded.svg"
+            src={`${
+              process.env.NODE_ENV === 'production' ? '/OnDe-FE' : ''
+            }/assets/images/icons/material-symbols_arrow-back-ios-rounded.svg`}
             alt="뒤로가기"
             onClick={() => setStep(step - 1)}
             width={20}
@@ -156,7 +169,9 @@ const SignupProcess = () => {
         <signup.HeaderInner>개인화 추천({step}/2)</signup.HeaderInner>
         <signup.Close>
           <img
-            src="/assets/images/icons/iconamoon_close-light.svg"
+            src={`${
+              process.env.NODE_ENV === 'production' ? '/OnDe-FE' : ''
+            }/assets/images/icons/iconamoon_close-light.svg`}
             alt="메인으로"
             onClick={() => (location.href = '/')}
             width={20}

@@ -5,8 +5,8 @@ import { DropDownOptionsProps } from '@/_types/contents/contents';
 import styles from './DropDownOptions.module.css';
 
 const DropDownOptions: React.FC<DropDownOptionsProps> = ({
-	title='',
-	height=300,
+  title = '',
+  height = 300,
   options,
   onSelect,
 }) => {
@@ -23,7 +23,14 @@ const DropDownOptions: React.FC<DropDownOptionsProps> = ({
                   className={styles.option}
                   onClick={() => onSelect(option.id)}
                 >
-                  {option.url && <img src={option.url} alt="option.label" />}
+                  {option.url && (
+                    <img
+                      src={`${
+                        process.env.NODE_ENV === 'production' ? '/OnDe-FE' : ''
+                      }${option.url}`}
+                      alt={option.label}
+                    />
+                  )}
                   {option.label}
                 </li>
               ))}

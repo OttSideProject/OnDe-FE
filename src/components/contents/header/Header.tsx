@@ -6,7 +6,15 @@ const Header: React.FC<HeaderProps> = ({ headerText, iconUrl }) => {
   return (
     <header className={styles.container}>
       <h2>
-        {headerText} {iconUrl && <img src={iconUrl} alt={headerText} />}
+        {headerText}{' '}
+        {iconUrl && (
+          <img
+            src={`${
+              process.env.NODE_ENV === 'production' ? '/OnDe-FE' : ''
+            }${iconUrl}`}
+            alt={headerText}
+          />
+        )}
       </h2>
     </header>
   );

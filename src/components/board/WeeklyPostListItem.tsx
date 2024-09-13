@@ -68,9 +68,19 @@ const WeeklyPostListItem: React.FC<WeeklyPostListItemProps> = ({
           {getTimeAgo(post.createdAt)}
         </UserInfoText>
         <PostInfoText>
-          <img src="assets/images/icons/heart-gray.svg" alt="" />
+          <img
+            src={`${
+              process.env.NODE_ENV === 'production' ? '/OnDe-FE' : ''
+            }/assets/images/icons/heart-gray.svg`}
+            alt=""
+          />
           <LikeCountText> {post.like_count} </LikeCountText>
-          <img src="assets/images/icons/message-gray.svg" alt="" />
+          <img
+            src={`${
+              process.env.NODE_ENV === 'production' ? '/OnDe-FE' : ''
+            }/assets/images/icons/message-gray.svg`}
+            alt=""
+          />
 
           {/* FIXME 수정 필요(게시판 좋아요 수 확인 필요) */}
           <CommentCountText>{post.post_views}</CommentCountText>

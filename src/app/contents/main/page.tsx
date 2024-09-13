@@ -48,12 +48,19 @@ const slides: Slide[] = [
 ];
 
 const HomePage: React.FC = () => {
+  const basePath = process.env.NODE_ENV === 'production' ? '/OnDe-FE' : '';
+
+  const backgroundImageUrl = `${basePath}/assets/images/icons/dimi-group.svg`;
+
   return (
     <div className={styles.container}>
       <Header headerText={headerText} iconUrl={iconUrl} />
       <MainSlider slides={slides} />
       <SectionSliderContainer />
-      <div className={styles.recommendContainer}>
+      <div
+        className={styles.recommendContainer}
+        style={{ backgroundImage: `url(${backgroundImageUrl})` }}
+      >
         <p>
           <strong>원하는 콘텐츠를 찾지 못하셨나요? </strong> <br />
           <strong>Dimi</strong>가 직접 추천하는 당신만을 위한 콘텐츠를

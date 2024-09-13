@@ -9,7 +9,12 @@ const MoreOptionsIconButton: React.FC<MoreOptionsIconButtonProps> = ({
 }) => {
   return (
     <button className={styles.iconButton} onClick={onClick}>
-      <img src="/assets/images/icons/more-options.svg" alt="정보" />
+      <img
+        src={`${
+          process.env.NODE_ENV === 'production' ? '/OnDe-FE' : ''
+        }/assets/images/icons/more-options.svg`}
+        alt="정보"
+      />
     </button>
   );
 };

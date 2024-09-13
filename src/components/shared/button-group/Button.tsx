@@ -49,7 +49,15 @@ export default function Button({
   return (
     <div className={styles.btnInner}>
       <button className={className} onClick={handleClick}>
-        {iconUrl && <img src={iconUrl} alt="icon" className={styles.icon} />}
+        {iconUrl && (
+          <img
+            src={`${
+              process.env.NODE_ENV === 'production' ? '/OnDe-FE' : ''
+            }${iconUrl}`}
+            alt="icon"
+            className={styles.icon}
+          />
+        )}
         <span>{children}</span>
       </button>
     </div>
