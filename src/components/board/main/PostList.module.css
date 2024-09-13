@@ -1,0 +1,8 @@
+.sortBoardContainer {
+  padding: 2rem 1rem 2rem 1rem;
+  position: relative;
+}
+.sortBoardText {
+  padding-right: 0.1rem;
+  cursor: pointer;
+}

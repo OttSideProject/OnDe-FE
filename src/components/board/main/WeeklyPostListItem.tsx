@@ -53,7 +53,7 @@ const WeeklyPostListItem: React.FC<WeeklyPostListItemProps> = ({
   }, []);
 
   return (
-    <WeeklyBestPostWrapper>
+    <WeeklyBestPostWrapper isLast={idx == 2}>
       <DirectionWrapper>
         <WeeklyBestPostNumber>{idx + 1}</WeeklyBestPostNumber>
         <PostDetailWrapper>

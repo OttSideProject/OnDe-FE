@@ -1,8 +1,8 @@
 'use client';
 
-import { PostDetailType, UserInfo } from '@/_types/board/board';
-import WeeklyPostListItem from '@/components/board/WeeklyPostListItem';
-import Header from '@/components/header/Header';
+import { PostDetailType } from '@/_types/board/board';
+import PostList from '@/components/board/main/PostList';
+import WeeklyPostListItem from '@/components/board/main/WeeklyPostListItem';
 import {
   MainPageWrapper,
   CategoryWrapper,
@@ -11,16 +11,11 @@ import {
   CategoryTitle,
   WeeklyBestPostContainer,
   NullPost,
-  WeeklyBestPostNumber,
-  WeeklyBestPostWrapper,
-  PostDetailWrapper,
-  PostTitle,
-  PostContents,
   PostDetailContainer,
 } from '@/styles/board/main';
 import signup from '@/styles/user/signup';
 import axios from 'axios';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 const page = () => {
   const [selectedCategory, setSelectedCategory] = useState('홈');
@@ -112,6 +107,7 @@ const page = () => {
             </PostDetailContainer>
           )}
         </WeeklyBestPostContainer>
+        <PostList></PostList>
       </Container>
     </MainPageWrapper>
   );
