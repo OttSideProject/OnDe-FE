@@ -2,8 +2,14 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import styles from './PostList.module.css';
 import DropDown from './DropDown';
 import Api from '@/api/core/Api';
+import { PostDetailType } from '@/_types/board/board';
+import PostListItem from './PostListItem';
 
-const PostList = () => {
+interface PostListProps {
+  selectedCategoryNumber: number;
+}
+
+const PostList: React.FC<PostListProps> = ({ selectedCategoryNumber }) => {
   const [sortBoardText, setsortBoardText] = useState<string>('인기순');
   const [isDropDownClicked, setisDropDownClicked] = useState(false);
   const DropDownMenu: { [key: string]: number } = {
@@ -12,17 +18,17 @@ const PostList = () => {
     좋아요순: 3,
   };
   const [isSortDESC, setIsSortDESC] = useState(true);
-  const [sortedPostList, setSortedPostList] = useState([]);
+  const [sortedPostList, setSortedPostList] = useState<PostDetailType[]>([]);
 
   const getPostList = useCallback(() => {
-    const curSortBoardText = DropDownMenu[sortBoardText];
-    Api.get(`board/${curSortBoardText}`)
+    console.log(selectedCategoryNumber);
+    Api.get(`board/${selectedCategoryNumber}`)
       .then((res) => {
         setSortedPostList(res.data);
-        console.log(sortedPostList);
+        console.log('응답', sortedPostList);
       })
-      .catch((err) => console.log(err));
-  }, [sortedPostList, sortBoardText]);
+      .catch((err) => console.log('에러', err));
+  }, [sortedPostList, selectedCategoryNumber]);
 
   const handleToggleDropDown = useCallback(() => {
     setisDropDownClicked(!isDropDownClicked);
@@ -39,7 +45,7 @@ const PostList = () => {
 
   useEffect(() => {
     getPostList();
-  }, [sortBoardText]);
+  }, [selectedCategoryNumber]);
 
   return (
     <div>
@@ -63,6 +69,16 @@ const PostList = () => {
           ></DropDown>
         ) : null}
       </div>
+      <div className={styles.postWrapper}>
+        {sortedPostList.map((post, idx) => {
+          return <PostListItem key={idx} post={post}></PostListItem>;
+        })}
+      </div>
+      <img
+        className={styles.floatButton}
+        src="assets/images/icons/post-create-float.svg"
+        alt=""
+      />
     </div>
   );
 };

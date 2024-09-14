@@ -1,5 +1,6 @@
 import { PostDetailType, UserInfo } from '@/_types/board/board';
 import Api from '@/api/core/Api';
+import { useTimeStamp } from '@/hooks/useTimeStamp';
 import {
   CommentCountText,
   DirectionWrapper,
@@ -15,7 +16,6 @@ import {
   WeeklyBestPostNumber,
   WeeklyBestPostWrapper,
 } from '@/styles/board/main';
-import { getTimeAgo } from '@/utils/getTime';
 import React, { useCallback, useEffect, useState } from 'react';
 
 interface WeeklyPostListItemProps {
@@ -65,7 +65,7 @@ const WeeklyPostListItem: React.FC<WeeklyPostListItemProps> = ({
         <UserInfoText>
           <UserProfileImg src={userInfo?.profile_path} alt="" />
           <UserName>{userInfo?.userName}</UserName>
-          {getTimeAgo(post.createdAt)}
+          {useTimeStamp(post.createdAt)}
         </UserInfoText>
         <PostInfoText>
           <img src="assets/images/icons/heart-gray.svg" alt="" />
