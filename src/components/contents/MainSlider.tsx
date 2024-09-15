@@ -56,7 +56,7 @@ const MainSlider: React.FC<MainSliderProps> = ({ slides }) => {
                     variant="primary"
                     size="small"
                     text="바로가기"
-                    iconUrl="/assets/images/icons/play-icon.svg"
+                    iconUrl="/assets/images/icons/info-black.svg"
                     onClick={() => alert('First Button Clicked!')}
                   >
                     바로가기
