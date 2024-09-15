@@ -49,8 +49,8 @@ export default function Button({
   return (
     <div className={styles.btnInner}>
       <button className={className} onClick={handleClick}>
-        {iconUrl && <img src={iconUrl} alt="icon" className={styles.icon} />}
         <span>{children}</span>
+        {iconUrl && <img src={iconUrl} alt="icon" className={styles.icon} />}
       </button>
     </div>
   );

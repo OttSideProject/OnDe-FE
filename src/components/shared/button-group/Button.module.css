@@ -73,9 +73,9 @@
 .btn > img {
   width: 13px;
   height: 13px;
-  margin-right: 5px;
 }
 
 .btn > span {
+  margin-right: 5px;
   line-height: 13px;
 }
