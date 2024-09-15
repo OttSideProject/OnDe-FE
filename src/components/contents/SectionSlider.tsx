@@ -23,7 +23,7 @@ const SectionSlider: React.FC<SectionSliderProps> = ({
     slidesToShow: 8,
     slidesToScroll: 1,
     swipeToSlide: true,
-    initialSlide: 2,
+    // initialSlide: 2,
   };
 
   return (
