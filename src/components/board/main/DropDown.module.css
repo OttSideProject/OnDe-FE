@@ -1,0 +1,10 @@
+.dropDownContainer {
+  display: flex;
+  background-color: var(--gray780);
+  width: 12rem;
+  z-index: 100;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 5rem;
+}

@@ -1,8 +1,8 @@
 'use client';
 
-import { PostDetailType, UserInfo } from '@/_types/board/board';
-import WeeklyPostListItem from '@/components/board/WeeklyPostListItem';
-import Header from '@/components/header/Header';
+import { PostDetailType } from '@/_types/board/board';
+import PostList from '@/components/board/main/PostList';
+import WeeklyPostListItem from '@/components/board/main/WeeklyPostListItem';
 import {
   MainPageWrapper,
   CategoryWrapper,
@@ -11,27 +11,29 @@ import {
   CategoryTitle,
   WeeklyBestPostContainer,
   NullPost,
-  WeeklyBestPostNumber,
-  WeeklyBestPostWrapper,
-  PostDetailWrapper,
-  PostTitle,
-  PostContents,
   PostDetailContainer,
 } from '@/styles/board/main';
 import signup from '@/styles/user/signup';
 import axios from 'axios';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 const page = () => {
-  const [selectedCategory, setSelectedCategory] = useState('홈');
+  const [selectedCategory, setSelectedCategory] = useState<string>('홈');
   const [weeklyBestPost, setWeeklyBestPost] = useState<PostDetailType[]>([]);
   // const [userInfos, setUserInfos] = useState<UserInfo[]>([]);
+
+  const categoryTitle: { [key: string]: number } = {
+    홈: 1,
+    후기: 2,
+    자유톡: 3,
+    'Q&A': 4,
+  };
 
   const handleSelectedCategory = useCallback((category: string) => {
     setSelectedCategory(category);
   }, []);
 
-  const categoryTitle = ['홈', '후기', '자유톡', 'Q&A'].map((title, idx) => {
+  const categoryTitleMemo = Object.keys(categoryTitle).map((title, idx) => {
     return (
       <CategoryTitle
         key={idx}
@@ -94,11 +96,11 @@ const page = () => {
         <signup.Header>
           <signup.HeaderInner>게시판</signup.HeaderInner>
         </signup.Header>
-        <CategoryWrapper>{categoryTitle}</CategoryWrapper>
+        <CategoryWrapper>{categoryTitleMemo}</CategoryWrapper>
         <BoardTitle>주간 베스트 글</BoardTitle>
         <WeeklyBestPostContainer>
           {weeklyBestPost.length === 0 ? (
-            <NullPost>게시글이 아직 없습니다!</NullPost>
+            <NullPost>게시글을 기다려주세요!</NullPost>
           ) : (
             <PostDetailContainer>
               {weeklyBestPost.map((post, idx) => (
@@ -112,6 +114,9 @@ const page = () => {
             </PostDetailContainer>
           )}
         </WeeklyBestPostContainer>
+        <PostList
+          selectedCategoryNumber={categoryTitle[selectedCategory]}
+        ></PostList>
       </Container>
     </MainPageWrapper>
   );

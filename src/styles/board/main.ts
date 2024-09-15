@@ -6,6 +6,10 @@ interface CategoryTitleProps {
   onClick: () => void;
 }
 
+interface WeeklyBestPostWrapperProps {
+  isLast: boolean;
+}
+
 export const MainPageWrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -55,13 +59,18 @@ export const WeeklyBestPostContainer = styled.div`
   font-size: 1.6rem;
 `;
 
-export const WeeklyBestPostWrapper = styled.div`
+export const WeeklyBestPostWrapper = styled.div<WeeklyBestPostWrapperProps>`
   display: flex;
   flex-direction: column;
   width: 100%;
   box-sizing: border-box;
   padding: 1.3rem 1rem 1.3rem 1rem;
   border-bottom: 0.1rem solid #212121;
+  ${(props) =>
+    props.isLast &&
+    `
+    border-bottom: 1rem solid #212121;
+    `}
 `;
 
 export const DirectionWrapper = styled.div`
