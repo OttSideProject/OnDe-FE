@@ -49,6 +49,7 @@ export default function Button({
   return (
     <div className={styles.btnInner}>
       <button className={className} onClick={handleClick}>
+        <span>{children}</span>
         {iconUrl && (
           <img
             src={`${
@@ -58,7 +59,6 @@ export default function Button({
             className={styles.icon}
           />
         )}
-        <span>{children}</span>
       </button>
     </div>
   );
