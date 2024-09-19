@@ -84,7 +84,7 @@ https://github.com/OttSideProject/OnDe-FE/pulls
 
 
 ## 배포
-https://ottsideproject.github.io/OnDe-FE/contents/main (임시 정적배포)
+https://ottsideproject.github.io/OnDe-FE (임시 정적배포)
 
 
 ## 프로젝트 구조 (Tree)
