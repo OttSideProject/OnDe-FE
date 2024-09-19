@@ -17,7 +17,8 @@
   * 상태 관리: Zustand, React useState
   * 데이터 관리: TanStack React Query, Axios
   * 스타일링: Emotion, CSS Modules, Global Styles
-  * 빌드 및 배포(예정): [Vercel](https://vercel.com/)
+  * 빌드 및 배포(임시 배포): GitHub Pages
+
 
 
 ## 시작하기
@@ -47,8 +48,11 @@ npm run dev
 
 ## 협업 문서
 
-* 프로젝트와 관련된 협업 및 논의는 GitHub Discussions에서 진행됩니다.
+*프로젝트와 관련된 협업 및 논의는 GitHub Discussions에서 진행되며, PR 문서를 통해 협업 내용을 확인하실 수 있습니다. 필요한 내용은 해당 문서에서 찾아보세요.
+
 https://github.com/OttSideProject/OnDe-FE/discussions
+
+https://github.com/OttSideProject/OnDe-FE/pulls
 
 
 ## 작업 영역
@@ -59,6 +63,8 @@ https://github.com/OttSideProject/OnDe-FE/discussions
 
 ### 조윤우
 
+* 메인 콘텐츠 
+* 상세 페이지
 
 ## Trouble Shooting 
 
@@ -68,8 +74,17 @@ https://github.com/OttSideProject/OnDe-FE/discussions
 
 ### 조윤우
 
+[`localFont` 함수에서 절대 경로(@ 별칭) 사용 이슈](https://www.notion.so/tomorrowcho/localFont-a9398652d1a546138a62a13f552b9b98)
+
+[Next.js 14(App Router) GitHub Pages로 정적 사이트 배포하기](https://www.notion.so/Next-js-14-App-Router-GitHub-Pages-1041c66258d480f0af5edfd3d7f20fd5?pvs=21)
+
+[**Next.js에서 이벤트 버블링 문제 해결 방법**](https://www.notion.so/Next-js-1041c66258d480c69b28ebd3aa90e300?pvs=21)
+
+[**Next.js와 React-Slick을 이용한 슬라이더 드래그 문제 해결하기**](https://www.notion.so/Next-js-React-Slick-1041c66258d4805abc89c6fff7d09af9?pvs=21)
+
 
 ## 배포
+https://ottsideproject.github.io/OnDe-FE/contents/main (임시 정적배포)
 
 
 ## 프로젝트 구조 (Tree)
