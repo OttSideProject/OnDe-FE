@@ -92,6 +92,7 @@ html {
   --gray600: #393b38;
   --gray700: #313330;
   --gray750: #20211f;
+  --gray780: #191a18;
   --gray900: #0d0d0c;
 
   /* B&W */
@@ -103,7 +104,9 @@ html {
     'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Apple Color Emoji',
     'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji', sans-serif;
 
-  --primary-title-font: 'Pretendard-SemiBold', sans-serif;
+  --design-font: 'IBMPlexSansKR', sans-serif;
+
+  --number-font: 'SUIT', sans-serif;
 }
 
 /* 텍스트 초기화 */
@@ -127,9 +130,10 @@ body {
   overflow-x: auto;
   overflow-y: auto;
   max-width: 600px;
+  min-width: 320px;
   min-height: 100%;
   margin: 0 auto;
-  padding: 8px 10px;
+  /* padding: 8px 10px; */
   border: 1px solid #292524;
   background-color: var(--primary-black);
   color: var(--primary-white);
@@ -260,8 +264,7 @@ textarea:focus:not(:focus-visible) {
 
 /* scroll 커스텀 스타일 */
 .scrollbar::-webkit-scrollbar {
-  width: 0;
-  height: 2px;
+  width: 4px;
 }
 .scrollbar::-webkit-scrollbar-thumb {
   background-color: var(--gray500);
@@ -270,8 +273,21 @@ textarea:focus:not(:focus-visible) {
   background-color: var(--gray500);
 }
 
+/* 반응형 */
 @media (min-width: 576px) {
   body {
     color: var(--primary-white);
   }
+}
+
+/* 더 보기 */
+.view-more {
+  display: inline-block;
+  position: relative;
+  top: 4px;
+  width: 24px;
+  height: 24px;
+  background-image: url('/assets/images/icons/view-more.svg');
+  background-repeat: no-repeat;
+  background-size: 100%;
 }
