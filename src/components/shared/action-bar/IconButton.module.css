@@ -1,5 +1,9 @@
 .iconButton {
-  padding: 5px 10px;
+  padding: 5px 9px 5px 12px;
+}
+
+.iconButton:first-child {
+  padding: 5px 12px;
 }
 
 .iconButton img {

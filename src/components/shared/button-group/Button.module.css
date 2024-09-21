@@ -42,10 +42,6 @@
   color: inherit;
 }
 
-.btnPrimary > img {
-  filter: invert(1);
-}
-
 .btnSmall {
   font-family: var(--primary-font);
   min-width: 103px;
@@ -75,7 +71,11 @@
 }
 
 .btn > img {
-  width: 20px;
-  height: 20px;
+  width: 13px;
+  height: 13px;
   margin-right: 5px;
+}
+
+.btn > span {
+  line-height: 13px;
 }

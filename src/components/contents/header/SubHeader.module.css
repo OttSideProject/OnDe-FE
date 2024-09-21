@@ -13,9 +13,12 @@
 }
 
 .container h3 + a {
+  position: relative;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   margin-top: 5px;
   font-size: 1.2rem;
   color: var(--gray100);
 }
+
+

@@ -16,7 +16,7 @@ const sections: Section[] = [
   {
     id: 1,
     title: '님이 즐겨찾는 콘텐츠',
-    linkText: '모아보기 더보기',
+    linkText: '모아보기',
     linkUrl: '/contents/collect-view',
     sectionSlides: [
       {
@@ -41,6 +41,21 @@ const sections: Section[] = [
       },
       {
         id: 5,
+        imgUrl: '',
+        detailUrl: '',
+      },
+      {
+        id: 6,
+        imgUrl: '',
+        detailUrl: '',
+      },
+      {
+        id: 7,
+        imgUrl: '',
+        detailUrl: '',
+      },
+      {
+        id: 8,
         imgUrl: '',
         detailUrl: '',
       },
@@ -77,13 +92,38 @@ const sections: Section[] = [
         imgUrl: 'https://picsum.photos/104/156?random=5',
         detailUrl: '/contents/recommend/detail/5',
       },
+      {
+        id: 6,
+        imgUrl: 'https://picsum.photos/104/156?random=1',
+        detailUrl: '/contents/recommend/detail/1',
+      },
+      {
+        id: 7,
+        imgUrl: 'https://picsum.photos/104/156?random=2',
+        detailUrl: '/contents/recommend/detail/2',
+      },
+      {
+        id: 8,
+        imgUrl: 'https://picsum.photos/104/156?random=3',
+        detailUrl: '/contents/recommend/detail/3',
+      },
+      {
+        id: 9,
+        imgUrl: 'https://picsum.photos/104/156?random=4',
+        detailUrl: '/contents/recommend/detail/4',
+      },
+      {
+        id: 10,
+        imgUrl: 'https://picsum.photos/104/156?random=5',
+        detailUrl: '/contents/recommend/detail/5',
+      },
     ],
   },
   {
     id: 3,
     title: 'NEW! 따끈따끈한 신작',
-    linkText: '신작 더보기',
-    linkUrl: '/contents/new',
+    linkText: '',
+    linkUrl: '',
     sectionSlides: [
       {
         id: 1,
@@ -109,6 +149,21 @@ const sections: Section[] = [
         id: 5,
         imgUrl: 'https://picsum.photos/104/156?random=5',
         detailUrl: '/contents/new/detail/5',
+      },
+      {
+        id: 6,
+        imgUrl: 'https://picsum.photos/104/156?random=6',
+        detailUrl: '/contents/new/detail/6',
+      },
+      {
+        id: 7,
+        imgUrl: 'https://picsum.photos/104/156?random=7',
+        detailUrl: '/contents/new/detail/7',
+      },
+      {
+        id: 8,
+        imgUrl: 'https://picsum.photos/104/156?random=8',
+        detailUrl: '/contents/new/detail/8',
       },
     ],
   },
@@ -143,6 +198,21 @@ const sections: Section[] = [
         imgUrl: 'https://picsum.photos/104/156?random=5',
         detailUrl: '/contents/popular-dramas/detail/5',
       },
+      {
+        id: 6,
+        imgUrl: 'https://picsum.photos/104/156?random=6',
+        detailUrl: '/contents/recommend/detail/6',
+      },
+      {
+        id: 7,
+        imgUrl: 'https://picsum.photos/104/156?random=7',
+        detailUrl: '/contents/recommend/detail/7',
+      },
+      {
+        id: 8,
+        imgUrl: 'https://picsum.photos/104/156?random=8',
+        detailUrl: '/contents/recommend/detail/8',
+      },
     ],
   },
   {
@@ -175,6 +245,21 @@ const sections: Section[] = [
         id: 5,
         imgUrl: 'https://picsum.photos/104/156?random=5',
         detailUrl: '/contents/popular-movies/detail/5',
+      },
+      {
+        id: 6,
+        imgUrl: 'https://picsum.photos/104/156?random=6',
+        detailUrl: '/contents/recommend/detail/6',
+      },
+      {
+        id: 7,
+        imgUrl: 'https://picsum.photos/104/156?random=7',
+        detailUrl: '/contents/recommend/detail/7',
+      },
+      {
+        id: 8,
+        imgUrl: 'https://picsum.photos/104/156?random=8',
+        detailUrl: '/contents/recommend/detail/8',
       },
     ],
   },
@@ -231,7 +316,11 @@ const SectionSliderContainer: React.FC = () => {
       {isDropDownOpen && (
         <>
           <DimmedBackground onClick={closeDropDown} />
-          <DropDownOptions options={options} onSelect={handleOptionSelect} />
+          <DropDownOptions
+            options={options}
+            onSelect={handleOptionSelect}
+            title="작품 제목"
+          />
         </>
       )}
       {/* SectionSlider */}

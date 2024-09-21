@@ -10,9 +10,9 @@ import { Slide } from '@/_types/contents/contents';
 /* Styles */
 import styles from './page.module.css';
 
-const headerText = '오늘의 Dimi pick';
+const headerText = '오늘의 Dimi’s pick ';
 
-const iconUrl = '/assets/images/icons/dimi-lime.svg';
+const iconUrl = '/assets/images/icons/dimi-eyes-on.svg';
 
 const slides: Slide[] = [
   {

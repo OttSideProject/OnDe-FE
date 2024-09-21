@@ -39,7 +39,7 @@ export type Section = {
   id: number;
   title: string;
   linkText: string;
-	linkUrl: string;
+  linkUrl: string;
   sectionSlides: SectionSlide[];
 };
 
@@ -51,7 +51,7 @@ export type SectionSliderProps = {
 export type SectionSlide = {
   id: number;
   imgUrl: string;
-	detailUrl: string;
+  detailUrl: string;
 };
 
 /* IconButton type */
@@ -83,6 +83,8 @@ export type Option = {
 };
 
 export type DropDownOptionsProps = {
+  title?: string;
+  height?: number;
   options: Option[];
   onSelect: (id: number) => void;
 };

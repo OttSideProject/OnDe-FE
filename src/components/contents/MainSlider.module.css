@@ -48,7 +48,7 @@
   -o-border-radius: inherit;
 }
 
-.slide img {
+.slide > img {
   border-radius: 8px;
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
@@ -109,7 +109,7 @@
   );
 }
 
-.activeSlide img {
+.activeSlide > img {
   border-radius: 10px;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
