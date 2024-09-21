@@ -1,17 +1,17 @@
 'use client';
 
 import styled from '@emotion/styled';
-
-// Common styles
+import { css, keyframes } from '@emotion/react';
 
 const Container = styled.div`
+  padding: 15px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
 
   ul {
-    padding: 100px 0;
+    width: 100%;
   }
 
   li {
@@ -20,6 +20,7 @@ const Container = styled.div`
 `;
 
 const Container2 = styled.div`
+  padding: 10px !important;
   font-size: 16px;
   display: flex;
   margin: 0 auto;
@@ -27,7 +28,6 @@ const Container2 = styled.div`
   align-items: center;
   color: #f2f2f2;
   justify-content: space-between;
-  height: 100vh;
 `;
 
 const Header = styled.div`
@@ -48,9 +48,9 @@ const HeaderInner = styled.div`
 const Close = styled.div``;
 
 const Title2 = styled.h1`
-  padding: 0 25px 40px 25px;
+  padding: 20px 0px;
   font-size: 22px;
-  font-weight: 500;
+  font-weight: 700;
   line-height: 30px;
   width: 100%;
 `;
@@ -67,6 +67,7 @@ const Caption = styled.div`
 
 // Step 1 styles
 const ImageContainer = styled.div`
+  margin-top: 40px;
   position: relative;
   width: 90px;
   height: 90px;
@@ -74,7 +75,7 @@ const ImageContainer = styled.div`
 `;
 
 const ImagesIcon = styled.div`
-  opacity: 30%;
+  /* opacity: 30%; */
 `;
 
 const GenreLabel = styled.span`
@@ -91,12 +92,13 @@ const GenreLabel = styled.span`
 
 // Step 2 styles
 const Step2Container = styled.div`
-  padding: 0 20px;
+  /* padding: 0 20px; */
+  padding-top: 25px;
   text-align: center;
 `;
 
 const GenreStep2 = styled.p`
-  padding: 15px 20px;
+  padding: 10px 20px;
   border-radius: 50px;
   color: black;
   font-size: 24px;
@@ -107,7 +109,7 @@ const GenreStep2 = styled.p`
 
 // Step 3 styles
 const Step3Container = styled.div`
-  padding: 160px 20px;
+  padding: 120px 20px;
   text-align: center;
   display: flex;
 `;
@@ -134,7 +136,6 @@ const GenderLabel = styled.div<{ isSelected: boolean }>`
 // Step 4 styles
 const SelectContainer = styled.div`
   position: relative;
-  padding: 190px 25px;
   width: 100%;
 
   & > p {
@@ -143,15 +144,15 @@ const SelectContainer = styled.div`
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
-    line-height: 20px;
+    line-height: 20.8px;
+    padding-bottom: 10px;
   }
 `;
 
 const Select = styled.select`
   width: 100%;
-  padding: 8px;
-  font-size: 16px;
-  color: #f2f2f2;
+  font-size: 18px;
+  color: var(--gray-400, #6c6e68);
   background-color: var(--primary-black);
   border: none;
   border-bottom: 2px solid var(--primary);
@@ -166,12 +167,13 @@ const Select = styled.select`
 
 const DropdownArrow = styled.div`
   position: absolute;
-  top: 50%;
-  right: 25px;
+  top: 70%;
+  bottom: 10px;
+  right: 0px;
   transform: translateY(-50%);
   pointer-events: none;
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
 
   &::before {
     content: '';
@@ -184,8 +186,15 @@ const DropdownArrow = styled.div`
     color: var(--primary);
   }
 `;
+const BottomPoint = styled.div`
+  padding: 0 10px;
+  width: 100%;
+  position: fixed; /* 화면에 고정 */
+  bottom: 10px; /* 화면의 아래에서 20px 위에 고정 */
+  left: 50%; /* 화면의 중앙에 맞춤 */
+  transform: translateX(-50%); /* X축 중앙 정렬 */
+`;
 
-// Shared components
 const Button = styled.button`
   color: var(--primary-black);
   border: none;
@@ -193,9 +202,8 @@ const Button = styled.button`
   padding: 17px 70px;
   margin-top: 20px;
   font-size: 14px;
-  margin-bottom: 50px;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 14px;
   width: 100%;
 
   &:hover {
@@ -255,6 +263,25 @@ const ErrorMessage = styled.span`
   font-size: 12px;
 `;
 
+const LoadingContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+
+  p {
+    color: var(--Cod-Gray-50, #f6f6f6);
+    text-align: center;
+    font-family: Pretendard;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 0px;
+    letter-spacing: 0.12px;
+  }
+`;
+
 // Exporting all styles
 const signup = {
   Container,
@@ -282,6 +309,8 @@ const signup = {
   Input,
   EmailInput,
   ErrorMessage,
+  BottomPoint,
+  LoadingContainer,
 };
 
 export default signup;

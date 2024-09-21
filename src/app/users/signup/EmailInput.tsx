@@ -1,7 +1,8 @@
 import React, { ChangeEvent, useState } from 'react';
 import signup from '@/styles/user/signup';
+
 interface EmailInputProps {
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  onChange: (email: string) => void; // 이메일 문자열을 전달
 }
 
 const EmailInput: React.FC<EmailInputProps> = ({ onChange }) => {
@@ -20,14 +21,13 @@ const EmailInput: React.FC<EmailInputProps> = ({ onChange }) => {
   ];
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setEmailValue(e.target.value);
+    const value = e.target.value;
+    setEmailValue(value);
     const userEmails = frequencyEmails.map((email) =>
-      e.target.value.includes('@')
-        ? e.target.value.split('@')[0] + email
-        : e.target.value + email,
+      value.includes('@') ? value.split('@')[0] + email : value + email,
     );
     setEmailList(userEmails);
-    onChange(e);
+    onChange(value); // 이메일 값만 전달
   };
 
   return (
@@ -39,8 +39,9 @@ const EmailInput: React.FC<EmailInputProps> = ({ onChange }) => {
         onChange={handleChange}
       />
       <datalist id="email">
-        {emailList &&
-          emailList.map((email, idx) => <option value={email} key={idx} />)}
+        {emailList.map((email, idx) => (
+          <option value={email} key={idx} />
+        ))}
       </datalist>
     </>
   );
