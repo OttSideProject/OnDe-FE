@@ -17,6 +17,7 @@ const SignupStep1 = ({
 }: SignupStep1Props) => {
   const [svgGenres, setSvgGenres] = useState(genres);
 
+const basePath = process.env.NODE_ENV === 'production' ? '/OnDe-FE' : '';
   // 클릭 시 이미지 경로를 토글하는 함수
   const handleToggleGenre = (genre: string) => {
     toggleGenre(genre);
@@ -26,8 +27,8 @@ const SignupStep1 = ({
           ? {
               ...item,
               file: item.file.includes('join_release')
-                ? `/assets/images/join_press/genre-${genre}.png` // 'join_press' 경로로 변경
-                : `/assets/images/join_release/genre-${genre}.png`, // 다시 'join_release' 경로로 변경
+                ? `${basePath}/assets/images/join_press/genre-${genre}.png` // 'join_press' 경로로 변경
+                : `${basePath}/assets/images/join_release/genre-${genre}.png`, // 다시 'join_release' 경로로 변경
             }
           : item,
       ),

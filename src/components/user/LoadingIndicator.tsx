@@ -2,13 +2,15 @@
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
+const basePath = process.env.NODE_ENV === 'production' ? '/OnDe-FE' : '';
+
 const LoadingIndicator = () => {
   const [currentImage, setCurrentImage] = useState(0);
   const images = [
-    '/assets/images/icons/dimi-eyes-off.svg',
-    '/assets/images/icons/dimi-eyes-on.svg',
-    '/assets/images/icons/dimi-lime.svg',
-    '/assets/images/icons/dimi-purple.svg',
+    `${basePath}/assets/images/icons/dimi-eyes-off.svg`,
+    `${basePath}/assets/images/icons/dimi-eyes-on.svg`,
+    `${basePath}/assets/images/icons/dimi-lime.svg`,
+    `${basePath}/assets/images/icons/dimi-purple.svg`,
   ];
 
   useEffect(() => {
