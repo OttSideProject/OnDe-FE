@@ -157,7 +157,6 @@ img,
 video {
   display: block;
   overflow: hidden;
-  max-width: 100%;
   max-height: 100%;
 }
 
