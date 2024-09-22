@@ -1,5 +1,5 @@
 import signup from '@/styles/user/signup';
-import { UserInfo } from './constants';
+import { UserInfo } from '../../app/users/signup/constants';
 
 interface SignupStep3Props {
   userInfo: UserInfo;

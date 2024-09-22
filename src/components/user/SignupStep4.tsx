@@ -1,6 +1,6 @@
 import signup from '@/styles/user/signup';
-import { UserInfo } from './constants';
-import AgeSelectOptions from './AgeSelect';
+import { UserInfo } from '../../app/users/signup/constants';
+import AgeSelectOptions from '../../app/users/signup/AgeSelect';
 
 interface SignupStep4Props {
   userInfo: UserInfo;
