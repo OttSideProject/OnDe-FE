@@ -6,6 +6,8 @@ interface SignupStep3Props {
   setUserInfo: (info: Partial<UserInfo>) => void;
 }
 
+const basePath = process.env.NODE_ENV === 'production' ? '/OnDe-FE' : '';
+
 const SignupStep3 = ({ userInfo, setUserInfo }: SignupStep3Props) => (
   <signup.Container>
     <signup.Title2>성별을 선택해 주세요.</signup.Title2>
@@ -15,7 +17,7 @@ const SignupStep3 = ({ userInfo, setUserInfo }: SignupStep3Props) => (
         onClick={() => setUserInfo({ gender: '여성' })}
       >
         <img
-          src="/assets/images/icons/join-2-woman.svg"
+          src={`${basePath}/assets/images/icons/join-2-woman.svg`}
           alt="여성"
           width={100}
           height={100}
@@ -29,7 +31,7 @@ const SignupStep3 = ({ userInfo, setUserInfo }: SignupStep3Props) => (
         onClick={() => setUserInfo({ gender: '남성' })}
       >
         <img
-          src="/assets/images/icons/join-2-man.svg"
+          src={`${basePath}/assets/images/icons/join-2-man.svg`}
           alt="남성"
           width={100}
           height={100}

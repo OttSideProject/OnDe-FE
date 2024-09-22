@@ -5,69 +5,71 @@ export interface SvgGenre {
   left: string;
 }
 
+const basePath = process.env.NODE_ENV === 'production' ? '/OnDe-FE' : '';
+
 export const initialGenres: SvgGenre[] = [
   {
-    file: '/assets/images/join_release/genre-science.png',
+    file: `${basePath}/assets/images/join_release/genre-science.png`,
     genre: 'science',
     top: '20%',
     left: '5%',
   },
   {
-    file: '/assets/images/join_release/genre-drama.png',
+    file: `${basePath}/assets/images/join_release/genre-drama.png`,
     genre: 'drama',
     top: '20%',
     left: '43%',
   },
   {
-    file: '/assets/images/join_release/genre-romance.png',
+    file: `${basePath}/assets/images/join_release/genre-romance.png`,
     genre: 'romance',
     top: '25%',
     left: '70%',
   },
   {
-    file: '/assets/images/join_release/genre-ani.png',
+    file: `${basePath}/assets/images/join_release/genre-ani.png`,
     genre: 'ani',
     top: '35%',
     left: '20%',
   },
   {
-    file: '/assets/images/join_release/genre-fantasy.png',
+    file: `${basePath}/assets/images/join_release/genre-fantasy.png`,
     genre: 'fantasy',
     top: '38%',
     left: '50%',
   },
   {
-    file: '/assets/images/join_release/genre-comedy.png',
+    file: `${basePath}/assets/images/join_release/genre-comedy.png`,
     genre: 'comedy',
     top: '50%',
     left: '5%',
   },
   {
-    file: '/assets/images/join_release/genre-hero.png',
+    file: `${basePath}/assets/images/join_release/genre-hero.png`,
     genre: 'hero',
     top: '50%',
     left: '33%',
   },
   {
-    file: '/assets/images/join_release/genre-action.png',
+    file: `${basePath}/assets/images/join_release/genre-action.png`,
     genre: 'action',
     top: '50%',
     left: '65%',
   },
   {
-    file: '/assets/images/join_release/genre-thriller.png',
+    file: `${basePath}/assets/images/join_release/genre-thriller.png`,
     genre: 'thriller',
     top: '68%',
     left: '16%',
   },
   {
-    file: '/assets/images/join_release/genre-enter.png',
+    file: `${basePath}/assets/images/join_release/genre-enter.png`,
     genre: 'enter',
     top: '68%',
     left: '45%',
   },
   {
-    file: '/assets/images/join_release/genre-documentary.png',
+    file: `${basePath}/assets/images/join_release/genre-documentary.png`,
     genre: 'documentary',
     top: '68%',
     left: '70%',

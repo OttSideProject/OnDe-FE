@@ -43,6 +43,8 @@ const PostList: React.FC<PostListProps> = ({ selectedCategoryNumber }) => {
     setIsSortDESC(!isSortDESC);
   }, [isSortDESC]);
 
+  const basePath = process.env.NODE_ENV === 'production' ? '/OnDe-FE' : '';
+
   useEffect(() => {
     getPostList();
   }, [selectedCategoryNumber]);
@@ -75,9 +77,9 @@ const PostList: React.FC<PostListProps> = ({ selectedCategoryNumber }) => {
         })}
       </div>
       <img
-        className={styles.floatButton}
-        src="assets/images/icons/post-create-float.svg"
+        src={`${basePath}/assets/images/icons/post-create-float.svg`}
         alt=""
+        className={styles.floatButton}
       />
     </div>
   );

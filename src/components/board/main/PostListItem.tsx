@@ -7,6 +7,8 @@ interface PostListItemProps {
   post: PostDetailType;
 }
 
+const basePath = process.env.NODE_ENV === 'production' ? '/OnDe-FE' : '';
+
 const PostListItem: React.FC<PostListItemProps> = ({ post }) => {
   return (
     <div className={styles.postWrapper}>
@@ -38,9 +40,15 @@ const PostListItem: React.FC<PostListItemProps> = ({ post }) => {
             있었습니다.
           </div>
           <div className={styles.postInfo}>
-            <img src="assets/images/icons/heart-gray.svg" alt="" />
+            <img
+              src={`${basePath}/assets/images/icons/heart-gray.svg`}
+              alt=""
+            />
             <div>{post.like_count}</div>
-            <img src="assets/images/icons/message-gray.svg" alt="" />
+            <img
+              src={`${basePath}/assets/images/icons/message-gray.svg`}
+              alt=""
+            />
             {/* FIXME : 댓글 수 추기 */}
             <div>{post.like_count}</div>
           </div>
