@@ -31,7 +31,8 @@ export const CategoryWrapper = styled.div`
   padding: 10px 0px 16px 0px;
   height: 74px;
   line-height: 48px;
-  font-size: 16px;
+  font-size: 14px;
+  font-weight: 600;
 `;
 
 export const CategoryTitle = styled.div<CategoryTitleProps>`
@@ -45,11 +46,13 @@ export const CategoryTitle = styled.div<CategoryTitleProps>`
 `;
 
 export const BoardTitle = styled.div`
+  display: flex;
+  align-items: center;
+  align-self: stretch;
   box-sizing: border-box;
-  padding-left: 10px;
-  height: 39px;
-  line-height: 39px;
-  font-size: 16px;
+  padding: 2.4rem 1rem;
+  font-size: 18px;
+  font-weight: 700;
 `;
 
 export const WeeklyBestPostContainer = styled.div`
@@ -64,17 +67,24 @@ export const WeeklyBestPostWrapper = styled.div<WeeklyBestPostWrapperProps>`
   flex-direction: column;
   width: 100%;
   box-sizing: border-box;
-  padding: 1.3rem 1rem 1.3rem 1rem;
-  border-bottom: 0.1rem solid #212121;
+  padding: 0rem 1rem 2.4rem 1rem;
   ${(props) =>
     props.isLast &&
     `
-    border-bottom: 1rem solid #212121;
+    border-bottom: 0.8rem solid #191a18;
     `}
 `;
 
 export const DirectionWrapper = styled.div`
   display: flex;
+  width: 100%;
+`;
+
+export const DirectionWrapper2 = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 1rem;
 `;
 
 export const PostDetailContainer = styled.div`
@@ -87,6 +97,7 @@ export const PostDetailWrapper = styled.div`
   width: 20.8rem;
   height: 4rem;
   cursor: pointer;
+  gap: 0.4rem;
 `;
 
 export const PostTitle = styled.div`
@@ -104,7 +115,6 @@ export const PostContents = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  padding-top: 0.7rem;
 `;
 
 export const NullPost = styled.div`
@@ -118,9 +128,8 @@ export const NullPost = styled.div`
 export const WeeklyBestPostNumber = styled.div`
   display: inline;
   color: #bfff00;
-  font-weight: 700;
-  line-height: 1.909rem;
-  padding: 1rem 1rem 1rem 0rem;
+  font-weight: 800;
+  padding-right: 1rem;
 `;
 
 export const UserProfileImg = styled.img`
@@ -132,29 +141,47 @@ export const UserProfileImg = styled.img`
 
 export const InfoContainer = styled.div`
   display: flex;
+  align-items: center;
   justify-content: space-between;
   font-size: 1.2rem;
-  color: #6d6d6d;
-  box-sizing: border-box;
-  padding: 1rem 0 0 2rem;
-`;
-
-export const UserName = styled.div`
-  margin: 0 0.6rem 0 0.6rem;
+  color: #6c6e68;
 `;
 
 export const UserInfoText = styled.div`
   display: flex;
+  gap: 0.6rem;
 `;
+
+export const MessegeIcon = styled.img`
+  padding: 0.15rem;
+`;
+
 export const PostInfoText = styled.div`
   display: flex;
-  line-height: 1.432rem;
+  align-items: center;
+  gap: 0.8rem;
+`;
+
+export const HeartIcon = styled.img`
+  padding: 0.15rem;
+`;
+
+export const CommentWrapper = styled.div`
+  display: flex;
+  gap: 0.2rem;
+`;
+
+export const LikeWrapper = styled.div`
+  display: flex;
+  gap: 0.2rem;
 `;
 
 export const LikeCountText = styled.div`
-  margin: 0.1rem 0.4rem 0.1rem 0.4rem;
+  font-weight: 700;
+  line-height: 2.4rem;
 `;
 
 export const CommentCountText = styled.div`
-  margin: 0.1rem 0.4rem 0.1rem 0.4rem;
+  font-weight: 700;
+  line-height: 2.4rem;
 `;
