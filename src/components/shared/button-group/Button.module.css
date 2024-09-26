@@ -13,7 +13,7 @@
   width: 100%;
   max-width: 355px;
   height: 56px;
-  padding: 17px 70px;
+  /* padding: 17px 70px; */
   border-radius: 14px;
   color: var(--primary-black);
   font-size: 1.6rem;

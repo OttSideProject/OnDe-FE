@@ -7,6 +7,8 @@ import styles from './Button.module.css';
 export default function Button({
   variant = 'default',
   size = 'default',
+  width,
+  height,
   isActive = false,
   children,
   iconUrl,
@@ -48,7 +50,14 @@ export default function Button({
 
   return (
     <div className={styles.btnInner}>
-      <button className={className} onClick={handleClick}>
+      <button
+        className={className}
+        onClick={handleClick}
+        style={{
+          width: width && `${width}px`,
+          height: height && `${height}px`,
+        }}
+      >
         <span>{children}</span>
         {iconUrl && <img src={iconUrl} alt="icon" className={styles.icon} />}
       </button>

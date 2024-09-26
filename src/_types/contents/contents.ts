@@ -8,6 +8,8 @@ export type HeaderProps = {
 export type ButtonProps = {
   variant?: 'primary' | 'secondary' | 'default';
   size?: 'small' | 'default';
+  width?: number;
+  height?: number;
   text?: string;
   iconUrl?: string;
   isActive?: boolean;
@@ -78,7 +80,8 @@ export type DropDownStore = {
 /* DropDownOptionsProps type */
 export type Option = {
   id: number;
-  label: string;
+  label?: string;
+  link?: string;
   url?: string;
 };
 
@@ -86,13 +89,16 @@ export type DropDownOptionsProps = {
   title?: string;
   height?: number;
   options: Option[];
-  onSelect: (id: number) => void;
+  onSelect?: (id: number) => void;
 };
 
 /* DetailPage type */
 export type DetailData = {
   id: string;
   title: string;
+  info: InfoItem[];
   description: string;
   imageUrl: string;
 };
+
+export type InfoItem = string | { type: 'image'; src: string; alt: string };
