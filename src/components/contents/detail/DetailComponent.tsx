@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import { AxiosHeaders, AxiosResponse } from 'axios';
 import { UseCustomQuery } from '@/hooks/useCustomQuery';
@@ -7,6 +8,10 @@ import { UseCustomQuery } from '@/hooks/useCustomQuery';
 import { DetailData } from '@/_types/contents/contents';
 
 import Button from '@/components/shared/button-group/Button';
+import DropDownOptions from '@/components/shared/action-bar/DropDownOptions';
+import { DimmedBackground } from '@/components/shared/DimmedBackground';
+
+import useDropDownStore from '@/stores/useDropDownStore';
 
 import styles from './DetailComponent.module.css';
 
@@ -45,6 +50,65 @@ const fetchDetailData = async (
 };
 
 const DetailComponent: React.FC<{}> = () => {
+  const { isDropDownOpen, openDropDown, closeDropDown } = useDropDownStore();
+
+  useEffect(() => {
+    if (isDropDownOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [isDropDownOpen]);
+
+  const options = [
+    {
+      id: 1,
+      link: 'https://www.netflix.com/kr/',
+      url: '/assets/images/ott_logos/netflix-logo.svg',
+    },
+    {
+      id: 2,
+      link: 'https://www.tving.com/',
+      url: '/assets/images/ott_logos/tving-logo.svg',
+    },
+    {
+      id: 3,
+      link: 'https://watcha.com/',
+      url: '/assets/images/ott_logos/watcha-logo.svg',
+    },
+    {
+      id: 4,
+      link: 'https://www.disneyplus.com/',
+      url: '/assets/images/ott_logos/disney-plus-logo.svg',
+    },
+    {
+      id: 5,
+      link: 'https://www.wavve.com/',
+      url: '/assets/images/ott_logos/wavve-logo.svg',
+    },
+    {
+      id: 6,
+      link: 'https://laftel.net/',
+      url: '/assets/images/ott_logos/laftel-logo.svg',
+    },
+    {
+      id: 7,
+      link: 'https://www.primevideo.com/-/ko',
+      url: '/assets/images/ott_logos/prime-video-logo.svg',
+    },
+    {
+      id: 8,
+      link: 'https://play.coupang.com/',
+      url: '/assets/images/ott_logos/coupang-play-logo.svg',
+    },
+  ];
+
+  const handleOptionSelect = (id: number) => {
+    closeDropDown();
+  };
   const params = useParams(); // 동적 경로에서 id를 가져옴
   const id = Array.isArray(params.id) ? params.id[0] : params.id; // id를 string으로 변환
   /* useCustomQuery를 사용하여 데이터 페칭 */
@@ -59,6 +123,17 @@ const DetailComponent: React.FC<{}> = () => {
 
   return (
     <div className={styles.container}>
+      {/* DropDown이 열려있을 때 DimmedBackground 표시 */}
+      {isDropDownOpen && (
+        <>
+          <DimmedBackground onClick={closeDropDown} />
+          <DropDownOptions
+            options={options}
+            height={580}
+            title="시청하실 ott 를 선택하세요."
+          />
+        </>
+      )}
       <figure className={styles.imageContainer}>
         <img src={data?.imageUrl} alt={data?.title} />
         <figcaption>
@@ -95,7 +170,7 @@ const DetailComponent: React.FC<{}> = () => {
           variant="primary"
           width={210}
           text="OTT 선택하기"
-          onClick={() => alert('Second Button Clicked!')}
+          onClick={openDropDown}
         >
           OTT 선택하기
         </Button>
