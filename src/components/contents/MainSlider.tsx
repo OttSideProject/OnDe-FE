@@ -2,7 +2,8 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { v4 as uuidv4 } from 'uuid';
 
 import Slider from 'react-slick';
 
@@ -29,12 +30,19 @@ const MainSlider: React.FC<MainSliderProps> = ({ slides }) => {
     afterChange: (current: number) => setActiveSlide(current),
   };
 
+  const router = useRouter();
+
+  const goLink = () => {
+		const id = uuidv4();
+    router.push(`/contents/detail/${id}`);
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.slider}>
         <Slider {...settings}>
           {slides.map((slide, index) => (
-            <Link key={index} href={''} className={styles.cardLink}>
+            <div key={index} className={styles.cardLink}>
               <figure
                 className={`${styles.slide} ${
                   activeSlide === index ? styles.activeSlide : ''
@@ -46,35 +54,36 @@ const MainSlider: React.FC<MainSliderProps> = ({ slides }) => {
                   width={240}
                   height={360}
                 />
-                <figcaption>
-                  <h3>{slide.title}</h3>
-                  <h4>{slide.subTitle.join(' · ')}</h4>
-                </figcaption>
-                <div className={styles.btnContainer}>
-                  {/* 첫 번째 버튼 */}
-                  <Button
-                    variant="primary"
-                    size="small"
-                    text="바로가기"
-                    iconUrl="/assets/images/icons/info-black.svg"
-                    onClick={() => alert('First Button Clicked!')}
-                  >
-                    바로가기
-                  </Button>
-
-                  {/* 두 번째 버튼 */}
-                  <Button
-                    variant="default"
-                    size="small"
-                    text="모아보기"
-                    iconUrl="/assets/images/icons/collect-box.svg"
-                    onClick={() => alert('Second Button Clicked!')}
-                  >
-                    모아보기
-                  </Button>
+                <div className={styles.bottomContainer}>
+                  <figcaption>
+                    <h3>{slide.title}</h3>
+                    <h4>{slide.subTitle.join(' · ')}</h4>
+                  </figcaption>
+                  <div className={styles.btnContainer}>
+                    {/* 첫 번째 버튼 */}
+                    <Button
+                      variant="default"
+                      size="small"
+                      text="모아보기"
+                      iconUrl="/assets/images/icons/collect-box.svg"
+                      onClick={() => alert('Second Button Clicked!')}
+                    >
+                      모아보기
+                    </Button>
+                    {/* 두 번째 버튼 */}
+                    <Button
+                      variant="primary"
+                      size="small"
+                      text="바로가기"
+                      iconUrl="/assets/images/icons/info-black.svg"
+                      onClick={goLink}
+                    >
+                      바로가기
+                    </Button>
+                  </div>
                 </div>
               </figure>
-            </Link>
+            </div>
           ))}
         </Slider>
       </div>

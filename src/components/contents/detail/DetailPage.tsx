@@ -10,7 +10,7 @@ import styles from './DetailPage.module.css';
 
 /* 더미 데이터를 가져오는 함수 */
 const fetchDetailData = async (
-  id: number,
+  id: string,
 ): Promise<AxiosResponse<DetailData>> => {
   const detailData: DetailData = {
     id,
@@ -33,25 +33,14 @@ const fetchDetailData = async (
   };
 };
 
-const DetailPage: React.FC<{ queryKeyPrefix: string }> = ({
-  queryKeyPrefix,
-}) => {
-  const { id } = useParams(); // 동적 경로에서 id를 가져옴
-
-  /* id를 number로 변환 */
-  const parsedId = Number(id);
-
-  /* parsedId가 숫자가 아닐 때 조건 처리 */
-  if (isNaN(parsedId) || parsedId <= 0) {
-    return <p>유효하지 않은 ID입니다.</p>;
-  }
-
+const DetailComponent: React.FC<{}> = () => {
+  const params = useParams(); // 동적 경로에서 id를 가져옴
+  const id = Array.isArray(params.id) ? params.id[0] : params.id; // id를 string으로 변환
   /* useCustomQuery를 사용하여 데이터 페칭 */
   const { data, error, isLoading } = UseCustomQuery(
-    [queryKeyPrefix, parsedId], // queryKey
-    () => fetchDetailData(parsedId), // queryCallBack
-    { queryKey: [queryKeyPrefix, parsedId], enabled: parsedId > 0 },
-    /* queryKeyPrefix를 이용해 구분 */
+    [id], // queryKey
+    () => fetchDetailData(id), // queryCallBack
+    { queryKey: [id] },
   );
 
   if (isLoading) return <div>Loading...</div>;
@@ -66,4 +55,4 @@ const DetailPage: React.FC<{ queryKeyPrefix: string }> = ({
   );
 };
 
-export default DetailPage;
+export default DetailComponent;
