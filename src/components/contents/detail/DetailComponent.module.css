@@ -35,6 +35,23 @@
 .bottomContainer {
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 10px;
   width: 100%;
   height: 56px;
+  padding: 0 10px;
+}
+
+@media (min-width: 600px) {
+  .imageContainer {
+    width: 100%;
+    /* max-width: 600px; */
+  }
+  .imageContainer img {
+    width: 100%;
+  }
+
+  .bottomContainer {
+    /* justify-content: center; */
+  }
 }

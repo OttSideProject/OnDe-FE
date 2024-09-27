@@ -158,18 +158,19 @@ const DetailComponent: React.FC<{}> = () => {
         {/* 첫 번째 버튼 */}
         <Button
           variant="default"
-          width={135}
           text="모아보기"
           iconUrl="/assets/images/icons/collect-box.svg"
+          className="btnDetailInner"
           onClick={() => alert('Second Button Clicked!')}
         >
           모아보기
         </Button>
+
         {/* 두 번째 버튼 */}
         <Button
           variant="primary"
-          width={210}
           text="OTT 선택하기"
+          className="btnDetailInner"
           onClick={openDropDown}
         >
           OTT 선택하기
