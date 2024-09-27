@@ -23,7 +23,6 @@ const DropDownOptions: React.FC<DropDownOptionsProps> = ({
                 <li key={option.id} className={styles.option}>
                   {onSelect ? (
                     <button onClick={() => onSelect(option.id)}>
-                      {option.label}
                       {option.url && (
                         <img src={option.url} alt="option.label" />
                       )}
