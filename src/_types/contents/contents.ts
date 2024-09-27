@@ -15,6 +15,7 @@ export type ButtonProps = {
   isActive?: boolean;
   children: React.ReactNode;
   onClick?: () => void;
+	className?: string;
 };
 
 /* MainSlider type */

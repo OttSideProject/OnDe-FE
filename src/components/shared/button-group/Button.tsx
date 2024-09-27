@@ -13,6 +13,7 @@ export default function Button({
   children,
   iconUrl,
   onClick,
+  className,
 }: ButtonProps) {
   const [active, setIsActive] = useState(() => isActive);
 
@@ -37,7 +38,7 @@ export default function Button({
    *   - 버튼이 활성화된 상태(`active`)일 때, 해당 variant에 맞는 활성화된 스타일이 적용됩니다.
    *   - 예: `active=true` and `variant="primary"` -> `styles.btnPrimaryActive`
    */
-  const className = `
+  const computedClassName = `
 		${styles.btn} 
 				${styles[`btn${variant[0].toUpperCase() + variant.slice(1)}`]} 
 				${styles[`btn${size[0].toUpperCase() + size.slice(1)}`]}
@@ -49,12 +50,14 @@ export default function Button({
 		`;
 
   return (
-    <div className={styles.btnInner}>
+    <div
+      className={`${styles.btnInner}  ${className ? styles[className] : ''}`}
+    >
       <button
-        className={className}
+        className={computedClassName}
         onClick={handleClick}
         style={{
-          width: width && `${width}px`,
+          width: width && `${width}vw`,
           height: height && `${height}px`,
         }}
       >
