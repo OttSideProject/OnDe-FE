@@ -103,3 +103,16 @@ export type DetailData = {
 };
 
 export type InfoItem = string | { type: 'image'; src: string; alt: string };
+
+/* DetailPage Tab type */
+
+export type TabProps = {
+  categories: { [key: string]: string }; // key-value 형태의 카테고리
+  renderContent: (category: string) => JSX.Element; // 선택된 카테고리에 따른 렌더링 함수
+};
+
+/* DetailPage Tab styles type */
+type CategoryTitleStyleProps = {
+  selectedCategory: string;
+  onClick: () => void;
+};
