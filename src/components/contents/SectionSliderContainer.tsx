@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 /* Components */
 import SubHeader from '@/components/contents/header/SubHeader';
 import SectionSlider from '@/components/contents/SectionSlider';
-import { DimmedBackground } from '@/components/shared/DimmedBackground';
+import { DimmedBackground } from '@/components/shared/dimmed-background/DimmedBackground';
 /* Types */
 import { Section } from '@/_types/contents/contents';
 /* Zustand store */

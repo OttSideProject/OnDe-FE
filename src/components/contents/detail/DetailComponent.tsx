@@ -9,7 +9,7 @@ import { DetailData } from '@/_types/contents/contents';
 
 import Button from '@/components/shared/button-group/Button';
 import DropDownOptions from '@/components/shared/action-bar/DropDownOptions';
-import { DimmedBackground } from '@/components/shared/DimmedBackground';
+import { DimmedBackground } from '@/components/shared/dimmed-background/DimmedBackground';
 
 import useDropDownStore from '@/stores/useDropDownStore';
 
