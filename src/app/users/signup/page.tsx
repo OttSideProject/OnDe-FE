@@ -132,7 +132,9 @@ const SignupProcess = () => {
         console.log('가입이 완료되었습니다!', userInfo);
         setLoading(true);
         setTimeout(() => {
-          location.href = '/';
+          const basePath =
+            process.env.NODE_ENV === 'production' ? '/OnDe-FE' : '';
+          location.href = basePath;
         }, 1000);
       }
     }
@@ -148,7 +150,7 @@ const SignupProcess = () => {
     dispatch({ type: 'TOGGLE_INDEX', payload: index });
   };
 
-	const basePath = process.env.NODE_ENV === 'production' ? '/OnDe-FE' : '';
+  const basePath = process.env.NODE_ENV === 'production' ? '/OnDe-FE' : '';
 
   return (
     <signup.Container2>
