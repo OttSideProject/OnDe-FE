@@ -33,7 +33,7 @@ const MainSlider: React.FC<MainSliderProps> = ({ slides }) => {
   const router = useRouter();
 
   const goLink = () => {
-		const id = uuidv4();
+    const id = uuidv4();
     router.push(`/contents/detail/${id}`);
   };
 
