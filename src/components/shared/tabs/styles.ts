@@ -20,7 +20,8 @@ export const CategoryWrapper = styled.div`
   font-size: 16px;
 `;
 
-export const CategoryTitle = styled.div<CategoryTitleStyleProps>`
+export const CategoryTitle = styled.button<CategoryTitleStyleProps>`
+  font-family: var(--primary-font);
   cursor: pointer;
   color: ${(props) =>
     props.selectedCategory === props.children
@@ -30,6 +31,10 @@ export const CategoryTitle = styled.div<CategoryTitleStyleProps>`
     props.selectedCategory === props.children
       ? '0.2rem solid var(--primary100)'
       : '0rem'};
+
+  span {
+    font-family: var(--number-font);
+  }
 `;
 
 export const ContentWrapper = styled.div`

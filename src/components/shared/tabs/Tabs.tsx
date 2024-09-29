@@ -8,9 +8,8 @@ import {
   CategoryWrapper,
   CategoryTitle,
   Container,
-	ContentWrapper,
-} from './styles'; // 기존 스타일 임포트
-
+  ContentWrapper,
+} from './styles'; 
 
 const Tabs = ({ categories, renderContent }: TabProps) => {
   const [selectedCategory, setSelectedCategory] = useState<string>(
@@ -37,9 +36,7 @@ const Tabs = ({ categories, renderContent }: TabProps) => {
       </CategoryWrapper>
 
       {/* 선택한 카테고리의  내용 */}
-      <ContentWrapper>
-        {renderContent(selectedCategory)}
-      </ContentWrapper>
+      <ContentWrapper>{renderContent(selectedCategory)}</ContentWrapper>
     </Container>
   );
 };
