@@ -122,3 +122,10 @@ export type ViewMoreButtonProps = {
   content: string;
   viewIcon?: string;
 };
+
+/* GoBack type */
+export type GoBackProps = {
+  isOpen?: boolean;
+  onClick?: () => void;
+  isClose?: boolean;
+};
