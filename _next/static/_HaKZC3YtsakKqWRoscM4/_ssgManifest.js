@@ -1,1 +1,0 @@
-self.__SSG_MANIFEST=new Set(["\u002Fcontents\u002Fcollect-view\u002Fdetail\u002F[id]","\u002Fcontents\u002Fnew\u002Fdetail\u002F[id]","\u002Fcontents\u002Fpopular-dramas\u002Fdetail\u002F[id]","\u002Fcontents\u002Fpopular-movies\u002Fdetail\u002F[id]","\u002Fcontents\u002Frecommend\u002Fdetail\u002F[id]"]);self.__SSG_MANIFEST_CB&&self.__SSG_MANIFEST_CB()
