@@ -8,11 +8,14 @@ export type HeaderProps = {
 export type ButtonProps = {
   variant?: 'primary' | 'secondary' | 'default';
   size?: 'small' | 'default';
+  width?: number;
+  height?: number;
   text?: string;
   iconUrl?: string;
   isActive?: boolean;
   children: React.ReactNode;
   onClick?: () => void;
+  className?: string;
 };
 
 /* MainSlider type */
@@ -78,7 +81,8 @@ export type DropDownStore = {
 /* DropDownOptionsProps type */
 export type Option = {
   id: number;
-  label: string;
+  label?: string;
+  link?: string;
   url?: string;
 };
 
@@ -86,13 +90,50 @@ export type DropDownOptionsProps = {
   title?: string;
   height?: number;
   options: Option[];
-  onSelect: (id: number) => void;
+  onSelect?: (id: number) => void;
 };
 
 /* DetailPage type */
 export type DetailData = {
-  id: number;
+  id: string;
   title: string;
+  info: InfoItem[];
   description: string;
   imageUrl: string;
+};
+
+export type InfoItem = string | { type: 'image'; src: string; alt: string };
+
+/* DetailPage Tab type */
+
+/* Tab props type */
+export type Category = {
+	label: string | JSX.Element;
+	key: string;
+};
+
+
+export type TabProps = {
+  categories: Category[]; // 카테고리 목록
+  renderContent: (selectedCategory: string) => JSX.Element; // 선택된 카테고리에 따른 렌더링 함수
+};
+
+/* DetailPage Tab styles type */
+export type CategoryTitleStyleProps = {
+  selectedCategory: string;
+  category: string;
+  onClick: () => void;
+};
+
+/* ViemMoreButton toggle type*/
+export type ViewMoreButtonProps = {
+  content: string;
+  viewIcon?: string;
+};
+
+/* GoBack type */
+export type GoBackProps = {
+  isOpen?: boolean;
+  onClick?: () => void;
+  isClose?: boolean;
 };

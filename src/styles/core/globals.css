@@ -290,3 +290,9 @@ textarea:focus:not(:focus-visible) {
   background-repeat: no-repeat;
   background-size: 100%;
 }
+
+/* 숫자 폰트 */
+.number-font {
+	font-family: var(--number-font);
+}
+

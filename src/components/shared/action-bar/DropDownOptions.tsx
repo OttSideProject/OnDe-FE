@@ -1,5 +1,7 @@
 'use client';
 
+import Link from 'next/link';
+
 import { DropDownOptionsProps } from '@/_types/contents/contents';
 
 import styles from './DropDownOptions.module.css';
@@ -10,6 +12,8 @@ const DropDownOptions: React.FC<DropDownOptionsProps> = ({
   options,
   onSelect,
 }) => {
+
+	const basePath = process.env.NODE_ENV === 'production' ? '/OnDe-FE' : '';
   return (
     <div className={styles.container} style={{ height: `${height}px` }}>
       <div className={styles.inner}>
@@ -18,20 +22,31 @@ const DropDownOptions: React.FC<DropDownOptionsProps> = ({
           <div className={styles.scrollBarInner}>
             <ul>
               {options.map((option) => (
-                <li
-                  key={option.id}
-                  className={styles.option}
-                  onClick={() => onSelect(option.id)}
-                >
-                  {option.url && (
-                    <img
-                      src={`${
-                        process.env.NODE_ENV === 'production' ? '/OnDe-FE' : ''
-                      }${option.url}`}
-                      alt={option.label}
-                    />
+                <li key={option.id} className={styles.option}>
+                  {onSelect ? (
+                    <button onClick={() => onSelect(option.id)}>
+                      {option.url && (
+                        <img
+                          src={`${basePath}${option.url}`}
+                          alt="option.label"
+                        />
+                      )}
+                      {option.label && option.label}
+                    </button>
+                  ) : (
+                    option.link && (
+                      <Link href={option.link} target="_blank">
+                        {option.url && (
+                          <div className={styles.ottLogoInner}>
+                            <img
+                              src={`${basePath}${option.url}`}
+                              alt="option.label"
+                            />
+                          </div>
+                        )}
+                      </Link>
+                    )
                   )}
-                  {option.label}
                 </li>
               ))}
             </ul>

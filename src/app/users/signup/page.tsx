@@ -191,7 +191,7 @@ const SignupProcess = () => {
               <img
                 src={`${basePath}/assets/images/icons/iconamoon_close-light.svg`}
                 alt="메인으로"
-                onClick={() => (location.href = '/')}
+                onClick={() => (location.href = basePath)}
                 width={20}
                 height={20}
               />
