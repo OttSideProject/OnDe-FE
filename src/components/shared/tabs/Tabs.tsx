@@ -9,28 +9,29 @@ import {
   CategoryTitle,
   Container,
   ContentWrapper,
-} from './styles'; 
+} from './styles';
 
 const Tabs = ({ categories, renderContent }: TabProps) => {
   const [selectedCategory, setSelectedCategory] = useState<string>(
-    Object.keys(categories)[0],
+    categories[0].key,
   );
 
-  const handleSelectedCategory = useCallback((category: string) => {
-    setSelectedCategory(category);
+  const handleSelectedCategory = useCallback((key: string) => {
+    setSelectedCategory(key);
   }, []);
 
   return (
     <Container>
       {/* 카테고리 탭 */}
       <CategoryWrapper>
-        {Object.keys(categories).map((category, idx) => (
+        {categories.map((category, idx) => (
           <CategoryTitle
             key={idx}
+            category={category.key} // category 값 전달
             selectedCategory={selectedCategory}
-            onClick={() => handleSelectedCategory(category)}
+            onClick={() => handleSelectedCategory(category.key)}
           >
-            {category}
+            {category.label}
           </CategoryTitle>
         ))}
       </CategoryWrapper>

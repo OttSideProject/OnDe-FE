@@ -24,11 +24,11 @@ export const CategoryTitle = styled.button<CategoryTitleStyleProps>`
   font-family: var(--primary-font);
   cursor: pointer;
   color: ${(props) =>
-    props.selectedCategory === props.children
+    props.selectedCategory === props.category
       ? 'var(--primary-white)'
       : 'var(--gray400)'};
   border-bottom: ${(props) =>
-    props.selectedCategory === props.children
+    props.selectedCategory === props.category
       ? '0.2rem solid var(--primary100)'
       : '0rem'};
 

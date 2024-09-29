@@ -106,14 +106,22 @@ export type InfoItem = string | { type: 'image'; src: string; alt: string };
 
 /* DetailPage Tab type */
 
+/* Tab props type */
+export type Category = {
+	label: string | JSX.Element;
+	key: string;
+};
+
+
 export type TabProps = {
-  categories: { [key: string]: string }; // key-value 형태의 카테고리
-  renderContent: (category: string) => JSX.Element; // 선택된 카테고리에 따른 렌더링 함수
+  categories: Category[]; // 카테고리 목록
+  renderContent: (selectedCategory: string) => JSX.Element; // 선택된 카테고리에 따른 렌더링 함수
 };
 
 /* DetailPage Tab styles type */
 export type CategoryTitleStyleProps = {
   selectedCategory: string;
+  category: string;
   onClick: () => void;
 };
 

@@ -9,10 +9,17 @@ const DetailContents = () => {
 
   commentsCount = 777;
 
-  const categories = {
-    상세정보: 'info',
-    [`한마디 (${commentsCount})`]: 'comments',
-  };
+  const categories = [
+    { label: '상세정보', key: 'info' },
+    {
+      label: (
+        <span>
+          한마디 <span className="number-font">({commentsCount})</span>
+        </span>
+      ),
+      key: 'comment',
+    },
+  ];
 
   const detailInfo = `출연: 도하석, 김예운, 정예원, 조윤우, 윤수오, 고민주, 신혜원
 					감독: 피트 닥터
@@ -29,13 +36,13 @@ const DetailContents = () => {
 
   const renderContent = (selectedCategory: string) => {
     switch (selectedCategory) {
-      case '상세정보':
+      case 'info':
         return (
           <div>
             <ViewMoreButton content={detailInfo} viewIcon={viewIcon} />
           </div>
         );
-      case `한마디 (${commentsCount})`:
+      case 'comment':
         return (
           <div>
             <p>한마디 내용이 여기에 표시됩니다.</p>
