@@ -1,6 +1,7 @@
 'use client';
 
 import Tabs from '@/components/shared/tabs/Tabs';
+import ViewMoreButton from '@/components/shared/view-more/ViewMoreButton';
 
 const DetailContents = () => {
   const categories = {
@@ -8,18 +9,21 @@ const DetailContents = () => {
     한마디: 'comments',
   };
 
+  const detailInfo = `출연: 도하석, 김예운, 정예원,조윤우, 윤수오, 고민주, 신혜원
+					감독: 피트 닥터
+					타입: 애니메이션, 영화
+					장르: 애니, 모험
+					연대별: 2020년대
+					러닝타임: 96분
+				`;
+  const viewIcon = '/assets/images/icons/all-view-icon.svg';
+
   const renderContent = (selectedCategory: string) => {
     switch (selectedCategory) {
       case '상세정보':
         return (
           <div>
-            <p>출연: 도하석, 김예운, 정예원,조윤우, 윤수오, 고민주, 신혜원</p>
-            <p>감독: 피트 닥터</p>
-            <p>타입: 애니메이션, 영화</p>
-            <p>장르: 애니, 모험</p>
-            <p>연대별: 2020년대</p>
-            <p>러닝타임: 96분</p>
-            <img src="/assets/images/icons/all-view-icon.svg" alt="all-view" />
+            <ViewMoreButton content={detailInfo} viewIcon={viewIcon} />
           </div>
         );
       case '한마디':
@@ -29,7 +33,7 @@ const DetailContents = () => {
           </div>
         );
       default:
-        return <div>상세정보</div>;
+        return <p>내용이 없습니다.</p>;
     }
   };
 

@@ -15,7 +15,7 @@ export type ButtonProps = {
   isActive?: boolean;
   children: React.ReactNode;
   onClick?: () => void;
-	className?: string;
+  className?: string;
 };
 
 /* MainSlider type */
@@ -112,7 +112,13 @@ export type TabProps = {
 };
 
 /* DetailPage Tab styles type */
-type CategoryTitleStyleProps = {
+export type CategoryTitleStyleProps = {
   selectedCategory: string;
   onClick: () => void;
+};
+
+/* ViemMoreButton toggle type*/
+export type ViewMoreButtonProps = {
+  content: string;
+  viewIcon?: string;
 };

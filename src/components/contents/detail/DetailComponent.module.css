@@ -5,6 +5,10 @@
   padding-bottom: 40px;
 }
 
+.imageContainer img {
+	margin: 0 auto;
+}
+
 .imageContainer figcaption {
   margin: 8px 0;
   padding: 16px 10px;
@@ -50,7 +54,4 @@
     width: 100%;
   }
 
-  .bottomContainer {
-    /* justify-content: center; */
-  }
 }

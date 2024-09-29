@@ -1,10 +1,7 @@
 'use client';
 import styled from '@emotion/styled';
 
-type CategoryTitleStyleProps = {
-  selectedCategory: string;
-  onClick: () => void;
-};
+import { CategoryTitleStyleProps } from '@/_types/contents/contents';
 
 export const Container = styled.div`
   display: flex;
