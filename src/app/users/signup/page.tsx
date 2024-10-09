@@ -1,5 +1,6 @@
 'use client';
 import LoadingIndicator from '../../../components/user/LoadingIndicator';
+import Api from '@/api/core/Api';
 import { useReducer } from 'react';
 import SignupStep1 from '../../../components/user/SignupStep1';
 import SignupStep2 from '../../../components/user/SignupStep2';
@@ -128,12 +129,28 @@ const SignupProcess = () => {
       if (!userInfo.name) {
         alert('닉네임을 입력해주세요.');
       } else {
-        const userInfoJson = JSON.stringify(userInfo, null, 2);
-        console.log('가입이 완료되었습니다!', userInfo);
-        setLoading(true);
-        setTimeout(() => {
-          location.href = '/';
-        }, 1000);
+        const requestData = {
+          userId: userInfo.email,
+          password: userInfo.password,
+          age: userInfo.age,
+          gender: userInfo.gender,
+          nickname: userInfo.name,
+          nationality: '대한민국',
+          email: userInfo.email,
+          preferGenreList: selectedIndexes,
+        };
+        debugger;
+        Api.post('users/join', requestData)
+          .then((response) => {
+            console.log('회원가입 완료:', response.data);
+            alert('가입이 완료되었습니다!');
+            //setLoading(true);
+            // location.href = '/';
+          })
+          .catch((error) => {
+            console.error('회원가입 중 에러 발생:', error);
+            setLoading(false);
+          });
       }
     }
   };
