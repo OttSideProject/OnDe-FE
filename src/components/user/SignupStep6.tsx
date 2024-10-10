@@ -1,5 +1,5 @@
 import signup from '@/styles/user/signup';
-import { UserInfo } from '../../app/users/signup/constants'; // UserInfo 타입 import
+import { UserInfo } from '../../app/users/signup/constants';
 interface SignupStep6Props {
   userInfo: UserInfo;
   setUserInfo: (info: Partial<UserInfo>) => void;

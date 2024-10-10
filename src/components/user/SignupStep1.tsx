@@ -4,10 +4,15 @@ import signup from '@/styles/user/signup';
 import { SvgGenre } from '../../app/users/signup/constants';
 import { useState } from 'react';
 
+interface SelectedGenre {
+  genreId: number;
+  genreName: string;
+}
+
 interface SignupStep1Props {
   genres: SvgGenre[];
-  selectedGenres: string[];
-  toggleGenre: (genre: string) => void;
+  selectedGenres: { genreId: number; genreName: string }[];
+  toggleGenre: (genreId: number, genreName: string) => void;
 }
 
 const SignupStep1 = ({
@@ -17,16 +22,16 @@ const SignupStep1 = ({
 }: SignupStep1Props) => {
   const [svgGenres, setSvgGenres] = useState(genres);
 
-  const handleToggleGenre = (genre: string) => {
-    toggleGenre(genre);
+  const handleToggleGenre = (genreId: number, genreName: string) => {
+    toggleGenre(genreId, genreName);
     setSvgGenres((prevGenres) =>
       prevGenres.map((item) =>
-        item.genre === genre
+        item.id === genreId
           ? {
               ...item,
               file: item.file.includes('join_release')
-                ? `/assets/images/join_press/genre-${genre}.png`
-                : `/assets/images/join_release/genre-${genre}.png`,
+                ? `/assets/images/join_press/genre-${genreName}.png`
+                : `/assets/images/join_release/genre-${genreName}.png`,
             }
           : item,
       ),
@@ -45,7 +50,9 @@ const SignupStep1 = ({
           key={index}
           style={{ position: 'absolute', top: item.top, left: item.left }}
         >
-          <signup.ImagesIcon onClick={() => handleToggleGenre(item.genre)}>
+          <signup.ImagesIcon
+            onClick={() => handleToggleGenre(item.id, item.genre)}
+          >
             <Image
               src={item.file}
               alt={item.genre}

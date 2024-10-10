@@ -25,7 +25,7 @@ interface UserInfo {
 
 interface State {
   step: number;
-  selectedGenres: string[];
+  selectedGenres: { genreId: number; genreName: string }[];
   selectedIndexes: number[];
   userInfo: UserInfo;
   loading: boolean;
@@ -52,13 +52,18 @@ function reducer(state: State, action: any) {
   switch (action.type) {
     case 'SET_STEP':
       return { ...state, step: action.payload };
-    case 'TOGGLE_GENRE':
+    case 'TOGGLE_GENRE': {
+      const { genreId, genreName } = action.payload;
+      const genreExists = state.selectedGenres.some(
+        (genre) => genre.genreId === genreId,
+      );
       return {
         ...state,
-        selectedGenres: state.selectedGenres.includes(action.payload)
-          ? state.selectedGenres.filter((g) => g !== action.payload)
-          : [...state.selectedGenres, action.payload],
+        selectedGenres: genreExists
+          ? state.selectedGenres.filter((g) => g.genreId !== genreId)
+          : [...state.selectedGenres, { genreId, genreName }],
       };
+    }
     case 'UPDATE_USER_INFO':
       return {
         ...state,
@@ -129,6 +134,8 @@ const SignupProcess = () => {
       if (!userInfo.name) {
         alert('닉네임을 입력해주세요.');
       } else {
+        const preferGenreList = selectedGenres.map((genre) => genre.genreId);
+
         const requestData = {
           userId: userInfo.email,
           password: userInfo.password,
@@ -137,18 +144,24 @@ const SignupProcess = () => {
           nickname: userInfo.name,
           nationality: '대한민국',
           email: userInfo.email,
-          preferGenreList: selectedIndexes,
+          preferGenreList: preferGenreList,
         };
-        debugger;
+
+        setLoading(true);
+
         Api.post('users/join', requestData)
           .then((response) => {
             console.log('회원가입 완료:', response.data);
             alert('가입이 완료되었습니다!');
-            //setLoading(true);
-            // location.href = '/';
+            setTimeout(() => {
+              location.href = '/';
+            }, 1000);
           })
           .catch((error) => {
             console.error('회원가입 중 에러 발생:', error);
+            alert('회원가입에 실패했습니다. 다시 시도해주세요.');
+          })
+          .finally(() => {
             setLoading(false);
           });
       }
@@ -215,11 +228,15 @@ const SignupProcess = () => {
             <SignupStep1
               genres={initialGenres}
               selectedGenres={selectedGenres}
-              toggleGenre={(genre) =>
-                dispatch({ type: 'TOGGLE_GENRE', payload: genre })
+              toggleGenre={(genreId, genreName) =>
+                dispatch({
+                  type: 'TOGGLE_GENRE',
+                  payload: { genreId, genreName },
+                })
               }
             />
           )}
+
           {step === 2 && (
             <SignupStep2
               genres={genres_setp2}
