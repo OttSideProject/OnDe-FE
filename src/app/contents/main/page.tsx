@@ -5,10 +5,11 @@ import MainSlider from '@/components/contents/MainSlider';
 import SectionSliderContainer from '@/components/contents/SectionSliderContainer';
 
 /* Types */
-import { Slide } from '@/_types/contents/contents';
+import { Slide, BoardSectionSlide } from '@/_types/contents/contents';
 
 /* Styles */
 import styles from './page.module.css';
+import BoardSectionSlider from '@/components/contents/BoardSectionSlider';
 
 const headerText = '오늘의 Dimi’s pick ';
 
@@ -47,11 +48,73 @@ const slides: Slide[] = [
   },
 ];
 
+const boardSections: BoardSectionSlide[] = [
+  {
+    id: 1,
+    name: '가나1',
+    profileImg:
+      'https://image.dongascience.com/Photo/2020/03/5bddba7b6574b95d37b6079c199d7101.jpg',
+    imgUrl: 'https://picsum.photos/60/90?random=1',
+    detailUrl: '/board/1',
+    title:
+      '제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.',
+    description:
+      '본문입니다. 본문입니다. 본문입니다. 본문입니다.본문입니다. 본문입니다.본문입니다. 본문입니다. 본문입니다.본문입니다.본문입니다. 본문입니다. 본문입니다.본문입니다.본문입니다. 본문입니다. 본문입니다.',
+    likeCount: 27,
+    messageCount: 110,
+  },
+  {
+    id: 2,
+    name: '다라2',
+    imgUrl: 'https://picsum.photos/60/90?random=2',
+    detailUrl: '/board/2',
+    title: '제목입니다.',
+    description:
+      '본문입니다. 본문입니다. 본문입니다. 본문입니다.본문입니다. 본문입니다.본문입니다. 본문입니다. 본문입니다.본문입니다.본문입니다. 본문입니다. 본문입니다.본문입니다.본문입니다. 본문입니다. 본문입니다.',
+    likeCount: 3,
+    messageCount: 0,
+  },
+  {
+    id: 3,
+    name: '가나3',
+    imgUrl: 'https://picsum.photos/60/90?random=3',
+    detailUrl: '/board/3',
+    title: '제목입니다.',
+    description:
+      '본문입니다. 본문입니다. 본문입니다. 본문입니다.본문입니다. 본문입니다.본문입니다. 본문입니다. 본문입니다.본문입니다.본문입니다. 본문입니다. 본문입니다.본문입니다.본문입니다. 본문입니다. 본문입니다.',
+    likeCount: 20,
+    messageCount: 30,
+  },
+  {
+    id: 4,
+    name: '다라4',
+    imgUrl: 'https://picsum.photos/60/90?random=4',
+    detailUrl: '/board/4',
+    title: '제목입니다.',
+    description:
+      '본문입니다. 본문입니다. 본문입니다. 본문입니다.본문입니다. 본문입니다.본문입니다. 본문입니다. 본문입니다.본문입니다.본문입니다. 본문입니다. 본문입니다.본문입니다.본문입니다. 본문입니다. 본문입니다.',
+    likeCount: 2,
+    messageCount: 10,
+  },
+  {
+    id: 5,
+    name: '마바5',
+    imgUrl: 'https://picsum.photos/60/90?random=5',
+    detailUrl: '/board/5',
+    title: '제목입니다.',
+    description:
+      '본문입니다. 본문입니다. 본문입니다. 본문입니다.본문입니다. 본문입니다.본문입니다. 본문입니다. 본문입니다.본문입니다.본문입니다. 본문입니다. 본문입니다.본문입니다.본문입니다. 본문입니다. 본문입니다.',
+    likeCount: 0,
+    messageCount: 3,
+  },
+];
+
 const HomePage: React.FC = () => {
   return (
     <div className={styles.container}>
       <Header headerText={headerText} iconUrl={iconUrl} />
       <MainSlider slides={slides} />
+      <BoardSectionSlider boardSectionSlides={boardSections} />
       <SectionSliderContainer />
       <div className={styles.recommendContainer}>
         <p>

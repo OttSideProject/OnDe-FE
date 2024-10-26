@@ -4,20 +4,6 @@ export type HeaderProps = {
   iconUrl: string;
 };
 
-/* Button type */
-export type ButtonProps = {
-  variant?: 'primary' | 'secondary' | 'default';
-  size?: 'small' | 'default';
-  width?: number;
-  height?: number;
-  text?: string;
-  iconUrl?: string;
-  isActive?: boolean;
-  children: React.ReactNode;
-  onClick?: () => void;
-  className?: string;
-};
-
 /* MainSlider type */
 export type Slide = {
   id: number;
@@ -55,6 +41,19 @@ export type SectionSlide = {
   id: number;
   imgUrl: string;
   detailUrl: string;
+};
+
+/* BoardSectionSlider type */
+export type BoardSectionSlide = {
+  id: number;
+  name: string;
+  profileImg?: string;
+  imgUrl?: string;
+  detailUrl: string;
+  title: string;
+  description: string;
+  likeCount?: number;
+  messageCount?: number;
 };
 
 /* IconButton type */
@@ -108,10 +107,9 @@ export type InfoItem = string | { type: 'image'; src: string; alt: string };
 
 /* Tab props type */
 export type Category = {
-	label: string | JSX.Element;
-	key: string;
+  label: string | JSX.Element;
+  key: string;
 };
-
 
 export type TabProps = {
   categories: Category[]; // 카테고리 목록
