@@ -15,10 +15,7 @@
 .container h3 + a {
   position: relative;
   display: flex;
-  align-items: flex-end;
-  margin-top: 5px;
+  align-items: center;
   font-size: 1.2rem;
   color: var(--gray100);
 }
-
-
