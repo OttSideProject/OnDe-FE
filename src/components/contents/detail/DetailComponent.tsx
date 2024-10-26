@@ -14,6 +14,7 @@ import { DimmedBackground } from '@/components/shared/dimmed-background/DimmedBa
 import useDropDownStore from '@/stores/useDropDownStore';
 
 import styles from './DetailComponent.module.css';
+import { BtnDetailInnerFirstChildStyle, BtnDetailInnerLastChildStyle } from '@/components/shared/button-group/ButtonStyles';
 
 /* 더미 데이터를 가져오는 함수 */
 const fetchDetailData = async (
@@ -156,25 +157,22 @@ const DetailComponent: React.FC<{}> = () => {
       </figure>
       <div className={styles.bottomContainer}>
         {/* 첫 번째 버튼 */}
-        <Button
-          variant="default"
-          text="모아보기"
-          iconUrl="/assets/images/icons/collect-box.svg"
-          className="btnDetailInner"
-          onClick={() => alert('Second Button Clicked!')}
-        >
-          모아보기
-        </Button>
+        <BtnDetailInnerFirstChildStyle>
+          <Button
+            variant="default"
+            iconUrl="/assets/images/icons/collect-box.svg"
+            onClick={() => alert('Second Button Clicked!')}
+          >
+            모아보기
+          </Button>
+        </BtnDetailInnerFirstChildStyle>
 
         {/* 두 번째 버튼 */}
-        <Button
-          variant="primary"
-          text="OTT 선택하기"
-          className="btnDetailInner"
-          onClick={openDropDown}
-        >
-          OTT 선택하기
-        </Button>
+        <BtnDetailInnerLastChildStyle>
+          <Button variant="primary" onClick={openDropDown}>
+            OTT 선택하기
+          </Button>
+        </BtnDetailInnerLastChildStyle>
       </div>
     </div>
   );
