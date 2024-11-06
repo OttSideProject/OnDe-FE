@@ -1,9 +1,11 @@
 'use client';
 import { useEffect } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+
 /* Components */
 import SubHeader from '@/components/contents/header/SubHeader';
 import SectionSlider from '@/components/contents/SectionSlider';
-import { DimmedBackground } from '@/components/shared/DimmedBackground';
+import { DimmedBackground } from '@/components/shared/dimmed-background/DimmedBackground';
 /* Types */
 import { Section } from '@/_types/contents/contents';
 /* Zustand store */
@@ -11,6 +13,8 @@ import useDropDownStore from '@/stores/useDropDownStore';
 import DropDownOptions from '../shared/action-bar/DropDownOptions';
 /* Styles */
 import styles from './SectionSliderContainer.module.css';
+
+const id = uuidv4();
 
 const sections: Section[] = [
   {
@@ -22,12 +26,12 @@ const sections: Section[] = [
       {
         id: 1,
         imgUrl: 'https://picsum.photos/104/156?random=1',
-        detailUrl: '/contents/collect-view/detail/1',
+        detailUrl: `/contents/detail/${id}`,
       },
       {
         id: 2,
         imgUrl: 'https://picsum.photos/104/156?random=2',
-        detailUrl: '/contents/collect-view/detail/2',
+        detailUrl: `/contents/detail/${id}`,
       },
       {
         id: 3,
@@ -70,52 +74,52 @@ const sections: Section[] = [
       {
         id: 1,
         imgUrl: 'https://picsum.photos/104/156?random=1',
-        detailUrl: '/contents/recommend/detail/1',
+        detailUrl: `/contents/detail/${id}`,
       },
       {
         id: 2,
         imgUrl: 'https://picsum.photos/104/156?random=2',
-        detailUrl: '/contents/recommend/detail/2',
+        detailUrl: `/contents/detail/${id}`,
       },
       {
         id: 3,
         imgUrl: 'https://picsum.photos/104/156?random=3',
-        detailUrl: '/contents/recommend/detail/3',
+        detailUrl: `/contents/detail/${id}`,
       },
       {
         id: 4,
         imgUrl: 'https://picsum.photos/104/156?random=4',
-        detailUrl: '/contents/recommend/detail/4',
+        detailUrl: `/contents/detail/${id}`,
       },
       {
         id: 5,
         imgUrl: 'https://picsum.photos/104/156?random=5',
-        detailUrl: '/contents/recommend/detail/5',
+        detailUrl: `/contents/detail/${id}`,
       },
       {
         id: 6,
         imgUrl: 'https://picsum.photos/104/156?random=1',
-        detailUrl: '/contents/recommend/detail/1',
+        detailUrl: `/contents/detail/${id}`,
       },
       {
         id: 7,
         imgUrl: 'https://picsum.photos/104/156?random=2',
-        detailUrl: '/contents/recommend/detail/2',
+        detailUrl: `/contents/detail/${id}`,
       },
       {
         id: 8,
         imgUrl: 'https://picsum.photos/104/156?random=3',
-        detailUrl: '/contents/recommend/detail/3',
+        detailUrl: `/contents/detail/${id}`,
       },
       {
         id: 9,
         imgUrl: 'https://picsum.photos/104/156?random=4',
-        detailUrl: '/contents/recommend/detail/4',
+        detailUrl: `/contents/detail/${id}`,
       },
       {
         id: 10,
         imgUrl: 'https://picsum.photos/104/156?random=5',
-        detailUrl: '/contents/recommend/detail/5',
+        detailUrl: `/contents/detail/${id}`,
       },
     ],
   },
@@ -128,42 +132,42 @@ const sections: Section[] = [
       {
         id: 1,
         imgUrl: 'https://picsum.photos/104/156?random=1',
-        detailUrl: '/contents/new/detail/1',
+        detailUrl: `/contents/detail/${id}`,
       },
       {
         id: 2,
         imgUrl: 'https://picsum.photos/104/156?random=2',
-        detailUrl: '/contents/new/detail/2',
+        detailUrl: `/contents/detail/${id}`,
       },
       {
         id: 3,
         imgUrl: 'https://picsum.photos/104/156?random=3',
-        detailUrl: '/contents/new/detail/3',
+        detailUrl: `/contents/detail/${id}`,
       },
       {
         id: 4,
         imgUrl: 'https://picsum.photos/104/156?random=4',
-        detailUrl: '/contents/new/detail/4',
+        detailUrl: `/contents/detail/${id}`,
       },
       {
         id: 5,
         imgUrl: 'https://picsum.photos/104/156?random=5',
-        detailUrl: '/contents/new/detail/5',
+        detailUrl: `/contents/detail/${id}`,
       },
       {
         id: 6,
         imgUrl: 'https://picsum.photos/104/156?random=6',
-        detailUrl: '/contents/new/detail/6',
+        detailUrl: `/contents/detail/${id}`,
       },
       {
         id: 7,
         imgUrl: 'https://picsum.photos/104/156?random=7',
-        detailUrl: '/contents/new/detail/7',
+        detailUrl: `/contents/detail/${id}`,
       },
       {
         id: 8,
         imgUrl: 'https://picsum.photos/104/156?random=8',
-        detailUrl: '/contents/new/detail/8',
+        detailUrl: `/contents/detail/${id}`,
       },
     ],
   },
@@ -176,42 +180,42 @@ const sections: Section[] = [
       {
         id: 1,
         imgUrl: 'https://picsum.photos/104/156?random=1',
-        detailUrl: '/contents/popular-dramas/detail/1',
+        detailUrl: `/contents/detail/${id}`,
       },
       {
         id: 2,
         imgUrl: 'https://picsum.photos/104/156?random=2',
-        detailUrl: '/contents/popular-dramas/detail/2',
+        detailUrl: `/contents/detail/${id}`,
       },
       {
         id: 3,
         imgUrl: 'https://picsum.photos/104/156?random=3',
-        detailUrl: '/contents/popular-dramas/detail/3',
+        detailUrl: `/contents/detail/${id}`,
       },
       {
         id: 4,
         imgUrl: 'https://picsum.photos/104/156?random=4',
-        detailUrl: '/contents/popular-dramas/detail/4',
+        detailUrl: `/contents/detail/${id}`,
       },
       {
         id: 5,
         imgUrl: 'https://picsum.photos/104/156?random=5',
-        detailUrl: '/contents/popular-dramas/detail/5',
+        detailUrl: `/contents/detail/${id}`,
       },
       {
         id: 6,
         imgUrl: 'https://picsum.photos/104/156?random=6',
-        detailUrl: '/contents/recommend/detail/6',
+        detailUrl: `/contents/detail/${id}`,
       },
       {
         id: 7,
         imgUrl: 'https://picsum.photos/104/156?random=7',
-        detailUrl: '/contents/recommend/detail/7',
+        detailUrl: `/contents/detail/${id}`,
       },
       {
         id: 8,
         imgUrl: 'https://picsum.photos/104/156?random=8',
-        detailUrl: '/contents/recommend/detail/8',
+        detailUrl: `/contents/detail/${id}`,
       },
     ],
   },
@@ -224,42 +228,42 @@ const sections: Section[] = [
       {
         id: 1,
         imgUrl: 'https://picsum.photos/104/156?random=1',
-        detailUrl: '/contents/popular-movies/detail/1',
+        detailUrl: `/contents/detail/${id}`,
       },
       {
         id: 2,
         imgUrl: 'https://picsum.photos/104/156?random=2',
-        detailUrl: '/contents/popular-movies/detail/2',
+        detailUrl: `/contents/detail/${id}`,
       },
       {
         id: 3,
         imgUrl: 'https://picsum.photos/104/156?random=3',
-        detailUrl: '/contents/popular-movies/detail/3',
+        detailUrl: `/contents/detail/${id}`,
       },
       {
         id: 4,
         imgUrl: 'https://picsum.photos/104/156?random=4',
-        detailUrl: '/contents/popular-movies/detail/4',
+        detailUrl: `/contents/detail/${id}`,
       },
       {
         id: 5,
         imgUrl: 'https://picsum.photos/104/156?random=5',
-        detailUrl: '/contents/popular-movies/detail/5',
+        detailUrl: `/contents/detail/${id}`,
       },
       {
         id: 6,
         imgUrl: 'https://picsum.photos/104/156?random=6',
-        detailUrl: '/contents/recommend/detail/6',
+        detailUrl: `/contents/detail/${id}`,
       },
       {
         id: 7,
         imgUrl: 'https://picsum.photos/104/156?random=7',
-        detailUrl: '/contents/recommend/detail/7',
+        detailUrl: `/contents/detail/${id}`,
       },
       {
         id: 8,
         imgUrl: 'https://picsum.photos/104/156?random=8',
-        detailUrl: '/contents/recommend/detail/8',
+        detailUrl: `/contents/detail/${id}`,
       },
     ],
   },

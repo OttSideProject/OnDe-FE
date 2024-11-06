@@ -11,9 +11,8 @@
   align-items: center;
   flex-shrink: 0;
   width: 100%;
-  max-width: 355px;
+  max-width: 433px;
   height: 56px;
-  padding: 17px 70px;
   border-radius: 14px;
   color: var(--primary-black);
   font-size: 1.6rem;
@@ -49,8 +48,24 @@
   height: 29px;
   padding: 5px 12px;
   font-size: 1rem;
-  border-radius: 8px;
   font-weight: 500;
+  border-radius: 8px;
+}
+
+/* 상세페이지 버튼 레이아웃 */
+
+.btnDetailInner:first-child {
+  flex-basis: 135px;
+}
+
+.btnDetailInner:first-child img {
+  width: 18px;
+  height: 18px;
+  line-height: 18px;
+}
+
+.btnDetailInner:last-child {
+  flex: 1 1 0%;
 }
 
 .btn:disabled {
@@ -73,9 +88,9 @@
 .btn > img {
   width: 13px;
   height: 13px;
-  margin-right: 5px;
 }
 
 .btn > span {
+  margin-right: 5px;
   line-height: 13px;
 }
