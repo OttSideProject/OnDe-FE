@@ -28,7 +28,6 @@ export const CategoryWrapper = styled.div`
   grid-template-columns: repeat(4, 1fr);
   text-align: center;
   box-sizing: border-box;
-  padding: 10px 0px 16px 0px;
   height: 74px;
   line-height: 48px;
   font-size: 14px;

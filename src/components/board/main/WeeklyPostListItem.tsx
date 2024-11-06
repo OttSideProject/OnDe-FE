@@ -72,6 +72,10 @@ const WeeklyPostListItem: React.FC<WeeklyPostListItemProps> = ({
               <div>{useTimeStamp(post.createdAt)}</div>
             </UserInfoText>
             <PostInfoText>
+              <LikeWrapper>
+                <HeartIcon src="assets/images/icons/heart-gray.svg" alt="" />
+                <LikeCountText> {post.like_count} </LikeCountText>
+              </LikeWrapper>
               <CommentWrapper>
                 <MessegeIcon
                   src="assets/images/icons/message-circle.svg"
@@ -80,10 +84,6 @@ const WeeklyPostListItem: React.FC<WeeklyPostListItemProps> = ({
                 {/* FIXME 수정 필요(게시판 댓글 수 확인 필요) */}
                 <CommentCountText>{post.post_views}</CommentCountText>
               </CommentWrapper>
-              <LikeWrapper>
-                <HeartIcon src="assets/images/icons/heart-gray.svg" alt="" />
-                <LikeCountText> {post.like_count} </LikeCountText>
-              </LikeWrapper>
             </PostInfoText>
           </InfoContainer>
         </DirectionWrapper2>
