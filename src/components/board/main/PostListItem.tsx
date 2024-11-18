@@ -40,7 +40,7 @@ const PostListItem: React.FC<PostListItemProps> = ({ post }) => {
           <div className={styles.postInfo}>
             <img src="assets/images/icons/heart-gray.svg" alt="" />
             <div>{post.like_count}</div>
-            <img src="assets/images/icons/message-gray.svg" alt="" />
+            <img src="assets/images/icons/message-circle.svg" alt="" />
             {/* FIXME : 댓글 수 추기 */}
             <div>{post.like_count}</div>
           </div>
