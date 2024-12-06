@@ -36,6 +36,10 @@ const Main = () => {
             </li>
             <li>
               {' '}
+              <Link href="/users/mypage">마이페이지</Link>{' '}
+            </li>
+            <li>
+              {' '}
               <Link href="/">로그인</Link>{' '}
             </li>
             <li>

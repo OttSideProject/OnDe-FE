@@ -1,0 +1,180 @@
+/* 전체 컨테이너 */
+.container {
+  background-color: #000;
+  color: #fff;
+  padding: 16px;
+  min-height: 100vh;
+}
+
+/* 헤더 */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--gray100);
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.icons {
+  display: flex;
+}
+
+.icons span {
+  margin-left: 12px;
+  font-size: 18px;
+}
+
+/* 프로필 섹션 */
+.profileSection {
+  text-align: left;
+  margin-top: 20px;
+}
+
+.profileSectionSmall {
+  display: flex;
+  gap: 40px;
+  place-items: center;
+  position: relative;
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 12px;
+}
+
+.editIcon {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  left: 55px;
+  top: 55px;
+}
+
+.userName {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  color: var(--text, #f2f2f2);
+}
+
+.statNumber {
+  text-align: center;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%; /* 16px */
+}
+
+.stats span {
+  display: block;
+  font-size: 12px;
+  color: #ccc;
+}
+
+/* 탭 메뉴 */
+.tabMenu {
+  display: flex;
+  margin: 24px 0;
+  border: 1px solid var(--gray-750, #20211f);
+  background: var(--gray-900, #0d0d0c);
+  border-radius: 10px;
+  padding: 4px;
+}
+
+.tabButton {
+  flex: 1;
+  border-radius: 10px;
+  padding: 12px 0;
+  color: #fff;
+  border: none;
+  text-align: center;
+  cursor: pointer;
+}
+
+.tabButton.active {
+  background-color: var(--primary);
+  color: var(--gray-750, #20211f);
+  border-radius: 10px;
+  font-family: 'SUIT Variable';
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%; /* 12px */
+  letter-spacing: 0.24px;
+}
+
+/* 콘텐츠 섹션 */
+.tabContent {
+  margin-top: 16px;
+}
+
+.collectionTab,
+.boardTab {
+  padding: 10px;
+  border-radius: 8px;
+}
+
+/* 게시글 카드 */
+.postCard {
+  background-color: #111;
+  padding: 12px;
+  margin-bottom: 16px;
+  border-radius: 8px;
+}
+
+.postFooter {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #aaa;
+}
+
+/* 영화 카드 */
+.movieList {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.movieCard {
+  background-color: #111;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+}
+
+.movieThumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.movieInfo {
+  padding: 8px;
+  text-align: center;
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  row-gap: 6px;
+  display: grid;
+}
+
+.movieTitle {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.movieCategory {
+  font-size: 12px;
+  color: #aaa;
+  border-radius: 8px;
+  background: var(--gray-780, #191a18);
+}
