@@ -25,7 +25,7 @@ const page = () => {
   const categoryTitle: { [key: string]: number } = {
     홈: 1,
     후기: 2,
-    자유톡: 3,
+    토크On: 3,
     'Q&A': 4,
   };
 
@@ -63,7 +63,7 @@ const page = () => {
       {
         post_idx: 7,
         user_idx: 2,
-        title: '제목입니다2',
+        title: '긴제목입니다 긴제목입니다 긴제목입니다~',
         contents:
           'Senectus et netus et malesuada. Nunc pulvinar sapien et ligula ullamcorper malesuada proin. Neque convallis a cras semper auctor.',
         post_views: 0,
@@ -97,7 +97,8 @@ const page = () => {
           <signup.HeaderInner>게시판</signup.HeaderInner>
         </signup.Header>
         <CategoryWrapper>{categoryTitleMemo}</CategoryWrapper>
-        <BoardTitle>주간 베스트 글</BoardTitle>
+        {/* <img src="assets/images/icons/weeklybest-post.svg" alt="" /> */}
+        <BoardTitle>Weekly Best</BoardTitle>
         <WeeklyBestPostContainer>
           {weeklyBestPost.length === 0 ? (
             <NullPost>게시글을 기다려주세요!</NullPost>

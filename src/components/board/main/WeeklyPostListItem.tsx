@@ -3,15 +3,19 @@ import Api from '@/api/core/Api';
 import { useTimeStamp } from '@/hooks/useTimeStamp';
 import {
   CommentCountText,
+  CommentWrapper,
   DirectionWrapper,
+  DirectionWrapper2,
+  HeartIcon,
   InfoContainer,
   LikeCountText,
+  LikeWrapper,
+  MessegeIcon,
   PostContents,
   PostDetailWrapper,
   PostInfoText,
   PostTitle,
   UserInfoText,
-  UserName,
   UserProfileImg,
   WeeklyBestPostNumber,
   WeeklyBestPostWrapper,
@@ -56,26 +60,34 @@ const WeeklyPostListItem: React.FC<WeeklyPostListItemProps> = ({
     <WeeklyBestPostWrapper isLast={idx == 2}>
       <DirectionWrapper>
         <WeeklyBestPostNumber>{idx + 1}</WeeklyBestPostNumber>
-        <PostDetailWrapper>
-          <PostTitle>{post.title}</PostTitle>
-          <PostContents>{post.contents}</PostContents>
-        </PostDetailWrapper>
+        <DirectionWrapper2>
+          <PostDetailWrapper>
+            <PostTitle>{post.title}</PostTitle>
+            <PostContents>{post.contents}</PostContents>
+          </PostDetailWrapper>
+          <InfoContainer>
+            <UserInfoText>
+              <UserProfileImg src={userInfo?.profile_path} alt="" />
+              <div>{userInfo?.userName}</div>
+              <div>{useTimeStamp(post.createdAt)}</div>
+            </UserInfoText>
+            <PostInfoText>
+              <LikeWrapper>
+                <HeartIcon src="assets/images/icons/heart-gray.svg" alt="" />
+                <LikeCountText> {post.like_count} </LikeCountText>
+              </LikeWrapper>
+              <CommentWrapper>
+                <MessegeIcon
+                  src="assets/images/icons/message-circle.svg"
+                  alt=""
+                />
+                {/* FIXME 수정 필요(게시판 댓글 수 확인 필요) */}
+                <CommentCountText>{post.post_views}</CommentCountText>
+              </CommentWrapper>
+            </PostInfoText>
+          </InfoContainer>
+        </DirectionWrapper2>
       </DirectionWrapper>
-      <InfoContainer>
-        <UserInfoText>
-          <UserProfileImg src={userInfo?.profile_path} alt="" />
-          <UserName>{userInfo?.userName}</UserName>
-          {useTimeStamp(post.createdAt)}
-        </UserInfoText>
-        <PostInfoText>
-          <img src="assets/images/icons/heart-gray.svg" alt="" />
-          <LikeCountText> {post.like_count} </LikeCountText>
-          <img src="assets/images/icons/message-gray.svg" alt="" />
-
-          {/* FIXME 수정 필요(게시판 좋아요 수 확인 필요) */}
-          <CommentCountText>{post.post_views}</CommentCountText>
-        </PostInfoText>
-      </InfoContainer>
     </WeeklyBestPostWrapper>
   );
 };
