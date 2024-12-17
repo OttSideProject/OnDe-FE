@@ -15,6 +15,8 @@ interface Genre {
 
 interface Post {
   id: number;
+  user: string;
+  userPhoto: string;
   category: string;
   title: string;
   content: string;
@@ -73,6 +75,8 @@ const mockGenres: Genre[] = [
 const mockPosts: Post[] = [
   {
     id: 1,
+    user: '테스터1',
+    userPhoto: 'https://picsum.photos/240/360?random=7',
     category: '배우',
     title: '베놈 들을 하다 미친고임???',
     content: '넌 정말 잘생겼고 그래, 인생의 진리...',
@@ -82,6 +86,8 @@ const mockPosts: Post[] = [
   },
   {
     id: 2,
+    user: '테스터1',
+    userPhoto: 'https://picsum.photos/240/360?random=7',
     category: '영화',
     title: '이번 마블 그냥 그런 거 같던데',
     content: '그냥 내 생각 그냥 내 생각 그냥 내 생각...',
@@ -91,6 +97,8 @@ const mockPosts: Post[] = [
   },
   {
     id: 3,
+    user: '테스터1',
+    userPhoto: 'https://picsum.photos/240/360?random=7',
     category: '영화',
     title: '다크나이트는 언제봐도 명작임.',
     content: '선의 기준이 무엇인가...',
@@ -108,7 +116,7 @@ const MyPage: React.FC = () => {
   return (
     <div className={styles.container}>
       <header className={styles.header}>
-        <h1>Bread</h1>
+        <span>Bread</span>
         <div className={styles.icons}>
           <span>
             <img src={Alert} />
@@ -187,7 +195,15 @@ const MyPage: React.FC = () => {
                 </div>
                 <p className={styles.content}>{post.content}</p>
                 <div className={styles.postFooter}>
-                  <span className={styles.time}>{post.time}</span>
+                  <span className={styles.time}>
+                    <img
+                      src={post.userPhoto}
+                      alt="프로필"
+                      className={styles.userPhoto}
+                    />
+                    <p>{post.user}</p>
+                    <p>{post.time}</p>
+                  </span>
                   <div className={styles.reactions}>
                     <span>♥ {post.likes}</span>
                     <span>💬 {post.comments}</span>
