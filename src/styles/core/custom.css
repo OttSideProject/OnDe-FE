@@ -54,7 +54,7 @@
 }
 
 .board-section-slider .slick-slide {
-  /* width: 270px !important; */
+  width: 279px !important;
   height: 200px;
 }
 
@@ -75,6 +75,10 @@
   .board-section-slider .slick-list {
     width: 1392px;
     min-height: 200px;
+  }
+
+  .board-section-slider .slick-slide {
+    /* width: unset !important; */
   }
 }
 
