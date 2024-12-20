@@ -1,8 +1,12 @@
 'use client';
 import { useEffect, useState } from 'react';
-import Image from 'next/image';
+import { v4 as uuidv4 } from 'uuid';
+import { Section } from '@/_types/contents/contents';
 import Tabs from '@/components/shared/tabs/Tabs';
 import ViewMoreButton from '@/components/shared/view-more/ViewMoreButton';
+import SubHeader from '@/components/contents/header/SubHeader';
+import SectionSlider from '@/components/contents/SectionSlider';
+import styles from './DetailContents.module.css';
 
 const DetailContents = () => {
   let [commentsCount, setCommentsCount] = useState(0);
@@ -26,6 +30,69 @@ const DetailContents = () => {
 				`;
   const viewIcon = '/assets/images/icons/all-view-icon.svg';
 
+  const id = uuidv4();
+
+  const sections: Section[] = [
+    {
+      id: 1,
+      title: '인사이드 아웃',
+      linkText: '',
+      linkUrl: '/contents/recommend',
+      sectionSlides: [
+        {
+          id: 1,
+          imgUrl: 'https://picsum.photos/104/156?random=1',
+          detailUrl: `/contents/detail/${id}`,
+        },
+        {
+          id: 2,
+          imgUrl: 'https://picsum.photos/104/156?random=2',
+          detailUrl: `/contents/detail/${id}`,
+        },
+        {
+          id: 3,
+          imgUrl: 'https://picsum.photos/104/156?random=3',
+          detailUrl: `/contents/detail/${id}`,
+        },
+        {
+          id: 4,
+          imgUrl: 'https://picsum.photos/104/156?random=4',
+          detailUrl: `/contents/detail/${id}`,
+        },
+        {
+          id: 5,
+          imgUrl: 'https://picsum.photos/104/156?random=5',
+          detailUrl: `/contents/detail/${id}`,
+        },
+        {
+          id: 6,
+          imgUrl: 'https://picsum.photos/104/156?random=1',
+          detailUrl: `/contents/detail/${id}`,
+        },
+        {
+          id: 7,
+          imgUrl: 'https://picsum.photos/104/156?random=2',
+          detailUrl: `/contents/detail/${id}`,
+        },
+        {
+          id: 8,
+          imgUrl: 'https://picsum.photos/104/156?random=3',
+          detailUrl: `/contents/detail/${id}`,
+        },
+        {
+          id: 9,
+          imgUrl: 'https://picsum.photos/104/156?random=4',
+          detailUrl: `/contents/detail/${id}`,
+        },
+        {
+          id: 10,
+          imgUrl: 'https://picsum.photos/104/156?random=5',
+          detailUrl: `/contents/detail/${id}`,
+        },
+      ],
+    },
+  ];
+
   useEffect(() => {
     setCommentsCount(commentsCount);
   }, []);
@@ -36,21 +103,23 @@ const DetailContents = () => {
         return (
           <div>
             <ViewMoreButton content={detailInfo} viewIcon={viewIcon} />
+            {/* SectionSlider */}
+            {sections.map((section) => (
+              <div key={section.id} className={styles.container}>
+                <SubHeader title={`'${section.title}'과(와) 비슷한 작품`} />
+                <div className={styles.sliderContainer}>
+                  <SectionSlider sectionSlides={section.sectionSlides} />
+                </div>
+              </div>
+            ))}
           </div>
         );
       case 'comment':
         return (
           <div className="coming-soon">
-            <Image
-              src="/assets/images/coming-soon.png"
-              alt="on생각 준비중"
-              sizes="100vw"
-              width={500}
-              height={670}
-              style={{
-                width: '100%',
-                height: 'auto',
-              }}
+            <img
+              src="/assets/images/coming-soon-message.png"
+              alt="준비중 입니다..."
             />
           </div>
         );

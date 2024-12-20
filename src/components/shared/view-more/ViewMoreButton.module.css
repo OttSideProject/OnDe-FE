@@ -2,6 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  padding: 0 10px;
 }
 
 .container > div {
@@ -17,14 +18,11 @@
   justify-content: flex-end;
   align-items: center;
   min-width: 82px;
-  height: 38px;
-  padding: 13px 10px;
-  border-radius: 10px;
 }
 
-.active {
+/* .active {
   border: 1px dashed var(--blue);
-}
+} */
 
 .viewMoreButton span {
   font-family: var(--primary-font);
