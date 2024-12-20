@@ -19,8 +19,8 @@ export type MainSliderProps = {
 /* SubHeader type */
 export type SubHeaderProps = {
   title: string;
-  linkText: string;
-  linkUrl: string;
+  linkText?: string;
+  linkUrl?: string;
 };
 
 /* SectionSlider type */
