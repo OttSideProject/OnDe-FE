@@ -12,6 +12,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 import styles from './BoardSectionSlider.module.css';
+import SubHeader from './header/SubHeader';
 
 export type BoardSectionSliderProps = {
   boardSectionSlides: BoardSectionSlide[];
@@ -57,6 +58,7 @@ const BoardSectionSlider: React.FC<BoardSectionSliderProps> = ({
   return (
     <div className={styles.container}>
       <div className={`${styles.slider} board-section-slider`}>
+        <SubHeader title="지금 뜨는 ON생각" />
         <Slider {...settings}>
           {boardSectionSlides.map((boardSectionSlide, index) => (
             <div
