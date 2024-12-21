@@ -8,6 +8,7 @@
 }
 
 .container h2 {
+  font-family: var(--title-font);
   display: flex;
   font-size: inherit;
 }
