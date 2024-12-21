@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Header from '@/components/contents/header/Header';
 import MainSlider from '@/components/contents/MainSlider';
 import SectionSliderContainer from '@/components/contents/SectionSliderContainer';
+import StatusBar from '@/components/shared/status-bar/StatusBar';
 
 /* Types */
 import { Slide, BoardSectionSlide } from '@/_types/contents/contents';
@@ -14,6 +15,13 @@ import BoardSectionSlider from '@/components/contents/BoardSectionSlider';
 const headerText = '오늘의 Dimi’s pick ';
 
 const iconUrl = '/assets/images/icons/dimi-eyes-on.svg';
+
+const logoUrl = '/assets/images/icons/logo-onde.svg';
+
+const iconUrlList = [
+  '/assets/images/icons/alert-icon.svg',
+  '/assets/images/icons/find-icon.svg',
+];
 
 const slides: Slide[] = [
   {
@@ -112,6 +120,7 @@ const boardSections: BoardSectionSlide[] = [
 const HomePage: React.FC = () => {
   return (
     <div className={styles.container}>
+      <StatusBar logoUrl={logoUrl} iconUrlList={iconUrlList} />
       <Header headerText={headerText} iconUrl={iconUrl} />
       <MainSlider slides={slides} />
       <BoardSectionSlider boardSectionSlides={boardSections} />

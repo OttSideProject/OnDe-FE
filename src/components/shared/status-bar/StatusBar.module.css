@@ -1,0 +1,26 @@
+.container {
+  position: fixed;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  /* align-items: center; */
+  width: 100%;
+  max-width: 598px;
+  height: 60px;
+  padding: 15px;
+  font-size: 1.6rem;
+  background-color: var(--primary-black);
+}
+
+.container h2 {
+  font-family: var(--title-font);
+  display: flex;
+  font-size: inherit;
+}
+
+.container h2 + div {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
