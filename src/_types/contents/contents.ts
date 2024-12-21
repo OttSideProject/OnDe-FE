@@ -61,6 +61,12 @@ export type InfoIconButtonProps = {
   onClick: () => void;
 };
 
+/* ToggleIconButton Store type */
+export type ToggleActionStore = {
+  isActive: boolean;
+  toggleClick: () => void;
+};
+
 export type MoreOptionsIconButtonProps = {
   onClick: () => void;
 };

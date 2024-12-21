@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import { AxiosHeaders, AxiosResponse } from 'axios';
 import { UseCustomQuery } from '@/hooks/useCustomQuery';
@@ -14,7 +14,11 @@ import { DimmedBackground } from '@/components/shared/dimmed-background/DimmedBa
 import useDropDownStore from '@/stores/useDropDownStore';
 
 import styles from './DetailComponent.module.css';
-import { BtnDetailInnerFirstChildStyle, BtnDetailInnerLastChildStyle } from '@/components/shared/button-group/ButtonStyles';
+import {
+  BtnDetailInnerFirstChildStyle,
+  BtnDetailInnerLastChildStyle,
+} from '@/components/shared/button-group/ButtonStyles';
+import ToggleIconButton from '@/components/shared/toggle/ToggleIconButton';
 
 /* 더미 데이터를 가져오는 함수 */
 const fetchDetailData = async (
@@ -137,6 +141,7 @@ const DetailComponent: React.FC<{}> = () => {
       )}
       <figure className={styles.imageContainer}>
         <img src={data?.imageUrl} alt={data?.title} />
+        <ToggleIconButton />
         <figcaption>
           <h1 className={styles.title}>{data?.title}</h1>
           <>
