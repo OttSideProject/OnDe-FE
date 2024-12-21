@@ -34,7 +34,7 @@ export const Btn = styled.button<{
   cursor: pointer;
 
   span {
-    margin-left: 4px;
+    margin-left: 8px;
     line-height: 13px;
     color: ${({ variant }) =>
       variant === 'primary' ? 'var(--primary-black)' : 'inherit'}
@@ -63,6 +63,16 @@ export const Icon = styled.img`
 `;
 
 /* 상세페이지 버튼 레이아웃 */
+export const BtnDetailInnerChildStyle = styled.div`
+  width: 48%;
+
+  & img {
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+  }
+`;
+
 export const BtnDetailInnerFirstChildStyle = styled.div`
   flex-basis: 135px;
 

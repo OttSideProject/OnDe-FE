@@ -15,8 +15,7 @@ import useDropDownStore from '@/stores/useDropDownStore';
 
 import styles from './DetailComponent.module.css';
 import {
-  BtnDetailInnerFirstChildStyle,
-  BtnDetailInnerLastChildStyle,
+	BtnDetailInnerChildStyle,
 } from '@/components/shared/button-group/ButtonStyles';
 import ToggleIconButton from '@/components/shared/toggle/ToggleIconButton';
 
@@ -162,7 +161,7 @@ const DetailComponent: React.FC<{}> = () => {
       </figure>
       <div className={styles.bottomContainer}>
         {/* 첫 번째 버튼 */}
-        <BtnDetailInnerFirstChildStyle>
+        <BtnDetailInnerChildStyle>
           <Button
             variant="default"
             iconUrl="/assets/images/icons/collect-box.svg"
@@ -170,14 +169,14 @@ const DetailComponent: React.FC<{}> = () => {
           >
             모아보기
           </Button>
-        </BtnDetailInnerFirstChildStyle>
+        </BtnDetailInnerChildStyle>
 
         {/* 두 번째 버튼 */}
-        <BtnDetailInnerLastChildStyle>
+        <BtnDetailInnerChildStyle>
           <Button variant="primary" onClick={openDropDown}>
             OTT 선택하기
           </Button>
-        </BtnDetailInnerLastChildStyle>
+        </BtnDetailInnerChildStyle>
       </div>
     </div>
   );
