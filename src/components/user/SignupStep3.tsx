@@ -11,30 +11,30 @@ const SignupStep3 = ({ userInfo, setUserInfo }: SignupStep3Props) => (
     <signup.Title2>성별을 선택해 주세요.</signup.Title2>
     <signup.Step3Container>
       <signup.ImageContainer2
-        isSelected={userInfo.gender === '여성'}
-        onClick={() => setUserInfo({ gender: '여성' })}
+        isSelected={userInfo.gender === 'female'}
+        onClick={() => setUserInfo({ gender: 'female' })}
       >
         <img
           src="/assets/images/icons/join-2-woman.svg"
-          alt="여성"
+          alt="female"
           width={100}
           height={100}
         />
-        <signup.GenderLabel isSelected={userInfo.gender === '여성'}>
+        <signup.GenderLabel isSelected={userInfo.gender === 'female'}>
           여성
         </signup.GenderLabel>
       </signup.ImageContainer2>
       <signup.ImageContainer2
-        isSelected={userInfo.gender === '남성'}
-        onClick={() => setUserInfo({ gender: '남성' })}
+        isSelected={userInfo.gender === 'male'}
+        onClick={() => setUserInfo({ gender: 'male' })}
       >
         <img
           src="/assets/images/icons/join-2-man.svg"
-          alt="남성"
+          alt="male"
           width={100}
           height={100}
         />
-        <signup.GenderLabel isSelected={userInfo.gender === '남성'}>
+        <signup.GenderLabel isSelected={userInfo.gender === 'male'}>
           남성
         </signup.GenderLabel>
       </signup.ImageContainer2>

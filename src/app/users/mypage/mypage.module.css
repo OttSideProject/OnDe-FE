@@ -45,6 +45,12 @@
   margin-bottom: 12px;
 }
 
+.userPhoto {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+}
+
 .editIcon {
   width: 30px;
   height: 30px;
@@ -125,9 +131,37 @@
 /* 게시글 카드 */
 .postCard {
   background-color: #111;
-  padding: 12px;
+  padding: 16px 15px;
   margin-bottom: 16px;
   border-radius: 8px;
+  display: grid;
+  gap: 4px;
+  border: 1px solid var(--gray-750, #20211f);
+}
+
+.postHeader {
+  display: flex;
+  gap: 8px;
+}
+
+.category {
+  background: linear-gradient(90deg, #922dff 0%, #6620b2 100%);
+  border: 0.8px solid #6620b2;
+  padding: 0px 8px;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  border-radius: 100px;
+  align-items: center;
+  display: flex;
+  color: var(--gray-50);
+  font-size: 12px;
+  font-weight: 500s;
+}
+
+.time {
+  display: flex;
+  gap: 6px;
 }
 
 .postFooter {
@@ -135,6 +169,7 @@
   justify-content: space-between;
   font-size: 12px;
   color: #aaa;
+  margin-top: 10px;
 }
 
 /* 영화 카드 */
