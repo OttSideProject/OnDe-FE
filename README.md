@@ -17,8 +17,7 @@
   * 상태 관리: Zustand, React useState
   * 데이터 관리: TanStack React Query, Axios
   * 스타일링: Emotion, CSS Modules, Global Styles
-  * 빌드 및 배포(임시 배포): GitHub Pages
-
+  * 빌드 및 배포(): 
 
 
 ## 시작하기
@@ -59,7 +58,8 @@ https://github.com/OttSideProject/OnDe-FE/pulls
 
 ### 김예운
 
-### 정예원
+### 정예원 (활동종료)
+* 게시판
 
 ### 조윤우
 
@@ -69,8 +69,6 @@ https://github.com/OttSideProject/OnDe-FE/pulls
 ## Trouble Shooting 
 
 ### 김예운
-
-### 정예원
 
 ### 조윤우
 
@@ -84,8 +82,7 @@ https://github.com/OttSideProject/OnDe-FE/pulls
 
 
 ## 배포
-https://ottsideproject.github.io/OnDe-FE (임시 정적배포)
-
+https://www.ondemandia.com
 
 ## 프로젝트 구조 (Tree)
 
@@ -93,8 +90,6 @@ https://ottsideproject.github.io/OnDe-FE (임시 정적배포)
 ## 회고 
 
 ### 김예운
-
-### 정예원
 
 ### 조윤우
 
