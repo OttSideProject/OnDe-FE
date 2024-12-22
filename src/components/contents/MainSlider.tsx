@@ -32,6 +32,10 @@ const MainSlider: React.FC<MainSliderProps> = ({ slides }) => {
 
   const router = useRouter();
 
+  const goMypage = () => {
+    router.push('/users/mypage');
+  };
+
   const goLink = () => {
     const id = uuidv4();
     router.push(`/contents/detail/${id}`);
@@ -66,7 +70,7 @@ const MainSlider: React.FC<MainSliderProps> = ({ slides }) => {
                       size="small"
                       text="모아보기"
                       iconUrl="/assets/images/icons/collect-box.svg"
-                      onClick={() => alert('Second Button Clicked!')}
+                      onClick={goMypage}
                     >
                       모아보기
                     </Button>

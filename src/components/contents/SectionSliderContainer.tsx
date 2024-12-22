@@ -20,7 +20,7 @@ const sections: Section[] = [
   {
     id: 1,
     title: '님이 즐겨찾는 콘텐츠',
-    linkText: '모아보기',
+    linkText: '',
     linkUrl: '/contents/collect-view',
     sectionSlides: [
       {
@@ -68,7 +68,7 @@ const sections: Section[] = [
   {
     id: 2,
     title: '소년만화 좋아하시죠?',
-    linkText: '추천 더보기',
+    linkText: '',
     linkUrl: '/contents/recommend',
     sectionSlides: [
       {
@@ -127,7 +127,7 @@ const sections: Section[] = [
     id: 3,
     title: 'NEW! 따끈따끈한 신작',
     linkText: '',
-    linkUrl: '',
+    linkUrl: '/contents/new',
     sectionSlides: [
       {
         id: 1,
@@ -174,7 +174,7 @@ const sections: Section[] = [
   {
     id: 4,
     title: '지금 가장 인기있는 시리즈',
-    linkText: '드라마 랭킹 더보기',
+    linkText: '',
     linkUrl: '/contents/popular-dramas',
     sectionSlides: [
       {
@@ -222,7 +222,7 @@ const sections: Section[] = [
   {
     id: 5,
     title: '지금 가장 인기있는 영화',
-    linkText: '영화 랭킹 더보기',
+    linkText: '',
     linkUrl: '/contents/popular-movies',
     sectionSlides: [
       {

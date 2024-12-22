@@ -1,7 +1,7 @@
 'use client';
 
-import { useEffect } from 'react';
-import { useParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { useParams, useRouter } from 'next/navigation';
 import { AxiosHeaders, AxiosResponse } from 'axios';
 import { UseCustomQuery } from '@/hooks/useCustomQuery';
 
@@ -14,6 +14,8 @@ import { DimmedBackground } from '@/components/shared/dimmed-background/DimmedBa
 import useDropDownStore from '@/stores/useDropDownStore';
 
 import styles from './DetailComponent.module.css';
+import { BtnDetailInnerChildStyle } from '@/components/shared/button-group/ButtonStyles';
+import ToggleIconButton from '@/components/shared/toggle/ToggleIconButton';
 
 /* 더미 데이터를 가져오는 함수 */
 const fetchDetailData = async (
@@ -109,6 +111,12 @@ const DetailComponent: React.FC<{}> = () => {
   const handleOptionSelect = (id: number) => {
     closeDropDown();
   };
+
+  const router = useRouter();
+
+  const goMypage = () => {
+    router.push('/users/mypage');
+  };
   const params = useParams(); // 동적 경로에서 id를 가져옴
   const id = Array.isArray(params.id) ? params.id[0] : params.id; // id를 string으로 변환
   /* useCustomQuery를 사용하여 데이터 페칭 */
@@ -136,6 +144,7 @@ const DetailComponent: React.FC<{}> = () => {
       )}
       <figure className={styles.imageContainer}>
         <img src={data?.imageUrl} alt={data?.title} />
+        <ToggleIconButton />
         <figcaption>
           <h1 className={styles.title}>{data?.title}</h1>
           <>
@@ -156,25 +165,22 @@ const DetailComponent: React.FC<{}> = () => {
       </figure>
       <div className={styles.bottomContainer}>
         {/* 첫 번째 버튼 */}
-        <Button
-          variant="default"
-          text="모아보기"
-          iconUrl="/assets/images/icons/collect-box.svg"
-          className="btnDetailInner"
-          onClick={() => alert('Second Button Clicked!')}
-        >
-          모아보기
-        </Button>
+        <BtnDetailInnerChildStyle>
+          <Button
+            variant="default"
+            iconUrl="/assets/images/icons/collect-box.svg"
+            onClick={goMypage}
+          >
+            모아보기
+          </Button>
+        </BtnDetailInnerChildStyle>
 
         {/* 두 번째 버튼 */}
-        <Button
-          variant="primary"
-          text="OTT 선택하기"
-          className="btnDetailInner"
-          onClick={openDropDown}
-        >
-          OTT 선택하기
-        </Button>
+        <BtnDetailInnerChildStyle>
+          <Button variant="primary" onClick={openDropDown}>
+            OTT 선택하기
+          </Button>
+        </BtnDetailInnerChildStyle>
       </div>
     </div>
   );
