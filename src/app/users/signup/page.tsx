@@ -83,6 +83,11 @@ function reducer(state: State, action: any) {
   }
 }
 
+function getAgeFromYear(yearOfBirth: number) {
+  const currentYear = new Date().getFullYear(); // 현재 연도를 가져옴
+  return currentYear - yearOfBirth;
+}
+
 const SignupProcess = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const { step, selectedGenres, selectedIndexes, userInfo, loading } = state;
@@ -137,12 +142,12 @@ const SignupProcess = () => {
         const preferGenreList = selectedGenres.map((genre) => genre.genreId);
 
         const requestData = {
-          userId: userInfo.email,
+          userId: userInfo.email.split('@')[0],
           password: userInfo.password,
-          age: userInfo.age,
+          age: getAgeFromYear(userInfo.age),
           gender: userInfo.gender,
           nickname: userInfo.name,
-          nationality: '대한민국',
+          nationality: 'korea',
           email: userInfo.email,
           preferGenreList: preferGenreList,
         };

@@ -1,4 +1,7 @@
+import { ReactNode } from 'react';
+
 export interface PostDetailType {
+  [x: string]: ReactNode;
   post_idx: number;
   user_idx: number;
   title: string;
