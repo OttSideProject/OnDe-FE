@@ -3,6 +3,7 @@
 import { PostDetailType } from '@/_types/board/board';
 import PostList from '@/components/board/main/PostList';
 import WeeklyPostListItem from '@/components/board/main/WeeklyPostListItem';
+import Api from '@/api/core/Api';
 import {
   MainPageWrapper,
   CategoryWrapper,
@@ -20,13 +21,12 @@ import React, { useCallback, useEffect, useState } from 'react';
 const page = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('홈');
   const [weeklyBestPost, setWeeklyBestPost] = useState<PostDetailType[]>([]);
-  // const [userInfos, setUserInfos] = useState<UserInfo[]>([]);
 
   const categoryTitle: { [key: string]: number } = {
     홈: 1,
-    후기: 2,
-    토크On: 3,
-    'Q&A': 4,
+    후기: 1,
+    토크On: 1,
+    'Q&A': 1,
   };
 
   const handleSelectedCategory = useCallback((category: string) => {
@@ -45,50 +45,31 @@ const page = () => {
     );
   });
 
-  // FIXME : 선택 카테고리에 따라서 api 요청을 다르게
   const getWeeklyBestPost = useCallback(() => {
-    setWeeklyBestPost([
-      {
-        post_idx: 6,
-        user_idx: 1,
-        title: '제목입니다',
-        contents:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nisl tincidunt eget nullam non. Quis',
-        post_views: 0,
-        boardid: 1,
-        like_count: 0,
-        createdAt: '2024-07-21T13:34:29',
-        modifiedAt: '2024-07-21T13:34:29',
-      },
-      {
-        post_idx: 7,
-        user_idx: 2,
-        title: '긴제목입니다 긴제목입니다 긴제목입니다~',
-        contents:
-          'Senectus et netus et malesuada. Nunc pulvinar sapien et ligula ullamcorper malesuada proin. Neque convallis a cras semper auctor.',
-        post_views: 0,
-        boardid: 1,
-        like_count: 0,
-        createdAt: '2024-07-21T13:34:29',
-        modifiedAt: '2024-07-21T13:34:29',
-      },
-      {
-        post_idx: 7,
-        user_idx: 4,
-        title: '제목입니다3',
-        contents: '본문입니다',
-        post_views: 0,
-        boardid: 1,
-        like_count: 0,
-        createdAt: '2024-07-21T13:34:29',
-        modifiedAt: '2024-07-21T13:34:29',
-      },
-    ]);
-  }, []);
-
+    //  setLoading(true);
+    const boardId = categoryTitle[selectedCategory];
+    Api.get(`/board/${boardId}`)
+      .then((response) => {
+        const sortedPosts = response.data
+          .sort((a: PostDetailType, b: PostDetailType) => {
+            const likeDiff = b.like_count - a.like_count;
+            if (likeDiff !== 0) return likeDiff;
+            return b.post_views - a.post_views;
+          })
+          .slice(0, 3);
+        setWeeklyBestPost(sortedPosts);
+      })
+      .catch((error) => {
+        console.error('Error fetching weekly best posts:', error);
+        setWeeklyBestPost([]);
+      })
+      .finally(() => {
+        //  setLoading(false);
+      });
+  }, [selectedCategory, categoryTitle]);
   useEffect(() => {
     getWeeklyBestPost();
-  }, []);
+  }, [getWeeklyBestPost]);
 
   return (
     <MainPageWrapper>
@@ -97,8 +78,7 @@ const page = () => {
           <signup.HeaderInner>게시판</signup.HeaderInner>
         </signup.Header>
         <CategoryWrapper>{categoryTitleMemo}</CategoryWrapper>
-        {/* <img src="assets/images/icons/weeklybest-post.svg" alt="" /> */}
-        <BoardTitle>Weekly Best</BoardTitle>
+        <BoardTitle>🏅Weekly Best</BoardTitle>
         <WeeklyBestPostContainer>
           {weeklyBestPost.length === 0 ? (
             <NullPost>게시글을 기다려주세요!</NullPost>

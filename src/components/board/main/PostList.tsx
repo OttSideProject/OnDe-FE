@@ -70,7 +70,9 @@ const PostList: React.FC<PostListProps> = ({ selectedCategoryNumber }) => {
         ) : null}
       </div>
       <div className={styles.postWrapper}>
+        {selectedCategoryNumber}
         {sortedPostList.map((post, idx) => {
+          debugger;
           return <PostListItem key={idx} post={post}></PostListItem>;
         })}
       </div>
