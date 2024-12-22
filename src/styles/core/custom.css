@@ -48,8 +48,21 @@
   padding: 0 !important;
 }
 
+/* board section slider */
+.board-section-slider .slick-list {
+  height: 200px;
+}
+
+.board-section-slider .slick-slide {
+  width: 279px !important;
+  height: 200px;
+}
+
 @media screen and (max-width: 500px) and (min-width: 481px) {
   .section-slider .slick-list {
+    width: 1280px;
+  }
+  .board-section-slider .slick-list {
     width: 1280px;
   }
 }
@@ -58,6 +71,14 @@
   .section-slider .slick-list {
     width: 902px;
     min-height: 156px;
+  }
+  .board-section-slider .slick-list {
+    width: 1392px;
+    min-height: 200px;
+  }
+
+  .board-section-slider .slick-slide {
+    /* width: unset !important; */
   }
 }
 

@@ -28,13 +28,19 @@ const ViewMoreButton: React.FC<ViewMoreButtonProps> = ({
       >
         {isExpanded ? (
           <>
-            <span>닫기</span>
-            <img src="/assets/images/icons/arrow-up.svg" alt="up-arrow" />
+            <img
+              src="/assets/images/icons/arrow-up.svg"
+              alt="up-arrow"
+              aria-label="닫기"
+            />
           </>
         ) : (
           <>
-            <span>더보기</span>
-            <img src="/assets/images/icons/arrow-down.svg" alt="up-arrow" />
+            <img
+              src="/assets/images/icons/arrow-down.svg"
+              alt="up-arrow"
+              aria-label="더보기"
+            />
           </>
         )}
       </button>

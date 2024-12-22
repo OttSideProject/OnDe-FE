@@ -1,4 +1,5 @@
 .container {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -6,7 +7,7 @@
 }
 
 .imageContainer img {
-	margin: 0 auto;
+  margin: 0 auto;
 }
 
 .imageContainer figcaption {
@@ -53,5 +54,4 @@
   .imageContainer img {
     width: 100%;
   }
-
 }
