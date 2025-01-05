@@ -48,7 +48,7 @@
   bottom: 0;
   content: '';
   display: block;
-  width: 240px;
+  width: 238px;
   height: 120px;
   background: linear-gradient(
     180deg,
@@ -56,6 +56,11 @@
     rgba(11, 11, 11, 0.69) 44.2%,
     #0b0b0b 98.7%
   );
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
 }
 
 .slide figcaption {
@@ -97,7 +102,13 @@
   -moz-border-radius: 10px;
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
-  border: 2px solid var(--primary600);
+  border: 1px solid var(--primary600);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 57.39%,
+    rgba(0, 0, 0, 0.53) 79.65%,
+    rgba(0, 0, 0, 0.59) 82.31%
+  );
 }
 
 .activeSlide::after {

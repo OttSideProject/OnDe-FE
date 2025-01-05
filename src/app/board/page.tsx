@@ -15,7 +15,6 @@ import {
   PostDetailContainer,
 } from '@/styles/board/main';
 import signup from '@/styles/user/signup';
-import axios from 'axios';
 import React, { useCallback, useEffect, useState } from 'react';
 
 const page = () => {
