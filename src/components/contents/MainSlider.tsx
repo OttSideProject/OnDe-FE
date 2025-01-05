@@ -55,7 +55,7 @@ const MainSlider: React.FC<MainSliderProps> = ({ slides }) => {
                 <Image
                   src={slide.url}
                   alt={`Slide ${slide.id}`}
-                  width={240}
+                  width={238}
                   height={360}
                 />
                 <div className={styles.bottomContainer}>
