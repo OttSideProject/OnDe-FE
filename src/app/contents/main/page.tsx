@@ -16,7 +16,7 @@ const headerText = '오늘의 Dimi’s pick ';
 
 const iconUrl = '/assets/images/icons/dimi-eyes-on.svg';
 
-const logoUrl = '/assets/images/icons/logo-onde.svg';
+const logoUrl = '/assets/images/icons/logo-ond.svg';
 
 const iconUrlList = [
   '/assets/images/icons/alert-icon.svg',
