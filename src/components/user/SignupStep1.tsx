@@ -40,7 +40,7 @@ const SignupStep1 = ({
 
   return (
     <signup.Container
-      style={{ position: 'relative', width: '100%', height: '500px' }}
+      style={{ position: 'relative', width: '100%', height: '135vw' }}
     >
       <signup.Title2>
         안녕하세요! <br /> 어떤 장르를 선호하세요?

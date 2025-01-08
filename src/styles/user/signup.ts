@@ -59,7 +59,7 @@ const Caption = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-  padding: 40px 45px;
+  padding: 5vw;
   font-weight: 300;
   text-align: center;
   white-space: pre-wrap;
@@ -67,7 +67,7 @@ const Caption = styled.div`
 
 // Step 1 styles
 const ImageContainer = styled.div`
-  margin-top: 40px;
+  margin-top: 4vh;
   position: relative;
   width: 90px;
   height: 90px;
@@ -93,15 +93,14 @@ const GenreLabel = styled.span`
 // Step 2 styles
 const Step2Container = styled.div`
   /* padding: 0 20px; */
-  padding-top: 25px;
   text-align: center;
 `;
 
 const GenreStep2 = styled.p`
-  padding: 10px 20px;
+  padding: 10rem 20px;
   border-radius: 50px;
   color: black;
-  font-size: 24px;
+  font-size: 2rem;
   font-weight: 300;
   text-align: center;
   display: inline-block;

@@ -23,9 +23,9 @@ const page = () => {
 
   const categoryTitle: { [key: string]: number } = {
     홈: 1,
-    후기: 1,
-    토크On: 1,
-    'Q&A': 1,
+    후기: 2,
+    토크On: 3,
+    'Q&A': 4,
   };
 
   const handleSelectedCategory = useCallback((category: string) => {
@@ -45,27 +45,30 @@ const page = () => {
   });
 
   const getWeeklyBestPost = useCallback(() => {
-    //  setLoading(true);
     const boardId = categoryTitle[selectedCategory];
     Api.get(`/board/${boardId}`)
       .then((response) => {
-        const sortedPosts = response.data
-          .sort((a: PostDetailType, b: PostDetailType) => {
-            const likeDiff = b.like_count - a.like_count;
-            if (likeDiff !== 0) return likeDiff;
-            return b.post_views - a.post_views;
-          })
-          .slice(0, 3);
-        setWeeklyBestPost(sortedPosts);
+        const data = response.data;
+        if (Array.isArray(data)) {
+          const sortedPosts = data
+            .sort((a: PostDetailType, b: PostDetailType) => {
+              const likeDiff = b.like_count - a.like_count;
+              if (likeDiff !== 0) return likeDiff;
+              return b.post_views - a.post_views;
+            })
+            .slice(0, 3);
+          setWeeklyBestPost(sortedPosts);
+        } else {
+          console.error('응답 데이터가 배열이 아닙니다:', data);
+          setWeeklyBestPost([]);
+        }
       })
       .catch((error) => {
-        console.error('Error fetching weekly best posts:', error);
+        console.error('주간인기글을 불러올 수 없습니다.:', error);
         setWeeklyBestPost([]);
-      })
-      .finally(() => {
-        //  setLoading(false);
       });
   }, [selectedCategory, categoryTitle]);
+
   useEffect(() => {
     getWeeklyBestPost();
   }, [getWeeklyBestPost]);
