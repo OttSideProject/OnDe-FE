@@ -62,12 +62,12 @@ const BoardSectionSlider: React.FC<BoardSectionSliderProps> = ({
         <Slider {...settings}>
           {boardSectionSlides.map((boardSectionSlide, index) => (
             <div
+              key={index}
               onMouseDown={handleMouseDown}
               onMouseMove={handleMouseMove}
               onMouseUp={handleMouseUp}
             >
               <Link
-                key={index}
                 href={boardSectionSlide.detailUrl}
                 className={styles.cardLink}
                 onClick={(e) => {

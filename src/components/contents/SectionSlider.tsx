@@ -58,12 +58,12 @@ const SectionSlider: React.FC<SectionSliderProps> = ({
         <Slider {...settings}>
           {sectionSlides.map((sectionSlide, index) => (
             <div
+              key={index}
               onMouseDown={handleMouseDown}
               onMouseMove={handleMouseMove}
               onMouseUp={handleMouseUp}
             >
               <Link
-                key={index}
                 href={sectionSlide.detailUrl}
                 className={styles.cardLink}
                 onClick={(e) => {
