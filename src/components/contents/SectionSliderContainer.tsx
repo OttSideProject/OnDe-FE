@@ -1,8 +1,8 @@
 'use client';
 import { useEffect } from 'react';
-import { useQuery } from '@tanstack/react-query';
-import { fetchSections } from '@/__mocks__/helpers/fetchers';
+import { useInfiniteQuery } from '@tanstack/react-query';
 import { useInView } from 'react-intersection-observer';
+import { fetchSections } from '@/__mocks__/helpers/fetchers';
 import { v4 as uuidv4 } from 'uuid';
 
 /* Components */
@@ -10,7 +10,7 @@ import SubHeader from '@/components/contents/header/SubHeader';
 import SectionSlider from '@/components/contents/SectionSlider';
 import { DimmedBackground } from '@/components/shared/dimmed-background/DimmedBackground';
 /* Types */
-// import { Section } from '@/_types/contents/contents';
+import { Section, SectionsResponse } from '@/_types/contents/contents';
 /* Zustand store */
 import useDropDownStore from '@/stores/useDropDownStore';
 import DropDownOptions from '../shared/action-bar/DropDownOptions';
@@ -276,8 +276,30 @@ const userName = '디미';
 
 const SectionSliderContainer: React.FC = () => {
   const { isDropDownOpen, openDropDown, closeDropDown } = useDropDownStore();
+  const { ref, inView } = useInView();
 
-  const { data: sections, isLoading } = useQuery({ queryKey: ['sections'], queryFn: fetchSections });
+ 
+  // 무한 스크롤 데이터를 가져오는 훅
+  const { data, 
+					fetchNextPage, 
+					hasNextPage, 
+					isFetchingNextPage, 
+				} = useInfiniteQuery<SectionsResponse, Error, Section[], string[],number>({
+				queryKey: ['sections'],
+				queryFn: ({ pageParam = 1 }) => fetchSections(pageParam),
+				getNextPageParam: (lastPage) => {
+					return lastPage.pageNo < lastPage.totalPages
+						? lastPage.pageNo + 1
+						: undefined;
+				},
+				initialPageParam: 1, // 첫번째 섹션의 ID
+    });
+
+		 useEffect(() => {
+     if (inView && hasNextPage) {
+       fetchNextPage();
+     }
+   }, [inView, hasNextPage, fetchNextPage]);
 
   useEffect(() => {
     if (isDropDownOpen) {
@@ -289,6 +311,7 @@ const SectionSliderContainer: React.FC = () => {
       document.body.style.overflow = 'auto';
     };
   }, [isDropDownOpen]);
+
 
   const options = [
     { id: 1, label: '에피소드 및 정보', url: '/assets/images/icons/info.svg' },
@@ -319,8 +342,6 @@ const SectionSliderContainer: React.FC = () => {
     closeDropDown();
   };
 
-  if (isLoading) return <p>Loading...</p>;
-
   return (
     <div className={styles.container}>
       {/* DropDown이 열려있을 때 DimmedBackground 표시 */}
@@ -334,23 +355,30 @@ const SectionSliderContainer: React.FC = () => {
           />
         </>
       )}
+      {/* 섹션 데이터 렌더링 */}
       {/* SectionSlider */}
-      {sections?.map((section) => (
-        <div key={section.id}>
-          {/* 첫 번째 섹션일 때 사용자 이름을 추가 */}
-          <SubHeader
-            title={
-              section.id === 1 ? `${userName}${section.title}` : section.title
-            }
-            linkText={section.linkText}
-            linkUrl={section.linkUrl}
-          />
-          <SectionSlider
-            sectionSlides={section.sectionSlides}
-            showActionBar={section.id === 1}
-          />
-        </div>
-      ))}
+      {data?.pages.map((page) =>
+        page.sections?.map((section: Section) => (
+          <div key={section.id}>
+            {/* 첫 번째 섹션일 때 사용자 이름을 추가 */}
+            <SubHeader
+              title={
+                section.id === 1 ? `${userName}${section.title}` : section.title
+              }
+              linkText={section.linkText}
+              linkUrl={section.linkUrl}
+            />
+            <SectionSlider
+              sectionSlides={section.sectionSlides}
+              showActionBar={section.id === 1}
+            />
+          </div>
+        )),
+      )}
+
+      {/* 로딩 및 감지 영역 */}
+      {isFetchingNextPage && <p>Loading more...</p>}
+      <div ref={ref} />
     </div>
   );
 };

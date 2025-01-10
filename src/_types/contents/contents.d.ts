@@ -43,6 +43,13 @@ export type SectionSlide = {
   detailUrl: string;
 };
 
+export type SectionsResponse = {
+  pageNo: number;
+  totalPages: number;
+  totalItems: number;
+  sections: Section[];
+};
+
 /* BoardSectionSlider type */
 export type BoardSectionSlide = {
   id: number;
