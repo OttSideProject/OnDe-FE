@@ -19,6 +19,10 @@
   font-size: inherit;
 }
 
+.container h2 img {
+  height: 22px;
+}
+
 .container h2 + div {
   display: flex;
   justify-content: flex-end;
