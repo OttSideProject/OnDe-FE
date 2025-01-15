@@ -2,18 +2,23 @@
 import { useEffect } from 'react';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useInView } from 'react-intersection-observer';
-import { fetchSections } from '@/__mocks__/helpers/fetchers';
 import { v4 as uuidv4 } from 'uuid';
 
 /* Components */
 import SubHeader from '@/components/contents/header/SubHeader';
 import SectionSlider from '@/components/contents/SectionSlider';
 import { DimmedBackground } from '@/components/shared/dimmed-background/DimmedBackground';
+
+/* API */
+import { fetchSections } from '@/api/fetchSections';
+
 /* Types */
 import { Section, SectionsResponse } from '@/_types/contents/contents';
+
 /* Zustand store */
 import useDropDownStore from '@/stores/useDropDownStore';
 import DropDownOptions from '../shared/action-bar/DropDownOptions';
+
 /* Styles */
 import styles from './SectionSliderContainer.module.css';
 
@@ -284,9 +289,9 @@ const SectionSliderContainer: React.FC = () => {
 					fetchNextPage, 
 					hasNextPage, 
 					isFetchingNextPage, 
-				} = useInfiniteQuery<SectionsResponse, Error, Section[], string[],number>({
+				} = useInfiniteQuery<SectionsResponse, Error>({
 				queryKey: ['sections'],
-				queryFn: ({ pageParam = 1 }) => fetchSections(pageParam),
+				queryFn: ({ pageParam = 1 }) => fetchSections(pageParam as number),
 				getNextPageParam: (lastPage) => {
 					return lastPage.pageNo < lastPage.totalPages
 						? lastPage.pageNo + 1
@@ -358,7 +363,7 @@ const SectionSliderContainer: React.FC = () => {
       {/* 섹션 데이터 렌더링 */}
       {/* SectionSlider */}
       {data?.pages.map((page) =>
-        page.sections?.map((section: Section) => (
+        page.sections.map((section: Section) => (
           <div key={section.id}>
             {/* 첫 번째 섹션일 때 사용자 이름을 추가 */}
             <SubHeader
