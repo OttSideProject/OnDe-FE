@@ -4,12 +4,12 @@
   z-index: 2;
   display: flex;
   justify-content: space-between;
-  /* align-items: center; */
+  align-items: center;
   width: 100%;
   max-width: 598px;
   height: 60px;
   padding: 15px;
-  font-size: 1.6rem;
+  font-size: 2.4rem;
   background-color: var(--primary-black);
 }
 
