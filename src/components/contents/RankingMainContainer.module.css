@@ -1,17 +1,24 @@
 .container {
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-height: 35vh;
   padding-bottom: 30px;
+
+  @media screen and (max-width: 480px) {
+    min-height: 229px;
+  }
 }
 
-.slider {
+.list {
+  display: flex;
+  gap: 10px;
   margin: 0 8px;
 }
 
 .cardLink {
   position: relative;
+  top: 20px;
   display: block;
   width: 100%;
   height: 174px;
@@ -21,6 +28,18 @@
   -moz-border-radius: 6px;
   -ms-border-radius: 6px;
   -o-border-radius: 6px;
+
+  &:nth-child(2) {
+    top: 0;
+  }
+
+  &:nth-child(2) .topNumber {
+    color: var(--primary80);
+    text-shadow: 0 0 8px var(--primary80),
+      /* 부드러운 내부 광채 */ 0 0 16px var(--primary80),
+      /* 확산되는 빛 */ 0 0 20px var(--primary80),
+      /* 더 넓은 확산 빛 */ 0 0 28px rgba(215, 255, 80, 0.5); /* 희미한 외곽선 빛 */
+  }
 }
 
 .cardLink::after {
@@ -47,9 +66,9 @@
 
 .rankingItem {
   position: relative;
-  width: 100%;
-  height: 170px;
-  margin-top: 45px;
+  width: 26vw;
+  max-width: 186px;
+
   background: linear-gradient(
     180deg,
     rgba(0, 0, 0, 0) 57.39%,
@@ -65,10 +84,20 @@
   -moz-border-radius: inherit;
   -ms-border-radius: inherit;
   -o-border-radius: inherit;
+
+  @media screen and (max-width: 480px) {
+    width: 113px;
+    height: 170px;
+  }
 }
 
 .rankingItem > img {
   position: relative;
+  width: inherit;
+  max-width: inherit;
+  height: inherit;
+  object-fit: cover;
+  object-position: center;
   border-radius: inherit;
   -webkit-border-radius: inherit;
 }
@@ -123,12 +152,6 @@
 
 .rankingItem .btnContainer {
   bottom: 15px;
-}
-
-@media screen and (max-width: 430px) {
-  .rankingItem {
-    margin-left: 7%;
-  }
 }
 
 /* .activeSlide {
@@ -192,15 +215,17 @@
   width: 100%;
 }
 
+.textContainer {
+  position: absolute;
+  left: 50%;
+  bottom: -24px;
+  transform: translateX(-50%);
+}
+
 .topNumber {
-  color: var(--primary80);
+  color: var(--gray50);
   text-align: center;
   font-family: var(--title-font);
   font-size: 5rem;
   font-weight: 800;
-
-  text-shadow: 0 0 8px var(--primary80),
-    /* 부드러운 내부 광채 */ 0 0 16px var(--primary80),
-    /* 확산되는 빛 */ 0 0 20px var(--primary80),
-    /* 더 넓은 확산 빛 */ 0 0 28px rgba(215, 255, 80, 0.5); /* 희미한 외곽선 빛 */
 }
