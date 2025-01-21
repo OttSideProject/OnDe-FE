@@ -5,9 +5,9 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { v4 as uuidv4 } from 'uuid';
 
-import Button from '../shared/button-group/Button';
-
 import { MainSliderProps } from '@/_types/contents/contents';
+
+import useCenterTopNumberList from '@/hooks/useCenterTopNumberList';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -18,19 +18,18 @@ const RankingMainContainer: React.FC<MainSliderProps> = ({ slides }) => {
 
   const router = useRouter();
 
-  const goMypage = () => {
-    router.push('/users/mypage');
-  };
-
   const goLink = () => {
     const id = uuidv4();
     router.push(`/contents/detail/${id}`);
   };
 
+  // 재구성된 배열 가져오기
+  const centerTopNumberList = useCenterTopNumberList(slides);
+
   return (
     <div className={styles.container}>
-      <div className={styles.slider}>
-        {slides.map((slide, index) => (
+      <div className={styles.list}>
+        {centerTopNumberList.map((slide, index) => (
           <div key={index} className={styles.cardLink}>
             <figure
               className={`${styles.rankingItem} ${
@@ -49,8 +48,8 @@ const RankingMainContainer: React.FC<MainSliderProps> = ({ slides }) => {
                   <h4>{slide.subTitle.join(' · ')}</h4>
                 </figcaption>
               </div>
-              <div>
-                <strong className={styles.topNumber}>1</strong>
+              <div className={styles.textContainer}>
+                <strong className={styles.topNumber}>{slide.id}</strong>
               </div>
             </figure>
           </div>
