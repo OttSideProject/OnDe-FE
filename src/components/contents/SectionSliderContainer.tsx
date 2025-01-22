@@ -90,7 +90,7 @@ const SectionSliderContainer: React.FC = () => {
   };
 
   return (
-    <div className={styles.container}>
+    <section className={styles.container}>
       {/* DropDown이 열려있을 때 DimmedBackground 표시 */}
       {isDropDownOpen && (
         <>
@@ -126,7 +126,7 @@ const SectionSliderContainer: React.FC = () => {
       {/* 로딩 및 감지 영역 */}
       {isFetchingNextPage && <p>Loading more...</p>}
       <div ref={ref} />
-    </div>
+    </section>
   );
 };
 

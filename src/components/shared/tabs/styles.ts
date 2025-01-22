@@ -38,7 +38,7 @@ export const CategoryTitle = styled.button<CategoryTitleStyleProps>`
   }
 `;
 
-export const CategoryWrapper = styled.div<CategoryWrapperStyleProps>`
+export const CategoryWrapper = styled.section<CategoryWrapperStyleProps>`
   position: relative;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
@@ -69,7 +69,7 @@ export const CategoryWrapper = styled.div<CategoryWrapperStyleProps>`
 	`}
 `;
 
-export const ContentWrapper = styled.div`
+export const ContentWrapper = styled.section`
   min-height: 212px;
   padding: 20px 0 0;
   font-size: 1.2rem;

@@ -17,7 +17,7 @@ const ViewMoreButton: React.FC<ViewMoreButtonProps> = ({
   const toggleView = () => setIsExpanded(!isExpanded);
 
   return (
-    <div className={styles.container}>
+    <article className={styles.container}>
       <div className={isExpanded ? `expanded` : 'ellipsis lineclamp'}>
         <p className={styles.content}>{content}</p>
 
@@ -47,7 +47,7 @@ const ViewMoreButton: React.FC<ViewMoreButtonProps> = ({
           </>
         )}
       </button>
-    </div>
+    </article>
   );
 };
 

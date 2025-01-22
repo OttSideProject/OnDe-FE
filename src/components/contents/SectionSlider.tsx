@@ -53,7 +53,7 @@ const SectionSlider: React.FC<SectionSliderProps> = ({
   };
 
   return (
-    <div className={styles.container}>
+    <article className={styles.container}>
       <div className={`${styles.slider} section-slider`}>
         <Slider {...settings}>
           {sectionSlides.map((sectionSlide, index) => (
@@ -92,7 +92,7 @@ const SectionSlider: React.FC<SectionSliderProps> = ({
           ))}
         </Slider>
       </div>
-    </div>
+    </article>
   );
 };
 
