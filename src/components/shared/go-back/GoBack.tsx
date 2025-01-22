@@ -1,9 +1,14 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { GoBackProps } from '@/_types/contents/contents';
-
 import styles from './GoBack.module.css';
+
+/* GoBack type */
+type GoBackProps = {
+  isOpen?: boolean;
+  onClick?: () => void;
+  isClose?: boolean;
+};
 
 const GoBack: React.FC<GoBackProps> = ({ isOpen, isClose = false }) => {
   const router = useRouter();

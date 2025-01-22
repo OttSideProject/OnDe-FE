@@ -1,10 +1,13 @@
 'use client';
 
 import { useState } from 'react';
-
-import { ViewMoreButtonProps } from '@/_types/contents/contents';
-
 import styles from './ViewMoreButton.module.css';
+
+/* ViemMoreButton toggle type*/
+type ViewMoreButtonProps = {
+  content: string;
+  viewIcon?: string;
+};
 
 const ViewMoreButton: React.FC<ViewMoreButtonProps> = ({
   content,

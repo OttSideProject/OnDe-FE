@@ -1,10 +1,22 @@
 'use client';
 
 import Link from 'next/link';
-
-import { DropDownOptionsProps } from '@/_types/contents/contents';
-
 import styles from './DropDownOptions.module.css';
+
+/* DropDownOptionsProps type */
+type Option = {
+  id: number;
+  label?: string;
+  link?: string;
+  url?: string;
+};
+
+type DropDownOptionsProps = {
+  title?: string;
+  height?: number;
+  options: Option[];
+  onSelect?: (id: number) => void;
+};
 
 const DropDownOptions: React.FC<DropDownOptionsProps> = ({
   title = '',
