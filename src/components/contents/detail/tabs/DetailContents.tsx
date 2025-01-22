@@ -128,7 +128,13 @@ const DetailContents = () => {
     }
   };
 
-  return <Tabs categories={categories} renderContent={renderContent} />;
+  return (
+    <Tabs
+      categories={categories}
+      renderContent={renderContent}
+      hasBefore={true}
+    />
+  );
 };
 
 export default DetailContents;

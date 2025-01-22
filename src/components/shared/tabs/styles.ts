@@ -2,7 +2,17 @@
 
 import styled from '@emotion/styled';
 
-import { CategoryTitleStyleProps } from '@/_types/contents/contents';
+// props type
+export type CategoryTitleStyleProps = {
+  selectedCategory: string;
+  fontSize?: string;
+  category: string;
+  onClick: () => void;
+};
+
+export type CategoryWrapperStyleProps = {
+  hasBefore?: boolean;
+};
 
 export const Container = styled.div`
   display: flex;
@@ -10,7 +20,25 @@ export const Container = styled.div`
   width: 100%;
 `;
 
-export const CategoryWrapper = styled.div`
+export const CategoryTitle = styled.button<CategoryTitleStyleProps>`
+  font-family: var(--primary-font);
+  cursor: pointer;
+  font-size: ${(props) => props.fontSize || '1.4rem'};
+  color: ${(props) =>
+    props.selectedCategory === props.category
+      ? 'var(--primary-white)'
+      : 'var(--gray400)'};
+  border-bottom: ${(props) =>
+    props.selectedCategory === props.category
+      ? '0.2rem solid var(--primary100)'
+      : '0rem'};
+
+  span {
+    font-family: var(--number-font);
+  }
+`;
+
+export const CategoryWrapper = styled.div<CategoryWrapperStyleProps>`
   position: relative;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
@@ -22,6 +50,9 @@ export const CategoryWrapper = styled.div`
   font-size: 16px;
   background-color: var(--primary-black);
 
+  ${(props) =>
+    props.hasBefore &&
+    `
   &::before {
     content: '';
     position: absolute;
@@ -35,23 +66,7 @@ export const CategoryWrapper = styled.div`
     filter: blur(7.5px);
     pointer-events: none; /* 클릭 방지 */
   }
-`;
-
-export const CategoryTitle = styled.button<CategoryTitleStyleProps>`
-  font-family: var(--primary-font);
-  cursor: pointer;
-  color: ${(props) =>
-    props.selectedCategory === props.category
-      ? 'var(--primary-white)'
-      : 'var(--gray400)'};
-  border-bottom: ${(props) =>
-    props.selectedCategory === props.category
-      ? '0.2rem solid var(--primary100)'
-      : '0rem'};
-
-  span {
-    font-family: var(--number-font);
-  }
+	`}
 `;
 
 export const ContentWrapper = styled.div`
