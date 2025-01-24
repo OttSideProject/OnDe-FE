@@ -75,3 +75,25 @@ export type DetailData = {
 
 export type InfoItem = string | { type: 'image'; src: string; alt: string };
 
+// Ranking Data type
+
+export type Ranking = {
+  id: number;
+  age: string;
+  title: string;
+  ranking_num: number;
+  content_title: string;
+  content_id: number;
+  content_img: string;
+};
+export type RankingsResponse = {
+  pageNo: number;
+  totalPages: number;
+  totalItems: number;
+  rankings: Ranking[];
+};
+
+// RankingSubListContainer type
+export type RankingSubListContainerProps = {
+	rankings: Ranking[];
+}
