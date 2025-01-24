@@ -27,7 +27,7 @@ const RankingMainContainer: React.FC<MainSliderProps> = ({ slides }) => {
   const centerTopNumberList = useCenterTopNumberList(slides);
 
   return (
-    <div className={styles.container}>
+    <article className={styles.container}>
       <div className={styles.list}>
         {centerTopNumberList.map((slide, index) => (
           <div key={index} className={styles.cardLink}>
@@ -55,7 +55,7 @@ const RankingMainContainer: React.FC<MainSliderProps> = ({ slides }) => {
           </div>
         ))}
       </div>
-    </div>
+    </article>
   );
 };
 
