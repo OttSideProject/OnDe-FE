@@ -30,7 +30,7 @@ const ImageSubList: React.FC<RankingSubListContainerProps> = ({ rankings }) => {
               <div className={styles.bottomContainer}>
                 <figcaption>
                   <h3>{ranking.title}</h3>
-                  <h4>{ranking.subTitle?.join(' . ')}</h4>
+                  <h4>{ranking.subTitle?.join(' · ')}</h4>
                 </figcaption>
               </div>
               <div className={styles.textContainer}>

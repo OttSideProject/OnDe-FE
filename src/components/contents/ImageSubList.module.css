@@ -9,18 +9,24 @@
 .list {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  margin: 0 8px;
+  row-gap: 50px;
 }
 
 .cardLink {
+  position: relative;
   display: block;
-  order: 0;
+  width: 28vw;
+  height: 210px;
   max-width: 175px !important;
   margin: 0 auto;
   border-radius: 6px;
 
-  &:nth-child(2) .topNumber {
+  &:nth-child(3n + 2) {
+    width: 29vw;
+    height: 220px;
+  }
+
+  &:nth-child(3n + 2) .topNumber {
     color: var(--primary80);
     text-shadow: 0 0 8px var(--primary80),
       /* 부드러운 내부 광채 */ 0 0 16px var(--primary80),
@@ -32,8 +38,9 @@
 .rankingItem {
   position: relative;
   max-width: 175px;
-  width: 29.2vw;
-  height: 210px;
+  width: 100%;
+  height: 100%;
+  text-align: center;
   border-radius: inherit;
   -webkit-border-radius: inherit;
   -moz-border-radius: inherit;
@@ -46,11 +53,24 @@
   width: inherit;
   max-width: inherit;
   height: inherit;
+  object-fit: cover;
+  object-position: center;
   border-radius: inherit;
   -webkit-border-radius: inherit;
   -moz-border-radius: inherit;
   -ms-border-radius: inherit;
   -o-border-radius: inherit;
+}
+
+.rankingItem .bottomContainer {
+  position: relative;
+}
+
+.rankingItem figcaption {
+  position: absolute;
+  z-index: 2;
+  bottom: 33px;
+  width: 100%;
 }
 
 .rankingItem figcaption h3 {
@@ -103,20 +123,20 @@
   width: 100%;
 }
 
-/* 반응형 */
-@media only screen and (max-width: 560px) and (min-width: 500px) {
-  .rankingItem {
-    width: 175px !important;
-  }
-}
-
+/* responsive */
 @media screen and (max-width: 480px) {
   .cardLink {
-    width: 104px !important;
+    width: 110px;
+    height: 160px;
   }
 
-  .rankingItem {
-    width: 104px;
-    height: 156px;
+  .cardLink:nth-child(3n + 2) {
+    width: 120px;
+    height: 170px;
   }
+
+  /* .rankingItem {
+    width: 100%;
+    height: 100%;
+  } */
 }
