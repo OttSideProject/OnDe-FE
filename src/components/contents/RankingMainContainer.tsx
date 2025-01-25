@@ -9,8 +9,6 @@ import { MainSliderProps } from '@/_types/contents/contents';
 
 import useCenterTopNumberList from '@/hooks/useCenterTopNumberList';
 
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
 import styles from './RankingMainContainer.module.css';
 
 const RankingMainContainer: React.FC<MainSliderProps> = ({ slides }) => {
@@ -38,7 +36,7 @@ const RankingMainContainer: React.FC<MainSliderProps> = ({ slides }) => {
             >
               <Image
                 src={slide.url}
-                alt={`Slide ${slide.id}`}
+                alt={`Slide ${slide.title}`}
                 width={113}
                 height={170}
               />
