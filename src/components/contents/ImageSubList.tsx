@@ -2,38 +2,47 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { SectionSliderProps } from '@/_types/contents/contents';
+import useCenterTopNumberList from '@/hooks/useCenterTopNumberList';
+import { RankingSubListContainerProps } from '@/_types/contents/contents';
 
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
 import styles from './ImageSubList.module.css';
 
-const ImageSubList: React.FC<SectionSliderProps> = ({ sectionSlides }) => {
+const ImageSubList: React.FC<RankingSubListContainerProps> = ({ rankings }) => {
+  // useCenterTopNumberList 훅으로 rankings 배열 재구성
+
+  const centerdRankings = useCenterTopNumberList(rankings);
   return (
-    <div className={styles.container}>
-      <div className={`${styles.slider} section-slider`}>
-        {sectionSlides.map((sectionSlide, index) => (
-          <div key={index}>
-            <Link href={sectionSlide.detailUrl} className={styles.cardLink}>
-              <figure
-                className={`${styles.slide} ${
-                  !sectionSlide.imgUrl ? styles.emptySlide : ''
-                }`}
-              >
-                {sectionSlide.imgUrl && (
-                  <Image
-                    src={sectionSlide.imgUrl}
-                    alt={`Slide ${sectionSlide.id} ${index}`}
-                    width={104}
-                    height={156}
-                  />
-                )}
-              </figure>
-            </Link>
-          </div>
+    <>
+      <div className={styles.list}>
+        {centerdRankings.map((ranking) => (
+          <Link
+            key={ranking.id}
+            href={`/details/${ranking.content_id}`}
+            className={styles.cardLink}
+          >
+            <figure className={styles.rankingItem}>
+              <Image
+                src={ranking.content_img}
+                alt={`${ranking.title}`}
+                width={110}
+                height={160}
+              />
+              <div className={styles.bottomContainer}>
+                <figcaption>
+                  <h3>{ranking.title}</h3>
+                  <h4>{ranking.subTitle?.join(' . ')}</h4>
+                </figcaption>
+              </div>
+              <div className={styles.textContainer}>
+                <strong className={styles.topNumber}>
+                  {ranking.ranking_num}
+                </strong>
+              </div>
+            </figure>
+          </Link>
         ))}
       </div>
-    </div>
+    </>
   );
 };
 

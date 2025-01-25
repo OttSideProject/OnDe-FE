@@ -1,4 +1,3 @@
-
 /* MainSlider type */
 export type Slide = {
   id: number;
@@ -81,8 +80,8 @@ export type Ranking = {
   id: number;
   age: string;
   title: string;
+  subTitle?: string[];
   ranking_num: number;
-  content_title: string;
   content_id: number;
   content_img: string;
 };
@@ -95,5 +94,5 @@ export type RankingsResponse = {
 
 // RankingSubListContainer type
 export type RankingSubListContainerProps = {
-	rankings: Ranking[];
-}
+  rankings: Ranking[];
+};
