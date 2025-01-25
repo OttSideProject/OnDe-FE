@@ -16,7 +16,7 @@
   top: 20px;
   display: block;
   width: 100%;
-	height: 100%;
+  height: 100%;
   margin: 0 auto;
   border-radius: 6px;
   -webkit-border-radius: 6px;
@@ -39,14 +39,16 @@
 
 .cardLink::after {
   position: absolute;
-  top: -14.5px; /* (199px - 170px) / 2 */
-  left: -15.5px; /* (144px - 113px) / 2 */
+  top: 0;
+  left: 0;
   right: 0;
   bottom: 0;
   content: '';
   display: block;
-  width: 144px;
-  height: 199px;
+  width: 100%;
+  height: 100%;
+  min-width: 144px;
+  min-height: 199px;
   background-image: url('/assets/images/shadow-square.svg');
   background-size: cover;
   background-position: center;
@@ -104,7 +106,8 @@
   bottom: 0;
   content: '';
   display: block;
-  width: 113px;
+  width: calc(100% + 2px);
+  min-width: 113px;
   height: 170px;
   background: linear-gradient(
     180deg,
@@ -141,20 +144,6 @@
   font-weight: 400;
 }
 
-.rankingItem .btnContainer {
-  bottom: 15px;
-}
-
-.btnContainer {
-  position: absolute;
-  bottom: 19px;
-  z-index: 2;
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  width: 100%;
-}
-
 .textContainer {
   position: absolute;
   z-index: 2;
@@ -171,7 +160,10 @@
   font-weight: 800;
 }
 
+/* responsive */
 @media screen and (max-width: 480px) {
-
-
+  .cardLink::after {
+    top: -11.5px; /* (170px - 144px) / 2 */
+    left: -14.5px; /* (113px - 99px) / 2 */
+  }
 }
