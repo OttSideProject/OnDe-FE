@@ -1,7 +1,9 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import styles from './PostList.module.css';
 import DropDown from './DropDown';
+import { useRouter } from 'next/navigation';
 import Api from '@/api/core/Api';
+
 import { PostDetailType } from '@/_types/board/board';
 import PostListItem from './PostListItem';
 
@@ -10,6 +12,13 @@ interface PostListProps {
 }
 
 const PostList: React.FC<PostListProps> = ({ selectedCategoryNumber }) => {
+  const [isClient, setIsClient] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    setIsClient(true); // 클라이언트 렌더링 여부를 설정
+  }, []);
+
   const [sortBoardText, setsortBoardText] = useState<string>('인기순');
   const [isDropDownClicked, setisDropDownClicked] = useState(false);
   const DropDownMenu: { [key: string]: number } = {
@@ -45,6 +54,11 @@ const PostList: React.FC<PostListProps> = ({ selectedCategoryNumber }) => {
     getPostList();
   }, [selectedCategoryNumber, getPostList]);
 
+  const navigateToPostCreation = () => {
+    if (isClient) {
+      router.push('/board/Insert');
+    }
+  };
   return (
     <div>
       <div className={styles.sortBoardContainer}>
@@ -73,6 +87,7 @@ const PostList: React.FC<PostListProps> = ({ selectedCategoryNumber }) => {
         className={styles.floatButton}
         src="assets/images/icons/post-create-float.svg"
         alt=""
+        onClick={navigateToPostCreation}
       />
     </div>
   );

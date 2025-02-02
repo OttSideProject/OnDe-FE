@@ -31,21 +31,27 @@ const Container2 = styled.div`
 `;
 
 const Header = styled.div`
-  padding: 20px;
+  padding: 20px 0;
   width: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
 `;
 
 const HeaderInner = styled.div`
-  font-size: 16px;
+  font-size: 1.6rem;
   color: #e7e7e7;
   width: 100%;
   display: flex;
   justify-content: center;
 `;
 
-const Close = styled.div``;
+const Close = styled.div`
+  font-size: 1.4rem;
+  color: #e7e7e7;
+  min-width: 30px;
+  display: flex;
+`;
 
 const Title2 = styled.h1`
   padding: 20px 0px;
