@@ -1,10 +1,13 @@
 'use client';
 
 import { useState } from 'react';
-
-import { ViewMoreButtonProps } from '@/_types/contents/contents';
-
 import styles from './ViewMoreButton.module.css';
+
+/* ViemMoreButton toggle type*/
+type ViewMoreButtonProps = {
+  content: string;
+  viewIcon?: string;
+};
 
 const ViewMoreButton: React.FC<ViewMoreButtonProps> = ({
   content,
@@ -14,7 +17,7 @@ const ViewMoreButton: React.FC<ViewMoreButtonProps> = ({
   const toggleView = () => setIsExpanded(!isExpanded);
 
   return (
-    <div className={styles.container}>
+    <article className={styles.container}>
       <div className={isExpanded ? `expanded` : 'ellipsis lineclamp'}>
         <p className={styles.content}>{content}</p>
 
@@ -44,7 +47,7 @@ const ViewMoreButton: React.FC<ViewMoreButtonProps> = ({
           </>
         )}
       </button>
-    </div>
+    </article>
   );
 };
 

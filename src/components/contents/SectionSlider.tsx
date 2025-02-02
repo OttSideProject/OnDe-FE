@@ -53,17 +53,17 @@ const SectionSlider: React.FC<SectionSliderProps> = ({
   };
 
   return (
-    <div className={styles.container}>
+    <article className={styles.container}>
       <div className={`${styles.slider} section-slider`}>
         <Slider {...settings}>
           {sectionSlides.map((sectionSlide, index) => (
             <div
+              key={index}
               onMouseDown={handleMouseDown}
               onMouseMove={handleMouseMove}
               onMouseUp={handleMouseUp}
             >
               <Link
-                key={index}
                 href={sectionSlide.detailUrl}
                 className={styles.cardLink}
                 onClick={(e) => {
@@ -92,7 +92,7 @@ const SectionSlider: React.FC<SectionSliderProps> = ({
           ))}
         </Slider>
       </div>
-    </div>
+    </article>
   );
 };
 

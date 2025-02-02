@@ -4,12 +4,11 @@ import GoBack from '@/components/shared/go-back/GoBack';
 
 const DetailPage: React.FC = () => {
   return (
-    <>
-		{/* 12월 29일 aws 배포 테스트 */}
+    <main>
       <GoBack />
       <DetailComponent />
       <DetailContents />
-    </>
+    </main>
   );
 };
 

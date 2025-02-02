@@ -1,15 +1,15 @@
 .container {
   position: fixed;
   top: 0;
-  z-index: 2;
+  z-index: 3;
   display: flex;
   justify-content: space-between;
-  /* align-items: center; */
+  align-items: center;
   width: 100%;
   max-width: 598px;
   height: 60px;
   padding: 15px;
-  font-size: 1.6rem;
+  font-size: 2.4rem;
   background-color: var(--primary-black);
 }
 
@@ -17,6 +17,10 @@
   font-family: var(--title-font);
   display: flex;
   font-size: inherit;
+}
+
+.container h2 img {
+  height: 22px;
 }
 
 .container h2 + div {

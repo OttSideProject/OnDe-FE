@@ -1,6 +1,9 @@
-import type { DimmedBackgroundProps } from '@/_types/contents/contents';
-
 import styles from './DimmedBackground.module.css';
+
+/* DimmedBackground type */
+type DimmedBackgroundProps = {
+  onClick: () => void;
+};
 
 export const DimmedBackground: React.FC<DimmedBackgroundProps> = ({
   onClick,

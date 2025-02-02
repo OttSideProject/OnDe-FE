@@ -1,6 +1,10 @@
-import { HeaderProps } from '@/_types/contents/contents';
-
 import styles from './Header.module.css';
+
+/* Header type */
+type HeaderProps = {
+  headerText: string;
+  iconUrl: string;
+};
 
 const Header: React.FC<HeaderProps> = ({ headerText, iconUrl }) => {
   return (

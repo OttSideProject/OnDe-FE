@@ -16,7 +16,7 @@ const headerText = '오늘의 Dimi’s pick ';
 
 const iconUrl = '/assets/images/icons/dimi-eyes-on.svg';
 
-const logoUrl = '/assets/images/icons/logo-onde.svg';
+const logoUrl = '/assets/images/icons/logo-ond.svg';
 
 const iconUrlList = [
   '/assets/images/icons/alert-icon.svg',
@@ -119,12 +119,14 @@ const boardSections: BoardSectionSlide[] = [
 
 const HomePage: React.FC = () => {
   return (
-    <div className={styles.container}>
+    <main className={styles.container}>
       <StatusBar logoUrl={logoUrl} iconUrlList={iconUrlList} />
-      <Header headerText={headerText} iconUrl={iconUrl} />
-      <MainSlider slides={slides} />
-      <BoardSectionSlider boardSectionSlides={boardSections} />
-      <SectionSliderContainer />
+      <section>
+        <Header headerText={headerText} iconUrl={iconUrl} />
+        <MainSlider slides={slides} />
+        <BoardSectionSlider boardSectionSlides={boardSections} />
+        <SectionSliderContainer />
+      </section>
       <div className={styles.recommendContainer}>
         <p>
           <strong>원하는 콘텐츠를 찾지 못하셨나요? </strong> <br />
@@ -135,7 +137,7 @@ const HomePage: React.FC = () => {
       <Link href="" title="추천 바로가기" className={styles.fullButton}>
         추천 바로가기
       </Link>
-    </div>
+    </main>
   );
 };
 

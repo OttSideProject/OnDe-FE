@@ -101,7 +101,7 @@ const DetailContents = () => {
     switch (selectedCategory) {
       case 'info':
         return (
-          <div>
+          <>
             <ViewMoreButton content={detailInfo} viewIcon={viewIcon} />
             {/* SectionSlider */}
             {sections.map((section) => (
@@ -112,7 +112,7 @@ const DetailContents = () => {
                 </div>
               </div>
             ))}
-          </div>
+          </>
         );
       case 'comment':
         return (
@@ -128,7 +128,13 @@ const DetailContents = () => {
     }
   };
 
-  return <Tabs categories={categories} renderContent={renderContent} />;
+  return (
+    <Tabs
+      categories={categories}
+      renderContent={renderContent}
+      hasBefore={true}
+    />
+  );
 };
 
 export default DetailContents;

@@ -3,6 +3,8 @@ import localFont from 'next/font/local';
 
 import ClientLayout from '@/components/ClientLayout';
 
+import MSWInitializer from '@/components/MSWInitializer';
+
 import '../styles/core/globals.css';
 import '../styles/core/custom.css'; /* 슬라이더 커스텀 css */
 
@@ -52,6 +54,7 @@ export default function RootLayout({
       <body
         className={`${pretendard.variable} ${ibmPlexSanskr.variable} ${suit.variable} ${title.variable}`}
       >
+        <MSWInitializer />
         <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
