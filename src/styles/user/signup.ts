@@ -31,21 +31,27 @@ const Container2 = styled.div`
 `;
 
 const Header = styled.div`
-  padding: 20px;
+  padding: 20px 0;
   width: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
 `;
 
 const HeaderInner = styled.div`
-  font-size: 16px;
+  font-size: 1.6rem;
   color: #e7e7e7;
   width: 100%;
   display: flex;
   justify-content: center;
 `;
 
-const Close = styled.div``;
+const Close = styled.div`
+  font-size: 1.4rem;
+  color: #e7e7e7;
+  min-width: 30px;
+  display: flex;
+`;
 
 const Title2 = styled.h1`
   padding: 20px 0px;
@@ -59,7 +65,7 @@ const Caption = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-  padding: 40px 45px;
+  padding: 5vw;
   font-weight: 300;
   text-align: center;
   white-space: pre-wrap;
@@ -67,7 +73,7 @@ const Caption = styled.div`
 
 // Step 1 styles
 const ImageContainer = styled.div`
-  margin-top: 40px;
+  margin-top: 4vh;
   position: relative;
   width: 90px;
   height: 90px;
@@ -93,15 +99,14 @@ const GenreLabel = styled.span`
 // Step 2 styles
 const Step2Container = styled.div`
   /* padding: 0 20px; */
-  padding-top: 25px;
   text-align: center;
 `;
 
 const GenreStep2 = styled.p`
-  padding: 10px 20px;
+  padding: 10rem 20px;
   border-radius: 50px;
   color: black;
-  font-size: 24px;
+  font-size: 2rem;
   font-weight: 300;
   text-align: center;
   display: inline-block;

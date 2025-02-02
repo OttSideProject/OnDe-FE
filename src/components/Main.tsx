@@ -40,7 +40,7 @@ const Main = () => {
             </li>
             <li>
               {' '}
-              <Link href="/">로그인</Link>{' '}
+              <Link href="/users/login">로그인</Link>{' '}
             </li>
             <li>
               {' '}
