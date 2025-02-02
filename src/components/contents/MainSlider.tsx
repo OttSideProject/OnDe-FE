@@ -42,7 +42,7 @@ const MainSlider: React.FC<MainSliderProps> = ({ slides }) => {
   };
 
   return (
-    <div className={styles.container}>
+    <article className={styles.container}>
       <div className={styles.slider}>
         <Slider {...settings}>
           {slides.map((slide, index) => (
@@ -91,7 +91,7 @@ const MainSlider: React.FC<MainSliderProps> = ({ slides }) => {
           ))}
         </Slider>
       </div>
-    </div>
+    </article>
   );
 };
 

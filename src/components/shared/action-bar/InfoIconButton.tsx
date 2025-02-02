@@ -1,8 +1,11 @@
 'use client';
 
-import { InfoIconButtonProps } from '@/_types/contents/contents';
-
 import styles from './IconButton.module.css';
+
+/* IconButton type */
+type InfoIconButtonProps = {
+  onClick: () => void;
+};
 
 const InfoIconButton: React.FC<InfoIconButtonProps> = ({ onClick }) => {
   return (

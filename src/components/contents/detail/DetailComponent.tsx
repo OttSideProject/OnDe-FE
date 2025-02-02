@@ -130,17 +130,18 @@ const DetailComponent: React.FC<{}> = () => {
   if (error) return <div>Error: {error.message}</div>;
 
   return (
-    <div className={styles.container}>
+    <section className={styles.container}>
       {/* DropDown이 열려있을 때 DimmedBackground 표시 */}
       {isDropDownOpen && (
-        <>
+        <div role="dialog" aria-labelledby="modal-title" aria-describedby="
+modal-description">
           <DimmedBackground onClick={closeDropDown} />
           <DropDownOptions
             options={options}
             height={580}
             title="시청하실 ott 를 선택하세요."
           />
-        </>
+        </div>
       )}
       <figure className={styles.imageContainer}>
         <img src={data?.imageUrl} alt={data?.title} />
@@ -182,7 +183,7 @@ const DetailComponent: React.FC<{}> = () => {
           </Button>
         </BtnDetailInnerChildStyle>
       </div>
-    </div>
+    </section>
   );
 };
 

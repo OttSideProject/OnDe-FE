@@ -1,0 +1,757 @@
+{
+  "pageNo": 1,
+  "totalPages": 1,
+  "totalItems": 39,
+  "sections": [
+    {
+      "id": 1,
+      "title": "님이 즐겨찾는 콘텐츠",
+      "linkText": "",
+      "linkUrl": "/contents/collect-view",
+      "sectionSlides": [
+        {
+          "id": 1,
+          "imgUrl": "https://picsum.photos/104/156?random=1",
+          "detailUrl": "/contents/detail/1"
+        },
+        {
+          "id": 2,
+          "imgUrl": "https://picsum.photos/104/156?random=2",
+          "detailUrl": "/contents/detail/2"
+        },
+        {
+          "id": 3,
+          "imgUrl": "",
+          "detailUrl": ""
+        },
+        {
+          "id": 4,
+          "imgUrl": "",
+          "detailUrl": ""
+        },
+        {
+          "id": 5,
+          "imgUrl": "",
+          "detailUrl": ""
+        },
+        {
+          "id": 6,
+          "imgUrl": "",
+          "detailUrl": ""
+        },
+        {
+          "id": 7,
+          "imgUrl": "",
+          "detailUrl": ""
+        },
+        {
+          "id": 8,
+          "imgUrl": "",
+          "detailUrl": ""
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "소년만화 좋아하시죠?",
+      "linkText": "",
+      "linkUrl": "/contents/recommend",
+      "sectionSlides": [
+        {
+          "id": 1,
+          "imgUrl": "https://picsum.photos/104/156?random=1",
+          "detailUrl": "/contents/detail/1"
+        },
+        {
+          "id": 2,
+          "imgUrl": "https://picsum.photos/104/156?random=2",
+          "detailUrl": "/contents/detail/2"
+        },
+        {
+          "id": 3,
+          "imgUrl": "https://picsum.photos/104/156?random=3",
+          "detailUrl": "/contents/detail/3"
+        },
+        {
+          "id": 4,
+          "imgUrl": "https://picsum.photos/104/156?random=4",
+          "detailUrl": "/contents/detail/4"
+        },
+        {
+          "id": 5,
+          "imgUrl": "https://picsum.photos/104/156?random=5",
+          "detailUrl": "/contents/detail/5"
+        },
+        {
+          "id": 6,
+          "imgUrl": "https://picsum.photos/104/156?random=1",
+          "detailUrl": "/contents/detail/1"
+        },
+        {
+          "id": 7,
+          "imgUrl": "https://picsum.photos/104/156?random=2",
+          "detailUrl": "/contents/detail/2"
+        },
+        {
+          "id": 8,
+          "imgUrl": "https://picsum.photos/104/156?random=3",
+          "detailUrl": "/contents/detail/3"
+        },
+        {
+          "id": 9,
+          "imgUrl": "https://picsum.photos/104/156?random=4",
+          "detailUrl": "/contents/detail/4"
+        },
+        {
+          "id": 10,
+          "imgUrl": "https://picsum.photos/104/156?random=5",
+          "detailUrl": "/contents/detail/5"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "NEW! 따끈따끈한 신작",
+      "linkText": "",
+      "linkUrl": "/contents/new",
+      "sectionSlides": [
+        {
+          "id": 1,
+          "imgUrl": "https://picsum.photos/104/156?random=1",
+          "detailUrl": "/contents/detail/1"
+        },
+        {
+          "id": 2,
+          "imgUrl": "https://picsum.photos/104/156?random=2",
+          "detailUrl": "/contents/detail/2"
+        },
+        {
+          "id": 3,
+          "imgUrl": "https://picsum.photos/104/156?random=3",
+          "detailUrl": "/contents/detail/3"
+        },
+        {
+          "id": 4,
+          "imgUrl": "https://picsum.photos/104/156?random=4",
+          "detailUrl": "/contents/detail/4"
+        },
+        {
+          "id": 5,
+          "imgUrl": "https://picsum.photos/104/156?random=5",
+          "detailUrl": "/contents/detail/5"
+        },
+        {
+          "id": 6,
+          "imgUrl": "https://picsum.photos/104/156?random=6",
+          "detailUrl": "/contents/detail/6"
+        },
+        {
+          "id": 7,
+          "imgUrl": "https://picsum.photos/104/156?random=7",
+          "detailUrl": "/contents/detail/7"
+        },
+        {
+          "id": 8,
+          "imgUrl": "https://picsum.photos/104/156?random=8",
+          "detailUrl": "/contents/detail/8"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "지금 가장 인기있는 시리즈",
+      "linkText": "",
+      "linkUrl": "/contents/popular-dramas",
+      "sectionSlides": [
+        {
+          "id": 1,
+          "imgUrl": "https://picsum.photos/104/156?random=1",
+          "detailUrl": "/contents/detail/1"
+        },
+        {
+          "id": 2,
+          "imgUrl": "https://picsum.photos/104/156?random=2",
+          "detailUrl": "/contents/detail/2"
+        },
+        {
+          "id": 3,
+          "imgUrl": "https://picsum.photos/104/156?random=3",
+          "detailUrl": "/contents/detail/3"
+        },
+        {
+          "id": 4,
+          "imgUrl": "https://picsum.photos/104/156?random=4",
+          "detailUrl": "/contents/detail/4"
+        },
+        {
+          "id": 5,
+          "imgUrl": "https://picsum.photos/104/156?random=5",
+          "detailUrl": "/contents/detail/5"
+        },
+        {
+          "id": 6,
+          "imgUrl": "https://picsum.photos/104/156?random=6",
+          "detailUrl": "/contents/detail/6"
+        },
+        {
+          "id": 7,
+          "imgUrl": "https://picsum.photos/104/156?random=7",
+          "detailUrl": "/contents/detail/7"
+        },
+        {
+          "id": 8,
+          "imgUrl": "https://picsum.photos/104/156?random=8",
+          "detailUrl": "/contents/detail/8"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "지금 가장 인기있는 영화",
+      "linkText": "",
+      "linkUrl": "/contents/popular-movies",
+      "sectionSlides": [
+        {
+          "id": 1,
+          "imgUrl": "https://picsum.photos/104/156?random=1",
+          "detailUrl": "/contents/detail/1"
+        },
+        {
+          "id": 2,
+          "imgUrl": "https://picsum.photos/104/156?random=2",
+          "detailUrl": "/contents/detail/2"
+        },
+        {
+          "id": 3,
+          "imgUrl": "https://picsum.photos/104/156?random=3",
+          "detailUrl": "/contents/detail/3"
+        },
+        {
+          "id": 4,
+          "imgUrl": "https://picsum.photos/104/156?random=4",
+          "detailUrl": "/contents/detail/4"
+        },
+        {
+          "id": 5,
+          "imgUrl": "https://picsum.photos/104/156?random=5",
+          "detailUrl": "/contents/detail/5"
+        },
+        {
+          "id": 6,
+          "imgUrl": "https://picsum.photos/104/156?random=6",
+          "detailUrl": "/contents/detail/6"
+        },
+        {
+          "id": 7,
+          "imgUrl": "https://picsum.photos/104/156?random=7",
+          "detailUrl": "/contents/detail/7"
+        },
+        {
+          "id": 8,
+          "imgUrl": "https://picsum.photos/104/156?random=8",
+          "detailUrl": "/contents/detail/8"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "님이 즐겨찾는 콘텐츠",
+      "linkText": "",
+      "linkUrl": "/contents/collect-view",
+      "sectionSlides": [
+        {
+          "id": 1,
+          "imgUrl": "https://picsum.photos/104/156?random=1",
+          "detailUrl": "/contents/detail/1"
+        },
+        {
+          "id": 2,
+          "imgUrl": "https://picsum.photos/104/156?random=2",
+          "detailUrl": "/contents/detail/2"
+        },
+        {
+          "id": 3,
+          "imgUrl": "",
+          "detailUrl": ""
+        },
+        {
+          "id": 4,
+          "imgUrl": "",
+          "detailUrl": ""
+        },
+        {
+          "id": 5,
+          "imgUrl": "",
+          "detailUrl": ""
+        },
+        {
+          "id": 6,
+          "imgUrl": "",
+          "detailUrl": ""
+        },
+        {
+          "id": 7,
+          "imgUrl": "",
+          "detailUrl": ""
+        },
+        {
+          "id": 8,
+          "imgUrl": "",
+          "detailUrl": ""
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "title": "소년만화 좋아하시죠?",
+      "linkText": "",
+      "linkUrl": "/contents/recommend",
+      "sectionSlides": [
+        {
+          "id": 1,
+          "imgUrl": "https://picsum.photos/104/156?random=1",
+          "detailUrl": "/contents/detail/1"
+        },
+        {
+          "id": 2,
+          "imgUrl": "https://picsum.photos/104/156?random=2",
+          "detailUrl": "/contents/detail/2"
+        },
+        {
+          "id": 3,
+          "imgUrl": "https://picsum.photos/104/156?random=3",
+          "detailUrl": "/contents/detail/3"
+        },
+        {
+          "id": 4,
+          "imgUrl": "https://picsum.photos/104/156?random=4",
+          "detailUrl": "/contents/detail/4"
+        },
+        {
+          "id": 5,
+          "imgUrl": "https://picsum.photos/104/156?random=5",
+          "detailUrl": "/contents/detail/5"
+        },
+        {
+          "id": 6,
+          "imgUrl": "https://picsum.photos/104/156?random=1",
+          "detailUrl": "/contents/detail/1"
+        },
+        {
+          "id": 7,
+          "imgUrl": "https://picsum.photos/104/156?random=2",
+          "detailUrl": "/contents/detail/2"
+        },
+        {
+          "id": 8,
+          "imgUrl": "https://picsum.photos/104/156?random=3",
+          "detailUrl": "/contents/detail/3"
+        },
+        {
+          "id": 9,
+          "imgUrl": "https://picsum.photos/104/156?random=4",
+          "detailUrl": "/contents/detail/4"
+        },
+        {
+          "id": 10,
+          "imgUrl": "https://picsum.photos/104/156?random=5",
+          "detailUrl": "/contents/detail/5"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "title": "NEW! 따끈따끈한 신작",
+      "linkText": "",
+      "linkUrl": "/contents/new",
+      "sectionSlides": [
+        {
+          "id": 1,
+          "imgUrl": "https://picsum.photos/104/156?random=1",
+          "detailUrl": "/contents/detail/1"
+        },
+        {
+          "id": 2,
+          "imgUrl": "https://picsum.photos/104/156?random=2",
+          "detailUrl": "/contents/detail/2"
+        },
+        {
+          "id": 3,
+          "imgUrl": "https://picsum.photos/104/156?random=3",
+          "detailUrl": "/contents/detail/3"
+        },
+        {
+          "id": 4,
+          "imgUrl": "https://picsum.photos/104/156?random=4",
+          "detailUrl": "/contents/detail/4"
+        },
+        {
+          "id": 5,
+          "imgUrl": "https://picsum.photos/104/156?random=5",
+          "detailUrl": "/contents/detail/5"
+        },
+        {
+          "id": 6,
+          "imgUrl": "https://picsum.photos/104/156?random=6",
+          "detailUrl": "/contents/detail/6"
+        },
+        {
+          "id": 7,
+          "imgUrl": "https://picsum.photos/104/156?random=7",
+          "detailUrl": "/contents/detail/7"
+        },
+        {
+          "id": 8,
+          "imgUrl": "https://picsum.photos/104/156?random=8",
+          "detailUrl": "/contents/detail/8"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "title": "지금 가장 인기있는 시리즈",
+      "linkText": "",
+      "linkUrl": "/contents/popular-dramas",
+      "sectionSlides": [
+        {
+          "id": 1,
+          "imgUrl": "https://picsum.photos/104/156?random=1",
+          "detailUrl": "/contents/detail/1"
+        },
+        {
+          "id": 2,
+          "imgUrl": "https://picsum.photos/104/156?random=2",
+          "detailUrl": "/contents/detail/2"
+        },
+        {
+          "id": 3,
+          "imgUrl": "https://picsum.photos/104/156?random=3",
+          "detailUrl": "/contents/detail/3"
+        },
+        {
+          "id": 4,
+          "imgUrl": "https://picsum.photos/104/156?random=4",
+          "detailUrl": "/contents/detail/4"
+        },
+        {
+          "id": 5,
+          "imgUrl": "https://picsum.photos/104/156?random=5",
+          "detailUrl": "/contents/detail/5"
+        },
+        {
+          "id": 6,
+          "imgUrl": "https://picsum.photos/104/156?random=6",
+          "detailUrl": "/contents/detail/6"
+        },
+        {
+          "id": 7,
+          "imgUrl": "https://picsum.photos/104/156?random=7",
+          "detailUrl": "/contents/detail/7"
+        },
+        {
+          "id": 8,
+          "imgUrl": "https://picsum.photos/104/156?random=8",
+          "detailUrl": "/contents/detail/8"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "title": "지금 가장 인기있는 영화",
+      "linkText": "",
+      "linkUrl": "/contents/popular-movies",
+      "sectionSlides": [
+        {
+          "id": 1,
+          "imgUrl": "https://picsum.photos/104/156?random=1",
+          "detailUrl": "/contents/detail/1"
+        },
+        {
+          "id": 2,
+          "imgUrl": "https://picsum.photos/104/156?random=2",
+          "detailUrl": "/contents/detail/2"
+        },
+        {
+          "id": 3,
+          "imgUrl": "https://picsum.photos/104/156?random=3",
+          "detailUrl": "/contents/detail/3"
+        },
+        {
+          "id": 4,
+          "imgUrl": "https://picsum.photos/104/156?random=4",
+          "detailUrl": "/contents/detail/4"
+        },
+        {
+          "id": 5,
+          "imgUrl": "https://picsum.photos/104/156?random=5",
+          "detailUrl": "/contents/detail/5"
+        },
+        {
+          "id": 6,
+          "imgUrl": "https://picsum.photos/104/156?random=6",
+          "detailUrl": "/contents/detail/6"
+        },
+        {
+          "id": 7,
+          "imgUrl": "https://picsum.photos/104/156?random=7",
+          "detailUrl": "/contents/detail/7"
+        },
+        {
+          "id": 8,
+          "imgUrl": "https://picsum.photos/104/156?random=8",
+          "detailUrl": "/contents/detail/8"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "title": "님이 즐겨찾는 콘텐츠",
+      "linkText": "",
+      "linkUrl": "/contents/collect-view",
+      "sectionSlides": [
+        {
+          "id": 1,
+          "imgUrl": "https://picsum.photos/104/156?random=1",
+          "detailUrl": "/contents/detail/1"
+        },
+        {
+          "id": 2,
+          "imgUrl": "https://picsum.photos/104/156?random=2",
+          "detailUrl": "/contents/detail/2"
+        },
+        {
+          "id": 3,
+          "imgUrl": "",
+          "detailUrl": ""
+        },
+        {
+          "id": 4,
+          "imgUrl": "",
+          "detailUrl": ""
+        },
+        {
+          "id": 5,
+          "imgUrl": "",
+          "detailUrl": ""
+        },
+        {
+          "id": 6,
+          "imgUrl": "",
+          "detailUrl": ""
+        },
+        {
+          "id": 7,
+          "imgUrl": "",
+          "detailUrl": ""
+        },
+        {
+          "id": 8,
+          "imgUrl": "",
+          "detailUrl": ""
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "title": "소년만화 좋아하시죠?",
+      "linkText": "",
+      "linkUrl": "/contents/recommend",
+      "sectionSlides": [
+        {
+          "id": 1,
+          "imgUrl": "https://picsum.photos/104/156?random=1",
+          "detailUrl": "/contents/detail/1"
+        },
+        {
+          "id": 2,
+          "imgUrl": "https://picsum.photos/104/156?random=2",
+          "detailUrl": "/contents/detail/2"
+        },
+        {
+          "id": 3,
+          "imgUrl": "https://picsum.photos/104/156?random=3",
+          "detailUrl": "/contents/detail/3"
+        },
+        {
+          "id": 4,
+          "imgUrl": "https://picsum.photos/104/156?random=4",
+          "detailUrl": "/contents/detail/4"
+        },
+        {
+          "id": 5,
+          "imgUrl": "https://picsum.photos/104/156?random=5",
+          "detailUrl": "/contents/detail/5"
+        },
+        {
+          "id": 6,
+          "imgUrl": "https://picsum.photos/104/156?random=1",
+          "detailUrl": "/contents/detail/1"
+        },
+        {
+          "id": 7,
+          "imgUrl": "https://picsum.photos/104/156?random=2",
+          "detailUrl": "/contents/detail/2"
+        },
+        {
+          "id": 8,
+          "imgUrl": "https://picsum.photos/104/156?random=3",
+          "detailUrl": "/contents/detail/3"
+        },
+        {
+          "id": 9,
+          "imgUrl": "https://picsum.photos/104/156?random=4",
+          "detailUrl": "/contents/detail/4"
+        },
+        {
+          "id": 10,
+          "imgUrl": "https://picsum.photos/104/156?random=5",
+          "detailUrl": "/contents/detail/5"
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "title": "NEW! 따끈따끈한 신작",
+      "linkText": "",
+      "linkUrl": "/contents/new",
+      "sectionSlides": [
+        {
+          "id": 1,
+          "imgUrl": "https://picsum.photos/104/156?random=1",
+          "detailUrl": "/contents/detail/1"
+        },
+        {
+          "id": 2,
+          "imgUrl": "https://picsum.photos/104/156?random=2",
+          "detailUrl": "/contents/detail/2"
+        },
+        {
+          "id": 3,
+          "imgUrl": "https://picsum.photos/104/156?random=3",
+          "detailUrl": "/contents/detail/3"
+        },
+        {
+          "id": 4,
+          "imgUrl": "https://picsum.photos/104/156?random=4",
+          "detailUrl": "/contents/detail/4"
+        },
+        {
+          "id": 5,
+          "imgUrl": "https://picsum.photos/104/156?random=5",
+          "detailUrl": "/contents/detail/5"
+        },
+        {
+          "id": 6,
+          "imgUrl": "https://picsum.photos/104/156?random=6",
+          "detailUrl": "/contents/detail/6"
+        },
+        {
+          "id": 7,
+          "imgUrl": "https://picsum.photos/104/156?random=7",
+          "detailUrl": "/contents/detail/7"
+        },
+        {
+          "id": 8,
+          "imgUrl": "https://picsum.photos/104/156?random=8",
+          "detailUrl": "/contents/detail/8"
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "title": "지금 가장 인기있는 시리즈",
+      "linkText": "",
+      "linkUrl": "/contents/popular-dramas",
+      "sectionSlides": [
+        {
+          "id": 1,
+          "imgUrl": "https://picsum.photos/104/156?random=1",
+          "detailUrl": "/contents/detail/1"
+        },
+        {
+          "id": 2,
+          "imgUrl": "https://picsum.photos/104/156?random=2",
+          "detailUrl": "/contents/detail/2"
+        },
+        {
+          "id": 3,
+          "imgUrl": "https://picsum.photos/104/156?random=3",
+          "detailUrl": "/contents/detail/3"
+        },
+        {
+          "id": 4,
+          "imgUrl": "https://picsum.photos/104/156?random=4",
+          "detailUrl": "/contents/detail/4"
+        },
+        {
+          "id": 5,
+          "imgUrl": "https://picsum.photos/104/156?random=5",
+          "detailUrl": "/contents/detail/5"
+        },
+        {
+          "id": 6,
+          "imgUrl": "https://picsum.photos/104/156?random=6",
+          "detailUrl": "/contents/detail/6"
+        },
+        {
+          "id": 7,
+          "imgUrl": "https://picsum.photos/104/156?random=7",
+          "detailUrl": "/contents/detail/7"
+        },
+        {
+          "id": 8,
+          "imgUrl": "https://picsum.photos/104/156?random=8",
+          "detailUrl": "/contents/detail/8"
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "title": "지금 가장 인기있는 영화",
+      "linkText": "",
+      "linkUrl": "/contents/popular-movies",
+      "sectionSlides": [
+        {
+          "id": 1,
+          "imgUrl": "https://picsum.photos/104/156?random=1",
+          "detailUrl": "/contents/detail/1"
+        },
+        {
+          "id": 2,
+          "imgUrl": "https://picsum.photos/104/156?random=2",
+          "detailUrl": "/contents/detail/2"
+        },
+        {
+          "id": 3,
+          "imgUrl": "https://picsum.photos/104/156?random=3",
+          "detailUrl": "/contents/detail/3"
+        },
+        {
+          "id": 4,
+          "imgUrl": "https://picsum.photos/104/156?random=4",
+          "detailUrl": "/contents/detail/4"
+        },
+        {
+          "id": 5,
+          "imgUrl": "https://picsum.photos/104/156?random=5",
+          "detailUrl": "/contents/detail/5"
+        },
+        {
+          "id": 6,
+          "imgUrl": "https://picsum.photos/104/156?random=6",
+          "detailUrl": "/contents/detail/6"
+        },
+        {
+          "id": 7,
+          "imgUrl": "https://picsum.photos/104/156?random=7",
+          "detailUrl": "/contents/detail/7"
+        },
+        {
+          "id": 8,
+          "imgUrl": "https://picsum.photos/104/156?random=8",
+          "detailUrl": "/contents/detail/8"
+        }
+      ]
+    }
+  ]
+}

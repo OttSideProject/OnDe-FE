@@ -1,8 +1,10 @@
 'use client';
 
-import { MoreOptionsIconButtonProps } from '@/_types/contents/contents';
-
 import styles from './IconButton.module.css';
+
+type MoreOptionsIconButtonProps = {
+  onClick: () => void;
+};
 
 const MoreOptionsIconButton: React.FC<MoreOptionsIconButtonProps> = ({
   onClick,

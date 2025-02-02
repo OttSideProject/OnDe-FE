@@ -1,0 +1,19 @@
+.ottBtn {
+  width: 24%;
+  min-width: 76px;
+  height: 100%;
+  min-height: 32px;
+  padding: 10px 16px;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  background-color: var(--gray780);
+  filter: grayscale(1);
+}
+
+.ottBtn.active {
+  filter: unset;
+  -webkit-filter: unset;
+}

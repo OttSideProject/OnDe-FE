@@ -56,18 +56,18 @@ const BoardSectionSlider: React.FC<BoardSectionSliderProps> = ({
   };
 
   return (
-    <div className={styles.container}>
+    <section className={styles.container}>
       <div className={`${styles.slider} board-section-slider`}>
         <SubHeader title="지금 뜨는 ON생각" />
         <Slider {...settings}>
           {boardSectionSlides.map((boardSectionSlide, index) => (
             <div
+              key={index}
               onMouseDown={handleMouseDown}
               onMouseMove={handleMouseMove}
               onMouseUp={handleMouseUp}
             >
               <Link
-                key={index}
                 href={boardSectionSlide.detailUrl}
                 className={styles.cardLink}
                 onClick={(e) => {
@@ -140,7 +140,7 @@ const BoardSectionSlider: React.FC<BoardSectionSliderProps> = ({
           ))}
         </Slider>
       </div>
-    </div>
+    </section>
   );
 };
 
