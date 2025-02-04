@@ -19,19 +19,15 @@
   height: 210px;
   max-width: 175px !important;
   margin: 0 auto;
-  border-radius: 6px;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
 
   &:nth-child(3n + 2) {
     width: 29vw;
     height: 220px;
-  }
-
-  &:nth-child(3n + 2) .topNumber {
-    color: var(--primary80);
-    text-shadow: 0 0 8px var(--primary80),
-      /* 부드러운 내부 광채 */ 0 0 16px var(--primary80),
-      /* 확산되는 빛 */ 0 0 20px var(--primary80),
-      /* 더 넓은 확산 빛 */ 0 0 28px rgba(215, 255, 80, 0.5); /* 희미한 외곽선 빛 */
   }
 }
 
@@ -91,16 +87,15 @@
 .textContainer {
   position: absolute;
   z-index: 2;
-  left: 50%;
-  bottom: -24px;
-  transform: translateX(-50%);
+  right: 10px;
+  bottom: -14px;
 }
 
 .topNumber {
   color: var(--gray50);
   text-align: center;
   font-family: var(--title-font);
-  font-size: 5rem;
+  font-size: 4rem;
   font-weight: 800;
 }
 

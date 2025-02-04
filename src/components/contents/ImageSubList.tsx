@@ -10,11 +10,10 @@ import styles from './ImageSubList.module.css';
 const ImageSubList: React.FC<RankingSubListContainerProps> = ({ rankings }) => {
   // useCenterTopNumberList 훅으로 rankings 배열 재구성
 
-  const centerdRankings = useCenterTopNumberList(rankings);
   return (
     <>
       <div className={styles.list}>
-        {centerdRankings.map((ranking) => (
+        {rankings.map((ranking) => (
           <Link
             key={ranking.id}
             href={`/details/${ranking.content_id}`}
