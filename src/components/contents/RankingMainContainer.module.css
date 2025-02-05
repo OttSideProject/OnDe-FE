@@ -136,9 +136,17 @@
 }
 
 .rankingItem figcaption h4 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 1.1rem;
   color: var(--gray200);
   font-weight: 400;
+}
+
+.rankingItem figcaption h4 img {
+  margin-top: -2px;
+  opacity: 0.6;
 }
 
 .textContainer {
