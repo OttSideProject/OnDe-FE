@@ -10,13 +10,14 @@ import ImageSubList from '@/components/contents/ImageSubList';
 /* API */
 import { fetchRankings } from '@/api/fetchRankings';
 
+/* Utils */
+import { ageImage } from '@/utils/ageImage';
+
 /* Types */
 import { Ranking, RankingsResponse } from '@/_types/contents/contents';
 
 /* Styles */
 import styles from './RankingSubListContainer.module.css';
-
-// const id = uuidv4();
 
 type RankingSubListContainerProps = {
   type: 'monthly' | 'weekly'; // 랭킹 타입
@@ -61,6 +62,7 @@ const RankingSubListContainer: React.FC<RankingSubListContainerProps> = ({
         .map((ranking, index) => ({
           ...ranking,
           ranking_num: index + 4, // 순위가 4부터 시작
+					age: ageImage(ranking.age), // age값을 이미지 URL로 변환 
         }));
 
       setRankings((prevRankings) => {

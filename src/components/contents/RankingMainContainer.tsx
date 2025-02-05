@@ -6,6 +6,8 @@ import { useRouter } from 'next/navigation';
 import { v4 as uuidv4 } from 'uuid';
 
 import { MainSliderProps } from '@/_types/contents/contents';
+/* Utils */
+import { ageImage } from '@/utils/ageImage';
 
 import useCenterTopNumberList from '@/hooks/useCenterTopNumberList';
 
@@ -43,7 +45,15 @@ const RankingMainContainer: React.FC<MainSliderProps> = ({ slides }) => {
               <div className={styles.bottomContainer}>
                 <figcaption>
                   <h3>{slide.title}</h3>
-                  <h4>{slide.subTitle.join(' · ')}</h4>
+                  <h4>
+                    <span>{slide.subTitle.join(' · ')} · </span>
+                    <Image
+                      src={ageImage(slide.age ?? '')} // age는 이제 이미지 URL
+                      alt="Age restriction"
+                      width={20}
+                      height={20}
+                    />
+                  </h4>
                 </figcaption>
               </div>
               <div className={styles.textContainer}>

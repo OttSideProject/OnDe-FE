@@ -29,19 +29,22 @@ const rankingTopList: Slide[] = [
   {
     id: 1,
     title: '더 인플루언서',
-    subTitle: ['흥미진진한', '시리즈', '서바이벌'],
+		age: 'all',
+    subTitle: ['흥미진진한', '시리즈'],
     url: 'https://picsum.photos/240/360?random=1',
   },
   {
     id: 2,
+		age: '18+',
     title: '에일리언',
-    subTitle: ['독특한', '서스펜스', 'SF'],
+    subTitle: ['독특한', '서스펜스'],
     url: 'https://picsum.photos/240/360?random=2',
   },
   {
     id: 3,
+		age:'15+',
     title: '귀공자',
-    subTitle: ['독특한', '서스펜스', 'SF'],
+    subTitle: ['독특한', '서스펜스'],
     url: 'https://picsum.photos/240/360?random=3',
   },
 ];

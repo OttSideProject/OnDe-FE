@@ -2,6 +2,7 @@
 export type Slide = {
   id: number;
   url: string;
+	age?: string;
   title: string;
   subTitle: string[];
 };
