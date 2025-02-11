@@ -106,8 +106,6 @@ html {
 
   --design-font: 'IBMPlexSansKR', sans-serif;
 
-  --number-font: 'SUIT', sans-serif;
-
 	--title-font : 'Paperlogy', sans-serif;
 }
 
@@ -293,10 +291,6 @@ textarea:focus:not(:focus-visible) {
   background-size: 100%;
 }
 
-/* 숫자 폰트 */
-.number-font {
-  font-family: var(--number-font);
-}
 
 /* 콘텐츠 커밍 순  */
 .coming-soon {

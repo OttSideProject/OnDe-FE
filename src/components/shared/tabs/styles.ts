@@ -33,9 +33,6 @@ export const CategoryTitle = styled.button<CategoryTitleStyleProps>`
       ? '0.2rem solid var(--primary100)'
       : '0rem'};
 
-  span {
-    font-family: var(--number-font);
-  }
 `;
 
 export const CategoryWrapper = styled.section<CategoryWrapperStyleProps>`

@@ -130,11 +130,6 @@
   color: var(--gray400);
 }
 
-.likeCount,
-.messageCount {
-  font-family: var(--number-font);
-}
-
 .emptySlide {
   opacity: 0;
   pointer-events: none; /* 클릭 불가능하게 설정 */
