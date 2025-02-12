@@ -45,7 +45,7 @@ export type BoardSectionSlide = {
   profileImg?: string;
   imgUrl?: string;
   detailUrl: string;
-  title: string;
+  title?: string;
   description: string;
   likeCount?: number;
   messageCount?: number;

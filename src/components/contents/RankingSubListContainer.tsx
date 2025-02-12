@@ -77,7 +77,7 @@ const RankingSubListContainer: React.FC<RankingSubListContainerProps> = ({
 
   return (
     <section className={styles.container}>
-      <SubHeader title="지금 가장 HOT한 콘텐츠" />
+      <SubHeader imageTitle="지금 가장 HOT한 콘텐츠" pageType='ranking'/>
       {/* 데이터를 ImageSubList로 전달 */}
       <ImageSubList rankings={rankings} />
       {isFetchingNextPage && <p>Loading more...</p>}

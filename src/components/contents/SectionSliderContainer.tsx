@@ -109,11 +109,11 @@ const SectionSliderContainer: React.FC = () => {
           <section key={section.id}>
             {/* 첫 번째 섹션일 때 사용자 이름을 추가 */}
             <SubHeader
-              title={
-                section.id === 1 ? `${userName}${section.title}` : section.title
-              }
+              userName={section.id === 1 ? userName : ''} // userName prop 추가
+              imageTitle={section.title} // imageTitle 추가
               linkText={section.linkText}
               linkUrl={section.linkUrl}
+              pageType="contentMain" // pageType 추가
             />
             <SectionSlider
               sectionSlides={section.sectionSlides}

@@ -5,7 +5,7 @@
   "sections": [
     {
       "id": 1,
-      "title": "님이 즐겨찾는 콘텐츠",
+      "title": "즐겨찾는 콘텐츠",
       "linkText": "",
       "linkUrl": "/contents/collect-view",
       "sectionSlides": [
@@ -255,7 +255,7 @@
     },
     {
       "id": 6,
-      "title": "님이 즐겨찾는 콘텐츠",
+      "title": "지금 가장 인기있는 영화",
       "linkText": "",
       "linkUrl": "/contents/collect-view",
       "sectionSlides": [
@@ -505,7 +505,7 @@
     },
     {
       "id": 11,
-      "title": "님이 즐겨찾는 콘텐츠",
+      "title": "지금 가장 인기있는 영화",
       "linkText": "",
       "linkUrl": "/contents/collect-view",
       "sectionSlides": [

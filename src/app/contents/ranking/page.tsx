@@ -7,14 +7,12 @@ import StatusBar from '@/components/shared/status-bar/StatusBar';
 import Header from '@/components/contents/header/Header';
 import RankingMainContainer from '@/components/contents/RankingMainContainer';
 import RankingTabContents from '@/components/contents/RankingTabContents';
-import OTTSelector from '@/components/contents/OTTSelector';
 
 /* Types */
 import { Slide } from '@/_types/contents/contents';
 
 /* Styles */
 import styles from './page.module.css';
-import RankingSubListContainer from '@/components/contents/RankingSubListContainer';
 
 const headerText = '전체 콘텐츠 랭킹';
 
@@ -29,20 +27,20 @@ const rankingTopList: Slide[] = [
   {
     id: 1,
     title: '더 인플루언서',
-		age: 'all',
+    age: 'all',
     subTitle: ['흥미진진한', '시리즈'],
     url: 'https://picsum.photos/240/360?random=1',
   },
   {
     id: 2,
-		age: '18+',
+    age: '18+',
     title: '에일리언',
     subTitle: ['독특한', '서스펜스'],
     url: 'https://picsum.photos/240/360?random=2',
   },
   {
     id: 3,
-		age:'15+',
+    age: '15+',
     title: '귀공자',
     subTitle: ['독특한', '서스펜스'],
     url: 'https://picsum.photos/240/360?random=3',
@@ -76,7 +74,7 @@ const HomePage: React.FC = () => {
     <main className={styles.container}>
       <StatusBar statusText="랭킹" iconUrlList={iconUrlList} />
       <section>
-        <Header headerText={headerText} iconUrl={iconUrl} />
+        <Header headerText={headerText} iconUrl={iconUrl} imageTitle="전체 콘텐츠 랭킹" pageType="ranking" />
         <RankingMainContainer slides={rankingTopList} />
         <RankingTabContents />
       </section>
