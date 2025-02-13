@@ -10,6 +10,8 @@
 .container h3 {
   font-family: var(--title-font);
   font-size: inherit;
+  display: flex;
+  align-items: center;
 }
 
 .container h3 + a {
@@ -18,4 +20,8 @@
   align-items: center;
   font-size: 1.2rem;
   color: var(--gray100);
+}
+
+.imageWithMargin {
+  margin-left: 8px;
 }
