@@ -7,6 +7,7 @@ type SubHeaderProps = {
   title?: string; // title prop is optional with default value
   imageTitle: string; // imageTitle prop 추가
   userName?: string; // userName prop 추가
+  recommendedTitle?: string; // recommendedTitle prop 추가
   linkText?: string;
   linkUrl?: string;
   pageType: 'contentMain' | 'ranking' | 'recommended'; // 페이지 종류 추가
@@ -16,6 +17,7 @@ const SubHeader: React.FC<SubHeaderProps> = ({
   title = '', // default value for title
   imageTitle, // imageTitle prop 추가
   userName = '', // default value for userName
+  recommendedTitle = '', // default value for recommendedTitle
   linkUrl,
   linkText = '더보기',
   pageType,
@@ -23,13 +25,9 @@ const SubHeader: React.FC<SubHeaderProps> = ({
   return (
     <header className={styles.container}>
       <h3>
-        {userName ? (
-          <>
-            <span>{userName}</span> <SVGTitle pageType={pageType} imageTitle={imageTitle} />
-          </>
-        ) : (
-          <SVGTitle pageType={pageType} imageTitle={imageTitle} />
-        )}
+        {userName && <span>{userName}</span>}
+        {recommendedTitle && <span>{recommendedTitle}&nbsp;</span>}
+        <SVGTitle pageType={pageType} imageTitle={imageTitle} />
       </h3>
       {linkUrl && (
         <Link href={linkUrl} className={styles.link}>

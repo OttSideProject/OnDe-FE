@@ -22,7 +22,7 @@ import DropDownOptions from '../shared/action-bar/DropDownOptions';
 import styles from './SectionSliderContainer.module.css';
 
 const userName = '디미';
-
+const recommendedTitle = '예능';
 const SectionSliderContainer: React.FC = () => {
   const { isDropDownOpen, openDropDown, closeDropDown } = useDropDownStore();
   const { ref, inView } = useInView();
@@ -106,8 +106,9 @@ const SectionSliderContainer: React.FC = () => {
           <section key={section.id}>
             {/* 첫 번째 섹션일 때 사용자 이름을 추가 */}
             <SubHeader
-              userName={section.id === 1 ? userName : ''} // userName prop 추가
-              imageTitle={section.title} // imageTitle 추가
+              userName={section.id === 1 ? userName : ''} // userName 사용
+              recommendedTitle={section.id === 2 ? recommendedTitle : ''} // recommendedTitle 사용
+              imageTitle={section.title} // 항상 section.title을 사용
               linkText={section.linkText}
               linkUrl={section.linkUrl}
               pageType="contentMain" // pageType 추가
