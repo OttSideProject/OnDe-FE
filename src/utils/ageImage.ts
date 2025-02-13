@@ -16,5 +16,5 @@ export const ageImage = (age: string, category: 'detail' | 'shared'): string => 
     },
   };
 
-  return ageMap[category][age] || ageMap.ranking.all; // 기본 이미지 설정
+  return ageMap[category][age] || ageMap.shared.all; // 기본 이미지 설정
 };
