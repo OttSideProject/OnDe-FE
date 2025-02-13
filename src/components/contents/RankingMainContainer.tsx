@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { v4 as uuidv4 } from 'uuid';
 
-import { MainSliderProps } from '@/_types/contents/contents';
+import { RankingMainSliderProps } from '@/_types/contents/contents';
 /* Utils */
 import { ageImage } from '@/utils/ageImage';
 
@@ -13,7 +13,7 @@ import useCenterTopNumberList from '@/hooks/useCenterTopNumberList';
 
 import styles from './RankingMainContainer.module.css';
 
-const RankingMainContainer: React.FC<MainSliderProps> = ({ slides }) => {
+const RankingMainContainer: React.FC<RankingMainSliderProps> = ({ slides }) => {
   const [activeSlide, setActiveSlide] = useState<number>(0);
 
   const router = useRouter();
@@ -48,7 +48,7 @@ const RankingMainContainer: React.FC<MainSliderProps> = ({ slides }) => {
                   <h4>
                     <span>{slide.subTitle.join(' · ')} · </span>
                     <Image
-                      src={ageImage(slide.age ?? '')} // age는 이제 이미지 URL
+                      src={ageImage(slide.age ?? '', 'shared')} // age는 이제 이미지 URL
                       alt="Age restriction"
                       width={20}
                       height={20}

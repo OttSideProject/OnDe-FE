@@ -3,6 +3,7 @@ export type Slide = {
   id: number;
   url: string;
 	age?: string;
+  category?: 'shared';
   title: string;
   subTitle: string[];
 };
@@ -10,6 +11,8 @@ export type Slide = {
 export type MainSliderProps = {
   slides: Slide[];
 };
+
+export type RankingMainSliderProps = MainSliderProps; // RankingMainSliderProps 타입 추가
 
 /* SectionSlider type */
 export type Section = {
@@ -78,13 +81,14 @@ export type InfoItem = string | { type: 'image'; src: string; alt: string };
 // Ranking Data type
 
 export type Ranking = {
-  id: number;
-  age: string;
+  id: string;
+  content_id: string;
+  content_img: string;
   title: string;
   subTitle?: string[];
   ranking_num: number;
-  content_id: number;
-  content_img: string;
+  age: string;
+  category: 'shared'; // category 속성 추가
 };
 export type RankingsResponse = {
   pageNo: number;

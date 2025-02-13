@@ -1,10 +1,20 @@
-export const ageImage = (age: string): string => {
-  const ageMap: Record<string, string> = {
-    all: '/assets/images/ott_ages/all.svg',
-    // '12+': '/assets/images/ott_ages/pg-12.svg',
-    '15+': '/assets/images/ott_ages/pg-15.svg',
-    '18+': '/assets/images/ott_ages/adults.svg',
+export const ageImage = (age: string, category: 'detail' | 'shared'): string => {
+  const ageMap: Record<string, Record<string, string>> = {
+    detail: {
+      all: '/assets/images/ott_ages/detail-all.svg',
+      '7+': '/assets/images/ott_ages/detail-pg-7.svg',
+      '12+': '/assets/images/ott_ages/detail-pg-12.svg',
+      '15+': '/assets/images/ott_ages/detail-pg-15.svg',
+      '19': '/assets/images/ott_ages/detail-adults.svg',
+    },
+    shared: {
+      all: '/assets/images/ott_ages/all.svg',
+      '7+': '/assets/images/ott_ages/pg-7.svg',
+      '12+': '/assets/images/ott_ages/pg-12.svg',
+      '15+': '/assets/images/ott_ages/pg-15.svg',
+      '19': '/assets/images/ott_ages/adults.svg',
+    },
   };
 
-  return ageMap[age] || '/images/ott_ages/all.svg'; // 기본 이미지 설정
+  return ageMap[category][age] || ageMap.ranking.all; // 기본 이미지 설정
 };

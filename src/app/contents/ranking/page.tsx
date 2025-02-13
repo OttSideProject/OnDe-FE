@@ -33,7 +33,7 @@ const rankingTopList: Slide[] = [
   },
   {
     id: 2,
-    age: '18+',
+    age: '19',
     title: '에일리언',
     subTitle: ['독특한', '서스펜스'],
     url: 'https://picsum.photos/240/360?random=2',
