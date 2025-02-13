@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import styles from './SubHeader.module.css';
-import imageMapping from '@/utils/imageMapping'; // import the mapping
+import SVGTitle from '@/components/contents/SVGTitle'; // 새로운 SVG 컴포넌트 import
 
 /* SubHeader type */
 type SubHeaderProps = {
@@ -20,26 +20,15 @@ const SubHeader: React.FC<SubHeaderProps> = ({
   linkText = '더보기',
   pageType,
 }) => {
-  const imageTextUrl = imageMapping[pageType]?.[imageTitle] || ''; // get the image URL from the mapping
-  console.log('SubHeader title:', title);
-  console.log('SubHeader imageTitle:', imageTitle);
-  console.log('SubHeader userName:', userName);
-  console.log('SubHeader pageType:', pageType);
-  console.log('SubHeader imageTextUrl:', imageTextUrl);
-
   return (
     <header className={styles.container}>
-      <h3 aria-label={imageTextUrl}>
-        {imageTextUrl ? (
-          userName ? (
-            <>
-              <span>{userName}</span> <img src={imageTextUrl} alt={title} />
-            </>
-          ) : (
-            <img src={imageTextUrl} alt={title} className={styles.image} />
-          )
+      <h3>
+        {userName ? (
+          <>
+            <span>{userName}</span> <SVGTitle pageType={pageType} imageTitle={imageTitle} />
+          </>
         ) : (
-          title
+          <SVGTitle pageType={pageType} imageTitle={imageTitle} />
         )}
       </h3>
       {linkUrl && (
