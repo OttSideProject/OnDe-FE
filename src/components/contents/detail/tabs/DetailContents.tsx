@@ -1,6 +1,5 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import { Section } from '@/_types/contents/contents';
 import Tabs from '@/components/shared/tabs/Tabs';
 import ViewMoreButton from '@/components/shared/view-more/ViewMoreButton';
@@ -8,7 +7,7 @@ import SubHeader from '@/components/contents/header/SubHeader';
 import SectionSlider from '@/components/contents/SectionSlider';
 import styles from './DetailContents.module.css';
 
-const DetailContents = () => {
+const DetailContents = ({ id }: { id: number }) => {
   let [commentsCount, setCommentsCount] = useState(0);
 
   commentsCount = 777;
@@ -29,8 +28,6 @@ const DetailContents = () => {
 					러닝타임: 96분
 				`;
   const viewIcon = '/assets/images/icons/all-view-icon.svg';
-
-  const id = uuidv4();
 
   const sections: Section[] = [
     {
@@ -106,7 +103,7 @@ const DetailContents = () => {
             {/* SectionSlider */}
             {sections.map((section) => (
               <div key={section.id} className={styles.container}>
-                <SubHeader title={`'${section.title}'과(와) 비슷한 작품`} />
+                <SubHeader title={`'${section.title}'과(와) 비슷한 작품`} imageTitle={section.title} pageType="contentMain" />
                 <div className={styles.sliderContainer}>
                   <SectionSlider sectionSlides={section.sectionSlides} />
                 </div>

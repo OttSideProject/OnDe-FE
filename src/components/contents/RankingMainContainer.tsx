@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { v4 as uuidv4 } from 'uuid';
 
 import { RankingMainSliderProps } from '@/_types/contents/contents';
 /* Utils */
@@ -18,8 +17,7 @@ const RankingMainContainer: React.FC<RankingMainSliderProps> = ({ slides }) => {
 
   const router = useRouter();
 
-  const goLink = () => {
-    const id = uuidv4();
+  const goLink = (id: number) => {
     router.push(`/contents/detail/${id}`);
   };
 
@@ -30,7 +28,7 @@ const RankingMainContainer: React.FC<RankingMainSliderProps> = ({ slides }) => {
     <article className={styles.container}>
       <div className={styles.list}>
         {centerTopNumberList.map((slide, index) => (
-          <div key={index} className={styles.cardLink}>
+          <div key={index} className={styles.cardLink} onClick={() => goLink(slide.id)}>
             <figure
               className={`${styles.rankingItem} ${
                 activeSlide === index ? styles.activeSlide : ''

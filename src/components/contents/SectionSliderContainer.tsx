@@ -2,7 +2,6 @@
 import { useEffect } from 'react';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useInView } from 'react-intersection-observer';
-import { v4 as uuidv4 } from 'uuid';
 
 /* Components */
 import SubHeader from '@/components/contents/header/SubHeader';
@@ -21,8 +20,6 @@ import DropDownOptions from '../shared/action-bar/DropDownOptions';
 
 /* Styles */
 import styles from './SectionSliderContainer.module.css';
-
-const id = uuidv4();
 
 const userName = '디미';
 

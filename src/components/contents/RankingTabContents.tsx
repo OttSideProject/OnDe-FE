@@ -1,16 +1,15 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import Tabs from '@/components/shared/tabs/Tabs';
 import OTTSelector from './OTTSelector';
 import RankingSubListContainer from './RankingSubListContainer';
 import styles from './RankingTabContents.module.css';
 
 const RankingTabContents = () => {
-	const [activeTab, setActiveTab] = useState<'monthly' | 'weekly'>('monthly');
-	const [selectedOTT, setSelectedOTT] = useState<string>('netflix');
-  
-	const categories = [
+  const [activeTab, setActiveTab] = useState<'monthly' | 'weekly'>('monthly');
+  const [selectedOTT, setSelectedOTT] = useState<string>('netflix');
+
+  const categories = [
     { label: '월간', key: 'monthly' },
     {
       label: '주간',
