@@ -101,3 +101,14 @@ export type RankingsResponse = {
 export type RankingSubListContainerProps = {
   rankings: Ranking[];
 };
+
+//RecommendedSlider Type
+export type RecommendedSliderProps = {
+  recommendedSlides: RecommendedSlide[];
+};
+
+export type RecommendedSlide = {
+  id: number;
+  imgUrl: string;
+  detailUrl: string;
+};
