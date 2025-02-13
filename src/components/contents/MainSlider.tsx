@@ -3,13 +3,13 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { v4 as uuidv4 } from 'uuid';
 
 import Slider from 'react-slick';
 
 import Button from '../shared/button-group/Button';
 
 import { MainSliderProps } from '@/_types/contents/contents';
+import { ageImage } from '@/utils/ageImage';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -36,8 +36,7 @@ const MainSlider: React.FC<MainSliderProps> = ({ slides }) => {
     router.push('/users/mypage');
   };
 
-  const goLink = () => {
-    const id = uuidv4();
+  const goLink = (id: number) => {
     router.push(`/contents/detail/${id}`);
   };
 
@@ -46,7 +45,7 @@ const MainSlider: React.FC<MainSliderProps> = ({ slides }) => {
       <div className={styles.slider}>
         <Slider {...settings}>
           {slides.map((slide, index) => (
-            <div key={index} className={styles.cardLink}>
+            <div key={index} className={styles.cardLink} onClick={() => goLink(slide.id)}>
               <figure
                 className={`${styles.slide} ${
                   activeSlide === index ? styles.activeSlide : ''
@@ -61,7 +60,14 @@ const MainSlider: React.FC<MainSliderProps> = ({ slides }) => {
                 <div className={styles.bottomContainer}>
                   <figcaption>
                     <h3>{slide.title}</h3>
-                    <h4>{slide.subTitle.join(' · ')}</h4>
+                    <h4><span>{slide.subTitle.join(' · ')} ·</span>
+                    <span className={styles.ageImageBackground}> <Image src={ageImage(slide.age ?? '', 'shared')} // age는  이제 이미지 URL
+                        alt="Age restriction"
+                        width={20}
+                        height={20}
+                       /></span>
+                      
+                    </h4>
                   </figcaption>
                   <div className={styles.btnContainer}>
                     {/* 첫 번째 버튼 */}
@@ -80,7 +86,7 @@ const MainSlider: React.FC<MainSliderProps> = ({ slides }) => {
                       size="small"
                       text="바로가기"
                       iconUrl="/assets/images/icons/info-black.svg"
-                      onClick={goLink}
+                      onClick={() => goLink(slide.id)}
                     >
                       바로가기
                     </Button>

@@ -2,7 +2,7 @@
 export type Slide = {
   id: number;
   url: string;
-	age?: string;
+  age?: string;
   category?: 'shared';
   title: string;
   subTitle: string[];
@@ -81,7 +81,7 @@ export type InfoItem = string | { type: 'image'; src: string; alt: string };
 // Ranking Data type
 
 export type Ranking = {
-  id: string;
+  id: number; // id 타입을 number로 변경
   content_id: string;
   content_img: string;
   title: string;
