@@ -51,7 +51,7 @@ const RecommendedListContainer: React.FC = () => {
               imageTitle={section.title} // 항상 section.title을 사용
               linkText={section.linkText}
               linkUrl={section.linkUrl}
-              pageType="contentMain" // pageType 추가
+              pageType="recommended" // pageType 추가
             />
             <RecommendedSlider recommendedSlides={section.sectionSlides} />
           </section>
