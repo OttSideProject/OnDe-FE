@@ -71,8 +71,12 @@ const page = () => {
 
   useEffect(() => {
     getWeeklyBestPost();
-  }, [getWeeklyBestPost]);
+  }, [selectedCategory]);
 
+  function DetailPost(idx: any) {
+    console.log(idx);
+    throw new Error('Function not implemented.');
+  }
   return (
     <MainPageWrapper>
       <Container>
@@ -88,6 +92,9 @@ const page = () => {
             <PostDetailContainer>
               {weeklyBestPost.map((post, idx) => (
                 <WeeklyPostListItem
+                  onClick={() => {
+                    DetailPost(idx);
+                  }}
                   key={idx}
                   post={post}
                   user_idx={post.user_idx}

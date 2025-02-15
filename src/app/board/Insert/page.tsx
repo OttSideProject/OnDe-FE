@@ -10,17 +10,18 @@ import { useRouter } from 'next/navigation';
 
 const PostInsert = () => {
   const router = useRouter();
-  const [category, setCategory] = useState('');
+  const [boardId, setboradId] = useState('');
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
 
   const handleSubmit = async () => {
     try {
       const response = await Api.post('/board/create', {
-        category,
+        boardId,
         title,
         content,
       });
+      console.log(response);
 
       if (response.status === 200) {
         alert('Post created successfully!');
@@ -54,17 +55,15 @@ const PostInsert = () => {
         <div className={styles.dropdownWrapper}>
           <select
             className={styles.dropdown}
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
+            value={boardId}
+            onChange={(e) => setboradId(e.target.value)}
           >
             <option value="" disabled>
               카테고리를 선택해주세요
             </option>
-            <option value="1">배우</option>
-            <option value="2">영화</option>
-            <option value="3">드라마</option>
-            <option value="4">예능</option>
-            <option value="5">애니메이션</option>
+            <option value="1">후기</option>
+            <option value="2">토크</option>
+            <option value="3">QnA</option>
           </select>
           <div className={styles.arrowIcon} />
         </div>

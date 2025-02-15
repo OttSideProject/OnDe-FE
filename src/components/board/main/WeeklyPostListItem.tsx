@@ -20,12 +20,20 @@ import {
   WeeklyBestPostNumber,
   WeeklyBestPostWrapper,
 } from '@/styles/board/main';
-import React, { useCallback, useEffect, useState } from 'react';
+
+import { useRouter } from 'next/navigation';
+import React, {
+  MouseEventHandler,
+  useCallback,
+  useEffect,
+  useState,
+} from 'react';
 
 interface WeeklyPostListItemProps {
   post: PostDetailType;
   user_idx: number;
   idx: number;
+  onClick?: MouseEventHandler<HTMLDivElement>;
 }
 
 const WeeklyPostListItem: React.FC<WeeklyPostListItemProps> = ({
@@ -34,6 +42,12 @@ const WeeklyPostListItem: React.FC<WeeklyPostListItemProps> = ({
   idx,
 }) => {
   const [userInfo, setUserInfo] = useState<UserInfo>();
+  const [isClient, setIsClient] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    setIsClient(true); // 클라이언트 렌더링 여부를 설정
+  }, []);
 
   const getPostUserInfo = useCallback((user_idx: number) => {
     // Api.get(`users/${userId}`, {
@@ -56,12 +70,24 @@ const WeeklyPostListItem: React.FC<WeeklyPostListItemProps> = ({
     getPostUserInfo(user_idx);
   }, []);
 
+  const boardDetailPost = (idx: number) => {
+    if (typeof window !== 'undefined') {
+      router.push(`/board/details/${idx}`);
+    }
+  };
+
+  //게시글 상세확인
+
   return (
     <WeeklyBestPostWrapper isLast={idx == 2}>
       <DirectionWrapper>
         <WeeklyBestPostNumber>{idx + 1}</WeeklyBestPostNumber>
         <DirectionWrapper2>
-          <PostDetailWrapper>
+          <PostDetailWrapper
+            onClick={() => {
+              boardDetailPost(post.postIdx);
+            }}
+          >
             <PostTitle>{post.title}</PostTitle>
             <PostContents>{post.contents}</PostContents>
           </PostDetailWrapper>

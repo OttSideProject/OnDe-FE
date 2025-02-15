@@ -23,7 +23,11 @@ const SignupStep2 = ({
               ? genre.color
               : 'transparent',
             cursor: 'pointer',
-            color: selectedIndexes.includes(index) ? 'black' : 'white',
+            color: selectedIndexes.includes(index) ? 'white' : 'white',
+            border:
+              selectedIndexes.includes(index) && genre.border
+                ? `0.2rem solid ${genre.border}`
+                : `0.2rem solid transparent`,
           }}
           onClick={() => handleSelect(index)}
         >

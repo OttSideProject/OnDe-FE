@@ -29,20 +29,29 @@ const PostListItem: React.FC<PostListItemProps> = ({ post }) => {
         <div className={styles.postContentContainer}>
           <div className={styles.postTitle}>{post.title}</div>
           {/* <div>{post.contents}</div> */}
-          <div className={styles.postContents}>
-            오늘 이곳은 정말 많은 사람들이 있는데요. 귀성객뿐만 아니라 긴
-            연휴기간을 맞아 부산 여행을 하러 온 여행객들도 많고요. 외국인
-            관광객도 쉽게 볼 수 있습니다. 오랜만에 찾은 고향, 오랜만에 마주하는
-            가족들의 모습에 얼굴에는 미소가 가득합니다. 가족단위 귀성객들이 많이
-            보이고, 혼자 오거나 오히려 수도권으로 역귀성을 떠나시는 분들도
-            있었습니다.
-          </div>
+          <div className={styles.postContents}>{post.contents}</div>
           <div className={styles.postInfo}>
             <img src="assets/images/icons/heart-gray.svg" alt="" />
-            <div>{post.like_count}</div>
+            <div
+              style={{
+                alignItems: 'center',
+                display: 'flex',
+                marginRight: '0.6rem',
+              }}
+            >
+              {post.like_count ? post.like_count : 0}
+            </div>
             <img src="assets/images/icons/message-circle.svg" alt="" />
             {/* FIXME : 댓글 수 추기 */}
-            <div>{post.like_count}</div>
+            <div
+              style={{
+                alignItems: 'center',
+                display: 'flex',
+                marginRight: '0.6rem',
+              }}
+            >
+              {post.like_count ? post.like_count : 0}
+            </div>
           </div>
         </div>
       </div>
