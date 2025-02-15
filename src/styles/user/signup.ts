@@ -4,11 +4,11 @@ import styled from '@emotion/styled';
 import { css, keyframes } from '@emotion/react';
 
 const Container = styled.div`
-  padding: 15px;
+  padding: 0 2.5rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 20px;
+  width: 100%;
 
   ul {
     width: 100%;
@@ -20,8 +20,8 @@ const Container = styled.div`
 `;
 
 const Container2 = styled.div`
-  padding: 10px !important;
-  font-size: 16px;
+  padding: 1rem !important;
+  font-size: 1.6rem;
   display: flex;
   margin: 0 auto;
   flex-direction: column;
@@ -31,35 +31,42 @@ const Container2 = styled.div`
 `;
 
 const Header = styled.div`
-  padding: 20px;
+  padding: 20px 0;
   width: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
 `;
 
 const HeaderInner = styled.div`
-  font-size: 16px;
+  font-size: 1.6rem;
   color: #e7e7e7;
   width: 100%;
   display: flex;
   justify-content: center;
 `;
 
-const Close = styled.div``;
+const Close = styled.div`
+  font-size: 1.4rem;
+  color: #e7e7e7;
+  min-width: 30px;
+  display: flex;
+`;
 
 const Title2 = styled.h1`
-  padding: 20px 0px;
-  font-size: 22px;
+  padding: 2.5rem 0px;
+  font-size: 2.2rem;
   font-weight: 700;
-  line-height: 30px;
+  line-height: 3rem;
   width: 100%;
+  padding-bottom: 4rem;
 `;
 
 const Caption = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-  padding: 40px 45px;
+  padding: 1.6rem;
   font-weight: 300;
   text-align: center;
   white-space: pre-wrap;
@@ -67,10 +74,7 @@ const Caption = styled.div`
 
 // Step 1 styles
 const ImageContainer = styled.div`
-  margin-top: 40px;
-  position: relative;
-  width: 90px;
-  height: 90px;
+  position: absolute;
   cursor: pointer;
 `;
 
@@ -93,15 +97,16 @@ const GenreLabel = styled.span`
 // Step 2 styles
 const Step2Container = styled.div`
   /* padding: 0 20px; */
-  padding-top: 25px;
   text-align: center;
+  display: grid;
 `;
 
 const GenreStep2 = styled.p`
-  padding: 10px 20px;
-  border-radius: 50px;
+  display: flex;
+  padding: 1rem 2rem;
+  border-radius: 5rem;
   color: black;
-  font-size: 24px;
+  font-size: 2.4rem;
   font-weight: 300;
   text-align: center;
   display: inline-block;
@@ -109,9 +114,15 @@ const GenreStep2 = styled.p`
 
 // Step 3 styles
 const Step3Container = styled.div`
-  padding: 120px 20px;
+  padding: 12px 20px;
   text-align: center;
   display: flex;
+  left: 50%;
+  height: 50vh;
+  transform: translateX(-50%);
+  position: relative;
+  width: 100%;
+  justify-content: center;
 `;
 
 const ImageContainer2 = styled.div<{ isSelected: boolean }>`
@@ -151,13 +162,13 @@ const SelectContainer = styled.div`
 
 const Select = styled.select`
   width: 100%;
-  font-size: 18px;
+  font-size: 1.8rem;
   color: var(--gray-400, #6c6e68);
   background-color: var(--primary-black);
   border: none;
-  border-bottom: 2px solid var(--primary);
+  border-bottom: 0.2rem solid var(--primary);
   appearance: none;
-  height: 40px;
+  height: 4rem;
   align-self: stretch;
 
   &:focus {
@@ -187,23 +198,24 @@ const DropdownArrow = styled.div`
   }
 `;
 const BottomPoint = styled.div`
-  padding: 0 10px;
+  max-width: 60rem;
+  padding: 0 1rem;
   width: 100%;
-  position: fixed; /* 화면에 고정 */
-  bottom: 10px; /* 화면의 아래에서 20px 위에 고정 */
-  left: 50%; /* 화면의 중앙에 맞춤 */
-  transform: translateX(-50%); /* X축 중앙 정렬 */
+  position: fixed;
+  bottom: 2.4rem;
+  left: 50%;
+  transform: translateX(-50%);
 `;
 
 const Button = styled.button`
   color: var(--primary-black);
   border: none;
   font-weight: 600;
-  padding: 17px 70px;
-  margin-top: 20px;
-  font-size: 14px;
+  padding: 1.7rem 7rem;
+  margin-top: 2rem;
+  font-size: 1.4rem;
   cursor: pointer;
-  border-radius: 14px;
+  border-radius: 1.4rem;
   width: 100%;
 
   &:hover {
@@ -213,8 +225,8 @@ const Button = styled.button`
 
 const Genre = styled.div<{ selected: boolean }>`
   background-color: ${(props) => (props.selected ? '#FFD700' : '#666')};
-  padding: 10px 20px;
-  border-radius: 10px;
+  padding: 1rem 2rem;
+  border-radius: 1rem;
   cursor: pointer;
   transition: background-color 0.3s;
 

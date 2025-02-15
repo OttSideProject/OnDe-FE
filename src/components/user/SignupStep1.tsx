@@ -3,6 +3,7 @@ import Image from 'next/image';
 import signup from '@/styles/user/signup';
 import { SvgGenre } from '../../app/users/signup/constants';
 import { useState } from 'react';
+import { headers } from 'next/headers';
 
 interface SelectedGenre {
   genreId: number;
@@ -24,7 +25,7 @@ const SignupStep1 = ({
 
   const handleToggleGenre = (genreId: number, genreName: string) => {
     toggleGenre(genreId, genreName);
-    setSvgGenres((prevGenres) =>
+    setSvgGenres((prevGenres: any[]) =>
       prevGenres.map((item) =>
         item.id === genreId
           ? {
@@ -40,29 +41,49 @@ const SignupStep1 = ({
 
   return (
     <signup.Container
-      style={{ position: 'relative', width: '100%', height: '500px' }}
+      style={{
+        width: '100%',
+        maxHeight: '55rem',
+        overflowY: 'scroll',
+        overflowX: 'hidden',
+      }}
     >
       <signup.Title2>
         안녕하세요! <br /> 어떤 장르를 선호하세요?
       </signup.Title2>
-      {svgGenres.map((item, index) => (
-        <signup.ImageContainer
-          key={index}
-          style={{ position: 'absolute', top: item.top, left: item.left }}
-        >
-          <signup.ImagesIcon
-            onClick={() => handleToggleGenre(item.id, item.genre)}
+      <div
+        style={{
+          position: 'relative',
+          width: '100%',
+          height: '42rem',
+          // maxHeight: '700rem',
+          // overflowY: 'scroll',
+          // minHeight: '300px',
+        }}
+      >
+        {svgGenres.map((item, index) => (
+          <signup.ImageContainer
+            key={index}
+            style={{
+              position: 'absolute',
+              top: item.top,
+              left: item.left,
+            }}
           >
-            <Image
-              src={item.file}
-              alt={item.genre}
-              width={100}
-              height={100}
-              style={{ objectFit: 'cover' }}
-            />
-          </signup.ImagesIcon>
-        </signup.ImageContainer>
-      ))}
+            <signup.ImagesIcon
+              onClick={() => handleToggleGenre(item.id, item.genre)}
+            >
+              <Image
+                src={item.file}
+                alt={item.genre}
+                width={110}
+                height={110}
+                style={{ objectFit: 'cover' }}
+              />
+            </signup.ImagesIcon>
+          </signup.ImageContainer>
+        ))}
+      </div>
     </signup.Container>
   );
 };

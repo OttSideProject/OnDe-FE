@@ -1,7 +1,9 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import styles from './PostList.module.css';
 import DropDown from './DropDown';
+import { useRouter } from 'next/navigation';
 import Api from '@/api/core/Api';
+
 import { PostDetailType } from '@/_types/board/board';
 import PostListItem from './PostListItem';
 
@@ -10,6 +12,13 @@ interface PostListProps {
 }
 
 const PostList: React.FC<PostListProps> = ({ selectedCategoryNumber }) => {
+  const [isClient, setIsClient] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    setIsClient(true); // 클라이언트 렌더링 여부를 설정
+  }, []);
+
   const [sortBoardText, setsortBoardText] = useState<string>('인기순');
   const [isDropDownClicked, setisDropDownClicked] = useState(false);
   const DropDownMenu: { [key: string]: number } = {
@@ -21,18 +30,16 @@ const PostList: React.FC<PostListProps> = ({ selectedCategoryNumber }) => {
   const [sortedPostList, setSortedPostList] = useState<PostDetailType[]>([]);
 
   const getPostList = useCallback(() => {
-    console.log(selectedCategoryNumber);
     Api.get(`board/${selectedCategoryNumber}`)
       .then((res) => {
         setSortedPostList(res.data);
-        console.log('응답', sortedPostList);
       })
       .catch((err) => console.log('에러', err));
-  }, [sortedPostList, selectedCategoryNumber]);
+  }, [selectedCategoryNumber]);
 
   const handleToggleDropDown = useCallback(() => {
-    setisDropDownClicked(!isDropDownClicked);
-  }, [isDropDownClicked]);
+    setisDropDownClicked((prev) => !prev);
+  }, []);
 
   const handleSortBoardText = useCallback((text: string) => {
     setsortBoardText(text);
@@ -40,20 +47,22 @@ const PostList: React.FC<PostListProps> = ({ selectedCategoryNumber }) => {
   }, []);
 
   const handleSortDESC = useCallback(() => {
-    setIsSortDESC(!isSortDESC);
-  }, [isSortDESC]);
+    setIsSortDESC((prev) => !prev);
+  }, []);
 
   useEffect(() => {
     getPostList();
-  }, [selectedCategoryNumber]);
+  }, [selectedCategoryNumber, getPostList]);
 
+  const navigateToPostCreation = () => {
+    if (isClient) {
+      router.push('/board/Insert');
+    }
+  };
   return (
     <div>
       <div className={styles.sortBoardContainer}>
-        <span
-          className={styles.sortBoardText}
-          onClick={() => handleToggleDropDown()}
-        >
+        <span className={styles.sortBoardText} onClick={handleToggleDropDown}>
           {sortBoardText}
         </span>
         {isSortDESC ? (
@@ -62,24 +71,23 @@ const PostList: React.FC<PostListProps> = ({ selectedCategoryNumber }) => {
           <span onClick={handleSortDESC}>↑</span>
         )}
 
-        {isDropDownClicked ? (
+        {isDropDownClicked && (
           <DropDown
             DropDownMenu={DropDownMenu}
             handleSortBoardText={handleSortBoardText}
-          ></DropDown>
-        ) : null}
+          />
+        )}
       </div>
       <div className={styles.postWrapper}>
-        {selectedCategoryNumber}
-        {sortedPostList.map((post, idx) => {
-          debugger;
-          return <PostListItem key={idx} post={post}></PostListItem>;
-        })}
+        {sortedPostList.map((post, idx) => (
+          <PostListItem key={idx} post={post} />
+        ))}
       </div>
       <img
         className={styles.floatButton}
         src="assets/images/icons/post-create-float.svg"
         alt=""
+        onClick={navigateToPostCreation}
       />
     </div>
   );
