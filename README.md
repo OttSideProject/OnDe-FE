@@ -1,10 +1,10 @@
-# OnDe
+# OnD
 
-온디는 쉽고 간편한 검색과 다양한 추천 서비스를 제공하는 OTT 정보 플랫폼 서비스입니다.
+온디는 쉽고 간편한 검색과 다양한 추천 서비스를 제공하는 OTT 정보 플랫폼 브랜드입니다.
 
 ## OnDe-FE
 
-저희는 해당 서비스의 프론트엔드를 개발하고 있습니다
+저희는 해당 서비스의 프론트엔드를 개발하고 있습니다.
 
 
 <!-- 최종적으로 레이아웃이 완성되면 동작화면을 영상으로 업로드할 예정입니다.  -->
@@ -17,8 +17,7 @@
   * 상태 관리: Zustand, React useState
   * 데이터 관리: TanStack React Query, Axios
   * 스타일링: Emotion, CSS Modules, Global Styles
-  * 빌드 및 배포(임시 배포): GitHub Pages
-
+  * 빌드 및 배포: EC2 
 
 
 ## 시작하기
@@ -59,18 +58,26 @@ https://github.com/OttSideProject/OnDe-FE/pulls
 
 ### 김예운
 
-### 정예원
+* 회원가입
+* 로그인
+* 마이페이지
+* 게시판 
+
+### 정예원 (활동종료)
+* 게시판
 
 ### 조윤우
 
-* 메인 콘텐츠 
-* 상세 페이지
+* 콘텐츠 
+  * 메인 
+  * 상세
+  * 랭킹
+  * 추천 
+  * 검색 
 
 ## Trouble Shooting 
 
 ### 김예운
-
-### 정예원
 
 ### 조윤우
 
@@ -80,12 +87,11 @@ https://github.com/OttSideProject/OnDe-FE/pulls
 
 [**Next.js에서 이벤트 버블링 문제 해결 방법**](https://www.notion.so/Next-js-1041c66258d480c69b28ebd3aa90e300?pvs=21)
 
-[**Next.js와 React-Slick을 이용한 슬라이더 드래그 문제 해결하기**](https://www.notion.so/Next-js-React-Slick-1041c66258d4805abc89c6fff7d09af9?pvs=21)
+[**Next.js와 React-Slick을 이용한 슬라이더 드래그 문제 해결하기**](https://tomorrowcho.notion.site/Next-js-React-Slick-1281c66258d480f3b893c7f72a00d1e3?pvs=4)
 
 
 ## 배포
-https://ottsideproject.github.io/OnDe-FE (임시 정적배포)
-
+https://www.ondemandia.com
 
 ## 프로젝트 구조 (Tree)
 
@@ -93,8 +99,6 @@ https://ottsideproject.github.io/OnDe-FE (임시 정적배포)
 ## 회고 
 
 ### 김예운
-
-### 정예원
 
 ### 조윤우
 
