@@ -29,8 +29,17 @@ export default function LoginForm() {
 
     Api.post('users/login', formData)
       .then((response) => {
-        debugger;
         console.log('로그인 성공:', response.data);
+
+        const accessToken = response.data.result.token;
+        console.log(accessToken);
+
+        // access-token을 localStorage에 저장
+        localStorage.setItem('Access-Token', accessToken);
+
+        // API 요청 시 자동으로 Access-Toke 헤더 포함
+        Api.defaults.headers.common['Access-Token'] = `${accessToken}`;
+
         alert('로그인에 성공했습니다!');
         setTimeout(() => {
           location.href = '/';
