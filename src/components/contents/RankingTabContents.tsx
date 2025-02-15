@@ -31,12 +31,13 @@ const RankingTabContents = () => {
         );
       case 'weekly':
         return (
-          <div className="coming-soon">
-            <img
-              src="/assets/images/coming-soon-message.png"
-              alt="준비중 입니다..."
+          <>
+            <OTTSelector activeOTT={selectedOTT} onSelectOTT={setSelectedOTT} />
+            <RankingSubListContainer
+              ott={selectedOTT}
+              type={activeTab as 'monthly' | 'weekly'}
             />
-          </div>
+          </>
         );
       default:
         return <p>내용이 없습니다.</p>;

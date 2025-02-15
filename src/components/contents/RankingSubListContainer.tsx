@@ -73,7 +73,7 @@ const RankingSubListContainer: React.FC<RankingSubListContainerProps> = ({
         return uniqueRankings;
       });
     }
-  }, [data]);
+  }, [data, type, ott]);
 
   return (
     <section className={styles.container}>
