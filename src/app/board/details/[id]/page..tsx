@@ -1,14 +1,18 @@
-import { useRouter } from 'next/navigation';
+// app/border/details/[id]/page.tsx
+'use client';
 
-const BoardDetail = ({ params }: { params: { idx: any } }) => {
-  const { idx } = params;
+import { useSearchParams } from 'next/navigation';
 
+const DetailPage = () => {
+  const searchParams = useSearchParams();
+  const id = searchParams.get('idx'); // URL에서 'id' 파라미터 추출
+
+  console.log('dddd');
   return (
     <div>
-      <h1>Board Detail for Post {idx}</h1>
-      {/* 해당 idx에 대한 상세yarn 정보 렌더링 */}
+      <h1>Details of Border with ID: {id}</h1>
     </div>
   );
 };
 
-export default BoardDetail;
+export default DetailPage;

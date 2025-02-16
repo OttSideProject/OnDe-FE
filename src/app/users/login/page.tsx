@@ -31,7 +31,7 @@ export default function LoginForm() {
       .then((response) => {
         console.log('로그인 성공:', response.data);
 
-        const accessToken = response.data.result.token;
+        const accessToken = response.data.result.accessToken;
         console.log(accessToken);
 
         // access-token을 localStorage에 저장
@@ -46,7 +46,6 @@ export default function LoginForm() {
         }, 1000);
       })
       .catch((error) => {
-        debugger;
         console.error('로그인 실패:', error);
         setError('아이디 또는 비밀번호가 잘못되었습니다.');
       })
