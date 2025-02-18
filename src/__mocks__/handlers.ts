@@ -1,6 +1,7 @@
 import { http, HttpResponse } from 'msw';
 import sectionsData from './data/sections.json';
 import ottRankingsData from './data/ott_rankings.json';
+import recommendedData from './data/recommended.json';
 // const API_DOMAIN = 'http://localhost:3000';
 
 const sectionHandlers = [
@@ -24,7 +25,6 @@ const sectionHandlers = [
     return HttpResponse.json(response);
   }),
 ];
-
 
 // ottRankingsData의 타입 정의
 type OTTKey = 'netflix'; // ott 키의 가능한 값
@@ -53,7 +53,7 @@ type OTTData = {
 const typedOttRankingsData: OTTData = ottRankingsData;
 
 const rankingHandlers = [
-  http.get('/contents/ranking/ott', ({ request }) => {
+  http.get('/api/contents/ranking/ott', ({ request }) => {
     // 요청 파라미터 가져오기
     const url = new URL(request.url);
     const type = url.searchParams.get('type') as RankingType; // 랭킹 타입
@@ -92,5 +92,31 @@ const rankingHandlers = [
   }),
 ];
 
+const recommendedHandlers = [
+  http.get('/api/contents/recommended', ({ request }) => {
+    const url = new URL(request.url); // 요청 URL 객체 생성
+    const sectionId = Number(url.searchParams.get('id')) || 1;
+    const section = recommendedData.sections.find(
+      (section) => section.id === sectionId,
+    );
+    if (!section) {
+      return new HttpResponse('Not Found', { status: 404 });
+    }
+
+    // 응답 데이터 구성
+    const response = {
+      pageNo: sectionId,
+      totalPages: recommendedData.sections.length,
+      totalItems: recommendedData.totalItems,
+      sections: [section],
+    };
+    return HttpResponse.json(response);
+  }),
+];
+
 // 전체 핸들러 통합
-export const handlers = [...sectionHandlers, ...rankingHandlers];
+export const handlers = [
+  ...sectionHandlers,
+  ...rankingHandlers,
+  ...recommendedHandlers,
+];

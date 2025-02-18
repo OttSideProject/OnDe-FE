@@ -1,20 +1,31 @@
 import axios from 'axios';
-import { SectionsResponse } from '@/_types/contents/contents';
+import {
+  SectionsResponse,
+  RecommendedResponse,
+} from '@/_types/contents/contents';
 
 const fetchSections = async (id: number): Promise<SectionsResponse> => {
-  const response = await axios.get('/api/sections',{
-		params: { id },
-	});
-  console.log("sections",response.data);
+  const response = await axios.get('/api/sections', {
+    params: { id },
+  });
+  console.log('sections', response.data);
   return response.data;
 };
 
-const fetchRankings = async (type: string ,ott: string, id: number) => {
-	const response = await axios.get('/contents/ranking/ott', {
-		params: { type, ott, id },
-	});
-	console.log("rankings",response.data);
-	return response.data;
-}
+const fetchRankings = async (type: string, ott: string, id: number) => {
+  const response = await axios.get('/api/contents/ranking/ott', {
+    params: { type, ott, id },
+  });
+  console.log('rankings', response.data);
+  return response.data;
+};
 
-export const fetchers = { fetchSections, fetchRankings };
+const fetchRecommended = async (id: number): Promise<RecommendedResponse> => {
+  const response = await axios.get('/api/contents/recommended', {
+    params: { id },
+  });
+  console.log('recommended', response.data);
+  return response.data;
+};
+
+export const fetchers = { fetchSections, fetchRankings, fetchRecommended };

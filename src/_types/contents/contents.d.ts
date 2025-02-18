@@ -90,6 +90,7 @@ export type Ranking = {
   age: string;
   category: 'shared'; // category 속성 추가
 };
+
 export type RankingsResponse = {
   pageNo: number;
   totalPages: number;
@@ -111,4 +112,25 @@ export type RecommendedSlide = {
   id: number;
   imgUrl: string;
   detailUrl: string;
+};
+
+export type RecommendedSectionSliderProps = {
+  recommendedSlides: RecommendedSectionSlide[];
+};
+
+export type RecommendedSectionSlide = {
+  id: number;
+  imgUrl?: string;
+};
+
+export type RecommendedResponse = {
+  pageNo: number;
+  totalPages: number;
+  totalItems: number;
+  sections: Section[];
+};
+
+export type RecommendedMainSlide = {
+  id: number;
+  imgUrl?: string;
 };
