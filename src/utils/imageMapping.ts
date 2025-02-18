@@ -20,7 +20,7 @@ const imageMapping: {
     // ... 모든 ranking 매핑 추가
   },
   recommended: {
-    리얼리티: '/assets/images/sub_titles/recommended-reality.svg',
+    예능: '/assets/images/sub_titles/recommended-entertainment.svg',
     다큐: '/assets/images/sub_titles/recommended-documentary.svg',
     범죄: '/assets/images/sub_titles/recommended-crime.svg',
     스릴러: '/assets/images/sub_titles/recommended-thriller.svg',
