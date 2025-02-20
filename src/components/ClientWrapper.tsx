@@ -3,6 +3,7 @@
 import { ReactNode } from 'react';
 import { UseCustomQuery } from '@/hooks/useCustomQuery';
 import { useCustomMutation } from '@/hooks/useCustomMutation';
+import Loading from '@/components/shared/loading/Loading';
 import Api from '@/api/core/Api'; // Api 모듈 import
 import { AxiosResponse } from 'axios';
 
@@ -39,10 +40,11 @@ const ClientWrapper = ({ children }: { children: ReactNode }) => {
     },
   });
 
+  if (isLoading) return <Loading />;
+  if (error) return <p>Error: {error.message}</p>;
+
   return (
     <div>
-      {isLoading && <p>Loading...</p>}
-      {error && <p>Error: {error.message}</p>}
       {/* <button onClick={() => mutation.mutate({ example: 'data' })}>
         데이터 전송
       </button> */}
