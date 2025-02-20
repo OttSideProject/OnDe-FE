@@ -10,6 +10,7 @@
   display: flex;
   flex-wrap: wrap;
   row-gap: 20px;
+  padding: 0 7px;
 }
 
 .cardLink {
@@ -127,7 +128,6 @@
   gap: 12px;
   width: 100%;
 }
-
 
 /* responsive */
 @media screen and (max-width: 480px) {

@@ -81,8 +81,8 @@ const SectionSlider: React.FC<SectionSliderProps> = ({
                     <Image
                       src={sectionSlide.imgUrl}
                       alt={`Slide ${sectionSlide.id} ${index}`}
-                      width={104}
-                      height={156}
+                      width={105}
+                      height={155}
                     />
                   )}
                 </figure>
