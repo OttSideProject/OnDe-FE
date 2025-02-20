@@ -1,10 +1,7 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { useParams, useRouter } from 'next/navigation';
-import { AxiosHeaders, AxiosResponse } from 'axios';
-import { UseCustomQuery } from '@/hooks/useCustomQuery';
-
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { DetailData } from '@/_types/contents/contents';
 
 import Button from '@/components/shared/button-group/Button';
@@ -17,41 +14,11 @@ import styles from './DetailComponent.module.css';
 import { BtnDetailInnerChildStyle } from '@/components/shared/button-group/ButtonStyles';
 import ToggleIconButton from '@/components/shared/toggle/ToggleIconButton';
 
-/* 더미 데이터를 가져오는 함수 */
-const fetchDetailData = async (
-  id: string,
-): Promise<AxiosResponse<DetailData>> => {
-  const detailData: DetailData = {
-    id,
-    title: `콘텐츠 제목`,
-    info: [
-      '2024',
-      {
-        type: 'image',
-        src: '/assets/images/icons/all-view-icon.svg',
-        alt: 'all',
-      },
-      '96분',
-    ],
-    description: `줄거리입니다.줄거리입니다.줄거리입니다.줄거리입니다.줄거리입니다.줄거리입니다.줄거리입니다.줄거리입니다.줄거리입니다.`,
-    imageUrl: `https://picsum.photos/375/375?random=${id}`,
-  };
-
-  /* AxiosResponse와 유사한 형태로 반환 */
-  return {
-    data: detailData,
-    status: 200,
-    statusText: 'OK',
-    headers: new AxiosHeaders(), // AxiosHeaders로 빈 헤더 생성
-    config: {
-      headers: new AxiosHeaders(), // 필요한 헤더 값 설정
-      method: 'GET',
-      url: `/api/details/${id}`,
-    } /* AxiosRequestConfig로 지정 */,
-  };
+type DetailComponentProps = {
+  detailData: DetailData;
 };
 
-const DetailComponent: React.FC<{}> = () => {
+const DetailComponent: React.FC<DetailComponentProps> = ({ detailData }) => {
   const { isDropDownOpen, openDropDown, closeDropDown } = useDropDownStore();
 
   useEffect(() => {
@@ -117,24 +84,15 @@ const DetailComponent: React.FC<{}> = () => {
   const goMypage = () => {
     router.push('/users/mypage');
   };
-  const params = useParams(); // 동적 경로에서 id를 가져옴
-  const id = Array.isArray(params.id) ? params.id[0] : params.id; // id를 string으로 변환
-  /* useCustomQuery를 사용하여 데이터 페칭 */
-  const { data, error, isLoading } = UseCustomQuery(
-    [id], // queryKey
-    () => fetchDetailData(id), // queryCallBack
-    { queryKey: [id] },
-  );
-
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error.message}</div>;
 
   return (
     <section className={styles.container}>
-      {/* DropDown이 열려있을 때 DimmedBackground 표시 */}
       {isDropDownOpen && (
-        <div role="dialog" aria-labelledby="modal-title" aria-describedby="
-modal-description">
+        <div
+          role="dialog"
+          aria-labelledby="modal-title"
+          aria-describedby="modal-description"
+        >
           <DimmedBackground onClick={closeDropDown} />
           <DropDownOptions
             options={options}
@@ -144,13 +102,13 @@ modal-description">
         </div>
       )}
       <figure className={styles.imageContainer}>
-        <img src={data?.imageUrl} alt={data?.title} />
+        <img src={detailData.imageUrl} alt={detailData.title} />
         <ToggleIconButton />
         <figcaption>
-          <h1 className={styles.title}>{data?.title}</h1>
+          <h1 className={styles.title}>{detailData.title}</h1>
           <>
             <h2 className={styles.info}>
-              {data?.info.map((item, index) => (
+              {detailData.info.map((item, index) => (
                 <span key={index}>
                   {typeof item === 'string' ? (
                     item
@@ -161,11 +119,10 @@ modal-description">
               ))}
             </h2>
           </>
-          <p className={styles.description}>{data?.description}</p>
+          <p className={styles.description}>{detailData.description}</p>
         </figcaption>
       </figure>
       <div className={styles.bottomContainer}>
-        {/* 첫 번째 버튼 */}
         <BtnDetailInnerChildStyle>
           <Button
             variant="default"
@@ -176,7 +133,6 @@ modal-description">
           </Button>
         </BtnDetailInnerChildStyle>
 
-        {/* 두 번째 버튼 */}
         <BtnDetailInnerChildStyle>
           <Button variant="primary" onClick={openDropDown}>
             OTT 선택하기
