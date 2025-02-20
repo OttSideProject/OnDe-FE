@@ -2,42 +2,22 @@
   padding: 60px 0 15px;
 }
 
-.recommendContainer {
-  margin-bottom: 30px;
-  padding-bottom: 37px;
-  font-size: 1.4rem;
-  background-image: url('/assets/images/icons/dimi-group.svg');
-  background-repeat: no-repeat;
-  background-position: center bottom;
-  background-size: auto;
+.mainContainer {
+  padding: 0 10px;
+  background: linear-gradient(
+      210deg,
+      rgba(155, 81, 224, 0.4) -11.09%,
+      var(--black, rgba(11, 11, 11, 0.4)) 67.49%
+    ),
+    linear-gradient(
+      142deg,
+      var(--praimary, rgba(191, 255, 0, 0.3)) -7.68%,
+      var(--black, rgba(11, 11, 11, 0.3)) 59%
+    );
 }
 
-.recommendContainer p {
-  margin: 0 10px;
-  color: var(--gray100);
-  text-align: center;
-  line-height: 170%;
-}
-
-.recommendContainer strong {
-  color: var(--primary-white);
-}
-
-.fullButton {
-  display: block;
-  height: 56px;
-  margin: 0 10px;
-  padding: 17px 0px;
-  font-size: 1.8rem;
-  color: var(--primary);
-  border-radius: 15px;
-  border: 1.4px solid var(--gray50);
-  text-align: center;
-}
 
 /* 반응형  */
 @media screen and (min-width: 576px) {
-  .recommendContainer {
-    background-size: auto 30px;
-  }
+ 
 }

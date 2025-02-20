@@ -74,13 +74,15 @@ const RecommendedPage: React.FC = ({}) => {
     <main className={styles.container}>
       <StatusBar statusText="추천" iconUrlList={iconUrlList} />
       <section>
-        <Header
-          headerText={headerText}
-          userName={userName}
-          imageTitle="요청하신 콘텐츠가 맞을까요?"
-          pageType="recommended"
-        />
-        <RecommendedMainSlider recommendedMainSlides={recommendedSections} />
+        <div className={styles.mainContainer}>
+          <Header
+            headerText={headerText}
+            userName={userName}
+            imageTitle="요청하신 콘텐츠가 맞을까요?"
+            pageType="recommended"
+          />
+          <RecommendedMainSlider recommendedMainSlides={recommendedSections} />
+        </div>
         {/* 추천 메인  */}
         <RecommendedListContainer />
       </section>
