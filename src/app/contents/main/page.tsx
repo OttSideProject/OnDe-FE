@@ -2,8 +2,13 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { TodayPickContent } from '@/_types/contents/contents';
+import {
+  TodayPickContent,
+  BoardSectionSlide,
+} from '@/_types/contents/contents';
 import { fetchTodayPick } from '@/api/fetchTodayPick';
+import { fetchBoardSection } from '@/api/fetchBoardSection';
+import Loading from '@/components/shared/loading/Loading';
 
 /* Components */
 import Header from '@/components/contents/header/Header';
@@ -13,12 +18,12 @@ import BoardSectionSlider from '@/components/contents/BoardSectionSlider';
 import StatusBar from '@/components/shared/status-bar/StatusBar';
 
 /* Types */
-import { Slide, BoardSectionSlide } from '@/_types/contents/contents';
+import { Slide } from '@/_types/contents/contents';
 
 /* Styles */
 import styles from './page.module.css';
 
-const headerText = '오늘의 Dimi’s pick ';
+const headerText = '오늘의 Dimi’s pick';
 
 const iconUrl = '/assets/images/icons/dimi-eyes-on.svg';
 
@@ -67,82 +72,35 @@ const slides: Slide[] = [
   },
 ];
 
-const boardSections: BoardSectionSlide[] = [
-  {
-    id: 1,
-    name: '가나1',
-    profileImg:
-      'https://image.dongascience.com/Photo/2020/03/5bddba7b6574b95d37b6079c199d7101.jpg',
-    imgUrl: 'https://picsum.photos/60/90?random=1',
-    detailUrl: '/board/1',
-    title:
-      '제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.',
-    description:
-      '본문입니다. 본문입니다. 본문입니다. 본문입니다.본문입니다. 본문입니다.본문입니다. 본문입니다. 본문입니다.본문입니다.본문입니다. 본문입니다. 본문입니다.본문입니다.본문입니다. 본문입니다. 본문입니다.',
-    likeCount: 27,
-    messageCount: 110,
-  },
-  {
-    id: 2,
-    name: '다라2',
-    imgUrl: 'https://picsum.photos/60/90?random=2',
-    detailUrl: '/board/2',
-    title: '제목입니다.',
-    description:
-      '본문입니다. 본문입니다. 본문입니다. 본문입니다.본문입니다. 본문입니다.본문입니다. 본문입니다. 본문입니다.본문입니다.본문입니다. 본문입니다. 본문입니다.본문입니다.본문입니다. 본문입니다. 본문입니다.',
-    likeCount: 3,
-    messageCount: 0,
-  },
-  {
-    id: 3,
-    name: '가나3',
-    imgUrl: 'https://picsum.photos/60/90?random=3',
-    detailUrl: '/board/3',
-    title: '제목입니다.',
-    description:
-      '본문입니다. 본문입니다. 본문입니다. 본문입니다.본문입니다. 본문입니다.본문입니다. 본문입니다. 본문입니다.본문입니다.본문입니다. 본문입니다. 본문입니다.본문입니다.본문입니다. 본문입니다. 본문입니다.',
-    likeCount: 20,
-    messageCount: 30,
-  },
-  {
-    id: 4,
-    name: '다라4',
-    imgUrl: 'https://picsum.photos/60/90?random=4',
-    detailUrl: '/board/4',
-    title: '제목입니다.',
-    description:
-      '본문입니다. 본문입니다. 본문입니다. 본문입니다.본문입니다. 본문입니다.본문입니다. 본문입니다. 본문입니다.본문입니다.본문입니다. 본문입니다. 본문입니다.본문입니다.본문입니다. 본문입니다. 본문입니다.',
-    likeCount: 2,
-    messageCount: 10,
-  },
-  {
-    id: 5,
-    name: '마바5',
-    imgUrl: 'https://picsum.photos/60/90?random=5',
-    detailUrl: '/board/5',
-    title: '제목입니다.',
-    description:
-      '본문입니다. 본문입니다. 본문입니다. 본문입니다.본문입니다. 본문입니다.본문입니다. 본문입니다. 본문입니다.본문입니다.본문입니다. 본문입니다. 본문입니다.본문입니다.본문입니다. 본문입니다. 본문입니다.',
-    likeCount: 0,
-    messageCount: 3,
-  },
-];
-
 const HomePage: React.FC = () => {
   const [todayPicks, setTodayPicks] = useState<TodayPickContent[]>([]);
+  const [boardSections, setBoardSections] = useState<BoardSectionSlide[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetchTodayPick();
-        setTodayPicks(response.data);
-      } catch (error) {
-        console.error('오늘의 추천 콘텐츠를 불러오는데 실패했습니다:', error);
+        setIsLoading(true);
+        const [todayResponse, boardResponse] = await Promise.all([
+          fetchTodayPick(),
+          fetchBoardSection(),
+        ]);
+        setTodayPicks(todayResponse.data);
+        setBoardSections(boardResponse.data);
+      } catch (err) {
+        setError('데이터를 불러오는데 실패했습니다.');
+        console.error('Error fetching data:', err);
+      } finally {
+        setIsLoading(false);
       }
     };
 
     fetchData();
   }, []);
+
+  if (isLoading) return <Loading />;
+  if (error) return <div>{error}</div>;
 
   return (
     <main className={styles.container}>

@@ -8,14 +8,14 @@ export type Slide = {
   subTitle: string[];
 };
 
-export  type TodayPickContent = {
+export type TodayPickContent = {
   contentId: string;
   title: string;
   age: string;
   contentImg: string | null;
   genres: string[];
   rank: number;
-} 
+};
 
 export type RankingMainSliderProps = MainSliderProps; // RankingMainSliderProps 타입 추가
 
@@ -48,15 +48,19 @@ export type SectionsResponse = {
 
 /* BoardSectionSlider type */
 export type BoardSectionSlide = {
-  id: number;
+  boardId: number;
+  postIdx: number;
+  userIdx: number;
   name: string;
   profileImg?: string;
   imgUrl?: string;
-  detailUrl: string;
-  title?: string;
-  description: string;
-  likeCount?: number;
-  messageCount?: number;
+  detailUrl?: string;
+  title: string;
+  contents: string;
+  postViews: number;
+  likeCount: number;
+  createdAt: string;
+  modifiedAt: string;
 };
 
 /* ToggleIconButton Store type */
@@ -116,7 +120,6 @@ export type RecommendedSection = {
   linkUrl: string;
   sectionSlides: SectionSlide[];
 };
-
 
 export type RecommendedSliderProps = {
   recommendedSlides: RecommendedSlide[];

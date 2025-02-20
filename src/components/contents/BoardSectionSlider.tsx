@@ -60,15 +60,15 @@ const BoardSectionSlider: React.FC<BoardSectionSliderProps> = ({
       <div className={`${styles.slider} board-section-slider`}>
         <SubHeader imageTitle="지금 뜨는 ON생각" pageType="contentMain" />
         <Slider {...settings}>
-          {boardSectionSlides.map((boardSectionSlide, index) => (
+          {boardSectionSlides.map((boardSectionSlide, postIdx) => (
             <div
-              key={index}
+              key={postIdx}
               onMouseDown={handleMouseDown}
               onMouseMove={handleMouseMove}
               onMouseUp={handleMouseUp}
             >
               <Link
-                href={boardSectionSlide.detailUrl}
+                href={`/board/details/${boardSectionSlide.postIdx}`}
                 className={styles.cardLink}
                 onClick={(e) => {
                   if (isDragging) {
@@ -76,28 +76,39 @@ const BoardSectionSlider: React.FC<BoardSectionSliderProps> = ({
                   }
                 }}
               >
-                <div
+                <div className={`${styles.slide} `}>
+                  {/* <div
                   className={`${styles.slide} ${
                     !boardSectionSlide.imgUrl ? styles.emptySlide : ''
                   }`}
-                >
-                  {boardSectionSlide.imgUrl && (
+                > */}
+                  {
+                    // {boardSectionSlide.imgUrl && (
                     <>
                       <div className={styles.userInfo}>
-                        {boardSectionSlide.profileImg && (
+                        {
+                          // {boardSectionSlide.profileImg && (
                           <img
-                            src={boardSectionSlide.profileImg}
+                            src={
+                              boardSectionSlide.profileImg ||
+                              'https://image.dongascience.com/Photo/2020/03/5bddba7b6574b95d37b6079c199d7101.jpg'
+                            }
                             alt="프로필 이미지"
                           />
-                        )}
-                        <span>{boardSectionSlide.name}</span>
+                        }
+                        <span>
+                          {boardSectionSlide.name || `가나${postIdx + 1}`}
+                        </span>
                       </div>
                       <div className={styles.contentContainer}>
                         <div>
                           <figure className={styles.imgContainer}>
                             <Image
-                              src={boardSectionSlide.imgUrl}
-                              alt={`Slide ${boardSectionSlide.id} ${index}`}
+                              src={
+                                boardSectionSlide.imgUrl ||
+                                `https://picsum.photos/60/90?random=${postIdx}`
+                              }
+                              alt={`Slide ${boardSectionSlide.postIdx} ${postIdx}`}
                               width={60}
                               height={90}
                             />
@@ -107,7 +118,7 @@ const BoardSectionSlider: React.FC<BoardSectionSliderProps> = ({
                               {boardSectionSlide.title}
                             </h3>
                             <p className="ellipsis lineclamp">
-                              {boardSectionSlide.description}
+                              {boardSectionSlide.contents}
                             </p>
                           </div>
                         </div>
@@ -122,7 +133,7 @@ const BoardSectionSlider: React.FC<BoardSectionSliderProps> = ({
                             {boardSectionSlide.likeCount}
                           </span>
                         </div>
-                        <div>
+                        {/* <div>
                           <img
                             src="/assets/images/icons/message-gray-circle.svg"
                             alt="메시지 아이콘"
@@ -130,10 +141,10 @@ const BoardSectionSlider: React.FC<BoardSectionSliderProps> = ({
                           <span className={styles.messageCount}>
                             {boardSectionSlide.messageCount}
                           </span>
-                        </div>
+                        </div> */}
                       </div>
                     </>
-                  )}
+                  }
                 </div>
               </Link>
             </div>
