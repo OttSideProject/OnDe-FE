@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Header from '@/components/contents/header/Header';
 import MainSlider from '@/components/contents/MainSlider';
 import SectionSliderContainer from '@/components/contents/SectionSliderContainer';
+import BoardSectionSlider from '@/components/contents/BoardSectionSlider';
 import StatusBar from '@/components/shared/status-bar/StatusBar';
 
 /* Types */
@@ -10,7 +11,6 @@ import { Slide, BoardSectionSlide } from '@/_types/contents/contents';
 
 /* Styles */
 import styles from './page.module.css';
-import BoardSectionSlider from '@/components/contents/BoardSectionSlider';
 
 const headerText = '오늘의 Dimi’s pick ';
 
@@ -139,7 +139,11 @@ const HomePage: React.FC = () => {
           확인해보세요.
         </p>
       </div>
-      <Link href="" title="추천 바로가기" className={styles.fullButton}>
+      <Link
+        href="/contents/recommended"
+        title="추천 바로가기"
+        className={styles.fullButton}
+      >
         추천 바로가기
       </Link>
     </main>
