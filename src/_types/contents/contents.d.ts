@@ -104,6 +104,15 @@ export type RankingSubListContainerProps = {
 };
 
 //RecommendedSlider Type
+export type RecommendedSection = {
+  id: number;
+  title: string;
+  linkText: string;
+  linkUrl: string;
+  sectionSlides: SectionSlide[];
+};
+
+
 export type RecommendedSliderProps = {
   recommendedSlides: RecommendedSlide[];
 };
