@@ -11,6 +11,24 @@
   padding: 15px;
   font-size: 2.4rem;
   background-color: var(--primary-black);
+  transition: background 0.3s ease;
+  -webkit-transition: background 0.3s ease;
+  -moz-transition: background 0.3s ease;
+  -ms-transition: background 0.3s ease;
+  -o-transition: background 0.3s ease;
+}
+
+.gradientBackground {
+  background: linear-gradient(
+      210deg,
+      rgba(155, 81, 224, 0.4) -11.09%,
+      rgba(11, 11, 11, 0.4) 67.49%
+    ),
+    linear-gradient(
+      142deg,
+      rgba(191, 255, 0, 0.3) -7.68%,
+      rgba(11, 11, 11, 0.3) 59%
+    );
 }
 
 .container h2 {

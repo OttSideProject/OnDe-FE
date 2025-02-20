@@ -3,7 +3,7 @@
 }
 
 .mainContainer {
-  padding: 0 10px;
+	margin-top: -1px;
   background: linear-gradient(
       210deg,
       rgba(155, 81, 224, 0.4) -11.09%,

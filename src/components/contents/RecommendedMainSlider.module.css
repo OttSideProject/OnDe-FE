@@ -1,6 +1,7 @@
 .container {
   display: flex;
-  padding: 0 3px 35px;
+  margin-bottom: 35px;
+  padding: 0 3px;
 }
 
 .container > div {
