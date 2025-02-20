@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 0 10px 20px;
+  padding: 6px 7px 5px;
 }
 
 .cardLink {
@@ -17,7 +17,11 @@
   max-width: 175px;
   width: 29.2vw;
   height: 210px;
-  border-radius: 2px 2px 0px 0px;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
   transition: transform 0.3s ease-in-out;
 }
 
@@ -60,11 +64,11 @@
 
 @media screen and (max-width: 480px) {
   .cardLink {
-    width: 104px !important;
+    width: 105px !important;
   }
 
   .slide {
-    width: 104px;
-    height: 156px;
+    width: 105px;
+    height: 155px;
   }
 }

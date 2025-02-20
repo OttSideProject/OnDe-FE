@@ -78,8 +78,8 @@ const RecommendedSlider: React.FC<RecommendedSliderProps> = ({
                     <Image
                       src={recommendedSlide.imgUrl}
                       alt={`Slide ${recommendedSlide.id} ${index}`}
-                      width={104}
-                      height={156}
+                      width={105}
+                      height={155}
                     />
                   )}
                 </figure>
