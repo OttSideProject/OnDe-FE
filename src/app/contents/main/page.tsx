@@ -1,4 +1,10 @@
+'use client';
+
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { TodayPickContent } from '@/_types/contents/contents';
+import { fetchTodayPick } from '@/api/fetchTodayPick';
+
 /* Components */
 import Header from '@/components/contents/header/Header';
 import MainSlider from '@/components/contents/MainSlider';
@@ -123,12 +129,27 @@ const boardSections: BoardSectionSlide[] = [
 ];
 
 const HomePage: React.FC = () => {
+  const [todayPicks, setTodayPicks] = useState<TodayPickContent[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetchTodayPick();
+        setTodayPicks(response.data);
+      } catch (error) {
+        console.error('오늘의 추천 콘텐츠를 불러오는데 실패했습니다:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <main className={styles.container}>
       <StatusBar logoUrl={logoUrl} iconUrlList={iconUrlList} />
       <section>
         <Header headerText={headerText} iconUrl={iconUrl} />
-        <MainSlider slides={slides} />
+        <MainSlider slides={todayPicks} />
         <BoardSectionSlider boardSectionSlides={boardSections} />
         <SectionSliderContainer />
       </section>

@@ -8,9 +8,14 @@ export type Slide = {
   subTitle: string[];
 };
 
-export type MainSliderProps = {
-  slides: Slide[];
-};
+export  type TodayPickContent = {
+  contentId: string;
+  title: string;
+  age: string;
+  contentImg: string | null;
+  genres: string[];
+  rank: number;
+} 
 
 export type RankingMainSliderProps = MainSliderProps; // RankingMainSliderProps 타입 추가
 
