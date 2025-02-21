@@ -63,6 +63,13 @@ export type BoardSectionSlide = {
   modifiedAt: string;
 };
 
+export type BoardSectionStore = {
+  boardSections: BoardSectionSlide[];
+  isLoading: boolean;
+  error: string | null;
+  fetchBoardSections: () => Promise<void>;
+};
+
 /* ToggleIconButton Store type */
 export type ToggleActionStore = {
   isActive: boolean;
