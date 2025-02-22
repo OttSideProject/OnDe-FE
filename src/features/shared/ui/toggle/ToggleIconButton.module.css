@@ -1,0 +1,18 @@
+.iconButton {
+  position: absolute;
+  right: 10px;
+  margin-top: -36px;
+  padding: 5px 9px 5px 12px;
+  filter: grayscale(100%);
+}
+
+.active {
+  filter: none;
+  -webkit-filter: none;
+}
+
+.iconButton img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}

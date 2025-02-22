@@ -1,0 +1,32 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0 10px;
+}
+
+.container > div {
+  word-break: keep-all;
+}
+
+.content {
+  white-space: pre-line;
+}
+
+.viewMoreButton {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  min-width: 82px;
+}
+
+/* .active {
+  border: 1px dashed var(--blue);
+} */
+
+.viewMoreButton span {
+  font-family: var(--primary-font);
+  margin-right: 9px;
+  font-size: 1.2rem;
+  color: var(--primary-white);
+}

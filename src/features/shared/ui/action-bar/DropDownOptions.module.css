@@ -1,0 +1,93 @@
+.container {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+  min-width: 320px;
+  height: 300px;
+  padding: 24px 0 60px;
+  background-color: var(--gray780);
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
+}
+
+.inner {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: calc(100% - 60px);
+  padding: 0 20px 0;
+  font-size: 1.8rem;
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
+}
+
+.scrollBarInner {
+  height: 100%;
+  color: var(--gray50);
+}
+
+.inner h4 {
+  height: 60px;
+  padding: 24px 0;
+  font-size: inherit;
+  font-weight: 700;
+}
+
+.inner > div {
+  overflow-y: auto;
+  width: 100%;
+  height: 100%;
+  font-size: inherit;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  height: 60px;
+  padding: 10px 0;
+}
+
+.option button {
+  font-family: var(--primary-font);
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: 1.8rem;
+  color: var(--primary-white);
+}
+
+.option button img {
+  margin-right: 12px;
+}
+
+.option:has(> a) {
+  height: 50px;
+  margin-bottom: 10px;
+  background-color: var(--gray750);
+  border-radius: 14px;
+}
+
+.option a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+}
+
+.option a .ottLogoInner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+}
+/* .option a .ottLogo {
+  height: 16px;
+} */

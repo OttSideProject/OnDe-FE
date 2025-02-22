@@ -1,0 +1,48 @@
+.container {
+  position: fixed;
+  top: 0;
+  z-index: 3;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 598px;
+  height: 60px;
+  padding: 15px;
+  font-size: 2.4rem;
+  background-color: var(--primary-black);
+  transition: background 0.3s ease;
+  -webkit-transition: background 0.3s ease;
+  -moz-transition: background 0.3s ease;
+  -ms-transition: background 0.3s ease;
+  -o-transition: background 0.3s ease;
+}
+
+.gradientBackground {
+  background: linear-gradient(
+      210deg,
+      rgba(155, 81, 224, 0.4) -11.09%,
+      rgba(11, 11, 11, 0.4) 67.49%
+    ),
+    linear-gradient(
+      142deg,
+      rgba(191, 255, 0, 0.3) -7.68%,
+      rgba(11, 11, 11, 0.3) 59%
+    );
+}
+
+.container h2 {
+  font-family: var(--title-font);
+  display: flex;
+  font-size: inherit;
+}
+
+.container h2 img {
+  height: 22px;
+}
+
+.container h2 + div {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}

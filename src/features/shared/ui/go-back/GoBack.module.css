@@ -1,0 +1,13 @@
+.container {
+  position: fixed;
+  top: 10px;
+  z-index: 2;
+  width: 100%;
+  max-width: 600px;
+  height: 40px;
+}
+
+.btnContainer {
+  position: absolute;
+  right: 10px;
+}
