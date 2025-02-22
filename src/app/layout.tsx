@@ -5,8 +5,8 @@ import ClientLayout from '@/components/ClientLayout';
 
 import MSWInitializer from '@/components/MSWInitializer';
 
-import '../styles/core/globals.css';
-import '../styles/core/custom.css'; /* 슬라이더 커스텀 css */
+import '@/styles/core/globals.css';
+import '@/styles/core/custom.css'; /* 슬라이더 커스텀 css */
 
 /* 기본 텍스트 */
 const pretendard = localFont({

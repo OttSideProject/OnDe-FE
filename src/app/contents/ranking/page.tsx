@@ -1,12 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import Link from 'next/link';
 /* Components */
-import StatusBar from '@/components/shared/status-bar/StatusBar';
-import Header from '@/components/contents/header/Header';
-import RankingMainContainer from '@/components/contents/RankingMainContainer';
-import RankingTabContents from '@/components/contents/RankingTabContents';
+import { StatusBar } from '@/features/shared/ui/status-bar';
+import { Header } from '@/features/contents/ui/header';
+import { RankingMainContainer, RankingTabContents } from '@/features/contents/ui/ranking';
 
 /* Types */
 import { Slide } from '@/_types/contents/contents';
@@ -69,12 +67,17 @@ const handleOTTClick = async (ott: string) => {
   }
 };
 
-const HomePage: React.FC = () => {
+const RankingPage: React.FC = () => {
   return (
     <main className={styles.container}>
       <StatusBar statusText="랭킹" iconUrlList={iconUrlList} />
       <section>
-        <Header headerText={headerText} iconUrl={iconUrl} imageTitle="전체 콘텐츠 랭킹" pageType="ranking" />
+        <Header
+          headerText={headerText}
+          iconUrl={iconUrl}
+          imageTitle="전체 콘텐츠 랭킹"
+          pageType="ranking"
+        />
         <RankingMainContainer slides={rankingTopList} />
         <RankingTabContents />
       </section>
@@ -82,4 +85,4 @@ const HomePage: React.FC = () => {
   );
 };
 
-export default HomePage;
+export default RankingPage;

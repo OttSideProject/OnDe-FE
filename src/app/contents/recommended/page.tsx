@@ -1,8 +1,7 @@
 /* Components */
-import Header from '@/components/contents/header/Header';
-import StatusBar from '@/components/shared/status-bar/StatusBar';
-import RecommendedListContainer from '@/components/contents/RecommendedListContainer';
-import RecommendedMainSlider from '@/components/contents/RecommendedMainSlider';
+import { Header } from '@/features/contents/ui/header';
+import { StatusBar } from '@/features/shared/ui/status-bar';
+import { RecommendedListContainer, RecommendedMainSlider } from '@/features/contents/ui/recommended';
 
 /* Types */
 import { Slide, RecommendedSectionSlide } from '@/_types/contents/contents';
