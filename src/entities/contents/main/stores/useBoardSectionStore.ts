@@ -16,3 +16,5 @@ export const useBoardSectionStore = create<BoardSectionStore>((set) => ({
     });
   },
 }));
+
+export default useBoardSectionStore;
