@@ -4,11 +4,12 @@ import { useEffect, useState } from 'react';
 import { useScrollEffect } from '@/features/shared/utils/handleScroll';
 import styles from './StatusBar.module.css';
 
-type StatusBarProps = {
+interface StatusBarProps {
   statusText?: string;
   logoUrl?: string;
   iconUrlList?: string[];
   pageType?: 'contentMain' | 'ranking' | 'recommended' | '';
+  onIconClick?: (index: number) => void;
 };
 
 const StatusBar: React.FC<StatusBarProps> = ({
@@ -16,6 +17,7 @@ const StatusBar: React.FC<StatusBarProps> = ({
   statusText = '',
   iconUrlList,
   pageType = '',
+  onIconClick,
 }) => {
   const [hasGradient, setHasGradient] = useState(pageType === 'recommended');
 
@@ -25,8 +27,12 @@ const StatusBar: React.FC<StatusBarProps> = ({
     }
   }, [pageType]);
 
-  const handleAlert = () => {
-    alert('준비 중입니다.');
+  const handleAlert = (index: number) => {
+    if (onIconClick) {
+      onIconClick(index);
+    } else {
+      alert('준비 중입니다.');
+    }
   };
 
   return (
@@ -42,7 +48,7 @@ const StatusBar: React.FC<StatusBarProps> = ({
       <div>
         {iconUrlList &&
           iconUrlList.map((iconUrl, index) => (
-            <button onClick={handleAlert} key={index}>
+            <button onClick={() => handleAlert(index)} key={index}>
               <img src={iconUrl} alt={`아이콘${index + 1}`} />
             </button>
           ))}
