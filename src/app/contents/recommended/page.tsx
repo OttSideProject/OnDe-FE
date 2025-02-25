@@ -71,13 +71,13 @@ const recommendedSections: RecommendedSectionSlide[] = [
 const RecommendedPage: React.FC = ({}) => {
   return (
     <main className={styles.container}>
-      <StatusBar
-        statusText="추천"
-        iconUrlList={iconUrlList}
-        pageType="recommended"
-      />
-      <section>
-        <div className={styles.mainContainer}>
+      <section className={styles.mainContainer}>
+        <StatusBar
+          statusText="추천"
+          iconUrlList={iconUrlList}
+          pageType="recommended"
+        />
+        <div>
           <Header
             headerText={headerText}
             userName={userName}
@@ -86,6 +86,8 @@ const RecommendedPage: React.FC = ({}) => {
           />
           <RecommendedMainSlider recommendedMainSlides={recommendedSections} />
         </div>
+      </section>
+      <section>
         {/* 추천 메인  */}
         <RecommendedListContainer />
       </section>

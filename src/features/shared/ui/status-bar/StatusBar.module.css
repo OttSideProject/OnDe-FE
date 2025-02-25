@@ -19,16 +19,7 @@
 }
 
 .gradientBackground {
-  background: linear-gradient(
-      210deg,
-      rgba(155, 81, 224, 0.4) -11.09%,
-      rgba(11, 11, 11, 0.4) 67.49%
-    ),
-    linear-gradient(
-      142deg,
-      rgba(191, 255, 0, 0.3) -7.68%,
-      rgba(11, 11, 11, 0.3) 59%
-    );
+  background: transparent;
 }
 
 .container h2 {
