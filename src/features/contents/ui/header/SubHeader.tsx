@@ -1,6 +1,6 @@
 import Link from 'next/link';
+import SVGTitle from '@/features/contents/ui/header/svg-title/SVGTitle';
 import styles from './SubHeader.module.css';
-import SVGTitle from '@/features/contents/ui/header/svg-title/SVGTitle'; // 새로운 SVG 컴포넌트 import
 
 /* SubHeader type */
 type SubHeaderProps = {
@@ -11,6 +11,7 @@ type SubHeaderProps = {
   linkText?: string;
   linkUrl?: string;
   pageType: 'contentMain' | 'ranking' | 'recommended'; // 페이지 종류 추가
+  isImageRequired: boolean; // prop으로 받도록 수정
 };
 
 const SubHeader: React.FC<SubHeaderProps> = ({
@@ -21,13 +22,18 @@ const SubHeader: React.FC<SubHeaderProps> = ({
   linkUrl,
   linkText = '더보기',
   pageType,
+  isImageRequired,
 }) => {
   return (
     <header className={styles.container}>
       <h3>
         {userName && <span>{userName}</span>}
         {recommendedTitle && <span>{recommendedTitle}&nbsp;</span>}
-        <SVGTitle pageType={pageType} imageTitle={imageTitle} />
+        <SVGTitle
+          pageType={pageType}
+          imageTitle={imageTitle}
+          isImageRequired={isImageRequired}
+        />
       </h3>
       {linkUrl && (
         <Link href={linkUrl} className={styles.link}>

@@ -112,6 +112,7 @@ const SectionSliderContainer: React.FC = () => {
               linkText={section.linkText}
               linkUrl={section.linkUrl}
               pageType="contentMain" // pageType 추가
+              isImageRequired={true} // contentMain 페이지는 항상 이미지가 필수
             />
             <SectionSlider
               sectionSlides={section.sectionSlides}

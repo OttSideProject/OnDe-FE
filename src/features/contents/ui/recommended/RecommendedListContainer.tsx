@@ -57,6 +57,7 @@ const RecommendedListContainer: React.FC = () => {
                 linkText={section.id === 1 ? '' : section.linkText} // section.id === 1이면 null
                 linkUrl={section.id === 1 ? '' : section.linkUrl} // section.id === 1이면 null
                 pageType="recommended" // pageType 추가
+                isImageRequired={true}
               />
               <RecommendedSlider recommendedSlides={section.sectionSlides} />
             </div>

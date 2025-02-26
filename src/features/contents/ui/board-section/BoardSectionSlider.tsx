@@ -58,7 +58,11 @@ const BoardSectionSlider: React.FC<BoardSectionSliderProps> = ({
   return (
     <section className={styles.container}>
       <div className={`${styles.slider} board-section-slider`}>
-        <SubHeader imageTitle="지금 뜨는 ON생각" pageType="contentMain" />
+        <SubHeader
+          imageTitle="지금 뜨는 ON생각"
+          pageType="contentMain"
+          isImageRequired={true}
+        />
         <Slider {...settings}>
           {boardSectionSlides.map((boardSectionSlide, postIdx) => (
             <div
