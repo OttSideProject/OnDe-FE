@@ -1,17 +1,17 @@
 import Link from 'next/link';
-import SVGTitle from '@/features/contents/ui/header/svg-title/SVGTitle';
+import SVGTitle from '@/features/contents/ui/header/sub-elements/SVGTitle';
 import styles from './SubHeader.module.css';
 
 /* SubHeader type */
 type SubHeaderProps = {
-  title?: string; // title prop is optional with default value
-  imageTitle: string; // imageTitle prop 추가
-  userName?: string; // userName prop 추가
-  recommendedTitle?: string; // recommendedTitle prop 추가
+  title?: string;
+  imageTitle: string;
+  imagePath?: string;
+  userName?: string;
+  recommendedTitle?: string;
   linkText?: string;
   linkUrl?: string;
-  pageType: 'contentMain' | 'ranking' | 'recommended'; // 페이지 종류 추가
-  isImageRequired: boolean; // prop으로 받도록 수정
+  isImageRequired?: boolean;
 };
 
 const SubHeader: React.FC<SubHeaderProps> = ({
@@ -21,8 +21,8 @@ const SubHeader: React.FC<SubHeaderProps> = ({
   recommendedTitle = '', // default value for recommendedTitle
   linkUrl,
   linkText = '더보기',
-  pageType,
-  isImageRequired,
+  imagePath,
+  isImageRequired = false,
 }) => {
   return (
     <header className={styles.container}>
@@ -30,7 +30,7 @@ const SubHeader: React.FC<SubHeaderProps> = ({
         {userName && <span>{userName}</span>}
         {recommendedTitle && <span>{recommendedTitle}&nbsp;</span>}
         <SVGTitle
-          pageType={pageType}
+          imagePath={imagePath}
           imageTitle={imageTitle}
           isImageRequired={isImageRequired}
         />

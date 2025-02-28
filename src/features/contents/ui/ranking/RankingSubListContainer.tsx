@@ -22,11 +22,13 @@ import styles from './RankingSubListContainer.module.css';
 type RankingSubListContainerProps = {
   type: 'monthly' | 'weekly'; // 랭킹 타입
   ott: string | null; // 현재 활성화된 OTT
+  getImageSrc: (title: string, pageType: 'contentMain' | 'ranking' | 'recommended') => string;
 };
 
 const RankingSubListContainer: React.FC<RankingSubListContainerProps> = ({
   type = 'monthly', // 기본값은 월간
   ott = 'netflix', // 기본값은 넷플릭스
+  getImageSrc,
 }) => {
   const [rankings, setRankings] = useState<Ranking[]>([]); // 한 번에 로드된 랭킹 데이터
   const { ref, inView } = useInView(); // 무한 스크롤을 위한 IntersectionObserver
@@ -79,7 +81,7 @@ const RankingSubListContainer: React.FC<RankingSubListContainerProps> = ({
     <section className={styles.container}>
       <SubHeader
         imageTitle="지금 가장 HOT한 콘텐츠"
-        pageType="ranking"
+        imagePath={getImageSrc('지금 가장 HOT한 콘텐츠', 'ranking')}
         isImageRequired={true}
       />
       {/* 데이터를 ImageSubList로 전달 */}

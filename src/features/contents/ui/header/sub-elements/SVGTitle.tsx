@@ -1,23 +1,20 @@
 import Image from 'next/image';
-import imageMapping from '@/features/shared/utils/imageMapping';
 
 type SVGTitleProps = {
-  pageType: 'contentMain' | 'ranking' | 'recommended';
+  imagePath?: string;
   imageTitle: string;
-  isImageRequired: boolean;
+  isImageRequired?: boolean;
 };
 
 const SVGTitle: React.FC<SVGTitleProps> = ({
-  pageType,
+  imagePath,
   imageTitle,
-  isImageRequired,
+  isImageRequired = false,
 }) => {
-  // Optional chaining을 사용하여 안전하게 이미지 경로 접근
-  const imagePath = imageMapping[pageType]?.[imageTitle];
 
   // 이미지가 필수이고 이미지 경로가 없는 경우에만 에러 발생
   if (!imagePath && isImageRequired) {
-    console.warn(`이미지를 찾을 수 없습니다: ${imageTitle} (${pageType})`);
+    console.warn(`이미지를 찾을 수 없습니다: ${imageTitle}`);
     return <span>{imageTitle}</span>;
   }
 

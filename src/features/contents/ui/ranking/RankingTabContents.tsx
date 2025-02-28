@@ -4,8 +4,14 @@ import Tabs from '@/features/shared/ui/tabs/Tabs';
 import OTTSelector from '../ott-selector/OTTSelector';
 import RankingSubListContainer from './RankingSubListContainer';
 import styles from './RankingTabContents.module.css';
+type RankingTabContentsProps = {
+  getImageSrc: (
+    title: string,
+    pageType: 'contentMain' | 'ranking' | 'recommended',
+  ) => string;
+};
 
-const RankingTabContents = () => {
+const RankingTabContents = ({ getImageSrc }: RankingTabContentsProps) => {
   const [activeTab, setActiveTab] = useState<'monthly' | 'weekly'>('monthly');
   const [selectedOTT, setSelectedOTT] = useState<string>('netflix');
 
@@ -26,6 +32,7 @@ const RankingTabContents = () => {
             <RankingSubListContainer
               ott={selectedOTT}
               type={activeTab as 'monthly' | 'weekly'}
+              getImageSrc={getImageSrc}
             />
           </>
         );
@@ -36,6 +43,7 @@ const RankingTabContents = () => {
             <RankingSubListContainer
               ott={selectedOTT}
               type={activeTab as 'monthly' | 'weekly'}
+              getImageSrc={getImageSrc}
             />
           </>
         );

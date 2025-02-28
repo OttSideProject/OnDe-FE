@@ -23,7 +23,7 @@ const Header: React.FC<HeaderProps> = ({
   return (
     <header className={styles.container}>
       <h2>
-        {userName && <span className={styles.userName}>{userName}</span>}
+        {userName && <span className={styles.userName}>{userName}님, </span>}
         {imageTextUrl ? (
           <img src={imageTextUrl} alt={headerText} />
         ) : (

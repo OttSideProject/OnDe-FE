@@ -1,7 +1,13 @@
+'use client';
+
 /* Components */
 import { Header } from '@/features/contents/ui/header';
+import useImageMapping from '@/entities/contents/hooks/useImageMapping';
 import { StatusBar } from '@/features/shared/ui/status-bar';
-import { RecommendedListContainer, RecommendedMainSlider } from '@/features/contents/ui/recommended';
+import {
+  RecommendedListContainer,
+  RecommendedMainSlider,
+} from '@/features/contents/ui/recommended';
 
 /* Types */
 import { Slide, RecommendedSectionSlide } from '@/_types/contents/contents';
@@ -68,7 +74,8 @@ const recommendedSections: RecommendedSectionSlide[] = [
   },
 ];
 
-const RecommendedPage: React.FC = ({}) => {
+const RecommendedPage: React.FC = () => {
+  const { getImageSrc } = useImageMapping();
   return (
     <main className={styles.container}>
       <section className={styles.mainContainer}>
@@ -82,14 +89,13 @@ const RecommendedPage: React.FC = ({}) => {
             headerText={headerText}
             userName={userName}
             imageTitle="요청하신 콘텐츠가 맞을까요?"
-            pageType="recommended"
           />
           <RecommendedMainSlider recommendedMainSlides={recommendedSections} />
         </div>
       </section>
       <section>
         {/* 추천 메인  */}
-        <RecommendedListContainer />
+        <RecommendedListContainer getImageSrc={getImageSrc} />
       </section>
     </main>
   );

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import useImageMapping from '@/entities/contents/hooks/useImageMapping';
 import {
   TodayPickContent,
   BoardSectionSlide,
@@ -11,15 +12,13 @@ import {
   fetchBoardSection,
 } from '@/entities/contents/main/api';
 
-
 /* Components */
-import {Loading} from '@/features/shared/ui/loading';
-import {StatusBar} from '@/features/shared/ui/status-bar';
+import { Loading } from '@/features/shared/ui/loading';
+import { StatusBar } from '@/features/shared/ui/status-bar';
 import { Header } from '@/features/contents/ui/header';
 import { MainSlider } from '@/features/contents/ui/today-pick';
 import { BoardSectionSlider } from '@/features/contents/ui/board-section';
 import { SectionSliderContainer } from '@/features/contents/ui/section-list';
-
 
 /* Types */
 import { Slide } from '@/_types/contents/contents';
@@ -77,6 +76,7 @@ const slides: Slide[] = [
 ];
 
 const HomePage: React.FC = () => {
+  const { getImageSrc } = useImageMapping();
   const [todayPicks, setTodayPicks] = useState<TodayPickContent[]>([]);
   const [boardSections, setBoardSections] = useState<BoardSectionSlide[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -113,7 +113,7 @@ const HomePage: React.FC = () => {
         <Header headerText={headerText} iconUrl={iconUrl} />
         <MainSlider slides={todayPicks} />
         <BoardSectionSlider boardSectionSlides={boardSections} />
-        <SectionSliderContainer />
+        <SectionSliderContainer getImageSrc={getImageSrc} />
       </section>
       <div className={styles.recommendContainer}>
         <p>

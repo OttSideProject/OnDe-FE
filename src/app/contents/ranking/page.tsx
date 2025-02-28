@@ -4,6 +4,7 @@ import { useState } from 'react';
 /* Components */
 import { StatusBar } from '@/features/shared/ui/status-bar';
 import { Header } from '@/features/contents/ui/header';
+import useImageMapping from '@/entities/contents/hooks/useImageMapping';
 import { RankingMainContainer, RankingTabContents } from '@/features/contents/ui/ranking';
 
 /* Types */
@@ -68,6 +69,7 @@ const handleOTTClick = async (ott: string) => {
 };
 
 const RankingPage: React.FC = () => {
+  const { getImageSrc } = useImageMapping();
   return (
     <main className={styles.container}>
       <StatusBar statusText="랭킹" iconUrlList={iconUrlList} />
@@ -76,10 +78,9 @@ const RankingPage: React.FC = () => {
           headerText={headerText}
           iconUrl={iconUrl}
           imageTitle="전체 콘텐츠 랭킹"
-          pageType="ranking"
         />
         <RankingMainContainer slides={rankingTopList} />
-        <RankingTabContents />
+        <RankingTabContents getImageSrc={getImageSrc} />
       </section>
     </main>
   );

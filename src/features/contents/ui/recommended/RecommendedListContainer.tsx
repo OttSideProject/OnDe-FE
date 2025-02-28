@@ -21,7 +21,15 @@ import {
 import styles from './RecommendedListContainer.module.css';
 
 const userName = '디미';
-const RecommendedListContainer: React.FC = () => {
+type RecommendedListContainerProps = {
+  getImageSrc: (
+    title: string,
+    pageType: 'contentMain' | 'ranking' | 'recommended',
+  ) => string;
+};
+const RecommendedListContainer: React.FC<RecommendedListContainerProps> = ({
+  getImageSrc,
+}) => {
   const { ref, inView } = useInView();
 
   // 무한 스크롤 데이터를 가져오는 훅
@@ -56,7 +64,7 @@ const RecommendedListContainer: React.FC = () => {
                 imageTitle={section.title} // 항상 section.title을 사용
                 linkText={section.id === 1 ? '' : section.linkText} // section.id === 1이면 null
                 linkUrl={section.id === 1 ? '' : section.linkUrl} // section.id === 1이면 null
-                pageType="recommended" // pageType 추가
+                imagePath={getImageSrc(section.title, 'recommended')}
                 isImageRequired={true}
               />
               <RecommendedSlider recommendedSlides={section.sectionSlides} />

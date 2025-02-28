@@ -14,9 +14,12 @@
   font-size: inherit;
 }
 
-.container h2 .userName {
-  height: 24px;
+.container h2:has(.userName) {
   font-size: 1.8rem;
+}
+
+.container h2 .userName {
+  margin-right: 10px;
 }
 
 .container h2 .userName + img {

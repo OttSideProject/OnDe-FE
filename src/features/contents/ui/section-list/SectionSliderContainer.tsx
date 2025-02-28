@@ -23,7 +23,11 @@ import styles from './SectionSliderContainer.module.css';
 
 const userName = '디미';
 const recommendedTitle = '예능';
-const SectionSliderContainer: React.FC = () => {
+type SectionSliderContainerProps = {
+  getImageSrc: (title: string, pageType: 'contentMain' | 'ranking' | 'recommended') => string;
+};
+
+const SectionSliderContainer: React.FC<SectionSliderContainerProps> = ({ getImageSrc }) => {
   const { isDropDownOpen, openDropDown, closeDropDown } = useDropDownStore();
   const { ref, inView } = useInView();
 
@@ -109,9 +113,9 @@ const SectionSliderContainer: React.FC = () => {
               userName={section.id === 1 ? userName : ''} // userName 사용
               recommendedTitle={section.id === 2 ? recommendedTitle : ''} // recommendedTitle 사용
               imageTitle={section.title} // 항상 section.title을 사용
+              imagePath={getImageSrc(section.title, 'contentMain')}
               linkText={section.linkText}
               linkUrl={section.linkUrl}
-              pageType="contentMain" // pageType 추가
               isImageRequired={true} // contentMain 페이지는 항상 이미지가 필수
             />
             <SectionSlider
