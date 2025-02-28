@@ -1,4 +1,4 @@
-import Api from './core/Api';
+import Api from '@/api/core/Api';
 import { RecommendedResponse } from '@/_types/contents/contents';
 import { fetchers } from '@/__mocks__/helpers/fetchers';
 

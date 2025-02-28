@@ -8,7 +8,7 @@ import SubHeader from '@/features/contents/ui/header/SubHeader';
 import ImageSubList from '@/features/contents/ui/ranking/ImageSubList';
 
 /* API */
-import { fetchRankings } from '@/api/fetchRankings';
+import { fetchRankings } from '@/entities/contents/ranking/api/fetchRankings';
 
 /* Utils */
 import { ageImage } from '@/features/shared/utils/ageImage';
@@ -22,7 +22,10 @@ import styles from './RankingSubListContainer.module.css';
 type RankingSubListContainerProps = {
   type: 'monthly' | 'weekly'; // 랭킹 타입
   ott: string | null; // 현재 활성화된 OTT
-  getImageSrc: (title: string, pageType: 'contentMain' | 'ranking' | 'recommended') => string;
+  getImageSrc: (
+    title: string,
+    pageType: 'contentMain' | 'ranking' | 'recommended',
+  ) => string;
 };
 
 const RankingSubListContainer: React.FC<RankingSubListContainerProps> = ({

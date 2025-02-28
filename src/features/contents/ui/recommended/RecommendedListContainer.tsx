@@ -9,7 +9,7 @@ import SubHeader from '@/features/contents/ui/header/SubHeader';
 import RecommendedSlider from '@/features/contents/ui/recommended/RecommendedSlider';
 
 /* API */
-import { fetchRecommended } from '@/api/fetchRecommended';
+import { fetchRecommended } from '@/entities/contents/recommended/api/fetchRecommended';
 
 /* Types */
 import {

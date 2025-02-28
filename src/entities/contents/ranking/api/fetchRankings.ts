@@ -1,4 +1,4 @@
-import Api from './core/Api';
+import Api from '@/api/core/Api';
 import { fetchers } from '@/__mocks__/helpers/fetchers';
 import { RankingsResponse } from '@/_types/contents/contents';
 

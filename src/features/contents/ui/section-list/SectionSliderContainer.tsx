@@ -9,7 +9,7 @@ import SectionSlider from '@/features/contents/ui/section-list/SectionSlider';
 import { DimmedBackground } from '@/features/shared/ui/dimmed-background/DimmedBackground';
 
 /* API */
-import { fetchSections } from '@/api/fetchSections';
+import { fetchSections } from '@/entities/contents/main/api/fetchSections';
 
 /* Types */
 import { Section, SectionsResponse } from '@/_types/contents/contents';
@@ -24,10 +24,15 @@ import styles from './SectionSliderContainer.module.css';
 const userName = '디미';
 const recommendedTitle = '예능';
 type SectionSliderContainerProps = {
-  getImageSrc: (title: string, pageType: 'contentMain' | 'ranking' | 'recommended') => string;
+  getImageSrc: (
+    title: string,
+    pageType: 'contentMain' | 'ranking' | 'recommended',
+  ) => string;
 };
 
-const SectionSliderContainer: React.FC<SectionSliderContainerProps> = ({ getImageSrc }) => {
+const SectionSliderContainer: React.FC<SectionSliderContainerProps> = ({
+  getImageSrc,
+}) => {
   const { isDropDownOpen, openDropDown, closeDropDown } = useDropDownStore();
   const { ref, inView } = useInView();
 
