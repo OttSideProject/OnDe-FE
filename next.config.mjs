@@ -21,6 +21,11 @@ const nextConfig = {
     }
     return config;
   },
+  experimental: {
+    serverActions:{
+      allowedOrigins: ['3.38.180.6', '3.38.180.6:3000'],
+    }
+  }
   //   output: 'export', // Outputs a Single-Page Application (SPA).
   //   distDir: './dist', // Changes the build output directory to `./dist/`.
 };
