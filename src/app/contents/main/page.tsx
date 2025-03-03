@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { useImageMapping } from '@/entities/contents/hooks';
 import {
   TodayPickContent,
   BoardSectionSlide,
@@ -11,11 +10,12 @@ import {
   fetchTodayPick,
   fetchBoardSection,
 } from '@/entities/contents/main/api';
+import { useImageMapping } from '@/entities/contents/hooks';
 
 
 /* Components */
-import {Loading} from '@/features/shared/ui';
-import {StatusBar} from '@/features/shared/ui';
+import {Loading} from '@/features/shared/ui/loading';
+import {StatusBar} from '@/features/shared/ui/status-bar';
 import { Header } from '@/features/contents/ui/header';
 import { MainSlider } from '@/features/contents/ui/today-pick';
 import { BoardSectionSlider } from '@/features/contents/ui/board-section';
@@ -79,6 +79,7 @@ const slides: Slide[] = [
 
 const HomePage: React.FC = () => {
   const { getImageSrc } = useImageMapping();
+
   const [todayPicks, setTodayPicks] = useState<TodayPickContent[]>([]);
   const [boardSections, setBoardSections] = useState<BoardSectionSlide[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -114,16 +115,15 @@ const HomePage: React.FC = () => {
       <section>
         <Header headerText={headerText} iconUrl={iconUrl} />
         <MainSlider slides={todayPicks} />
-        <BoardSectionSlider boardSectionSlides={boardSections} getImageSrc={getImageSrc} />
-        <SectionSliderContainer getImageSrc={getImageSrc} />
+        <BoardSectionSlider boardSectionSlides={boardSections} />
+        <SectionSliderContainer  getImageSrc={getImageSrc}/>
       </section>
       <div className={styles.recommendContainer}>
-        <img src="/assets/images/dimi-group-text.png" alt="원하는 콘텐츠를 찾지 못하셨나요? Dimi가 직접 추천하는 당신만을 위한 콘텐츠를 확인해보세요." />
-        {/* <p>
+        <p>
           <strong>원하는 콘텐츠를 찾지 못하셨나요? </strong> <br />
           <strong>Dimi</strong>가 직접 추천하는 당신만을 위한 콘텐츠를
           확인해보세요.
-        </p> */}
+        </p>
       </div>
       <Link
         href="/contents/recommended"
