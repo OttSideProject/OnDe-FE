@@ -1,9 +1,7 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 
-import ClientLayout from '@/features/shared/lib/ClientLayout';
-
-import MSWInitializer from '@/features/shared/lib/MSWInitializer';
+import { ClientLayout, MSWInitializer } from '@/features/shared/lib';
 
 import '@/styles/core/globals.css';
 import '@/styles/core/custom.css'; /* 슬라이더 커스텀 css */

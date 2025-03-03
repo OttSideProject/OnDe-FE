@@ -1,0 +1,1 @@
+export { fetchRankings } from './fetchRankings';

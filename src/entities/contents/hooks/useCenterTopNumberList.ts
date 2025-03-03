@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 
 type HasId = { id: number };
 
-const useCenterTopNumberList = <T extends HasId>(items: T[]) => {
+export const useCenterTopNumberList = <T extends HasId>(items: T[]) => {
   const centerTopNumberList = useMemo(() => {
     if (!Array.isArray(items) || items.length === 0) {
       return [];
@@ -27,4 +27,4 @@ const useCenterTopNumberList = <T extends HasId>(items: T[]) => {
   return centerTopNumberList;
 };
 
-export default useCenterTopNumberList;
+

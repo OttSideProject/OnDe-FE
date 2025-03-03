@@ -1,8 +1,7 @@
-
 import { AxiosResponse } from 'axios';
 import { QueryKey, UseQueryOptions, useQuery } from '@tanstack/react-query';
 
-const UseCustomQuery = <
+export const UseCustomQuery = <
   TData = unknown,
   TError = Error,
   TParams extends object = {}
@@ -23,5 +22,3 @@ const UseCustomQuery = <
 	...options,
   });
 };
-
-export { UseCustomQuery };

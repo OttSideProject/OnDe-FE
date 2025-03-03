@@ -1,8 +1,7 @@
 'use client';
 
 import { ReactNode } from 'react';
-import { UseCustomQuery } from '@/features/shared/lib/hooks/useCustomQuery';
-import { useCustomMutation } from '@/features/shared/lib/hooks/useCustomMutation';
+import { UseCustomQuery, useCustomMutation } from '@/features/shared/lib/hooks';
 import Loading from '@/features/shared/ui/loading/Loading';
 import Api from '@/api/core/Api'; // Api 모듈 import
 import { AxiosResponse } from 'axios';

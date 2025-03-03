@@ -1,8 +1,7 @@
 'use client';
 
 import { ReactNode } from 'react';
-import QueryProvider from '@/features/shared/lib/QueryProvider';
-import ClientWrapper from '@/features/shared/lib/ClientWrapper';
+import { QueryProvider, ClientWrapper } from '@/features/shared/lib';
 
 const ClientLayout = ({ children }: { children: ReactNode }) => {
   return (

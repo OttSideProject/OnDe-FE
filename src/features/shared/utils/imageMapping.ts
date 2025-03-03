@@ -4,7 +4,7 @@ type ImageMapping = {
   recommended: { [key: string]: string };
 };
 
-const imageMapping: ImageMapping = {
+export const imageMapping: ImageMapping = {
   contentMain: {
     '즐겨찾는 콘텐츠': '/assets/images/sub_titles/main-favorite-contents.svg',
     '지금 가장 인기있는 영화': '/assets/images/sub_titles/main-popular-movies.svg',
@@ -40,4 +40,4 @@ const imageMapping: ImageMapping = {
   },
 };
 
-export default imageMapping;
+
