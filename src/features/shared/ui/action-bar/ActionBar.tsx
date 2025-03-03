@@ -4,7 +4,7 @@
 import InfoIconButton from './InfoIconButton';
 import MoreOptionsIconButton from './MoreOptionsIconButton';
 /* Zustand store */
-import useDropDownStore from '@/entities/contents/main/stores/useDropDownStore';
+import { useDropDownStore } from '@/entities/contents/main';
 /* Styles */
 import styles from './ActionBar.module.css';
 

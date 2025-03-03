@@ -1,1 +1,1 @@
-export { default as Toggle } from './ToggleIconButton';
+export { default as ToggleIconButton } from './ToggleIconButton';

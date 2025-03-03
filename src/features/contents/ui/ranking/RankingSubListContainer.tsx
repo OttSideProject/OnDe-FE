@@ -4,11 +4,11 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import { useInView } from 'react-intersection-observer';
 
 /* Components */
-import SubHeader from '@/features/contents/ui/header/SubHeader';
-import ImageSubList from '@/features/contents/ui/ranking/ImageSubList';
+import { SubHeader } from '@/features/contents/ui/header';
+import { ImageSubList } from '@/features/contents/ui/ranking';
 
 /* API */
-import { fetchRankings } from '@/entities/contents/ranking/api/fetchRankings';
+import { fetchRankings } from '@/entities/contents/ranking';
 
 /* Utils */
 import { ageImage } from '@/features/shared/utils/ageImage';

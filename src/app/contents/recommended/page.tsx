@@ -2,7 +2,7 @@
 
 /* Components */
 import { Header } from '@/features/contents/ui/header';
-import useImageMapping from '@/entities/contents/hooks/useImageMapping';
+import { useImageMapping } from '@/entities/contents/hooks';
 import { StatusBar } from '@/features/shared/ui/status-bar';
 import {
   RecommendedListContainer,

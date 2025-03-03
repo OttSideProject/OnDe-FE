@@ -4,15 +4,15 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { DetailData } from '@/_types/contents/contents';
 
-import Button from '@/features/shared/ui/button-group/Button';
-import DropDownOptions from '@/features/shared/ui/action-bar/DropDownOptions';
-import { DimmedBackground } from '@/features/shared/ui/dimmed-background/DimmedBackground';
+import { Button } from '@/features/shared/ui/button-group';
+import { DropDownOptions } from '@/features/shared/ui/action-bar';
+import { DimmedBackground } from '@/features/shared/ui/dimmed-background';
 
-import useDropDownStore from '@/entities/contents/main/stores/useDropDownStore';
+import { useDropDownStore } from '@/entities/contents/main/stores';
 
 import styles from './DetailComponent.module.css';
-import { BtnDetailInnerChildStyle } from '@/features/shared/ui/button-group/ButtonStyles';
-import ToggleIconButton from '@/features/shared/ui/toggle/ToggleIconButton';
+import { BtnDetailInnerChildStyle } from '@/features/shared/ui/button-group';
+import { ToggleIconButton } from '@/features/shared/ui/toggle';
 
 type DetailComponentProps = {
   detailData: DetailData;

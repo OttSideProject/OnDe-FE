@@ -1,8 +1,8 @@
 'use client';
-import { useEffect, useState } from 'react';
-import Tabs from '@/features/shared/ui/tabs/Tabs';
-import OTTSelector from '../ott-selector/OTTSelector';
-import RankingSubListContainer from './RankingSubListContainer';
+import { useState } from 'react';
+import { Tabs } from '@/features/shared/ui/tabs';
+import { OTTSelector } from '@/features/contents/ui/ott-selector';
+import { RankingSubListContainer } from '@/features/contents/ui/ranking';
 import styles from './RankingTabContents.module.css';
 type RankingTabContentsProps = {
   getImageSrc: (

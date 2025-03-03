@@ -5,11 +5,11 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import { useInView } from 'react-intersection-observer';
 
 /* Components */
-import SubHeader from '@/features/contents/ui/header/SubHeader';
-import RecommendedSlider from '@/features/contents/ui/recommended/RecommendedSlider';
+import { SubHeader } from '@/features/contents/ui/header';
+import { RecommendedSlider } from '@/features/contents/ui/recommended';
 
 /* API */
-import { fetchRecommended } from '@/entities/contents/recommended/api/fetchRecommended';
+import { fetchRecommended } from '@/entities/contents/recommended';
 
 /* Types */
 import {

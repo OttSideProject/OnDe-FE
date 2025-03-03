@@ -12,14 +12,16 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 import styles from './BoardSectionSlider.module.css';
-import SubHeader from '../header/SubHeader';
+import { SubHeader } from '../header';
 
 export type BoardSectionSliderProps = {
   boardSectionSlides: BoardSectionSlide[];
+  getImageSrc?: (title: string, pageType: 'contentMain' | 'ranking' | 'recommended') => string;
 };
 
 const BoardSectionSlider: React.FC<BoardSectionSliderProps> = ({
   boardSectionSlides,
+  getImageSrc,
 }) => {
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const [startX, setStartX] = useState<number>(0);
@@ -60,7 +62,7 @@ const BoardSectionSlider: React.FC<BoardSectionSliderProps> = ({
       <div className={`${styles.slider} board-section-slider`}>
         <SubHeader
           imageTitle="지금 뜨는 ON생각"
-          pageType="contentMain"
+          imagePath={getImageSrc?.('지금 뜨는 ON생각', 'contentMain')}
           isImageRequired={true}
         />
         <Slider {...settings}>

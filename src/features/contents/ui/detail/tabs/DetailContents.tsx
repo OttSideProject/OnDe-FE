@@ -1,10 +1,10 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { Section } from '@/_types/contents/contents';
-import Tabs from '@/features/shared/ui/tabs/Tabs';
-import ViewMoreButton from '@/features/shared/ui/view-more/ViewMoreButton';
-import SubHeader from '@/features/contents/ui/header/SubHeader';
-import SectionSlider from '@/features/contents/ui/section-list/SectionSlider';
+import { Tabs } from '@/features/shared/ui/tabs';
+import { ViewMoreButton } from '@/features/shared/ui/view-more';
+import { SubHeader } from '@/features/contents/ui/header';
+import { SectionSlider } from '@/features/contents/ui/section-list';
 import styles from './DetailContents.module.css';
 
 const DetailContents = ({ id }: { id: number }) => {
@@ -106,7 +106,6 @@ const DetailContents = ({ id }: { id: number }) => {
                 <SubHeader
                   title={`'${section.title}'과(와) 비슷한 작품`}
                   imageTitle={section.title}
-                  pageType="contentMain"
                 />
                 <div className={styles.sliderContainer}>
                   <SectionSlider sectionSlides={section.sectionSlides} />

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import SVGTitle from '@/features/contents/ui/header/sub-elements/SVGTitle';
+import { SVGTitle } from '@/features/contents/ui/header/sub-elements';
 import styles from './SubHeader.module.css';
 
 /* SubHeader type */

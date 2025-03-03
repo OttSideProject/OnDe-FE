@@ -1,11 +1,11 @@
 'use client';
 
 import { useParams } from 'next/navigation';
-import { UseCustomQuery } from '@/features/shared/lib/hooks/useCustomQuery';
+import { UseCustomQuery } from '@/features/shared/lib/hooks';
 import { DetailComponent } from '@/features/contents/ui/detail';
 import { DetailContents } from '@/features/contents/ui/detail/tabs';
 import { GoBack } from '@/features/shared/ui/go-back';
-import { fetchDetailData } from '@/entities/contents/main/api/fetchDetailData';
+import { fetchDetailData } from '@/entities/contents/main';
 
 const DetailPage: React.FC = () => {
   const { id } = useParams();

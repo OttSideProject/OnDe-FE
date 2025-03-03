@@ -1,1 +1,1 @@
-export { default as ViewMore } from './ViewMoreButton';
+export { default as ViewMoreButton } from './ViewMoreButton';

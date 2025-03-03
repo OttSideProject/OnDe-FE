@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { ageImage } from '@/features/shared/utils/ageImage';
 import Slider from 'react-slick';
 
-import Button from '../../../shared/ui/button-group/Button';
+import { Button } from '@/features/shared/ui/button-group';
 
 import { TodayPickContent } from '@/_types/contents/contents';
 

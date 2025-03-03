@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 import Slider from 'react-slick';
 
-import ActionBar from '../../../shared/ui/action-bar/ActionBar';
+import { ActionBar } from '@/features/shared/ui/action-bar';
 
 import { SectionSliderProps } from '@/_types/contents/contents';
 

@@ -1,7 +1,6 @@
 'use client';
 
-import useToggleActionStore from '@/entities/contents/main/stores/useToggleActionStore';
-
+import { useToggleActionStore } from '@/entities/contents/main';
 import styles from './ToggleIconButton.module.css';
 
 const ToggleIconButton: React.FC<{}> = () => {

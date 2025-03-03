@@ -4,7 +4,7 @@ import { useState } from 'react';
 /* Components */
 import { StatusBar } from '@/features/shared/ui/status-bar';
 import { Header } from '@/features/contents/ui/header';
-import useImageMapping from '@/entities/contents/hooks/useImageMapping';
+import { useImageMapping } from '@/entities/contents/hooks';
 import { RankingMainContainer, RankingTabContents } from '@/features/contents/ui/ranking';
 
 /* Types */

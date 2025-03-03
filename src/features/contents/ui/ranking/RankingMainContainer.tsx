@@ -6,9 +6,9 @@ import { useRouter } from 'next/navigation';
 
 import { RankingMainSliderProps } from '@/_types/contents/contents';
 /* Utils */
-import { ageImage } from '@/features/shared/utils/ageImage';
+import { ageImage } from '@/features/shared/utils';
 
-import useCenterTopNumberList from '@/entities/contents/hooks/useCenterTopNumberList';
+import {useCenterTopNumberList} from '@/entities/contents/hooks';
 
 import styles from './RankingMainContainer.module.css';
 

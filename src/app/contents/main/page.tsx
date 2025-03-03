@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import useImageMapping from '@/entities/contents/hooks/useImageMapping';
+import { useImageMapping } from '@/entities/contents/hooks';
 import {
   TodayPickContent,
   BoardSectionSlide,
@@ -12,13 +12,15 @@ import {
   fetchBoardSection,
 } from '@/entities/contents/main/api';
 
+
 /* Components */
-import { Loading } from '@/features/shared/ui/loading';
-import { StatusBar } from '@/features/shared/ui/status-bar';
+import {Loading} from '@/features/shared/ui';
+import {StatusBar} from '@/features/shared/ui';
 import { Header } from '@/features/contents/ui/header';
 import { MainSlider } from '@/features/contents/ui/today-pick';
 import { BoardSectionSlider } from '@/features/contents/ui/board-section';
 import { SectionSliderContainer } from '@/features/contents/ui/section-list';
+
 
 /* Types */
 import { Slide } from '@/_types/contents/contents';
@@ -112,15 +114,16 @@ const HomePage: React.FC = () => {
       <section>
         <Header headerText={headerText} iconUrl={iconUrl} />
         <MainSlider slides={todayPicks} />
-        <BoardSectionSlider boardSectionSlides={boardSections} />
+        <BoardSectionSlider boardSectionSlides={boardSections} getImageSrc={getImageSrc} />
         <SectionSliderContainer getImageSrc={getImageSrc} />
       </section>
       <div className={styles.recommendContainer}>
-        <p>
+        <img src="/assets/images/dimi-group-text.png" alt="원하는 콘텐츠를 찾지 못하셨나요? Dimi가 직접 추천하는 당신만을 위한 콘텐츠를 확인해보세요." />
+        {/* <p>
           <strong>원하는 콘텐츠를 찾지 못하셨나요? </strong> <br />
           <strong>Dimi</strong>가 직접 추천하는 당신만을 위한 콘텐츠를
           확인해보세요.
-        </p>
+        </p> */}
       </div>
       <Link
         href="/contents/recommended"

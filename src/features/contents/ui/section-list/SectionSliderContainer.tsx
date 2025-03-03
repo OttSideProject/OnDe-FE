@@ -4,19 +4,16 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import { useInView } from 'react-intersection-observer';
 
 /* Components */
-import SubHeader from '@/features/contents/ui/header/SubHeader';
-import SectionSlider from '@/features/contents/ui/section-list/SectionSlider';
-import { DimmedBackground } from '@/features/shared/ui/dimmed-background/DimmedBackground';
+import { SubHeader } from '@/features/contents/ui/header';
+import { SectionSlider } from '@/features/contents/ui/section-list';
+import { DimmedBackground } from '@/features/shared/ui/dimmed-background';
+import { DropDownOptions } from '@/features/shared/ui/action-bar';
 
 /* API */
-import { fetchSections } from '@/entities/contents/main/api/fetchSections';
+import { fetchSections, useDropDownStore } from '@/entities/contents/main';
 
 /* Types */
 import { Section, SectionsResponse } from '@/_types/contents/contents';
-
-/* Zustand store */
-import useDropDownStore from '@/entities/contents/main/stores/useDropDownStore';
-import { DropDownOptions } from '@/features/shared/ui/action-bar';
 
 /* Styles */
 import styles from './SectionSliderContainer.module.css';
