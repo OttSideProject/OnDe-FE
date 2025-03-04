@@ -8,6 +8,7 @@ type HeaderProps = {
   imageTitle?: string; // imageTitle prop 추가
   userName?: string;
   pageType?: 'contentMain' | 'ranking' | 'recommended' | ''; // 페이지 종류 추가, 빈값 추가
+  getImageSrc?: (title: string, pageType: 'contentMain' | 'ranking' | 'recommended') => string;
 };
 
 const Header: React.FC<HeaderProps> = ({
@@ -16,14 +17,19 @@ const Header: React.FC<HeaderProps> = ({
   imageTitle,
   userName = '',
   pageType = '',
+  getImageSrc,
 }) => {
-  const imageTextUrl =
-    imageTitle && pageType ? imageMapping[pageType]?.[imageTitle] : ''; // get the image URL from the mapping
+  // getImageSrc가 있으면 사용하고, 없으면 기존 방식으로 이미지 URL을 가져옵니다.
+  const imageTextUrl = imageTitle && pageType
+    ? getImageSrc 
+      ? getImageSrc(imageTitle, pageType as 'contentMain' | 'ranking' | 'recommended')
+      : imageMapping[pageType]?.[imageTitle]
+    : ''; 
 
   return (
     <header className={styles.container}>
       <h2>
-        {userName && <span className={styles.userName}>{userName}님, </span>}
+        {userName && <span className={styles.userName}>{userName}</span>}
         {imageTextUrl ? (
           <img src={imageTextUrl} alt={headerText} />
         ) : (

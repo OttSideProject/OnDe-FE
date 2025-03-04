@@ -78,6 +78,8 @@ const RankingPage: React.FC = () => {
           headerText={headerText}
           iconUrl={iconUrl}
           imageTitle="전체 콘텐츠 랭킹"
+          pageType="ranking"
+          getImageSrc={getImageSrc}
         />
         <RankingMainContainer slides={rankingTopList} />
         <RankingTabContents getImageSrc={getImageSrc} />

@@ -115,7 +115,7 @@ const HomePage: React.FC = () => {
       <section>
         <Header headerText={headerText} iconUrl={iconUrl} />
         <MainSlider slides={todayPicks} />
-        <BoardSectionSlider boardSectionSlides={boardSections} />
+        <BoardSectionSlider boardSectionSlides={boardSections} getImageSrc={getImageSrc} />
         <SectionSliderContainer  getImageSrc={getImageSrc}/>
       </section>
       <div className={styles.recommendContainer}>

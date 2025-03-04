@@ -62,7 +62,7 @@ const BoardSectionSlider: React.FC<BoardSectionSliderProps> = ({
       <div className={`${styles.slider} board-section-slider`}>
         <SubHeader
           imageTitle="지금 뜨는 ON생각"
-          imagePath={getImageSrc?.('지금 뜨는 ON생각', 'contentMain')}
+          imagePath={getImageSrc ? getImageSrc('지금 뜨는 ON생각', 'contentMain') : '/assets/images/sub_titles/main-board.svg'}
           isImageRequired={true}
         />
         <Slider {...settings}>

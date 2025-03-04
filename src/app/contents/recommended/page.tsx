@@ -89,6 +89,8 @@ const RecommendedPage: React.FC = () => {
             headerText={headerText}
             userName={userName}
             imageTitle="요청하신 콘텐츠가 맞을까요?"
+            pageType="recommended"
+            getImageSrc={getImageSrc}
           />
           <RecommendedMainSlider recommendedMainSlides={recommendedSections} />
         </div>
