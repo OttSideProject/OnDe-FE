@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 13px;
+  padding: 0 10px;
+  font-size: 1.6rem;
+}
+
+.container h3 {
+  font-family: var(--title-font);
+  font-size: inherit;
+  display: flex;
+  align-items: center;
+}
+
+.container h3 + a {
+  position: relative;
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+  color: var(--gray100);
+}
+
+.imageWithMargin {
+  margin-left: 8px;
+}

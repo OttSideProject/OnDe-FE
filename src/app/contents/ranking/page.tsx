@@ -1,20 +1,17 @@
 'use client';
 
 import { useState } from 'react';
-import Link from 'next/link';
 /* Components */
-import StatusBar from '@/components/shared/status-bar/StatusBar';
-import Header from '@/components/contents/header/Header';
-import RankingMainContainer from '@/components/contents/RankingMainContainer';
-import RankingTabContents from '@/components/contents/RankingTabContents';
-import OTTSelector from '@/components/contents/OTTSelector';
+import { StatusBar } from '@/features/shared/ui/status-bar';
+import { Header } from '@/features/contents/ui/header';
+import { useImageMapping } from '@/entities/contents/hooks';
+import { RankingMainContainer, RankingTabContents } from '@/features/contents/ui/ranking';
 
 /* Types */
 import { Slide } from '@/_types/contents/contents';
 
 /* Styles */
 import styles from './page.module.css';
-import RankingSubListContainer from '@/components/contents/RankingSubListContainer';
 
 const headerText = '전체 콘텐츠 랭킹';
 
@@ -29,19 +26,22 @@ const rankingTopList: Slide[] = [
   {
     id: 1,
     title: '더 인플루언서',
-    subTitle: ['흥미진진한', '시리즈', '서바이벌'],
+    age: 'all',
+    subTitle: ['흥미진진한', '시리즈'],
     url: 'https://picsum.photos/240/360?random=1',
   },
   {
     id: 2,
+    age: '19',
     title: '에일리언',
-    subTitle: ['독특한', '서스펜스', 'SF'],
+    subTitle: ['독특한', '서스펜스'],
     url: 'https://picsum.photos/240/360?random=2',
   },
   {
     id: 3,
+    age: '15+',
     title: '귀공자',
-    subTitle: ['독특한', '서스펜스', 'SF'],
+    subTitle: ['독특한', '서스펜스'],
     url: 'https://picsum.photos/240/360?random=3',
   },
 ];
@@ -68,17 +68,24 @@ const handleOTTClick = async (ott: string) => {
   }
 };
 
-const HomePage: React.FC = () => {
+const RankingPage: React.FC = () => {
+  const { getImageSrc } = useImageMapping();
   return (
     <main className={styles.container}>
       <StatusBar statusText="랭킹" iconUrlList={iconUrlList} />
       <section>
-        <Header headerText={headerText} iconUrl={iconUrl} />
+        <Header
+          headerText={headerText}
+          iconUrl={iconUrl}
+          imageTitle="전체 콘텐츠 랭킹"
+          pageType="ranking"
+          getImageSrc={getImageSrc}
+        />
         <RankingMainContainer slides={rankingTopList} />
-        <RankingTabContents />
+        <RankingTabContents getImageSrc={getImageSrc} />
       </section>
     </main>
   );
 };
 
-export default HomePage;
+export default RankingPage;

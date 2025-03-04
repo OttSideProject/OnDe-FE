@@ -106,9 +106,7 @@ html {
 
   --design-font: 'IBMPlexSansKR', sans-serif;
 
-  --number-font: 'SUIT', sans-serif;
-
-  --title-font: 'Paperlogy', sans-serif;
+	--title-font : 'Paperlogy', sans-serif;
 }
 
 /* 텍스트 초기화 */
@@ -265,7 +263,8 @@ textarea:focus:not(:focus-visible) {
 
 /* scroll 커스텀 스타일 */
 .scrollbar::-webkit-scrollbar {
-  width: 4px;
+  width: 0;
+	height: 2px;
 }
 .scrollbar::-webkit-scrollbar-thumb {
   background-color: var(--gray500);
@@ -293,10 +292,6 @@ textarea:focus:not(:focus-visible) {
   background-size: 100%;
 }
 
-/* 숫자 폰트 */
-.number-font {
-  font-family: var(--number-font);
-}
 
 /* 콘텐츠 커밍 순  */
 .coming-soon {
