@@ -1,5 +1,5 @@
-import { BoardSectionSlide } from '@/_types/contents/contents';
-import { fetchBoardSection } from '@/api/fetchBoardSection';
+import { BoardSectionStore } from '@/_types/contents/contents';
+import { fetchBoardSection } from '@/entities/contents/main';
 
 export const boardSectionService = {
   async fetchBoardSections() {

@@ -65,7 +65,7 @@
       "id": 2,
       "title": "판타지",
       "linkText": "",
-      "linkUrl": "/contents/recommend",
+      "linkUrl": "/contents/recommended",
       "sectionSlides": [
         {
           "id": 1,
@@ -315,7 +315,7 @@
       "id": 7,
       "title": "예능",
       "linkText": "",
-      "linkUrl": "/contents/recommend",
+      "linkUrl": "/contents/recommended",
       "sectionSlides": [
         {
           "id": 1,
@@ -565,7 +565,7 @@
       "id": 12,
       "title": "SF",
       "linkText": "",
-      "linkUrl": "/contents/recommend",
+      "linkUrl": "/contents/recommended",
       "sectionSlides": [
         {
           "id": 1,

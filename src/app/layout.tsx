@@ -1,12 +1,10 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 
-import ClientLayout from '@/components/ClientLayout';
+import { ClientLayout, MSWInitializer } from '@/features/shared/lib';
 
-import MSWInitializer from '@/components/MSWInitializer';
-
-import '../styles/core/globals.css';
-import '../styles/core/custom.css'; /* 슬라이더 커스텀 css */
+import '@/styles/core/globals.css';
+import '@/styles/core/custom.css'; /* 슬라이더 커스텀 css */
 
 /* 기본 텍스트 */
 const pretendard = localFont({

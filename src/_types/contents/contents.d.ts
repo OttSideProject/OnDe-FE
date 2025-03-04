@@ -17,7 +17,9 @@ export type TodayPickContent = {
   rank: number;
 };
 
-export type RankingMainSliderProps = MainSliderProps; // RankingMainSliderProps 타입 추가
+export type RankingMainSliderProps = {
+  slides: Slide[];
+};
 
 /* SectionSlider type */
 export type Section = {

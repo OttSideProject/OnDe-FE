@@ -55,7 +55,7 @@
       "id": 2,
       "title": "좋아하시죠?",
       "linkText": "",
-      "linkUrl": "/contents/recommend",
+      "linkUrl": "/contents/recommended",
       "sectionSlides": [
         {
           "id": 1,
@@ -305,7 +305,7 @@
       "id": 7,
       "title": "지금 가장 인기있는 시리즈",
       "linkText": "",
-      "linkUrl": "/contents/recommend",
+      "linkUrl": "/contents/recommended",
       "sectionSlides": [
         {
           "id": 1,
@@ -555,7 +555,7 @@
       "id": 12,
       "title": "지금 가장 인기있는 시리즈",
       "linkText": "",
-      "linkUrl": "/contents/recommend",
+      "linkUrl": "/contents/recommended",
       "sectionSlides": [
         {
           "id": 1,

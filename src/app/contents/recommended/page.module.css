@@ -1,5 +1,5 @@
 .container {
-  padding: 60px 0 15px;
+  padding-bottom: 15px;
 }
 
 .mainContainer {
@@ -14,6 +14,10 @@
       var(--praimary, rgba(191, 255, 0, 0.3)) -7.68%,
       var(--black, rgba(11, 11, 11, 0.3)) 59%
     );
+}
+
+.mainContainer > div {
+  padding-top: 60px;
 }
 
 

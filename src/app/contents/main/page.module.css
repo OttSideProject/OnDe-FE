@@ -3,13 +3,13 @@
 }
 
 .recommendContainer {
-  margin-bottom: 30px;
-  padding-bottom: 37px;
+  margin: 0 9px 50px;
   font-size: 1.4rem;
-  background-image: url('/assets/images/icons/dimi-group.svg');
-  background-repeat: no-repeat;
-  background-position: center bottom;
-  background-size: auto;
+}
+
+.recommendContainer img {
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .recommendContainer p {
@@ -37,7 +37,5 @@
 
 /* 반응형  */
 @media screen and (min-width: 576px) {
-  .recommendContainer {
-    background-size: auto 30px;
-  }
+ 
 }

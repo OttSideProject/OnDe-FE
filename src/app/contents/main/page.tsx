@@ -6,16 +6,21 @@ import {
   TodayPickContent,
   BoardSectionSlide,
 } from '@/_types/contents/contents';
-import { fetchTodayPick } from '@/api/fetchTodayPick';
-import { fetchBoardSection } from '@/api/fetchBoardSection';
-import Loading from '@/components/shared/loading/Loading';
+import {
+  fetchTodayPick,
+  fetchBoardSection,
+} from '@/entities/contents/main/api';
+import { useImageMapping } from '@/entities/contents/hooks';
+
 
 /* Components */
-import Header from '@/components/contents/header/Header';
-import MainSlider from '@/components/contents/MainSlider';
-import SectionSliderContainer from '@/components/contents/SectionSliderContainer';
-import BoardSectionSlider from '@/components/contents/BoardSectionSlider';
-import StatusBar from '@/components/shared/status-bar/StatusBar';
+import {Loading} from '@/features/shared/ui/loading';
+import {StatusBar} from '@/features/shared/ui/status-bar';
+import { Header } from '@/features/contents/ui/header';
+import { MainSlider } from '@/features/contents/ui/today-pick';
+import { BoardSectionSlider } from '@/features/contents/ui/board-section';
+import { SectionSliderContainer } from '@/features/contents/ui/section-list';
+
 
 /* Types */
 import { Slide } from '@/_types/contents/contents';
@@ -73,6 +78,8 @@ const slides: Slide[] = [
 ];
 
 const HomePage: React.FC = () => {
+  const { getImageSrc } = useImageMapping();
+
   const [todayPicks, setTodayPicks] = useState<TodayPickContent[]>([]);
   const [boardSections, setBoardSections] = useState<BoardSectionSlide[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -108,8 +115,8 @@ const HomePage: React.FC = () => {
       <section>
         <Header headerText={headerText} iconUrl={iconUrl} />
         <MainSlider slides={todayPicks} />
-        <BoardSectionSlider boardSectionSlides={boardSections} />
-        <SectionSliderContainer />
+        <BoardSectionSlider boardSectionSlides={boardSections} getImageSrc={getImageSrc} />
+        <SectionSliderContainer  getImageSrc={getImageSrc}/>
       </section>
       <div className={styles.recommendContainer}>
         <p>

@@ -1,8 +1,13 @@
+'use client';
+
 /* Components */
-import Header from '@/components/contents/header/Header';
-import StatusBar from '@/components/shared/status-bar/StatusBar';
-import RecommendedListContainer from '@/components/contents/RecommendedListContainer';
-import RecommendedMainSlider from '@/components/contents/RecommendedMainSlider';
+import { Header } from '@/features/contents/ui/header';
+import { useImageMapping } from '@/entities/contents/hooks';
+import { StatusBar } from '@/features/shared/ui/status-bar';
+import {
+  RecommendedListContainer,
+  RecommendedMainSlider,
+} from '@/features/contents/ui/recommended';
 
 /* Types */
 import { Slide, RecommendedSectionSlide } from '@/_types/contents/contents';
@@ -69,26 +74,30 @@ const recommendedSections: RecommendedSectionSlide[] = [
   },
 ];
 
-const RecommendedPage: React.FC = ({}) => {
+const RecommendedPage: React.FC = () => {
+  const { getImageSrc } = useImageMapping();
   return (
     <main className={styles.container}>
-      <StatusBar
-        statusText="추천"
-        iconUrlList={iconUrlList}
-        pageType="recommended"
-      />
-      <section>
-        <div className={styles.mainContainer}>
+      <section className={styles.mainContainer}>
+        <StatusBar
+          statusText="추천"
+          iconUrlList={iconUrlList}
+          pageType="recommended"
+        />
+        <div>
           <Header
             headerText={headerText}
             userName={userName}
             imageTitle="요청하신 콘텐츠가 맞을까요?"
             pageType="recommended"
+            getImageSrc={getImageSrc}
           />
           <RecommendedMainSlider recommendedMainSlides={recommendedSections} />
         </div>
+      </section>
+      <section>
         {/* 추천 메인  */}
-        <RecommendedListContainer />
+        <RecommendedListContainer getImageSrc={getImageSrc} />
       </section>
     </main>
   );
