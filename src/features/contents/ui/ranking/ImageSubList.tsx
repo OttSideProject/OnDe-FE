@@ -13,7 +13,7 @@ const ImageSubList: React.FC<RankingSubListContainerProps> = ({ rankings }) => {
         {rankings.map((ranking) => (
           <Link
             key={ranking.id}
-            href={`/details/${ranking.content_id}`}
+            href={`/contents/detail/${ranking.content_id}`}
             className={styles.cardLink}
           >
             <figure className={styles.rankingItem}>
