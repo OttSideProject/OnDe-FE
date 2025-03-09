@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 
 export interface PostDetailType {
   [x: string]: ReactNode;
-  postIdx: number;
+  postIdx: string;
   user_idx: number;
   title: string;
   contents: string;

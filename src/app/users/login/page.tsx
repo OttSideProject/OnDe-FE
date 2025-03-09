@@ -21,7 +21,7 @@ export default function LoginForm() {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
-  console.log(formData);
+  // console.log(formData);
 
   const handleLogin = () => {
     setError('');
@@ -31,7 +31,7 @@ export default function LoginForm() {
       .then((response) => {
         console.log('로그인 성공:', response.data);
 
-        const accessToken = response.data.result.token;
+        const accessToken = response.data.result.accessToken;
         console.log(accessToken);
 
         // access-token을 localStorage에 저장
@@ -41,12 +41,11 @@ export default function LoginForm() {
         Api.defaults.headers.common['Access-Token'] = `${accessToken}`;
 
         alert('로그인에 성공했습니다!');
-        setTimeout(() => {
-          location.href = '/';
-        }, 1000);
+        // setTimeout(() => {
+        //   location.href = '/';
+        // }, 1000);
       })
       .catch((error) => {
-        debugger;
         console.error('로그인 실패:', error);
         setError('아이디 또는 비밀번호가 잘못되었습니다.');
       })

@@ -70,9 +70,11 @@ const WeeklyPostListItem: React.FC<WeeklyPostListItemProps> = ({
     getPostUserInfo(user_idx);
   }, []);
 
-  const boardDetailPost = (idx: number) => {
+  const boardDetailPost = (id: string) => {
     if (typeof window !== 'undefined') {
-      router.push(`/board/details/${idx}`);
+      // console.log(id);
+      // debugger;
+      router.push(`/board/details/${id}`);
     }
   };
 
