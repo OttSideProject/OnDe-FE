@@ -1,0 +1,182 @@
+.container {
+  display: flex;
+  margin-bottom: 35px;
+  padding: 0 3px;
+}
+
+.container > div {
+  display: flex;
+  justify-content: flex-start;
+  overflow-x: auto;
+  padding: 3px;
+}
+
+.inner {
+  display: flex;
+  gap: 1px;
+}
+
+.cardLink {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  display: block;
+  margin: 0 10px;
+  padding: 12px;
+  background-image: url('/assets/images/slide-bg.svg');
+  background-size: 270px 200px;
+  background-repeat: no-repeat;
+}
+
+.cardLink::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  max-width: 72px;
+  height: 26px;
+  opacity: 0.1;
+  background: linear-gradient(
+      180deg,
+      rgba(174, 182, 133, 0.71) 12%,
+      rgba(174, 182, 133, 0.71) 71%,
+      rgba(174, 182, 133, 0.8) 80%,
+      #aeb685 100%
+    ),
+    var(--gray-100, #c2c4c0);
+  filter: blur(7.5px);
+  background-repeat: no-repeat;
+  background-position: center bottom;
+}
+
+.slide {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  max-width: 72px;
+  height: 72px;
+  /* border-radius: 2px 2px 0px 0px; */
+  transition: transform 0.3s ease-in-out;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+  font-size: 1.4rem;
+}
+
+.slide .userInfo img {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.contentContainer {
+  /* border-radius: 0px 0px 2px 2px; */
+}
+
+.contentContainer > div {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  max-width: 246px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--gray750);
+}
+
+.imgContainer {
+  width: 72px;
+  height: 72px;
+}
+
+.imgContainer > img {
+  width: 100%;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.slide img {
+  width: inherit;
+  max-width: inherit;
+  height: inherit;
+  border-radius: inherit;
+  -webkit-border-radius: inherit;
+  -moz-border-radius: inherit;
+  -ms-border-radius: inherit;
+  -o-border-radius: inherit;
+}
+
+.textContainer {
+  width: calc(100% - 74px);
+  max-width: 172px;
+  margin-left: 14px;
+  font-size: 1.6rem;
+}
+
+.textContainer h3 {
+  margin-bottom: 8px;
+  font-size: inherit;
+}
+
+.textContainer h3 + p {
+  font-size: 1.4rem;
+}
+
+.bottomContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+  padding: 0 12px;
+}
+
+.bottomContainer > div {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--gray400);
+}
+
+.emptySlide {
+  opacity: 0;
+  pointer-events: none; /* 클릭 불가능하게 설정 */
+}
+
+.slide .btnContainer {
+  bottom: 15px;
+}
+
+.btnContainer {
+  position: absolute;
+  bottom: 19px;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+}
+
+/* 반응형 */
+@media only screen and (max-width: 560px) and (min-width: 500px) {
+  .slide {
+    /* width: 175px !important; */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .cardLink {
+    /* width: 104px !important; */
+  }
+
+  .slide {
+    /* width: 104px;
+    height: 156px; */
+  }
+}

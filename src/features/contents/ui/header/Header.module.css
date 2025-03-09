@@ -1,0 +1,31 @@
+.container {
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  height: 44px;
+  padding: 2px 15px 12px;
+  font-size: 2.4rem;
+}
+
+.container h2 {
+  font-family: var(--title-font);
+  display: flex;
+  align-items: center;
+  font-size: inherit;
+}
+
+.container h2:has(.userName) {
+  font-size: 1.8rem;
+}
+
+.container h2 .userName {
+  margin-top: -3px;
+}
+
+.container h2 .userName + img {
+  margin-left: 0;
+}
+
+.container h2 > img {
+  margin-left: 4.5px;
+}

@@ -1,18 +1,34 @@
+'use client';
+
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import {
+  TodayPickContent,
+  BoardSectionSlide,
+} from '@/_types/contents/contents';
+import {
+  fetchTodayPick,
+  fetchBoardSection,
+} from '@/entities/contents/main/api';
+import { useImageMapping } from '@/entities/contents/hooks';
+
+
 /* Components */
-import Header from '@/components/contents/header/Header';
-import MainSlider from '@/components/contents/MainSlider';
-import SectionSliderContainer from '@/components/contents/SectionSliderContainer';
-import StatusBar from '@/components/shared/status-bar/StatusBar';
+import {Loading} from '@/features/shared/ui';
+import {StatusBar} from '@/features/shared/ui';
+import { Header } from '@/features/contents/ui/header';
+import { MainSlider } from '@/features/contents/ui/today-pick';
+import { BoardSectionSlider } from '@/features/contents/ui/board-section';
+import { SectionSliderContainer } from '@/features/contents/ui/section-list';
+
 
 /* Types */
-import { Slide, BoardSectionSlide } from '@/_types/contents/contents';
+import { Slide } from '@/_types/contents/contents';
 
 /* Styles */
 import styles from './page.module.css';
-import BoardSectionSlider from '@/components/contents/BoardSectionSlider';
 
-const headerText = '오늘의 Dimi’s pick ';
+const headerText = '오늘의 Dimi’s pick';
 
 const iconUrl = '/assets/images/icons/dimi-eyes-on.svg';
 
@@ -27,114 +43,93 @@ const slides: Slide[] = [
   {
     id: 1,
     title: '더 인플루언서',
-    subTitle: ['흥미진진한', '시리즈', '서바이벌'],
+    age: 'all',
+    subTitle: ['흥미진진한', '시리즈'],
     url: 'https://picsum.photos/240/360?random=1',
   },
   {
     id: 2,
+    age: '19',
     title: '에일리언',
-    subTitle: ['독특한', '서스펜스', 'SF'],
+    subTitle: ['독특한', '서스펜스'],
     url: 'https://picsum.photos/240/360?random=2',
   },
   {
     id: 3,
+    age: '15+',
     title: '귀공자',
-    subTitle: ['독특한', '서스펜스', 'SF'],
+    subTitle: ['독특한', '서스펜스'],
     url: 'https://picsum.photos/240/360?random=3',
   },
   {
     id: 4,
+    age: '12+',
     title: 'title 4',
-    subTitle: ['흥미진진한', '시리즈', '서바이벌'],
+    subTitle: ['흥미진진한', '시리즈'],
     url: 'https://picsum.photos/240/360?random=4',
   },
   {
     id: 5,
+    age: '19',
     title: 'title 5',
-    subTitle: ['흥미진진한', '시리즈', '서바이벌'],
+    subTitle: ['흥미진진한', '서바이벌'],
     url: 'https://picsum.photos/240/360?random=5',
   },
 ];
 
-const boardSections: BoardSectionSlide[] = [
-  {
-    id: 1,
-    name: '가나1',
-    profileImg:
-      'https://image.dongascience.com/Photo/2020/03/5bddba7b6574b95d37b6079c199d7101.jpg',
-    imgUrl: 'https://picsum.photos/60/90?random=1',
-    detailUrl: '/board/1',
-    title:
-      '제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.',
-    description:
-      '본문입니다. 본문입니다. 본문입니다. 본문입니다.본문입니다. 본문입니다.본문입니다. 본문입니다. 본문입니다.본문입니다.본문입니다. 본문입니다. 본문입니다.본문입니다.본문입니다. 본문입니다. 본문입니다.',
-    likeCount: 27,
-    messageCount: 110,
-  },
-  {
-    id: 2,
-    name: '다라2',
-    imgUrl: 'https://picsum.photos/60/90?random=2',
-    detailUrl: '/board/2',
-    title: '제목입니다.',
-    description:
-      '본문입니다. 본문입니다. 본문입니다. 본문입니다.본문입니다. 본문입니다.본문입니다. 본문입니다. 본문입니다.본문입니다.본문입니다. 본문입니다. 본문입니다.본문입니다.본문입니다. 본문입니다. 본문입니다.',
-    likeCount: 3,
-    messageCount: 0,
-  },
-  {
-    id: 3,
-    name: '가나3',
-    imgUrl: 'https://picsum.photos/60/90?random=3',
-    detailUrl: '/board/3',
-    title: '제목입니다.',
-    description:
-      '본문입니다. 본문입니다. 본문입니다. 본문입니다.본문입니다. 본문입니다.본문입니다. 본문입니다. 본문입니다.본문입니다.본문입니다. 본문입니다. 본문입니다.본문입니다.본문입니다. 본문입니다. 본문입니다.',
-    likeCount: 20,
-    messageCount: 30,
-  },
-  {
-    id: 4,
-    name: '다라4',
-    imgUrl: 'https://picsum.photos/60/90?random=4',
-    detailUrl: '/board/4',
-    title: '제목입니다.',
-    description:
-      '본문입니다. 본문입니다. 본문입니다. 본문입니다.본문입니다. 본문입니다.본문입니다. 본문입니다. 본문입니다.본문입니다.본문입니다. 본문입니다. 본문입니다.본문입니다.본문입니다. 본문입니다. 본문입니다.',
-    likeCount: 2,
-    messageCount: 10,
-  },
-  {
-    id: 5,
-    name: '마바5',
-    imgUrl: 'https://picsum.photos/60/90?random=5',
-    detailUrl: '/board/5',
-    title: '제목입니다.',
-    description:
-      '본문입니다. 본문입니다. 본문입니다. 본문입니다.본문입니다. 본문입니다.본문입니다. 본문입니다. 본문입니다.본문입니다.본문입니다. 본문입니다. 본문입니다.본문입니다.본문입니다. 본문입니다. 본문입니다.',
-    likeCount: 0,
-    messageCount: 3,
-  },
-];
-
 const HomePage: React.FC = () => {
+  const { getImageSrc } = useImageMapping();
+  const [todayPicks, setTodayPicks] = useState<TodayPickContent[]>([]);
+  const [boardSections, setBoardSections] = useState<BoardSectionSlide[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setIsLoading(true);
+        const [todayResponse, boardResponse] = await Promise.all([
+          fetchTodayPick(),
+          fetchBoardSection(),
+        ]);
+        setTodayPicks(todayResponse.data);
+        setBoardSections(boardResponse.data);
+      } catch (err) {
+        setError('데이터를 불러오는데 실패했습니다.');
+        console.error('Error fetching data:', err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (isLoading) return <Loading />;
+  if (error) return <div>{error}</div>;
+
   return (
     <main className={styles.container}>
       <StatusBar logoUrl={logoUrl} iconUrlList={iconUrlList} />
       <section>
         <Header headerText={headerText} iconUrl={iconUrl} />
-        <MainSlider slides={slides} />
-        <BoardSectionSlider boardSectionSlides={boardSections} />
-        <SectionSliderContainer />
+        <MainSlider slides={todayPicks} />
+        <BoardSectionSlider boardSectionSlides={boardSections} getImageSrc={getImageSrc} />
+        <SectionSliderContainer  getImageSrc={getImageSrc}/>
       </section>
       <div className={styles.recommendContainer}>
-        <p>
+        <img src="/assets/images/dimi-group-text.png" alt="원하는 콘텐츠를 찾지 못하셨나요? Dimi가 직접 추천하는 당신만을 위한 콘텐츠를 확인해보세요." />
+        {/* <p>
           <strong>원하는 콘텐츠를 찾지 못하셨나요? </strong> <br />
           <strong>Dimi</strong>가 직접 추천하는 당신만을 위한 콘텐츠를
           확인해보세요.
-        </p>
+        </p> */}
       </div>
-      <Link href="" title="추천 바로가기" className={styles.fullButton}>
+      <Link
+        href="/contents/recommended"
+        title="추천 바로가기"
+        className={styles.fullButton}
+      >
         추천 바로가기
       </Link>
     </main>
