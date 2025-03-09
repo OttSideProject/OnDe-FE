@@ -72,8 +72,8 @@ const WeeklyPostListItem: React.FC<WeeklyPostListItemProps> = ({
 
   const boardDetailPost = (id: string) => {
     if (typeof window !== 'undefined') {
-      console.log(id);
-      debugger;
+      // console.log(id);
+      // debugger;
       router.push(`/board/details/${id}`);
     }
   };

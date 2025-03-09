@@ -6,9 +6,9 @@ import React, { useCallback, useEffect, useState } from 'react';
 import signup from '@/styles/user/signup';
 import { useRouter } from 'next/navigation';
 
-// import './PostInsert.module.css';
+// import './PostCreate.module.css';
 
-const PostInsert = () => {
+const PostCreate = () => {
   const router = useRouter();
   const [boardId, setboradId] = useState('');
   const [title, setTitle] = useState('');
@@ -21,7 +21,7 @@ const PostInsert = () => {
         title,
         content,
       });
-      console.log(response);
+      // console.log(response);
 
       if (response.status === 200) {
         alert('Post created successfully!');
@@ -118,4 +118,4 @@ const PostInsert = () => {
   );
 };
 
-export default PostInsert;
+export default PostCreate;

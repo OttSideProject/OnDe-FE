@@ -56,7 +56,7 @@ const PostList: React.FC<PostListProps> = ({ selectedCategoryNumber }) => {
 
   const navigateToPostCreation = () => {
     if (isClient) {
-      router.push('/board/Insert');
+      router.push('/board/create');
     }
   };
   return (

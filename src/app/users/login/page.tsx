@@ -21,7 +21,7 @@ export default function LoginForm() {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
-  console.log(formData);
+  // console.log(formData);
 
   const handleLogin = () => {
     setError('');
@@ -41,9 +41,9 @@ export default function LoginForm() {
         Api.defaults.headers.common['Access-Token'] = `${accessToken}`;
 
         alert('로그인에 성공했습니다!');
-        setTimeout(() => {
-          location.href = '/';
-        }, 1000);
+        // setTimeout(() => {
+        //   location.href = '/';
+        // }, 1000);
       })
       .catch((error) => {
         console.error('로그인 실패:', error);
