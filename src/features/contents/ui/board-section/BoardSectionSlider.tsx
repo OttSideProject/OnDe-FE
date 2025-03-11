@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 import Slider from 'react-slick';
 
-import { BoardSectionSlide } from '@/_types/contents/contents';
+import { BoardSectionSlide } from '@/_types/contents';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -16,7 +16,10 @@ import { SubHeader } from '../header';
 
 export type BoardSectionSliderProps = {
   boardSectionSlides: BoardSectionSlide[];
-  getImageSrc?: (title: string, pageType: 'contentMain' | 'ranking' | 'recommended') => string;
+  getImageSrc?: (
+    title: string,
+    pageType: 'contentMain' | 'ranking' | 'recommended',
+  ) => string;
 };
 
 const BoardSectionSlider: React.FC<BoardSectionSliderProps> = ({
@@ -62,7 +65,11 @@ const BoardSectionSlider: React.FC<BoardSectionSliderProps> = ({
       <div className={`${styles.slider} board-section-slider`}>
         <SubHeader
           imageTitle="지금 뜨는 ON생각"
-          imagePath={getImageSrc ? getImageSrc('지금 뜨는 ON생각', 'contentMain') : '/assets/images/sub_titles/main-board.svg'}
+          imagePath={
+            getImageSrc
+              ? getImageSrc('지금 뜨는 ON생각', 'contentMain')
+              : '/assets/images/sub_titles/main-board.svg'
+          }
           isImageRequired={true}
         />
         <Slider {...settings}>

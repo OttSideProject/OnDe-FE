@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { DetailData } from '@/_types/contents/contents';
+import { DetailData } from '@/_types/contents';
 import { ageImage } from '@/features/shared/utils/ageImage';
 import { Button } from '@/features/shared/ui/button-group';
 import { DropDownOptions } from '@/features/shared/ui/action-bar';

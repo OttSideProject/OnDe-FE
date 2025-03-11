@@ -4,11 +4,11 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
-import { RankingMainSliderProps } from '@/_types/contents/contents';
+import { RankingMainSliderProps } from '@/_types/contents';
 /* Utils */
 import { ageImage } from '@/features/shared/utils';
 
-import {useCenterTopNumberList} from '@/entities/contents/hooks';
+import { useCenterTopNumberList } from '@/entities/contents/hooks';
 
 import styles from './RankingMainContainer.module.css';
 
@@ -28,7 +28,11 @@ const RankingMainContainer: React.FC<RankingMainSliderProps> = ({ slides }) => {
     <article className={styles.container}>
       <div className={styles.list}>
         {centerTopNumberList.map((slide, index) => (
-          <div key={index} className={styles.cardLink} onClick={() => goLink(slide.id)}>
+          <div
+            key={index}
+            className={styles.cardLink}
+            onClick={() => goLink(slide.id)}
+          >
             <figure
               className={`${styles.rankingItem} ${
                 activeSlide === index ? styles.activeSlide : ''

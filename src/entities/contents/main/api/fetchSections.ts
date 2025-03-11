@@ -1,5 +1,5 @@
 import { PublicApi } from '@/api/core';
-import { SectionsResponse } from '@/_types/contents/contents';
+import { SectionsResponse } from '@/_types/contents';
 import { fetchers } from '@/__mocks__/helpers/fetchers';
 
 export const fetchSections = async (id: number): Promise<SectionsResponse> => {

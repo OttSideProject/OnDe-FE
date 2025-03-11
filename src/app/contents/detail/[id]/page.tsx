@@ -1,7 +1,7 @@
 'use client';
 
 import { useParams } from 'next/navigation';
-import { DetailData } from '@/_types/contents/contents';
+import { DetailData } from '@/_types/contents';
 import { UseCustomQuery } from '@/features/shared/lib/hooks';
 import { fetchDetailData } from '@/entities/contents/main';
 import { DetailComponent } from '@/features/contents/ui/detail';

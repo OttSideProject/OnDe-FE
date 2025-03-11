@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { RankingSubListContainerProps } from '@/_types/contents/contents';
+import { RankingSubListContainerProps } from '@/_types/contents';
 
 import styles from './ImageSubList.module.css';
 

@@ -8,7 +8,7 @@ import Slider from 'react-slick';
 
 import { Button } from '@/features/shared/ui/button-group';
 
-import { TodayPickContent } from '@/_types/contents/contents';
+import { TodayPickContent } from '@/_types/contents';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';

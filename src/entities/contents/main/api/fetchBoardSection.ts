@@ -1,5 +1,5 @@
 import { PublicApi, type AxiosResponse, AxiosHeaders } from '@/api/core';
-import { BoardSectionSlide } from '@/_types/contents/contents';
+import { BoardSectionSlide } from '@/_types/contents';
 
 type BoardSectionResponse = {
   data: BoardSectionSlide[];

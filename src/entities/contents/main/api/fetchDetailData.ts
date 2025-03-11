@@ -1,5 +1,5 @@
 import { PublicApi, type AxiosResponse, AxiosHeaders } from '@/api/core';
-import { DetailData } from '@/_types/contents/contents';
+import { DetailData } from '@/_types/contents';
 
 export const getDummyData = (): DetailData => ({
   contentId: 'C_1450489',

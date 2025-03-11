@@ -1,8 +1,7 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { DetailData, Section } from '@/_types/contents/contents';
+import { DetailData, Section } from '@/_types/contents';
 import { Tabs } from '@/features/shared/ui/tabs';
 import { ViewMoreButton } from '@/features/shared/ui/view-more';
 import { SubHeader } from '@/features/contents/ui/header';

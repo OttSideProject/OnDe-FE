@@ -14,7 +14,7 @@ import { fetchRankings } from '@/entities/contents/ranking';
 import { ageImage } from '@/features/shared/utils/ageImage';
 
 /* Types */
-import { Ranking, RankingsResponse } from '@/_types/contents/contents';
+import { Ranking, RankingsResponse } from '@/_types/contents';
 
 /* Styles */
 import styles from './RankingSubListContainer.module.css';
