@@ -5,7 +5,7 @@ import styles from './ViewMoreButton.module.css';
 
 /* ViemMoreButton toggle type*/
 type ViewMoreButtonProps = {
-  content: string;
+  content: string | React.ReactNode;
   viewIcon?: string;
 };
 

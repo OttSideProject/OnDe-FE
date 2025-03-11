@@ -1,16 +1,19 @@
 import { PublicApi, type AxiosResponse, AxiosHeaders } from '@/api/core';
 import { DetailData } from '@/_types/contents/contents';
 
-const getDummyData = (): DetailData => ({
+export const getDummyData = (): DetailData => ({
   contentId: 'C_1450489',
   title: '힙합 에볼루션',
   summary:
     '지금부터 힙합의 산 역사를 만난다! 태동기부터 현재까지, 당대의 MC와 디제이, 업계 거물들이 전하는 힙합의 혁신들. 흥겨운 비트와 인터뷰로 가득한 다큐멘터리 시리즈.',
-  genres: ['음악', '사회', '다큐멘터리'],
+  genres: ['음악', '사회', '다큐멘터리1'],
   age: '청불',
-  ctype: 'series',
-  released: '2016',
+  ctype: '다큐멘터리, 시리즈',
+  released: '2018',
   imageUrl: 'https://picsum.photos/375/375?random=1',
+  actors: ['도하석', '김예운', '조윤우', '고민주', '신혜원'],
+  director: '피트 닥터',
+  runningTime: '96',
 });
 
 export const fetchDetailData = async (

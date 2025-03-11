@@ -121,6 +121,7 @@ const DetailComponent: React.FC<DetailComponentProps> = ({ detailData }) => {
                 height={20}
               />
             </span>
+            {detailData.runningTime && `${detailData.runningTime}분`}
           </h2>
           <p className={styles.description}>{detailData.summary}</p>
         </figcaption>

@@ -50,7 +50,7 @@ const DetailPage = () => {
     <main>
       <GoBack />
       <DetailComponent detailData={data} />
-      <DetailContents id={contentId} />
+      <DetailContents id={contentId} detailData={data} />
     </main>
   );
 };
