@@ -1,39 +1,76 @@
-import Api from '@/api/core/Api';
-import { AxiosResponse, AxiosHeaders } from 'axios';
+import { PublicApi, type AxiosResponse, AxiosHeaders } from '@/api/core';
 import { TodayPickContent } from '@/_types/contents/contents';
+
+type TodayPickResponse = {
+  content: TodayPickContent[];
+  page: {
+    size: number;
+    number: number;
+    totalElements: number;
+    totalPages: number;
+  };
+};
+
+const getDummyData = (): TodayPickContent[] => [
+  {
+    contentId: 'C_1450489',
+    title: '힙합 에볼루션',
+    age: '청불',
+    contentImg: 'https://picsum.photos/240/360?random=1',
+    genres: ['음악', '사회', '다큐멘터리'],
+    rank: 0,
+    isLoginRequired: true,
+    isVisible: false,
+  },
+  {
+    contentId: 'C_7929532',
+    title: '힙합 애프터 파티',
+    age: '청불',
+    contentImg: 'https://picsum.photos/240/360?random=2',
+    genres: ['음악', '코미디'],
+    rank: 1,
+    isLoginRequired: false,
+    isVisible: true,
+  },
+];
+
+const getResponseData = (
+  response: AxiosResponse<TodayPickResponse>,
+): AxiosResponse<TodayPickContent[]> => {
+  if (!response.data?.content || !Array.isArray(response.data.content)) {
+    throw new Error('Invalid response format: content array expected');
+  }
+
+  const accessToken = localStorage.getItem('Access-Token');
+
+  return {
+    ...response,
+    data: response.data.content.map((item: TodayPickContent) => ({
+      ...item,
+      isLoginRequired: item.isLoginRequired ?? false,
+      isVisible: !item.isLoginRequired || !!accessToken,
+    })),
+  };
+};
 
 export const fetchTodayPick = async (): Promise<
   AxiosResponse<TodayPickContent[]>
 > => {
   try {
-    const response = await Api.post<TodayPickContent[]>(
-      '/contents/content/todayPick',
+    const response = await PublicApi.post<TodayPickResponse>(
+      '/contents/todayPick',
     );
-    return response;
+    return getResponseData(response);
   } catch (error) {
-    // 임시 더미 데이터
-    const dummyData: TodayPickContent[] = [
-      {
-        contentId: 'C_2884139',
-        title: '좋지 아니한가',
-        age: '15+',
-        contentImg: 'https://picsum.photos/240/360?random=1',
-        genres: ['청춘', '드라마', '코미디'],
-        rank: 0,
-      },
-      // ... 필요한 만큼 더미 데이터 추가
-    ];
-
+    console.error('Error fetching today picks:', error);
     return {
-      data: dummyData,
+      data: getDummyData(),
       status: 200,
       statusText: 'OK',
       headers: new AxiosHeaders(),
       config: {
         headers: new AxiosHeaders(),
-        method: 'POST',
-        url: '/contents/content/todayPick',
-      },
+      } as any,
     };
   }
 };
