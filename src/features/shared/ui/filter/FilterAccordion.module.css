@@ -1,0 +1,82 @@
+.accordion {
+  width: 100%;
+}
+
+.group {
+  border-bottom: 1px solid var(--gray700);
+}
+
+.group:last-child {
+  border-bottom: none;
+}
+
+.groupHeader {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  color: var(--white);
+  font-size: 1.6rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.groupHeader:hover {
+  background-color: var(--gray700);
+}
+
+.arrow {
+  font-size: 1.2rem;
+  color: var(--gray300);
+  transition: transform 0.2s ease-in-out;
+}
+
+.arrow.open {
+  transform: rotate(180deg);
+}
+
+.itemList {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 12px 16px;
+  color: var(--gray300);
+  font-size: 1.4rem;
+  transition: all 0.2s ease-in-out;
+  text-align: left;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.item:hover {
+  background-color: var(--gray700);
+  color: var(--white);
+}
+
+.item.selected {
+  color: var(--primary);
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  color: var(--primary);
+}
+
+.btnContainer {
+  position: absolute;
+  width: 100%;
+  bottom: 32px;
+  padding: 16px 10px;
+  width: 100%;
+}

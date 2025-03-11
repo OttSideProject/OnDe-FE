@@ -1,0 +1,37 @@
+.container {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  padding: 6px 10px;
+}
+
+.btnContainer {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.btnInner {
+  position: relative;
+}
+
+.btnInner button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 88px;
+  height: 36px;
+  color: var(--gray300);
+  transition: color 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.btnInner button:hover {
+  color: var(--white);
+}
+
+.text {
+  font-size: 1.4rem;
+  font-weight: 500;
+}

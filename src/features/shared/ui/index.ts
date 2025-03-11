@@ -28,3 +28,8 @@ export { default as Toggle } from './toggle/ToggleIconButton';
 
 // View More
 export { default as ViewMore } from './view-more/ViewMoreButton';
+
+// Filter
+export { default as FilterButton } from './filter/FilterButton';
+export { default as FilterAccordion } from './filter/FilterAccordion';
+export { default as FilterModal } from './filter/FilterModal';
