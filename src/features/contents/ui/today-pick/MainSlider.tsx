@@ -47,70 +47,72 @@ const MainSlider: React.FC<MainSliderProps> = ({ slides }) => {
     <article className={styles.container}>
       <div className={styles.slider}>
         <Slider {...settings}>
-          {slides.map((slide, index) => (
-            <div
-              key={index}
-              className={styles.cardLink}
-              onClick={() => goLink(slide.contentId)}
-            >
-              <figure
-                className={`${styles.slide} ${
-                  activeSlide === index ? styles.activeSlide : ''
-                }`}
+          {slides
+            .filter((slide) => slide.isVisible)
+            .map((slide, index) => (
+              <div
+                key={index}
+                className={styles.cardLink}
+                onClick={() => goLink(slide.contentId)}
               >
-                <Image
-                  src={
-                    slide.contentImg ||
-                    `https://picsum.photos/240/360?random=${index}`
-                  }
-                  alt={`Slide ${slide.contentId}`}
-                  width={238}
-                  height={360}
-                />
-                <div className={styles.bottomContainer}>
-                  <figcaption>
-                    <h3>{slide.title}</h3>
-                    <h4>
-                      <span>
-                        {slide.genres ? slide.genres.join(' · ') : ''} ·
-                      </span>
-                      <span className={styles.ageImageBackground}>
-                        {' '}
-                        <Image
-                          src={ageImage(slide.age, 'shared')}
-                          alt="Age restriction"
-                          width={20}
-                          height={20}
-                        />
-                      </span>
-                    </h4>
-                  </figcaption>
-                  <div className={styles.btnContainer}>
-                    {/* 첫 번째 버튼 */}
-                    <Button
-                      variant="default"
-                      size="small"
-                      text="모아보기"
-                      iconUrl="/assets/images/icons/collect-box.svg"
-                      onClick={goMypage}
-                    >
-                      모아보기
-                    </Button>
-                    {/* 두 번째 버튼 */}
-                    <Button
-                      variant="primary"
-                      size="small"
-                      text="바로가기"
-                      iconUrl="/assets/images/icons/info-black.svg"
-                      onClick={() => goLink(slide.contentId)}
-                    >
-                      바로가기
-                    </Button>
+                <figure
+                  className={`${styles.slide} ${
+                    activeSlide === index ? styles.activeSlide : ''
+                  }`}
+                >
+                  <Image
+                    src={
+                      slide.contentImg ||
+                      `https://picsum.photos/240/360?random=${index}`
+                    }
+                    alt={`Slide ${slide.contentId}`}
+                    width={238}
+                    height={360}
+                  />
+                  <div className={styles.bottomContainer}>
+                    <figcaption>
+                      <h3>{slide.title}</h3>
+                      <h4>
+                        <span>
+                          {slide.genres ? slide.genres.join(' · ') : ''} ·
+                        </span>
+                        <span className={styles.ageImageBackground}>
+                          {' '}
+                          <Image
+                            src={ageImage(slide.age, 'shared')}
+                            alt="Age restriction"
+                            width={20}
+                            height={20}
+                          />
+                        </span>
+                      </h4>
+                    </figcaption>
+                    <div className={styles.btnContainer}>
+                      {/* 첫 번째 버튼 */}
+                      <Button
+                        variant="default"
+                        size="small"
+                        text="모아보기"
+                        iconUrl="/assets/images/icons/collect-box.svg"
+                        onClick={goMypage}
+                      >
+                        모아보기
+                      </Button>
+                      {/* 두 번째 버튼 */}
+                      <Button
+                        variant="primary"
+                        size="small"
+                        text="바로가기"
+                        iconUrl="/assets/images/icons/info-black.svg"
+                        onClick={() => goLink(slide.contentId)}
+                      >
+                        바로가기
+                      </Button>
+                    </div>
                   </div>
-                </div>
-              </figure>
-            </div>
-          ))}
+                </figure>
+              </div>
+            ))}
         </Slider>
       </div>
     </article>
