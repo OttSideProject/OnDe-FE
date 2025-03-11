@@ -2,17 +2,16 @@
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 import { DetailData } from '@/_types/contents/contents';
-
+import { ageImage } from '@/features/shared/utils/ageImage';
 import { Button } from '@/features/shared/ui/button-group';
 import { DropDownOptions } from '@/features/shared/ui/action-bar';
 import { DimmedBackground } from '@/features/shared/ui/dimmed-background';
-
 import { useDropDownStore } from '@/entities/contents/main/stores';
-
-import styles from './DetailComponent.module.css';
 import { BtnDetailInnerChildStyle } from '@/features/shared/ui/button-group';
 import { ToggleIconButton } from '@/features/shared/ui/toggle';
+import styles from './DetailComponent.module.css';
 
 type DetailComponentProps = {
   detailData: DetailData;
@@ -102,24 +101,28 @@ const DetailComponent: React.FC<DetailComponentProps> = ({ detailData }) => {
         </div>
       )}
       <figure className={styles.imageContainer}>
-        <img src={detailData.imageUrl} alt={detailData.title} />
+        <Image
+          src={detailData.imageUrl || ''}
+          alt={detailData.title}
+          width={375}
+          height={375}
+          priority
+        />
         <ToggleIconButton />
         <figcaption>
           <h1 className={styles.title}>{detailData.title}</h1>
-          <>
-            <h2 className={styles.info}>
-              {detailData.info.map((item, index) => (
-                <span key={index}>
-                  {typeof item === 'string' ? (
-                    item
-                  ) : (
-                    <img src={item.src} alt={item.alt} />
-                  )}
-                </span>
-              ))}
-            </h2>
-          </>
-          <p className={styles.description}>{detailData.description}</p>
+          <h2 className={styles.info}>
+            {detailData.released}
+            <span className={styles.ageImageContainer}>
+              <Image
+                src={ageImage(detailData.age, 'detail')}
+                alt={`${detailData.age}세 이용가`}
+                width={20}
+                height={20}
+              />
+            </span>
+          </h2>
+          <p className={styles.description}>{detailData.summary}</p>
         </figcaption>
       </figure>
       <div className={styles.bottomContainer}>

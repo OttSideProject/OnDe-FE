@@ -12,9 +12,11 @@ export type TodayPickContent = {
   contentId: string;
   title: string;
   age: string;
-  contentImg: string | null;
+  contentImg?: string;
   genres: string[];
   rank: number;
+  isLoginRequired?: boolean; // 로그인 필요 여부
+  isVisible?: boolean; // 현재 로그인 상태에 따른 표시 여부
 };
 
 export type RankingMainSliderProps = {
@@ -37,7 +39,7 @@ export type SectionSliderProps = {
 
 export type SectionSlide = {
   id: number;
-  imgUrl: string;
+  imgUrl?: string;
   detailUrl: string;
 };
 
@@ -86,22 +88,24 @@ export type DropDownStore = {
 };
 
 /* DetailPage type */
+// 엔티티 타입
 export type DetailData = {
-  id: string;
+  contentId: string;
   title: string;
-  info: InfoItem[];
-  description: string;
-  imageUrl: string;
+  summary: string;
+  genres: string[];
+  age: string;
+  ctype: string;
+  released: string;
+  imageUrl?: string;
 };
-
-export type InfoItem = string | { type: 'image'; src: string; alt: string };
 
 // Ranking Data type
 
 export type Ranking = {
   id: number; // id 타입을 number로 변경
   content_id: string;
-  content_img: string;
+  content_img?: string;
   title: string;
   subTitle?: string[];
   ranking_num: number;
@@ -136,7 +140,7 @@ export type RecommendedSliderProps = {
 
 export type RecommendedSlide = {
   id: number;
-  imgUrl: string;
+  imgUrl?: string;
   detailUrl: string;
 };
 
