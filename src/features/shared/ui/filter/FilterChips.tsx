@@ -1,23 +1,15 @@
 'use client';
 
 import type { FilterGroup } from '@/_types/contents';
-
+import { useFilterStore } from '@/entities/contents/filter';
 import styles from './FilterChips.module.css';
 
 type FilterChipsProps = {
-  selectedFilters: {
-    groupId: string;
-    itemId: string;
-  }[];
   groups: FilterGroup[];
-  onRemove: (groupId: string, itemId: string) => void;
 };
 
-const FilterChips = ({
-  selectedFilters,
-  groups,
-  onRemove,
-}: FilterChipsProps) => {
+const FilterChips = ({ groups }: FilterChipsProps) => {
+  const { selectedChips, selectedFilters, setSelectedFilters } = useFilterStore();
   const getFilterLabel = (groupId: string, itemId: string) => {
     const group = groups.find((g) => g.id === groupId);
     const item = group?.items.find((i) => i.id === itemId);
@@ -26,13 +18,18 @@ const FilterChips = ({
 
   return (
     <div className={styles.container}>
-      {selectedFilters.map(({ groupId, itemId }) => (
+      {selectedChips.map(({ groupId, itemId, label }) => (
         <div key={`${groupId}-${itemId}`}>
           <button
-            onClick={() => onRemove(groupId, itemId)}
+            onClick={() => {
+              const updatedItems = selectedFilters[groupId].filter(
+                (id: string) => id !== itemId
+              );
+              setSelectedFilters(groupId, updatedItems);
+            }}
             className={styles.chip}
           >
-            <span>{getFilterLabel(groupId, itemId)}</span>
+            <span>{label}</span>
             <img src="/assets/images/icons/delete-x.svg" alt="remove" />
           </button>
         </div>

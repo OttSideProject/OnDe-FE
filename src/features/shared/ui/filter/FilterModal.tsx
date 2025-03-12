@@ -1,20 +1,15 @@
 'use client';
 
 import { useEffect } from 'react';
-import { FilterAccordion } from '@/features/shared/ui/filter';
-import { Button } from '@/features/shared/ui/button-group';
+import { FilterAccordion, FilterChips } from '@/features/shared/ui/filter';
 import { useFilterStore } from '@/entities/contents/filter';
-import type { FilterGroup } from '@/_types/contents';
+import { Button } from '@/features/shared/ui/button-group';
 import styles from './FilterModal.module.css';
-import FilterChips from './FilterChips';
 
 const FilterModal = () => {
   const {
     isOpen,
     filterGroups,
-    selectedChips,
-    selectedFilters,
-    setSelectedFilters,
     closeFilterModal,
   } = useFilterStore();
 
@@ -29,14 +24,7 @@ const FilterModal = () => {
 
   if (!isOpen) return null;
 
-  const handleFilterChange = (groupId: string, items: string[]) => {
-    setSelectedFilters(groupId, items);
-  };
 
-  const handleRemoveFilter = (groupId: string, itemId: string) => {
-    const updatedItems = selectedFilters[groupId].filter((id) => id !== itemId);
-    setSelectedFilters(groupId, updatedItems);
-  };
 
   return (
     <div className={styles.modalOverlay}>
@@ -52,18 +40,10 @@ const FilterModal = () => {
           <h2>콘텐츠 필터</h2>
         </div>
 
-        <FilterChips
-          selectedFilters={selectedChips}
-          groups={filterGroups}
-          onRemove={handleRemoveFilter}
-        />
+        <FilterChips groups={filterGroups} />
 
         <div className={styles.filterContent}>
-          <FilterAccordion
-            groups={filterGroups}
-            selectedFilters={selectedFilters}
-            onFilterChange={handleFilterChange}
-          />
+          <FilterAccordion groups={filterGroups} />
         </div>
         <div className={styles.btnContainer}>
           <Button variant="primary" onClick={closeFilterModal}>
