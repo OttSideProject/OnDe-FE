@@ -34,7 +34,7 @@ const FilterModal = () => {
   };
 
   const handleRemoveFilter = (groupId: string, itemId: string) => {
-    const updatedItems = selectedFilters[groupId].filter(id => id !== itemId);
+    const updatedItems = selectedFilters[groupId].filter((id) => id !== itemId);
     setSelectedFilters(groupId, updatedItems);
   };
 
@@ -42,29 +42,31 @@ const FilterModal = () => {
     <div className={styles.modalOverlay}>
       <div className={styles.modalContent}>
         <div className={styles.modalHeader}>
-          <button type="button" onClick={closeFilterModal} className={styles.closeButton}>
+          <button
+            type="button"
+            onClick={closeFilterModal}
+            className={styles.closeButton}
+          >
             <img src="/assets/images/icons/close-x.svg" alt="close" />
           </button>
           <h2>콘텐츠 필터</h2>
         </div>
 
-        <FilterChips 
+        <FilterChips
           selectedFilters={selectedChips}
-          groups={filterGroups} 
-          onRemove={handleRemoveFilter} 
+          groups={filterGroups}
+          onRemove={handleRemoveFilter}
         />
 
         <div className={styles.filterContent}>
           <FilterAccordion
             groups={filterGroups}
+            selectedFilters={selectedFilters}
             onFilterChange={handleFilterChange}
           />
         </div>
         <div className={styles.btnContainer}>
-          <Button 
-            variant="primary"
-            onClick={closeFilterModal}
-          >
+          <Button variant="primary" onClick={closeFilterModal}>
             필터 적용하기
           </Button>
         </div>

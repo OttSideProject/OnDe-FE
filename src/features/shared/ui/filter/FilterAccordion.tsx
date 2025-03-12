@@ -1,22 +1,22 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import type { FilterItem, FilterGroup } from '@/_types/contents';
 import styles from './FilterAccordion.module.css';
 
 export type FilterAccordionProps = {
   groups: FilterGroup[];
+  selectedFilters?: Record<string, string[]>;
   onFilterChange?: (groupId: string, selectedItems: string[]) => void;
 };
 
 const FilterAccordion = ({
   groups = [],
+  selectedFilters: externalSelectedFilters = {},
   onFilterChange,
 }: FilterAccordionProps) => {
   const [openGroupId, setOpenGroupId] = useState<string | null>(null);
-  const [selectedFilters, setSelectedFilters] = useState<
-    Record<string, string[]>
-  >({});
+  const [selectedFilters, setSelectedFilters] = useState<Record<string, string[]>>(externalSelectedFilters);
   const [lastSelectedItem, setLastSelectedItem] = useState<{
     groupId: string;
     label: string;
@@ -25,6 +25,25 @@ const FilterAccordion = ({
   const handleGroupClick = (groupId: string) => {
     setOpenGroupId(openGroupId === groupId ? null : groupId);
   };
+
+  useEffect(() => {
+    setSelectedFilters(externalSelectedFilters);
+    // 마지막 선택 아이템 업데이트
+    Object.entries(externalSelectedFilters).forEach(([groupId, items]) => {
+      if (items.length > 0) {
+        const group = groups.find(g => g.id === groupId);
+        if (group) {
+          const lastItem = group.items.find(item => item.id === items[items.length - 1]);
+          if (lastItem) {
+            setLastSelectedItem({ groupId, label: lastItem.label });
+          }
+        }
+      } else {
+        // 선택된 아이템이 없는 경우 lastSelectedItem 초기화
+        setLastSelectedItem(null);
+      }
+    });
+  }, [externalSelectedFilters, groups]);
 
   const handleItemClick = (
     groupId: string,
