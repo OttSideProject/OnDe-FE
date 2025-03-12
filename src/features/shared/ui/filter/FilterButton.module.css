@@ -2,7 +2,7 @@
   position: relative;
   display: inline-block;
   width: 100%;
-  padding: 6px 10px;
+  padding: 15px 10px;
 }
 
 .btnContainer {
@@ -20,11 +20,17 @@
   display: flex;
   align-items: baseline;
   gap: 0.5rem;
-  width: 88px;
+  min-width: 88px;
   height: 36px;
   color: var(--gray300);
-  transition: color 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
   cursor: pointer;
+}
+
+.btnInner button.active,
+.btnInner button.active .text,
+.btnInner button.active .badge {
+  color: var(--primary);
 }
 
 .btnInner button:hover {
@@ -34,4 +40,13 @@
 .text {
   font-size: 1.4rem;
   font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.badge {
+  font-size: 1.2rem;
+  color: var(--gray300);
+  font-weight: 400;
 }
