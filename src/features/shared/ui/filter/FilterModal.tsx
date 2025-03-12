@@ -45,10 +45,10 @@ const FilterModal = () => {
     <div className={styles.modalOverlay}>
       <div className={styles.modalContent}>
         <div className={styles.modalHeader}>
-          <h2>콘텐츠 필터</h2>
           <button onClick={closeFilterModal} className={styles.closeButton}>
-            ✕
+            <img src="/assets/images/icons/close-x.svg" alt="close" />
           </button>
+          <h2>콘텐츠 필터</h2>
         </div>
         <FilterAccordion
           groups={filterGroups as FilterGroup[]}

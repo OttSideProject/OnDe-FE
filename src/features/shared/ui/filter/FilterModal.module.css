@@ -13,7 +13,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  width: calc(100% - 10px);
+  width: 100%;
   max-width: 100%;
   background-color: var(--gray780);
   border-radius: 14px 14px 0px 0px;
@@ -40,6 +40,8 @@
 }
 
 .closeButton {
+  position: absolute;
+  left: 18px;
   color: var(--gray300);
   font-size: 1.4rem;
   transition: color 0.2s ease-in-out;

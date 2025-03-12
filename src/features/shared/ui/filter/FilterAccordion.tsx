@@ -1,8 +1,11 @@
 'use client';
 
 import { useState } from 'react';
-import { Button } from '@/features/shared/ui/button-group';
+
 import type { FilterItem, FilterGroup } from '@/_types/contents';
+
+import { Button } from '@/features/shared/ui/button-group';
+
 import styles from './FilterAccordion.module.css';
 
 export type FilterAccordionProps = {
@@ -55,7 +58,7 @@ const FilterAccordion = ({
               }`}
               onClick={() => handleGroupClick(group.id)}
             >
-              ▼
+              <img src="/assets/images/icons/arrow-down-g.svg" alt="arrow" />
             </span>
           </div>
           {openGroupId === group.id && (
@@ -70,21 +73,12 @@ const FilterAccordion = ({
                 >
                   <div className={styles.checkbox}>
                     {isItemSelected(group.id, item.id) && (
-                      <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 16 16"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M13.3332 4L5.99984 11.3333L2.6665 8"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
+                      <img
+                        src="/assets/images/icons/check-box-icon.svg"
+                        alt="check-box-icon"
+                        width={24}
+                        height={24}
+                      />
                     )}
                   </div>
                   <span>{item.label}</span>
