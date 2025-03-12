@@ -1,13 +1,35 @@
 import { create } from 'zustand';
 import type { FilterGroup } from '@/_types/contents';
 
+type FilterChip = {
+  groupId: string;
+  itemId: string;
+  label: string;
+};
+
 type FilterStore = {
   isOpen: boolean;
   filterGroups: FilterGroup[];
   selectedFilters: Record<string, string[]>;
+  selectedChips: FilterChip[];
   openFilterModal: () => void;
   closeFilterModal: () => void;
   setSelectedFilters: (groupId: string, items: string[]) => void;
+};
+
+const transformFiltersToChips = (
+  selectedFilters: Record<string, string[]>,
+  filterGroups: FilterGroup[]
+): FilterChip[] => {
+  return Object.entries(selectedFilters).flatMap(([groupId, itemIds]) => {
+    const group = filterGroups.find(g => g.id === groupId);
+    if (!group) return [];
+    
+    return itemIds.map(itemId => {
+      const item = group.items.find(i => i.id === itemId);
+      return item ? { groupId, itemId, label: item.label } : null;
+    }).filter((chip): chip is FilterChip => chip !== null);
+  });
 };
 
 export const useFilterStore = create<FilterStore>((set) => ({
@@ -45,13 +67,19 @@ export const useFilterStore = create<FilterStore>((set) => ({
     },
   ],
   selectedFilters: {},
+  selectedChips: [],
   openFilterModal: () => set({ isOpen: true }),
   closeFilterModal: () => set({ isOpen: false }),
   setSelectedFilters: (groupId, items) =>
-    set((state) => ({
-      selectedFilters: {
+    set((state) => {
+      const newSelectedFilters = {
         ...state.selectedFilters,
         [groupId]: items,
-      },
-    })),
+      };
+      
+      return {
+        selectedFilters: newSelectedFilters,
+        selectedChips: transformFiltersToChips(newSelectedFilters, state.filterGroups),
+      };
+    }),
 }));

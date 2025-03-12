@@ -1,28 +1,20 @@
 'use client';
 
 import { useState } from 'react';
-
 import type { FilterItem, FilterGroup } from '@/_types/contents';
-
-import { Button } from '@/features/shared/ui/button-group';
-
 import styles from './FilterAccordion.module.css';
 
 export type FilterAccordionProps = {
   groups: FilterGroup[];
   onFilterChange?: (groupId: string, selectedItems: string[]) => void;
-  onApply?: () => void;
 };
 
 const FilterAccordion = ({
   groups = [],
   onFilterChange,
-  onApply,
 }: FilterAccordionProps) => {
   const [openGroupId, setOpenGroupId] = useState<string | null>(null);
-  const [selectedFilters, setSelectedFilters] = useState<
-    Record<string, string[]>
-  >({});
+  const [selectedFilters, setSelectedFilters] = useState<Record<string, string[]>>({});
 
   const handleGroupClick = (groupId: string) => {
     setOpenGroupId(openGroupId === groupId ? null : groupId);
@@ -53,9 +45,7 @@ const FilterAccordion = ({
           <div className={styles.groupHeader}>
             <span>{group.label}</span>
             <span
-              className={`${styles.arrow} ${
-                openGroupId === group.id ? styles.open : ''
-              }`}
+              className={`${styles.arrow} ${openGroupId === group.id ? styles.open : ''}`}
               onClick={() => handleGroupClick(group.id)}
             >
               <img src="/assets/images/icons/arrow-down-g.svg" alt="arrow" />
@@ -64,11 +54,10 @@ const FilterAccordion = ({
           {openGroupId === group.id && (
             <div className={styles.itemList}>
               {group.items.map((item: FilterItem) => (
-                <div
+                <button
                   key={item.id}
-                  className={`${styles.item} ${
-                    isItemSelected(group.id, item.id) ? styles.selected : ''
-                  }`}
+                  type="button"
+                  className={`${styles.item} ${isItemSelected(group.id, item.id) ? styles.selected : ''}`}
                   onClick={() => handleItemClick(group.id, item.id)}
                 >
                   <div className={styles.checkbox}>
@@ -82,19 +71,12 @@ const FilterAccordion = ({
                     )}
                   </div>
                   <span>{item.label}</span>
-                </div>
+                </button>
               ))}
             </div>
           )}
         </div>
       ))}
-      {onApply && (
-        <div className={styles.btnContainer}>
-          <Button variant="primary" onClick={onApply}>
-            필터 적용하기
-          </Button>
-        </div>
-      )}
     </div>
   );
 };
