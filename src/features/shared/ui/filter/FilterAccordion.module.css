@@ -1,5 +1,8 @@
 .accordion {
+  position: relative;
+  z-index: 2;
   width: 100%;
+  background-color: var(--gray780);
 }
 
 .group {
@@ -19,8 +22,46 @@
   color: var(--white);
 }
 
+.headerRight {
+  font-family: var(--title-font);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  min-width: 80px;
+  font-size: 1.6rem;
+}
+
+.headerRight span {
+  font-size: inherit;
+}
+
+.selectedItem,
+.selectedSummary,
+.allSelected {
+  font-size: 1.4rem;
+  margin-right: 4px;
+}
+
+.selectedSummary {
+  color: var(--primary);
+}
+
+.allSelected {
+  color: var(--white);
+}
+
 .arrow {
   transition: transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+}
+
+.arrow img {
+  width: 100%;
+  height: 100%;
 }
 
 .arrow.open {
@@ -28,32 +69,32 @@
 }
 
 .itemList {
-  padding: 0 16px 16px;
+  position: relative;
+  padding: 0 0 0 54px;
   display: flex;
   flex-direction: column;
   gap: 8px;
+  background-color: var(--gray750);
 }
 
 .item {
+  position: relative;
   display: flex;
   align-items: center;
   width: 100%;
-  padding: 12px 16px;
-  background: none;
-  border: none;
-  border-radius: 8px;
+  padding: 15px 0 0;
   color: var(--gray300);
   font-size: 1.4rem;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
-.item:hover {
+/* .item:hover {
   background-color: var(--gray700);
-}
+} */
 
 .item.selected {
-  color: var(--primary);
+  color: var(--primary-white);
 }
 
 .checkbox {
@@ -62,7 +103,8 @@
   justify-content: center;
   width: 24px;
   height: 24px;
-  margin-right: 12px;
+  margin: -18px 10px 0 0;
+  padding: 3px;
 }
 
 .checkbox img {
@@ -70,10 +112,15 @@
   height: 100%;
 }
 
+.label {
+  width: 100%;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--gray700);
+}
+
 .btnContainer {
   position: absolute;
   width: 100%;
   bottom: 32px;
-  padding: 16px 10px;
-  width: 100%;
+  padding: 15px 10px;
 }

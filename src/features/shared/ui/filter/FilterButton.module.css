@@ -18,7 +18,7 @@
 
 .btnInner button {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   gap: 0.5rem;
   width: 88px;
   height: 36px;
