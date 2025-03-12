@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import { useFilterStore } from '@/entities/contents/filter';
 import styles from './FilterButton.module.css';
 
@@ -15,7 +14,7 @@ const FilterButton = ({ onClick, className = '' }: FilterButtonProps) => {
   // 선택된 필터의 총 개수 계산
   const totalSelectedCount = Object.values(selectedFilters).reduce(
     (sum, items) => sum + items.length,
-    0
+    0,
   );
   return (
     <div className={`${styles.container} ${className}`}>
@@ -26,10 +25,12 @@ const FilterButton = ({ onClick, className = '' }: FilterButtonProps) => {
             onClick={onClick}
             className={totalSelectedCount > 0 ? styles.active : ''}
           >
-            <Image
-              src={totalSelectedCount > 0
-                ? '/assets/images/icons/filter-icon-active.svg'
-                : '/assets/images/icons/filter-icon.svg'}
+            <img
+              src={
+                totalSelectedCount > 0
+                  ? '/assets/images/icons/filter-icon-active.svg'
+                  : '/assets/images/icons/filter-icon.svg'
+              }
               alt="필터"
               width={12.8}
               height={12}

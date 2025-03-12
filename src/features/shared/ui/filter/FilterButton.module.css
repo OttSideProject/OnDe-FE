@@ -18,7 +18,7 @@
 
 .btnInner button {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: 0.5rem;
   min-width: 88px;
   height: 36px;
@@ -31,10 +31,7 @@
 .btnInner button.active .text,
 .btnInner button.active .badge {
   color: var(--primary);
-}
-
-.btnInner button:hover {
-  color: var(--white);
+  font-weight: 700;
 }
 
 .text {
@@ -43,10 +40,4 @@
   display: flex;
   align-items: center;
   gap: 4px;
-}
-
-.badge {
-  font-size: 1.2rem;
-  color: var(--gray300);
-  font-weight: 400;
 }
