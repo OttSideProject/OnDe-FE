@@ -14,7 +14,9 @@ const FilterAccordion = ({
   onFilterChange,
 }: FilterAccordionProps) => {
   const [openGroupId, setOpenGroupId] = useState<string | null>(null);
-  const [selectedFilters, setSelectedFilters] = useState<Record<string, string[]>>({});
+  const [selectedFilters, setSelectedFilters] = useState<
+    Record<string, string[]>
+  >({});
 
   const handleGroupClick = (groupId: string) => {
     setOpenGroupId(openGroupId === groupId ? null : groupId);
@@ -43,9 +45,17 @@ const FilterAccordion = ({
       {groups.map((group: FilterGroup) => (
         <div key={group.id} className={styles.group}>
           <div className={styles.groupHeader}>
-            <span>{group.label}</span>
+            {group.label === '장르' ? (
+              <img src="/assets/images/icons/genre-text-icon.svg" alt="장르" />
+            ) : group.label === '타입' ? (
+              <img src="/assets/images/icons/type-text-icon.svg" alt="타입" />
+            ) : (
+              <span>{group.label}</span>
+            )}
             <span
-              className={`${styles.arrow} ${openGroupId === group.id ? styles.open : ''}`}
+              className={`${styles.arrow} ${
+                openGroupId === group.id ? styles.open : ''
+              }`}
               onClick={() => handleGroupClick(group.id)}
             >
               <img src="/assets/images/icons/arrow-down-g.svg" alt="arrow" />
@@ -57,7 +67,9 @@ const FilterAccordion = ({
                 <button
                   key={item.id}
                   type="button"
-                  className={`${styles.item} ${isItemSelected(group.id, item.id) ? styles.selected : ''}`}
+                  className={`${styles.item} ${
+                    isItemSelected(group.id, item.id) ? styles.selected : ''
+                  }`}
                   onClick={() => handleItemClick(group.id, item.id)}
                 >
                   <div className={styles.checkbox}>
