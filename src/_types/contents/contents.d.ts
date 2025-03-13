@@ -107,21 +107,24 @@ export type OttPlatform = {
 
 /* Ranking Data type */
 export type Ranking = {
-  id: number;
-  content_id: string;
-  content_img?: string;
+  rank: number;
+  contentId: string;
+  contentImg?: string;
+  imgUrl?: string;
+  genres: string[];
   title: string;
-  subTitle?: string[];
-  ranking_num: number;
   age: string;
   category: 'shared';
 };
 
 export type RankingsResponse = {
-  pageNo: number;
-  totalPages: number;
-  totalItems: number;
-  rankings: Ranking[];
+  content: Ranking[]; // content 배열
+  page: {
+    size: number;
+    number: number;
+    totalElements: number;
+    totalPages: number;
+  };
 };
 
 export type RankingSubListContainerProps = {
