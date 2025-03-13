@@ -102,6 +102,11 @@ export type DetailData = {
   runningTime?: string;
 };
 
+export type OttPlatform = {
+  platform: string;
+  content_link: string;
+};
+
 /* Ranking Data type */
 export type Ranking = {
   id: number;
@@ -207,6 +212,7 @@ export type FilterItem = {
 export type FilterGroup = {
   id: string;
   label: string;
+  icon?: string;
   items: FilterItem[];
   isExpanded?: boolean;
 };

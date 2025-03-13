@@ -102,6 +102,8 @@ const SectionSliderContainer: React.FC<SectionSliderContainerProps> = ({
             options={options}
             onSelect={handleOptionSelect}
             title="작품 제목"
+            height={300}
+            isPositioned
           />
         </>
       )}
