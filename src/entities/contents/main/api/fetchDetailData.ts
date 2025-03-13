@@ -11,8 +11,8 @@ export const getDummyData = (): DetailData => ({
   ctype: '다큐멘터리, 시리즈',
   released: '2018',
   imageUrl: 'https://picsum.photos/375/375?random=1',
-  actors: ['도하석', '김예운', '조윤우', '고민주', '신혜원'],
-  director: '피트 닥터',
+  // actors: ['도하석', '김예운', '조윤우', '고민주', '신혜원'],
+  // director: '피트 닥터',
   runningTime: '96',
 });
 
