@@ -33,11 +33,12 @@ const DetailContents = ({
   ];
 
   // 실제 데이터가 있는 필드는 바로 사용하고, 없는 필드만 더미 데이터 사용
-  const detailInfo = `출연: ${
-    detailData?.actors?.join(', ') || dummyData.actors?.join(', ')
+	// 감독, 배우 정보는 없는 경우가 있으므로 주석 처리
+  //   ${detailData?.actors?.join(', ') || ''}
+  // ${detailData?.director || ''}
+  const detailInfo = `타입: ${
+    getKoreanContentType(detailData.ctype) || dummyData.ctype
   }
-감독: ${detailData?.director || dummyData.director}
-타입: ${getKoreanContentType(detailData.ctype) || dummyData.ctype}
 장르: ${detailData.genres.join(', ')}
 연대별: ${getDecade(detailData.released)}
 러닝타임: ${detailData?.runningTime || dummyData.runningTime}분`;
