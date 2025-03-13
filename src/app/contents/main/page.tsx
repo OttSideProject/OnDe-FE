@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { TodayPickContent, BoardSectionSlide, Slide } from '@/_types/contents';
+import { TodayPickContent, BoardSectionSlide } from '@/_types/contents';
 import {
   fetchTodayPick,
   fetchBoardSection,
@@ -29,44 +29,6 @@ const logoUrl = '/assets/images/icons/logo-ond.svg';
 const iconUrlList = [
   '/assets/images/icons/alert-icon.svg',
   '/assets/images/icons/find-icon.svg',
-];
-
-const slides: Slide[] = [
-  {
-    id: 1,
-    title: '더 인플루언서',
-    age: 'all',
-    subTitle: ['흥미진진한', '시리즈'],
-    url: 'https://picsum.photos/240/360?random=1',
-  },
-  {
-    id: 2,
-    age: '19',
-    title: '에일리언',
-    subTitle: ['독특한', '서스펜스'],
-    url: 'https://picsum.photos/240/360?random=2',
-  },
-  {
-    id: 3,
-    age: '15+',
-    title: '귀공자',
-    subTitle: ['독특한', '서스펜스'],
-    url: 'https://picsum.photos/240/360?random=3',
-  },
-  {
-    id: 4,
-    age: '12+',
-    title: 'title 4',
-    subTitle: ['흥미진진한', '시리즈'],
-    url: 'https://picsum.photos/240/360?random=4',
-  },
-  {
-    id: 5,
-    age: '19',
-    title: 'title 5',
-    subTitle: ['흥미진진한', '서바이벌'],
-    url: 'https://picsum.photos/240/360?random=5',
-  },
 ];
 
 const HomePage: React.FC = () => {

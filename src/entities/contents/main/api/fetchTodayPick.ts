@@ -19,8 +19,6 @@ const getDummyData = (): TodayPickContent[] => [
     contentImg: 'https://picsum.photos/240/360?random=1',
     genres: ['음악', '사회', '다큐멘터리'],
     rank: 0,
-    isLoginRequired: true,
-    isVisible: false,
   },
   {
     contentId: 'C_7929532',
@@ -29,8 +27,6 @@ const getDummyData = (): TodayPickContent[] => [
     contentImg: 'https://picsum.photos/240/360?random=2',
     genres: ['음악', '코미디'],
     rank: 1,
-    isLoginRequired: false,
-    isVisible: true,
   },
 ];
 
@@ -41,14 +37,12 @@ const getResponseData = (
     throw new Error('Invalid response format: content array expected');
   }
 
-  const accessToken = localStorage.getItem('Access-Token');
-
   return {
     ...response,
     data: response.data.content.map((item: TodayPickContent) => ({
       ...item,
-      isLoginRequired: item.isLoginRequired ?? false,
-      isVisible: !item.isLoginRequired || !!accessToken,
+      // isLoginRequired: item.isLoginRequired ?? false,
+      // isVisible: !item.isLoginRequired || !!accessToken,
     })),
   };
 };

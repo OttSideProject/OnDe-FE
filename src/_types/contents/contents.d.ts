@@ -15,8 +15,6 @@ export type TodayPickContent = {
   contentImg?: string;
   genres: string[];
   rank: number;
-  isLoginRequired?: boolean;
-  isVisible?: boolean;
 };
 
 export type RankingMainSliderProps = {
