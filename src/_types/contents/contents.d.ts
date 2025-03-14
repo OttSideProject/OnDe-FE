@@ -17,9 +17,6 @@ export type TodayPickContent = {
   rank: number;
 };
 
-export type RankingMainSliderProps = {
-  slides: Slide[];
-};
 
 /* SectionSlider type */
 export type Section = {
@@ -106,6 +103,11 @@ export type OttPlatform = {
 };
 
 /* Ranking Data type */
+
+// export type RankingMainSliderProps = {
+//   slides: Slide[];
+// };
+
 export type Ranking = {
   rank: number;
   contentId: string;
