@@ -48,7 +48,7 @@ const RankingSubListContainer: React.FC<RankingSubListContainerProps> = ({
 
       // 순위를 4부터 시작하도록 설정
       const adjustedRankings = updatedRankings
-        // .slice(0, 45)
+        .slice(0, 48)
         .map((ranking, index) => ({
           ...ranking,
           rank: index + 4, // 순위가 4부터 시작

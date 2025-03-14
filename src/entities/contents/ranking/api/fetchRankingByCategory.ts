@@ -16,7 +16,7 @@ export const fetchRankingByCategory = async ({
   const response: AxiosResponse<RankingsResponse> = await PublicApi.post(
     `/contents/ranking/category?category=${encodeURIComponent(
       category,
-    )}&nowPage=${nowPage}&pageCount=${pageCount}`,
+    )}&nowPage=${nowPage}&pageCount=51`,
   );
 
   console.log('Ranking response:', response.data);
