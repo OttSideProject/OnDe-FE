@@ -2,15 +2,15 @@
 import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 
-/* Components */
-import { SubHeader } from '@/features/contents/ui/header';
-import { ImageSubList } from '@/features/contents/ui/ranking';
-
 /* Types */
 import { Ranking } from '@/_types/contents';
 
 /* Utils */
 import { ageImage } from '@/features/shared/utils/ageImage';
+
+/* Components */
+import { SubHeader } from '@/features/contents/ui/header';
+import { ImageSubList } from '@/features/contents/ui/ranking';
 
 /* Styles */
 import styles from './RankingSubListContainer.module.css';
@@ -41,32 +41,40 @@ const RankingSubListContainer: React.FC<RankingSubListContainerProps> = ({
     }
   }, [inView, hasNextPage, fetchNextPage]);
 
-  // // 페이지 데이터를 추적하여 중복을 방지
+  // 페이지 데이터를 추적하여 중복을 방지
   useEffect(() => {
     if (data?.pages) {
       const updatedRankings = data.pages.flatMap((page) => page.content); // 모든 페이지 데이터 합침
 
       // 순위를 4부터 시작하도록 설정
       const adjustedRankings = updatedRankings
-        .slice(0, 45)
+        // .slice(0, 45)
         .map((ranking, index) => ({
           ...ranking,
-          ranking_num: index + 4, // 순위가 4부터 시작
-          // age: ranking.age ? ageImage(ranking.age, 'shared') : '', // age가 존재할 경우에만 ageImage 호출
-        }));
+          rank: index + 4, // 순위가 4부터 시작
+          ageImage: ranking.age
+            ? ageImage(String(ranking.age), 'shared')
+            : null, // age 속성명 변경
+        }))
+        .filter((_, index) => index >= 3); // 1위부터 3위까지 제외
 
       setRankings((prevRankings) => {
         // 기존 상태와 새 데이터를 합치고 중복 제거
         const uniqueRankings = Array.from(
           new Map(
-            adjustedRankings.map((item) => [item.contentId, item]),
+            [...prevRankings, ...adjustedRankings].map((item) => [
+              item.contentId,
+              item,
+            ]),
           ).values(),
         );
 
-        return uniqueRankings.map((rank, index) => ({
-          ...rank,
-          ranking_num: index + 4,
-          age: rank.age ? ageImage(rank.age, 'shared') : '', // age가 존재할 경우에만 ageImage 호출
+        return uniqueRankings.map((ranking, index) => ({
+          ...ranking,
+          rank: index + 4,
+          ageImage: ranking.age
+            ? ageImage(String(ranking.age), 'shared')
+            : null, // age 속성명 변경
         }));
       });
     }

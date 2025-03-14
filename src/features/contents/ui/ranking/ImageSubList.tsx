@@ -22,9 +22,9 @@ const ImageSubList: React.FC<{ content: Ranking[] }> = ({ content }) => {
               <h3>{rank.title}</h3>
               <h4>
                 <span>{rank.genres.join(' · ')}</span>
-                {rank.age && (
+                {rank.ageImage && (
                   <Image
-                    src={rank.age} // age는 이제 이미지 URL
+                    src={rank.ageImage} // age는 이제 이미지 URL
                     alt="Age restriction"
                     width={20}
                     height={20}

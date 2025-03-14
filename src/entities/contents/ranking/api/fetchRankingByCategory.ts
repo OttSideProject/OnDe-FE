@@ -12,18 +12,13 @@ export const fetchRankingByCategory = async ({
   nowPage = 0,
   pageCount = 20,
 }: FetchRankingByCategoryParams): Promise<RankingsResponse> => {
-  console.log(
-    'Fetching rankings for category:',
-    category,
-    'nowPage:',
-    nowPage,
-    'pageCount:',
-    pageCount,
-  );
+  console.log('Fetching rankings for category:', nowPage);
   const response: AxiosResponse<RankingsResponse> = await PublicApi.post(
     `/contents/ranking/category?category=${encodeURIComponent(
       category,
     )}&nowPage=${nowPage}&pageCount=${pageCount}`,
   );
+
+  console.log('Ranking response:', response.data);
   return response.data;
 };

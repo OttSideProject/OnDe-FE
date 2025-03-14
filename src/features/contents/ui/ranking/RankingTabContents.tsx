@@ -14,7 +14,7 @@ type RankingTabContentsProps = {
 
 const RankingTabContents = ({ getImageSrc }: RankingTabContentsProps) => {
   const [activeTab, setActiveTab] = useState<'monthly' | 'weekly'>('monthly');
-  const [selectedOTT, setSelectedOTT] = useState<string>('netflix');
+  const [selectedOTT, setSelectedOTT] = useState<string>('');
   const { openFilterModal } = useFilterStore();
 
   const categories = [
@@ -30,8 +30,7 @@ const RankingTabContents = ({ getImageSrc }: RankingTabContentsProps) => {
           <FilterButton onClick={openFilterModal} />
         </div>
         <RankingSubListContainer
-          ott={selectedOTT}
-          type={selectedCategory as 'monthly' | 'weekly'}
+          category={selectedOTT}
           getImageSrc={getImageSrc}
         />
         <FilterModal />

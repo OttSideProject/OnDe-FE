@@ -8,6 +8,8 @@ export const ageImage = (
       '7+': '/assets/images/ott_ages/detail-pg-7.svg',
       '12+': '/assets/images/ott_ages/detail-pg-12.svg',
       '15+': '/assets/images/ott_ages/detail-pg-15.svg',
+      '19': '/assets/images/ott_ages/detail-adults.svg',
+      '19+': '/assets/images/ott_ages/detail-adults.svg',
       청불: '/assets/images/ott_ages/detail-adults.svg',
     },
     shared: {
@@ -15,6 +17,8 @@ export const ageImage = (
       '7+': '/assets/images/ott_ages/pg-7.svg',
       '12+': '/assets/images/ott_ages/pg-12.svg',
       '15+': '/assets/images/ott_ages/pg-15.svg',
+      '19': '/assets/images/ott_ages/adults.svg',
+      '19+': '/assets/images/ott_ages/adults.svg',
       청불: '/assets/images/ott_ages/adults.svg',
     },
   };

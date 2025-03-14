@@ -114,6 +114,7 @@ export type Ranking = {
   genres: string[];
   title: string;
   age: string;
+  ageImage: string | null;
   category: 'shared';
 };
 
