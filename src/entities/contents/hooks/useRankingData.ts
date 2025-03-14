@@ -10,7 +10,7 @@ export const useRankingData = (category: string | null) => {
       return await fetchRankingByCategory({
         category: category as string, // category가 있을 경우 해당 값을 사용, 없을 경우 빈 문자열 사용
         nowPage: pageParam as number, // nowPage를 pageParam으로 설정
-        pageCount: 20,
+        pageCount: 48, // API 호출 시 48개 데이터 요청
       });
     },
     getNextPageParam: (lastPage) => {

@@ -48,7 +48,7 @@ const RankingSubListContainer: React.FC<RankingSubListContainerProps> = ({
 
       // 순위를 4부터 시작하도록 설정
       const adjustedRankings = updatedRankings
-        .slice(0, 48)
+        .slice(0, 51)
         .map((ranking, index) => ({
           ...ranking,
           rank: index + 4, // 순위가 4부터 시작
@@ -57,6 +57,12 @@ const RankingSubListContainer: React.FC<RankingSubListContainerProps> = ({
             : null, // age 속성명 변경
         }))
         .filter((_, index) => index >= 3); // 1위부터 3위까지 제외
+
+      // 렌더링할 때 3개씩 나누어 보여주기
+      // const rows = [];
+      // for (let i = 0; i < adjustedRankings.length; i += 3) {
+      //   rows.push(adjustedRankings.slice(i, i + 3));
+      // }
 
       setRankings((prevRankings) => {
         // 기존 상태와 새 데이터를 합치고 중복 제거
