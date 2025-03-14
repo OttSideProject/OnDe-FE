@@ -8,15 +8,14 @@ import { Ranking } from '@/_types/contents';
 /* Utils */
 import { ageImage } from '@/features/shared/utils/ageImage';
 
+import { useRankingData } from '@/entities/contents/hooks/useRankingData';
+
 /* Components */
 import { SubHeader } from '@/features/contents/ui/header';
 import { ImageSubList } from '@/features/contents/ui/ranking';
 
 /* Styles */
 import styles from './RankingSubListContainer.module.css';
-
-/* Hooks */
-import { useRankingData } from '@/entities/contents/hooks/useRankingData';
 
 type RankingSubListContainerProps = {
   category: string | null; // 카테고리
