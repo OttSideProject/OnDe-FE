@@ -14,7 +14,7 @@ import { useRankingData } from '@/entities/contents/hooks';
 import styles from './RankingMainContainer.module.css';
 
 type RankingMainContainerProps = {
-  category: string | null; // 카테고리
+  // category: string | null; // 카테고리
   getImageSrc: (
     title: string,
     pageType: 'contentMain' | 'ranking' | 'recommended',
@@ -22,11 +22,11 @@ type RankingMainContainerProps = {
 };
 
 const RankingMainContainer: React.FC<RankingMainContainerProps> = ({
-  category = '', // 기본값은 빈 문자열
+  // category = '', // 기본값은 빈 문자열
   getImageSrc,
 }) => {
   const [activeSlide, setActiveSlide] = useState<number>(0);
-  const { data } = useRankingData(category);
+  const { data } = useRankingData('');
 
   const router = useRouter();
 
@@ -38,9 +38,13 @@ const RankingMainContainer: React.FC<RankingMainContainerProps> = ({
   const topThreeRankings =
     data?.pages[0]?.content.slice(0, 3).map((item) => ({
       ...item,
-      id: Number(item.contentId), // contentId를 id로 변환
+      id: String(item.contentId), // contentId를 id로 변환
     })) || [];
   const reorderedRankings = useCenterTopNumberList(topThreeRankings);
+
+  console.log('Ranking data:', data);
+  console.log('Top three rankings:', topThreeRankings);
+  console.log('Reordered rankings:', reorderedRankings);
 
   return (
     <article className={styles.container}>
@@ -57,10 +61,7 @@ const RankingMainContainer: React.FC<RankingMainContainerProps> = ({
               }`}
             >
               <Image
-                src={
-                  rank.contentImg ||
-                  `https://picsum.photos/375/375?random=${index}`
-                }
+                src={`https://picsum.photos/240/360?random=${index}`}
                 alt={rank.title}
                 width={113}
                 height={170}

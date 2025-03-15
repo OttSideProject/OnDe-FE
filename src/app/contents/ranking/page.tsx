@@ -84,7 +84,7 @@ const RankingPage: React.FC = () => {
           pageType="ranking"
           getImageSrc={getImageSrc}
         />
-        <RankingMainContainer category={null} getImageSrc={getImageSrc} />
+        <RankingMainContainer getImageSrc={getImageSrc} />
         <RankingTabContents getImageSrc={getImageSrc} />
       </section>
     </main>

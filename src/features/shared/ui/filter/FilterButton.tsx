@@ -6,9 +6,10 @@ import styles from './FilterButton.module.css';
 
 type FilterButtonProps = {
     className?: string;
+    onClick?: () => void;
 };
 
-const FilterButton = ({ className = '' }: FilterButtonProps) => {
+const FilterButton = ({ className = '', onClick }: FilterButtonProps) => {
   const { selectedFilters } = useFilterStore();
 const { openModal } = useModalStore();
 
@@ -23,7 +24,10 @@ const { openModal } = useModalStore();
         <div className={styles.btnInner}>
           <button
             type="button"
-            onClick={() => openModal('filter')}
+            onClick={() => {
+              openModal('filter');
+              onClick?.();
+            }}
             className={totalSelectedCount > 0 ? styles.active : ''}
           >
             <img
