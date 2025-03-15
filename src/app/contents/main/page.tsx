@@ -31,6 +31,8 @@ const iconUrlList = [
   '/assets/images/icons/find-icon.svg',
 ];
 
+const iconTypes = ['alert', 'search'];
+
 const HomePage: React.FC = () => {
   const { getImageSrc } = useImageMapping();
   const [todayPicks, setTodayPicks] = useState<TodayPickContent[]>([]);
@@ -64,7 +66,11 @@ const HomePage: React.FC = () => {
 
   return (
     <main className={styles.container}>
-      <StatusBar logoUrl={logoUrl} iconUrlList={iconUrlList} />
+      <StatusBar
+        logoUrl={logoUrl}
+        iconUrlList={iconUrlList}
+        iconTypes={iconTypes}
+      />
       <section>
         <Header headerText={headerText} iconUrl={iconUrl} />
         <MainSlider slides={todayPicks} />

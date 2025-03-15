@@ -1,28 +1,29 @@
 'use client';
 
 import { useFilterStore } from '@/entities/contents/filter';
+import { useModalStore } from '@/entities/modal/stores/useModalStore';
 import styles from './FilterButton.module.css';
 
 type FilterButtonProps = {
-  onClick: () => void;
-  className?: string;
+    className?: string;
 };
 
-const FilterButton = ({ onClick, className = '' }: FilterButtonProps) => {
+const FilterButton = ({ className = '' }: FilterButtonProps) => {
   const { selectedFilters } = useFilterStore();
+const { openModal } = useModalStore();
 
-  // 선택된 필터의 총 개수 계산
-  const totalSelectedCount = Object.values(selectedFilters).reduce(
+    const totalSelectedCount = Object.values(selectedFilters).reduce(
     (sum, items) => sum + items.length,
     0,
   );
+
   return (
     <div className={`${styles.container} ${className}`}>
       <div className={styles.btnContainer}>
         <div className={styles.btnInner}>
           <button
             type="button"
-            onClick={onClick}
+            onClick={() => openModal('filter')}
             className={totalSelectedCount > 0 ? styles.active : ''}
           >
             <img

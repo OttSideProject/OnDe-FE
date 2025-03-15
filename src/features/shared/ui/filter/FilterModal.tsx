@@ -6,23 +6,24 @@ import { useFilterStore } from '@/entities/contents/filter';
 import { fetchRankingByCategory } from '@/entities/contents/ranking/api/fetchRankingByCategory';
 import { FilterAccordion, FilterChips } from '@/features/shared/ui/filter';
 import { Button } from '@/features/shared/ui/button-group';
+import { useModalStore } from '@/entities/modal/stores/useModalStore';
 import styles from './FilterModal.module.css';
 
 const FilterModal = () => {
   const router = useRouter();
-  const { isOpen, filterGroups, selectedFilters, closeFilterModal } =
-    useFilterStore();
+  const { activeModal, closeModal } = useModalStore();
+  const { filterGroups, selectedFilters } = useFilterStore();
 
   useEffect(() => {
     const handleEscapeKey = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') closeFilterModal();
+      if (event.key === 'Escape') closeModal();
     };
 
     document.addEventListener('keydown', handleEscapeKey);
     return () => document.removeEventListener('keydown', handleEscapeKey);
-  }, [closeFilterModal]);
+  }, [closeModal]);
 
-  if (!isOpen) return null;
+  if (activeModal !== 'filter') return null;
 
   return (
     <div className={styles.modalOverlay}>
@@ -30,7 +31,7 @@ const FilterModal = () => {
         <div className={styles.modalHeader}>
           <button
             type="button"
-            onClick={closeFilterModal}
+            onClick={closeModal}
             className={styles.closeButton}
           >
             <img src="/assets/images/icons/close-x.svg" alt="close" />
@@ -82,11 +83,14 @@ const FilterModal = () => {
                   pageCount: 20,
                 });
 
-                closeFilterModal();
+                closeModal();
                 router.refresh(); // 페이지 새로고침
               } catch (error) {
                 console.error('랭킹 데이터 조회 실패:', error);
-                console.error('에러 상세:', error instanceof Error ? error.message : error);
+                console.error(
+                  '에러 상세:',
+                  error instanceof Error ? error.message : error,
+                );
               }
             }}
           >

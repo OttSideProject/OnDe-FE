@@ -13,14 +13,11 @@ type LastSelectedItem = {
 } | null;
 
 type FilterStore = {
-  isOpen: boolean;
-  filterGroups: FilterGroup[];
+    filterGroups: FilterGroup[];
   selectedFilters: Record<string, string[]>;
   selectedChips: FilterChip[];
   lastSelectedItem: LastSelectedItem;
-  openFilterModal: () => void;
-  closeFilterModal: () => void;
-  setSelectedFilters: (groupId: string, items: string[]) => void;
+    setSelectedFilters: (groupId: string, items: string[]) => void;
   setLastSelectedItem: (item: LastSelectedItem) => void;
 };
 
@@ -59,8 +56,7 @@ const updateLastSelectedItem = (
 };
 
 export const useFilterStore = create<FilterStore>((set) => ({
-  isOpen: false,
-  filterGroups: [
+    filterGroups: [
     {
       id: 'genre',
       label: '장르',
@@ -95,9 +91,7 @@ export const useFilterStore = create<FilterStore>((set) => ({
   selectedFilters: {},
   selectedChips: [],
   lastSelectedItem: null,
-  openFilterModal: () => set({ isOpen: true }),
-  closeFilterModal: () => set({ isOpen: false }),
-  setSelectedFilters: (groupId, items) =>
+    setSelectedFilters: (groupId, items) =>
     set((state) => {
       const newSelectedFilters = {
         ...state.selectedFilters,
