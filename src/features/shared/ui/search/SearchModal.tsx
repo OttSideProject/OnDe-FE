@@ -1,12 +1,37 @@
 'use client';
 
 import { useModalStore } from '@/entities/modal/stores/useModalStore';
+import { fetchContents } from '@/entities/contents/main/api/fetchContents';
 import styles from './SearchModal.module.css';
 
 const SearchModal = () => {
   const { activeModal, closeModal } = useModalStore();
 
   if (activeModal !== 'search') return null;
+
+  const handleSearch = async () => {
+    try {
+      const response = await fetchContents({
+        type: 'search',
+        nowPage: 1,
+        pageSize: 10,
+      });
+      console.log('Fetched contents:', response);
+      // 여기에 검색 결과를 처리하는 로직 추가
+    } catch (error) {
+      console.error('Error fetching contents:', error);
+    }
+  };
+
+  const handleSearchByType = async (type: string) => {
+    try {
+      const response = await fetchContents({ type, nowPage: 1, pageSize: 10 });
+      console.log('Fetched contents for type:', type, response);
+      // 여기에 검색 결과를 처리하는 로직 추가
+    } catch (error) {
+      console.error('Error fetching contents for type:', type, error);
+    }
+  };
 
   return (
     <div className={styles.modalOverlay}>
@@ -27,7 +52,11 @@ const SearchModal = () => {
                 placeholder="콘텐츠, 게시글을 검색할 수 있어요."
                 className={styles.searchInput}
               />
-              <button type="button" className={styles.searchButton}>
+              <button
+                type="button"
+                className={styles.searchButton}
+                onClick={handleSearch}
+              >
                 <img src="/assets/images/icons/find-icon-g.svg" alt="search" />
               </button>
             </div>
@@ -79,7 +108,11 @@ const SearchModal = () => {
               />
             </h3>
             <div className={styles.suggestionButtonGroup}>
-              <button type="button" className={styles.suggestionButton}>
+              <button
+                type="button"
+                className={styles.suggestionButton}
+                onClick={() => handleSearchByType('new')}
+              >
                 <span className={styles.suggestionTag}>
                   <img
                     src="/assets/images/icons/type-new-text.svg"
@@ -87,7 +120,11 @@ const SearchModal = () => {
                   />
                 </span>
               </button>
-              <button type="button" className={styles.suggestionButton}>
+              <button
+                type="button"
+                className={styles.suggestionButton}
+                onClick={() => handleSearchByType('movie')}
+              >
                 <span className={styles.suggestionTag}>
                   <img
                     src="/assets/images/icons/type-movie-text.svg"
@@ -96,7 +133,11 @@ const SearchModal = () => {
                 </span>
               </button>
 
-              <button type="button" className={styles.suggestionButton}>
+              <button
+                type="button"
+                className={styles.suggestionButton}
+                onClick={() => handleSearchByType('drama')}
+              >
                 <span className={styles.suggestionTag}>
                   <img
                     src="/assets/images/icons/type-drama-text.svg"
@@ -104,7 +145,11 @@ const SearchModal = () => {
                   />
                 </span>
               </button>
-              <button type="button" className={styles.suggestionButton}>
+              <button
+                type="button"
+                className={styles.suggestionButton}
+                onClick={() => handleSearchByType('ani')}
+              >
                 <span className={styles.suggestionTag}>
                   <img
                     src="/assets/images/icons/type-ani-text.svg"
@@ -112,7 +157,11 @@ const SearchModal = () => {
                   />
                 </span>
               </button>
-              <button type="button" className={styles.suggestionButton}>
+              <button
+                type="button"
+                className={styles.suggestionButton}
+                onClick={() => handleSearchByType('enter')}
+              >
                 <span>
                   <img
                     src="/assets/images/icons/type-enter-text.svg"

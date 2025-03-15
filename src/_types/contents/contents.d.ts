@@ -17,7 +17,6 @@ export type TodayPickContent = {
   rank: number;
 };
 
-
 /* SectionSlider type */
 export type Section = {
   id: number;
@@ -219,4 +218,31 @@ export type FilterGroup = {
   icon?: string;
   items: FilterItem[];
   isExpanded?: boolean;
+};
+
+/* Contents Types */
+export type ContentType = {
+  rank: number;
+  contentId: string;
+  contentImg?: string;
+  imgUrl?: string;
+  genres: string[];
+  title: string;
+  age: string;
+  ageImage: string | null;
+  category: 'shared';
+};
+
+export type ContentTypeResponse = {
+  content: ContentType[]; // content 배열
+  page: {
+    size: number;
+    number: number;
+    totalElements: number;
+    totalPages: number;
+  };
+};
+
+export type ContentTypeProps = {
+  types: ContentType[];
 };
