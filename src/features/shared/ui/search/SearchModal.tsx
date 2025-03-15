@@ -1,25 +1,35 @@
 'use client';
 
+import { useRef } from 'react';
+import {
+  fetchContents,
+  fetchSearchContents,
+} from '@/entities/contents/main/api';
 import { useModalStore } from '@/entities/modal/stores/useModalStore';
-import { fetchContents } from '@/entities/contents/main/api/fetchContents';
+import { useSearchStore } from '@/entities/search/stores/useSearchStore';
 import styles from './SearchModal.module.css';
 
 const SearchModal = () => {
   const { activeModal, closeModal } = useModalStore();
+  const { searchTerm, setSearchTerm } = useSearchStore();
+  const inputRef = useRef<HTMLInputElement | null>(null);
 
   if (activeModal !== 'search') return null;
 
   const handleSearch = async () => {
     try {
-      const response = await fetchContents({
-        type: 'search',
-        nowPage: 1,
-        pageSize: 10,
-      });
-      console.log('Fetched contents:', response);
-      // 여기에 검색 결과를 처리하는 로직 추가
+      if (inputRef.current) {
+        const searchTerm = inputRef.current.value;
+        setSearchTerm(searchTerm);
+        console.log('Current search term:', searchTerm); // 검색어를 콘솔에 출력
+        const response = await fetchSearchContents({ search: searchTerm });
+        console.log('Fetched search contents:', response);
+        // 여기에 검색 결과를 처리하는 로직 추가
+      } else {
+        console.error('검색 입력 필드를 찾을 수 없습니다.');
+      }
     } catch (error) {
-      console.error('Error fetching contents:', error);
+      console.error('Error fetching search contents:', error);
     }
   };
 
@@ -51,6 +61,9 @@ const SearchModal = () => {
                 type="text"
                 placeholder="콘텐츠, 게시글을 검색할 수 있어요."
                 className={styles.searchInput}
+                ref={inputRef}
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
               />
               <button
                 type="button"

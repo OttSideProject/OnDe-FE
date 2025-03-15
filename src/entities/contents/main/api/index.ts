@@ -4,3 +4,5 @@ export { fetchBoardSection } from './fetchBoardSection';
 export { fetchDetailData } from './fetchDetailData';
 export { fetchSections } from './fetchSections';
 export { fetchOttPlatforms } from './fetchOttPlatforms';
+export { fetchContents } from './fetchContents';
+export { fetchSearchContents } from './fetchSearchContents';

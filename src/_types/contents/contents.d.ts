@@ -246,3 +246,30 @@ export type ContentTypeResponse = {
 export type ContentTypeProps = {
   types: ContentType[];
 };
+
+/* Contents Search */
+export type SearchContent = {
+  rank: number;
+  contentId: string;
+  contentImg?: string;
+  imgUrl?: string;
+  genres: string[];
+  title: string;
+  age: string;
+  ageImage: string | null;
+  category: 'shared';
+};
+
+export type SearchContentResponse = {
+  content: SearchContent[]; // content 배열
+  page: {
+    size: number;
+    number: number;
+    totalElements: number;
+    totalPages: number;
+  };
+};
+
+export type SearchContentProps = {
+  search: SearchContent[];
+};
