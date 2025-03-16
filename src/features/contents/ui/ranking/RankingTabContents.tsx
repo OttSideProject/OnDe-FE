@@ -1,55 +1,41 @@
-'use client';
 import { useState } from 'react';
 import { Tabs } from '@/features/shared/ui/tabs';
 import { OTTSelector } from '@/features/contents/ui/ott-selector';
 import { RankingSubListContainer } from '@/features/contents/ui/ranking';
+import { FilterButton, FilterModal } from '@/features/shared/ui';
+import { useModalStore } from '@/entities/modal/stores';
 import styles from './RankingTabContents.module.css';
+
+type PageType = 'contentMain' | 'ranking' | 'recommended';
+
 type RankingTabContentsProps = {
-  getImageSrc: (
-    title: string,
-    pageType: 'contentMain' | 'ranking' | 'recommended',
-  ) => string;
+  getImageSrc: (title: string, pageType: PageType) => string;
 };
 
 const RankingTabContents = ({ getImageSrc }: RankingTabContentsProps) => {
   const [activeTab, setActiveTab] = useState<'monthly' | 'weekly'>('monthly');
-  const [selectedOTT, setSelectedOTT] = useState<string>('netflix');
+  const [selectedOTT, setSelectedOTT] = useState<string>('');
+  const { openModal } = useModalStore();
 
   const categories = [
     { label: '월간', key: 'monthly' },
-    {
-      label: '주간',
-      key: 'weekly',
-    },
+    { label: '주간', key: 'weekly' },
   ];
 
   const renderContent = (selectedCategory: string) => {
-    switch (selectedCategory) {
-      case 'monthly':
-        return (
-          <>
-            <OTTSelector activeOTT={selectedOTT} onSelectOTT={setSelectedOTT} />
-            <RankingSubListContainer
-              ott={selectedOTT}
-              type={activeTab as 'monthly' | 'weekly'}
-              getImageSrc={getImageSrc}
-            />
-          </>
-        );
-      case 'weekly':
-        return (
-          <>
-            <OTTSelector activeOTT={selectedOTT} onSelectOTT={setSelectedOTT} />
-            <RankingSubListContainer
-              ott={selectedOTT}
-              type={activeTab as 'monthly' | 'weekly'}
-              getImageSrc={getImageSrc}
-            />
-          </>
-        );
-      default:
-        return <p>내용이 없습니다.</p>;
-    }
+    return (
+      <>
+        <div className="flex justify-between items-center mb-4">
+          <OTTSelector activeOTT={selectedOTT} onSelectOTT={setSelectedOTT} />
+          <FilterButton onClick={() => openModal('filter')} />
+        </div>
+        <RankingSubListContainer
+          category={selectedOTT}
+          getImageSrc={getImageSrc}
+        />
+        <FilterModal />
+      </>
+    );
   };
 
   return (
@@ -57,7 +43,7 @@ const RankingTabContents = ({ getImageSrc }: RankingTabContentsProps) => {
       <Tabs
         categories={categories}
         fontSize={'1.6rem'}
-        renderContent={renderContent}
+        renderContent={(key) => renderContent(key)}
         onTabChange={(key) => setActiveTab(key as 'monthly' | 'weekly')}
       />
     </div>

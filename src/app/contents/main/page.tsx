@@ -2,28 +2,20 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import {
-  TodayPickContent,
-  BoardSectionSlide,
-} from '@/_types/contents/contents';
+import { TodayPickContent, BoardSectionSlide } from '@/_types/contents';
 import {
   fetchTodayPick,
   fetchBoardSection,
 } from '@/entities/contents/main/api';
 import { useImageMapping } from '@/entities/contents/hooks';
 
-
 /* Components */
-import {Loading} from '@/features/shared/ui';
-import {StatusBar} from '@/features/shared/ui';
+import { Loading } from '@/features/shared/ui';
+import { StatusBar } from '@/features/shared/ui';
 import { Header } from '@/features/contents/ui/header';
 import { MainSlider } from '@/features/contents/ui/today-pick';
 import { BoardSectionSlider } from '@/features/contents/ui/board-section';
 import { SectionSliderContainer } from '@/features/contents/ui/section-list';
-
-
-/* Types */
-import { Slide } from '@/_types/contents/contents';
 
 /* Styles */
 import styles from './page.module.css';
@@ -39,43 +31,7 @@ const iconUrlList = [
   '/assets/images/icons/find-icon.svg',
 ];
 
-const slides: Slide[] = [
-  {
-    id: 1,
-    title: '더 인플루언서',
-    age: 'all',
-    subTitle: ['흥미진진한', '시리즈'],
-    url: 'https://picsum.photos/240/360?random=1',
-  },
-  {
-    id: 2,
-    age: '19',
-    title: '에일리언',
-    subTitle: ['독특한', '서스펜스'],
-    url: 'https://picsum.photos/240/360?random=2',
-  },
-  {
-    id: 3,
-    age: '15+',
-    title: '귀공자',
-    subTitle: ['독특한', '서스펜스'],
-    url: 'https://picsum.photos/240/360?random=3',
-  },
-  {
-    id: 4,
-    age: '12+',
-    title: 'title 4',
-    subTitle: ['흥미진진한', '시리즈'],
-    url: 'https://picsum.photos/240/360?random=4',
-  },
-  {
-    id: 5,
-    age: '19',
-    title: 'title 5',
-    subTitle: ['흥미진진한', '서바이벌'],
-    url: 'https://picsum.photos/240/360?random=5',
-  },
-];
+const iconTypes = ['alert', 'search'];
 
 const HomePage: React.FC = () => {
   const { getImageSrc } = useImageMapping();
@@ -110,15 +66,25 @@ const HomePage: React.FC = () => {
 
   return (
     <main className={styles.container}>
-      <StatusBar logoUrl={logoUrl} iconUrlList={iconUrlList} />
+      <StatusBar
+        logoUrl={logoUrl}
+        iconUrlList={iconUrlList}
+        iconTypes={iconTypes}
+      />
       <section>
         <Header headerText={headerText} iconUrl={iconUrl} />
         <MainSlider slides={todayPicks} />
-        <BoardSectionSlider boardSectionSlides={boardSections} getImageSrc={getImageSrc} />
-        <SectionSliderContainer  getImageSrc={getImageSrc}/>
+        <BoardSectionSlider
+          boardSectionSlides={boardSections}
+          getImageSrc={getImageSrc}
+        />
+        <SectionSliderContainer getImageSrc={getImageSrc} />
       </section>
       <div className={styles.recommendContainer}>
-        <img src="/assets/images/dimi-group-text.png" alt="원하는 콘텐츠를 찾지 못하셨나요? Dimi가 직접 추천하는 당신만을 위한 콘텐츠를 확인해보세요." />
+        <img
+          src="/assets/images/dimi-group-text.png"
+          alt="원하는 콘텐츠를 찾지 못하셨나요? Dimi가 직접 추천하는 당신만을 위한 콘텐츠를 확인해보세요."
+        />
         {/* <p>
           <strong>원하는 콘텐츠를 찾지 못하셨나요? </strong> <br />
           <strong>Dimi</strong>가 직접 추천하는 당신만을 위한 콘텐츠를

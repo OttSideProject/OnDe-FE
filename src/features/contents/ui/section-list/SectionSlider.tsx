@@ -8,7 +8,7 @@ import Slider from 'react-slick';
 
 import { ActionBar } from '@/features/shared/ui/action-bar';
 
-import { SectionSliderProps } from '@/_types/contents/contents';
+import { SectionSliderProps } from '@/_types/contents';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';

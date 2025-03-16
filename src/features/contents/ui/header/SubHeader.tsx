@@ -5,7 +5,7 @@ import styles from './SubHeader.module.css';
 /* SubHeader type */
 type SubHeaderProps = {
   title?: string;
-  imageTitle: string;
+  imageTitle?: string;
   imagePath?: string;
   userName?: string;
   recommendedTitle?: string;
@@ -15,10 +15,10 @@ type SubHeaderProps = {
 };
 
 const SubHeader: React.FC<SubHeaderProps> = ({
-  title = '', // default value for title
-  imageTitle, // imageTitle prop 추가
-  userName = '', // default value for userName
-  recommendedTitle = '', // default value for recommendedTitle
+  title = '',
+  imageTitle = '',
+  userName = '',
+  recommendedTitle = '',
   linkUrl,
   linkText = '더보기',
   imagePath,
@@ -29,11 +29,14 @@ const SubHeader: React.FC<SubHeaderProps> = ({
       <h3>
         {userName && <span>{userName}</span>}
         {recommendedTitle && <span>{recommendedTitle}&nbsp;</span>}
-        <SVGTitle
-          imagePath={imagePath}
-          imageTitle={imageTitle}
-          isImageRequired={isImageRequired}
-        />
+        {title && <span>{title}&nbsp;</span>}
+        {imageTitle && (
+          <SVGTitle
+            imagePath={imagePath}
+            imageTitle={imageTitle}
+            isImageRequired={isImageRequired}
+          />
+        )}
       </h3>
       {linkUrl && (
         <Link href={linkUrl} className={styles.link}>

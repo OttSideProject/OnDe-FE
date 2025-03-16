@@ -16,17 +16,25 @@ type DropDownOptionsProps = {
   height?: number;
   options: Option[];
   onSelect?: (id: number) => void;
+  isPositioned?: boolean;
 };
 
 const DropDownOptions: React.FC<DropDownOptionsProps> = ({
   title = '',
-  height = 300,
+  height,
   options,
   onSelect,
+  isPositioned = false,
 }) => {
   return (
-    <div className={styles.container} style={{ height: `${height}px` }}>
-      <div className={styles.inner}>
+    <div
+      className={styles.container}
+      style={height ? { height: `${height}px` } : undefined}
+    >
+      <div 
+        className={styles.inner}
+        style={isPositioned ? { position: 'absolute' } : undefined}
+      >
         <h4>{title}</h4>
         <div className="scrollbar">
           <div className={styles.scrollBarInner}>

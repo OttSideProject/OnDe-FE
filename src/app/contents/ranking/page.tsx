@@ -5,10 +5,13 @@ import { useState } from 'react';
 import { StatusBar } from '@/features/shared/ui/status-bar';
 import { Header } from '@/features/contents/ui/header';
 import { useImageMapping } from '@/entities/contents/hooks';
-import { RankingMainContainer, RankingTabContents } from '@/features/contents/ui/ranking';
+import {
+  RankingMainContainer,
+  RankingTabContents,
+} from '@/features/contents/ui/ranking';
 
 /* Types */
-import { Slide } from '@/_types/contents/contents';
+import { Slide } from '@/_types/contents';
 
 /* Styles */
 import styles from './page.module.css';
@@ -81,7 +84,7 @@ const RankingPage: React.FC = () => {
           pageType="ranking"
           getImageSrc={getImageSrc}
         />
-        <RankingMainContainer slides={rankingTopList} />
+        <RankingMainContainer getImageSrc={getImageSrc} />
         <RankingTabContents getImageSrc={getImageSrc} />
       </section>
     </main>

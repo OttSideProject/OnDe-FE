@@ -2,24 +2,46 @@
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { DetailData } from '@/_types/contents/contents';
-
+import Image from 'next/image';
+import { DetailData } from '@/_types/contents';
+import { ageImage } from '@/features/shared/utils/ageImage';
+import { useDropDownStore } from '@/entities/contents/main/stores';
+import { useOttPlatformStore } from '@/entities/contents/detail/stores';
+import { fetchOttPlatforms } from '@/entities/contents/main/api';
+import { BtnDetailInnerChildStyle } from '@/features/shared/ui/button-group';
+import { ToggleIconButton } from '@/features/shared/ui/toggle';
 import { Button } from '@/features/shared/ui/button-group';
 import { DropDownOptions } from '@/features/shared/ui/action-bar';
 import { DimmedBackground } from '@/features/shared/ui/dimmed-background';
-
-import { useDropDownStore } from '@/entities/contents/main/stores';
-
 import styles from './DetailComponent.module.css';
-import { BtnDetailInnerChildStyle } from '@/features/shared/ui/button-group';
-import { ToggleIconButton } from '@/features/shared/ui/toggle';
 
 type DetailComponentProps = {
   detailData: DetailData;
 };
 
+const ottLogos: Record<string, string> = {
+  netflix: '/assets/images/ott_logos/netflix-logo.svg',
+  tving: '/assets/images/ott_logos/tving-logo.svg',
+  watcha: '/assets/images/ott_logos/watcha-logo.svg',
+  'disney+': '/assets/images/ott_logos/disney-plus-logo.svg',
+  wavve: '/assets/images/ott_logos/wavve-logo.svg',
+  laftel: '/assets/images/ott_logos/laftel-logo.svg',
+  'prime video': '/assets/images/ott_logos/prime-video-logo.svg',
+  'coupang play': '/assets/images/ott_logos/coupang-play-logo.svg',
+};
+
 const DetailComponent: React.FC<DetailComponentProps> = ({ detailData }) => {
   const { isDropDownOpen, openDropDown, closeDropDown } = useDropDownStore();
+  const { platforms, setPlatforms } = useOttPlatformStore();
+  const router = useRouter();
+
+  useEffect(() => {
+    const fetchPlatforms = async () => {
+      const response = await fetchOttPlatforms(detailData.contentId);
+      setPlatforms(response.data);
+    };
+    fetchPlatforms();
+  }, [detailData.contentId, setPlatforms]);
 
   useEffect(() => {
     if (isDropDownOpen) {
@@ -32,54 +54,15 @@ const DetailComponent: React.FC<DetailComponentProps> = ({ detailData }) => {
     };
   }, [isDropDownOpen]);
 
-  const options = [
-    {
-      id: 1,
-      link: 'https://www.netflix.com/kr/',
-      url: '/assets/images/ott_logos/netflix-logo.svg',
-    },
-    {
-      id: 2,
-      link: 'https://www.tving.com/',
-      url: '/assets/images/ott_logos/tving-logo.svg',
-    },
-    {
-      id: 3,
-      link: 'https://watcha.com/',
-      url: '/assets/images/ott_logos/watcha-logo.svg',
-    },
-    {
-      id: 4,
-      link: 'https://www.disneyplus.com/',
-      url: '/assets/images/ott_logos/disney-plus-logo.svg',
-    },
-    {
-      id: 5,
-      link: 'https://www.wavve.com/',
-      url: '/assets/images/ott_logos/wavve-logo.svg',
-    },
-    {
-      id: 6,
-      link: 'https://laftel.net/',
-      url: '/assets/images/ott_logos/laftel-logo.svg',
-    },
-    {
-      id: 7,
-      link: 'https://www.primevideo.com/-/ko',
-      url: '/assets/images/ott_logos/prime-video-logo.svg',
-    },
-    {
-      id: 8,
-      link: 'https://play.coupang.com/',
-      url: '/assets/images/ott_logos/coupang-play-logo.svg',
-    },
-  ];
+  const options = platforms.map((platform, index) => ({
+    id: index + 1,
+    link: platform.content_link,
+    url: ottLogos[platform.platform.toLowerCase()] || '',
+  }));
 
   const handleOptionSelect = (id: number) => {
     closeDropDown();
   };
-
-  const router = useRouter();
 
   const goMypage = () => {
     router.push('/users/mypage');
@@ -96,30 +79,34 @@ const DetailComponent: React.FC<DetailComponentProps> = ({ detailData }) => {
           <DimmedBackground onClick={closeDropDown} />
           <DropDownOptions
             options={options}
-            height={580}
             title="시청하실 ott 를 선택하세요."
           />
         </div>
       )}
       <figure className={styles.imageContainer}>
-        <img src={detailData.imageUrl} alt={detailData.title} />
+        <Image
+          src={detailData.imageUrl || ''}
+          alt={detailData.title}
+          width={375}
+          height={375}
+          priority
+        />
         <ToggleIconButton />
         <figcaption>
           <h1 className={styles.title}>{detailData.title}</h1>
-          <>
-            <h2 className={styles.info}>
-              {detailData.info.map((item, index) => (
-                <span key={index}>
-                  {typeof item === 'string' ? (
-                    item
-                  ) : (
-                    <img src={item.src} alt={item.alt} />
-                  )}
-                </span>
-              ))}
-            </h2>
-          </>
-          <p className={styles.description}>{detailData.description}</p>
+          <h2 className={styles.info}>
+            {detailData.released}
+            <span className={styles.ageImageContainer}>
+              <Image
+                src={ageImage(detailData.age, 'detail')}
+                alt={`${detailData.age}세 이용가`}
+                width={20}
+                height={20}
+              />
+            </span>
+            {detailData.runningTime && `${detailData.runningTime}분`}
+          </h2>
+          <p className={styles.description}>{detailData.summary}</p>
         </figcaption>
       </figure>
       <div className={styles.bottomContainer}>

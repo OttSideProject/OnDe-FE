@@ -13,7 +13,7 @@ import { DropDownOptions } from '@/features/shared/ui/action-bar';
 import { fetchSections, useDropDownStore } from '@/entities/contents/main';
 
 /* Types */
-import { Section, SectionsResponse } from '@/_types/contents/contents';
+import { Section, SectionsResponse } from '@/_types/contents';
 
 /* Styles */
 import styles from './SectionSliderContainer.module.css';
@@ -102,6 +102,8 @@ const SectionSliderContainer: React.FC<SectionSliderContainerProps> = ({
             options={options}
             onSelect={handleOptionSelect}
             title="작품 제목"
+            height={300}
+            isPositioned
           />
         </>
       )}

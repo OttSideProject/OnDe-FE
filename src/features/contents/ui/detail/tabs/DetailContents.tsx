@@ -1,16 +1,28 @@
 'use client';
-import { useEffect, useState } from 'react';
-import { Section } from '@/_types/contents/contents';
+
+import Image from 'next/image';
+import { DetailData, Section } from '@/_types/contents';
 import { Tabs } from '@/features/shared/ui/tabs';
 import { ViewMoreButton } from '@/features/shared/ui/view-more';
 import { SubHeader } from '@/features/contents/ui/header';
 import { SectionSlider } from '@/features/contents/ui/section-list';
+import { getDummyData } from '@/entities/contents/main/api/fetchDetailData';
+import {
+  ageImage,
+  getDecade,
+  getKoreanContentType,
+} from '@/features/shared/utils';
 import styles from './DetailContents.module.css';
 
-const DetailContents = ({ id }: { id: number }) => {
-  let [commentsCount, setCommentsCount] = useState(0);
-
-  commentsCount = 777;
+const DetailContents = ({
+  id,
+  detailData,
+}: {
+  id: string;
+  detailData: DetailData;
+}) => {
+  // const [commentsCount, setCommentsCount] = useState(0);
+  const dummyData = getDummyData();
 
   const categories = [
     { label: '상세정보', key: 'info' },
@@ -20,19 +32,33 @@ const DetailContents = ({ id }: { id: number }) => {
     },
   ];
 
-  const detailInfo = `출연: 도하석, 김예운, 조윤우, 고민주, 신혜원
-					감독: 피트 닥터
-					타입: 애니메이션, 영화
-					장르: 애니, 모험
-					연대별: 2020년대
-					러닝타임: 96분
-				`;
-  const viewIcon = '/assets/images/icons/all-view-icon.svg';
+  // 실제 데이터가 있는 필드는 바로 사용하고, 없는 필드만 더미 데이터 사용
+	// 감독, 배우 정보는 없는 경우가 있으므로 주석 처리
+  //   ${detailData?.actors?.join(', ') || ''}
+  // ${detailData?.director || ''}
+  const detailInfo = `타입: ${
+    getKoreanContentType(detailData.ctype) || dummyData.ctype
+  }
+장르: ${detailData.genres.join(', ')}
+연대별: ${getDecade(detailData.released)}
+러닝타임: ${detailData?.runningTime || dummyData.runningTime}분`;
+
+  const renderDetailInfo = () => (
+    <>
+      <span>{detailInfo}</span>
+      <Image
+        src={ageImage(detailData.age, 'detail')}
+        alt={`${detailData.age}세 이용가`}
+        width={20}
+        height={20}
+      />
+    </>
+  );
 
   const sections: Section[] = [
     {
       id: 1,
-      title: '인사이드 아웃',
+      title: detailData.title,
       linkText: '',
       linkUrl: '/contents/recommended',
       sectionSlides: [
@@ -61,52 +87,19 @@ const DetailContents = ({ id }: { id: number }) => {
           imgUrl: 'https://picsum.photos/104/156?random=5',
           detailUrl: `/contents/detail/${id}`,
         },
-        {
-          id: 6,
-          imgUrl: 'https://picsum.photos/104/156?random=1',
-          detailUrl: `/contents/detail/${id}`,
-        },
-        {
-          id: 7,
-          imgUrl: 'https://picsum.photos/104/156?random=2',
-          detailUrl: `/contents/detail/${id}`,
-        },
-        {
-          id: 8,
-          imgUrl: 'https://picsum.photos/104/156?random=3',
-          detailUrl: `/contents/detail/${id}`,
-        },
-        {
-          id: 9,
-          imgUrl: 'https://picsum.photos/104/156?random=4',
-          detailUrl: `/contents/detail/${id}`,
-        },
-        {
-          id: 10,
-          imgUrl: 'https://picsum.photos/104/156?random=5',
-          detailUrl: `/contents/detail/${id}`,
-        },
       ],
     },
   ];
-
-  useEffect(() => {
-    setCommentsCount(commentsCount);
-  }, []);
 
   const renderContent = (selectedCategory: string) => {
     switch (selectedCategory) {
       case 'info':
         return (
           <>
-            <ViewMoreButton content={detailInfo} viewIcon={viewIcon} />
-            {/* SectionSlider */}
+            <ViewMoreButton content={renderDetailInfo()} />
             {sections.map((section) => (
               <div key={section.id} className={styles.container}>
-                <SubHeader
-                  title={`'${section.title}'과(와) 비슷한 작품`}
-                  imageTitle={section.title}
-                />
+                <SubHeader title={`'${section.title}'과(와) 비슷한 작품`} />
                 <div className={styles.sliderContainer}>
                   <SectionSlider sectionSlides={section.sectionSlides} />
                 </div>
