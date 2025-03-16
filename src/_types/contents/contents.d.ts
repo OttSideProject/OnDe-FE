@@ -44,6 +44,29 @@ export type SectionsResponse = {
   sections: Section[];
 };
 
+/* Order type */
+export type OrderContent = {
+  contentId: string;
+  title: string;
+  age: string;
+  ageImage: string | null;
+  contentImg?: string;
+  imgUrl?: string;
+  genres: string[];
+  rank: number;
+  category: 'shared';
+};
+
+export type OrderResponse = {
+  content: OrderContent[];
+  page: {
+    size: number;
+    number: number;
+    totalElements: number;
+    totalPages: number;
+  };
+};
+
 /* BoardSectionSlider type */
 export type BoardSectionSlide = {
   boardId: number;

@@ -2,10 +2,15 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { TodayPickContent, BoardSectionSlide } from '@/_types/contents';
+import {
+  TodayPickContent,
+  BoardSectionSlide,
+  OrderContent,
+} from '@/_types/contents';
 import {
   fetchTodayPick,
   fetchBoardSection,
+  fetchOrder,
 } from '@/entities/contents/main/api';
 import { useImageMapping } from '@/entities/contents/hooks';
 
@@ -33,10 +38,11 @@ const iconUrlList = [
 
 const iconTypes = ['alert', 'search'];
 
-const HomePage: React.FC = () => {
+const HomePage: React.FC = async () => {
   const { getImageSrc } = useImageMapping();
   const [todayPicks, setTodayPicks] = useState<TodayPickContent[]>([]);
   const [boardSections, setBoardSections] = useState<BoardSectionSlide[]>([]);
+  const [orderData, setOrderData] = useState<OrderContent[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -44,12 +50,20 @@ const HomePage: React.FC = () => {
     const fetchData = async () => {
       try {
         setIsLoading(true);
-        const [todayResponse, boardResponse] = await Promise.all([
-          fetchTodayPick(),
-          fetchBoardSection(),
-        ]);
+        const [todayResponse, boardResponse, orderResponse] = await Promise.all(
+          [
+            fetchTodayPick(),
+            fetchBoardSection(),
+            fetchOrder({
+              order: '최신순',
+              nowPage: 0,
+              pageCount: 20,
+            }),
+          ],
+        );
         setTodayPicks(todayResponse.data);
         setBoardSections(boardResponse.data);
+        setOrderData(orderResponse.data);
       } catch (err) {
         setError('데이터를 불러오는데 실패했습니다.');
         console.error('Error fetching data:', err);
