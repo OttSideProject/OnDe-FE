@@ -17,7 +17,7 @@ export const Logo = styled.div`
   color: #ccee3f; /* 로고 색상 */
   display: flex;
   align-items: center;
-  margin-bottom: 2rem;
+  margin-bottom: 6.5rem;
   background-image: url('/assets/images/icons/logo-1.0.svg');
   background-size: contain;
   background-repeat: no-repeat;
@@ -94,7 +94,7 @@ export const SocialContainer = styled.div`
 
   & > div > p {
     color: var(--gray-50, #e4e6e1);
-    font-size: 0.9rem;
+    font-size: 1.2rem;
     font-style: normal;
     font-weight: 400;
     line-height: 150%; /* 18px */
