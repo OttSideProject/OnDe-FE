@@ -1,0 +1,193 @@
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modalContent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: 100%;
+  background-color: var(--primary-black);
+  /* color: var(--primary-white); */
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  padding: 16px 15px 16px 4px;
+}
+
+.closeButton {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.searchContent {
+  width: 100%;
+}
+
+.searchInputWrapper {
+  display: flex;
+  gap: 8px;
+  padding: 1px 16px 1px 20px;
+  background-color: var(--gray700);
+  border-radius: 100px;
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+  -ms-border-radius: 100px;
+  -o-border-radius: 100px;
+}
+
+.searchInput {
+  flex: 1;
+  padding: 11px 0;
+  background: none;
+  border: none;
+  color: var(--primary-white);
+  font-size: 1.4rem;
+}
+
+.searchInput::placeholder {
+  color: var(--gray200);
+}
+
+.searchButton {
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+}
+
+.modalBody {
+  padding: 4px 15px;
+}
+
+.recentSearch {
+  margin-bottom: 20px;
+}
+
+.recentSearch h3 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  font-size: 1.4rem;
+}
+
+.clearAllButton {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 3px;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: var(--gray300);
+  cursor: pointer;
+}
+
+.recentSearchList {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.recentSearchItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5px;
+  background-color: var(--gray750);
+  padding: 4px 8px 4px 12px;
+  border-radius: 16px;
+  font-size: 1.4rem;
+  color: var(--gray50);
+}
+
+.autoSaveToggle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 81px;
+  height: 36px;
+  padding-left: 6px;
+  font-size: 1.2rem;
+  color: var(--gray300);
+}
+
+.autoSaveToggle span {
+  min-width: 45px;
+  font-size: inherit;
+}
+
+.toggleSwitch {
+  display: none;
+}
+
+.toggleLabel {
+  width: 24px;
+  height: 12px;
+  background-color: var(--gray700);
+  border-radius: 10px;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.toggleLabel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 11px;
+  height: 11px;
+  background-color: var(--primary-white);
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+.toggleSwitch:checked + .toggleLabel {
+  background-color: var(--secondary);
+}
+
+.toggleSwitch:checked + .toggleLabel::before {
+  transform: translateX(13px);
+}
+
+.suggestions {
+  margin: 12px 0;
+}
+
+.suggestions h3 {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  font-size: 1.4rem;
+}
+
+.suggestionButtonGroup {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  row-gap: 16px;
+  column-gap: 10px;
+  max-width: 216px;
+  margin: 0 auto;
+}
+
+.suggestionButton {
+  height: 32px;
+  padding: 5px 10px;
+  background-color: var(--gray50);
+  border-radius: 10px;
+  font-size: 1.4rem;
+}

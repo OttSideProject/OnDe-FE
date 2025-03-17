@@ -139,6 +139,7 @@
   .cardLink:nth-child(3n + 2) {
     width: 120px;
     height: 170px;
+    margin-top: -5px;
   }
 
   /* .rankingItem {

@@ -1,4 +1,4 @@
-import { BoardSectionStore } from '@/_types/contents/contents';
+import { BoardSectionStore } from '@/_types/contents';
 import { fetchBoardSection } from '@/entities/contents/main';
 
 export const boardSectionService = {
@@ -10,5 +10,5 @@ export const boardSectionService = {
       console.error('Error fetching board sections:', err);
       return { data: [], error: '데이터를 불러오는데 실패했습니다.' };
     }
-  }
-}; 
+  },
+};

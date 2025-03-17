@@ -1,6 +1,6 @@
-import { create } from "zustand";
+import { create } from 'zustand';
 
-import { DropDownStore } from "@/_types/contents/contents";
+import { DropDownStore } from '@/_types/contents';
 
 export const useDropDownStore = create<DropDownStore>((set) => ({
   isDropDownOpen: false,
@@ -9,5 +9,3 @@ export const useDropDownStore = create<DropDownStore>((set) => ({
 }));
 
 export default useDropDownStore;
-
-

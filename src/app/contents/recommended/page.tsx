@@ -10,7 +10,7 @@ import {
 } from '@/features/contents/ui/recommended';
 
 /* Types */
-import { Slide, RecommendedSectionSlide } from '@/_types/contents/contents';
+import { Slide, RecommendedSectionSlide } from '@/_types/contents';
 
 /* Styles */
 import styles from './page.module.css';

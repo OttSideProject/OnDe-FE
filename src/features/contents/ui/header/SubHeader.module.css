@@ -14,6 +14,10 @@
   align-items: center;
 }
 
+.container h3 > span {
+  color: var(--primary-white);
+}
+
 .container h3 + a {
   position: relative;
   display: flex;

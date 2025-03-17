@@ -1,27 +1,24 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { useInfiniteQuery } from '@tanstack/react-query';
 import { useInView } from 'react-intersection-observer';
+
+/* Types */
+import { Ranking } from '@/_types/contents';
+
+/* Utils */
+import { ageImage } from '@/features/shared/utils/ageImage';
+
+import { useRankingData } from '@/entities/contents/hooks/useRankingData';
 
 /* Components */
 import { SubHeader } from '@/features/contents/ui/header';
 import { ImageSubList } from '@/features/contents/ui/ranking';
 
-/* API */
-import { fetchRankings } from '@/entities/contents/ranking';
-
-/* Utils */
-import { ageImage } from '@/features/shared/utils/ageImage';
-
-/* Types */
-import { Ranking, RankingsResponse } from '@/_types/contents/contents';
-
 /* Styles */
 import styles from './RankingSubListContainer.module.css';
 
 type RankingSubListContainerProps = {
-  type: 'monthly' | 'weekly'; // 랭킹 타입
-  ott: string | null; // 현재 활성화된 OTT
+  category: string | null; // 카테고리
   getImageSrc: (
     title: string,
     pageType: 'contentMain' | 'ranking' | 'recommended',
@@ -29,26 +26,13 @@ type RankingSubListContainerProps = {
 };
 
 const RankingSubListContainer: React.FC<RankingSubListContainerProps> = ({
-  type = 'monthly', // 기본값은 월간
-  ott = 'netflix', // 기본값은 넷플릭스
+  category = '', // 기본값은 빈 문자열
   getImageSrc,
 }) => {
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
+    useRankingData(category);
   const [rankings, setRankings] = useState<Ranking[]>([]); // 한 번에 로드된 랭킹 데이터
   const { ref, inView } = useInView(); // 무한 스크롤을 위한 IntersectionObserver
-
-  // // 무한 스크롤 데이터를 가져오는 훅
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
-    useInfiniteQuery<RankingsResponse, Error>({
-      queryKey: ['rankings', type, ott],
-      queryFn: ({ pageParam = 1 }) =>
-        fetchRankings(type || 'monthly', ott || 'netflix', pageParam as number),
-      getNextPageParam: (lastPage) => {
-        return lastPage.pageNo < lastPage.totalPages
-          ? lastPage.pageNo + 1
-          : undefined;
-      },
-      initialPageParam: 1, // 첫번째 섹션의 ID
-    });
 
   useEffect(() => {
     if (inView && hasNextPage) {
@@ -56,29 +40,50 @@ const RankingSubListContainer: React.FC<RankingSubListContainerProps> = ({
     }
   }, [inView, hasNextPage, fetchNextPage]);
 
-  // // 페이지 데이터를 추적하여 중복을 방지
+  // 페이지 데이터를 추적하여 중복을 방지
   useEffect(() => {
     if (data?.pages) {
-      const updatedRankings = data.pages.flatMap((page) => page.rankings); // 모든 페이지 데이터 합침
+      const updatedRankings = data.pages.flatMap((page) => page.content); // 모든 페이지 데이터 합침
 
       // 순위를 4부터 시작하도록 설정
       const adjustedRankings = updatedRankings
-        .slice(0, 45)
+        .slice(0, 51)
         .map((ranking, index) => ({
           ...ranking,
-          ranking_num: index + 4, // 순위가 4부터 시작
-          age: ageImage(ranking.age, 'shared'), // age값을 이미지 URL로 변환
-        }));
+          rank: index + 4, // 순위가 4부터 시작
+          ageImage: ranking.age
+            ? ageImage(String(ranking.age), 'shared')
+            : null, // age 속성명 변경
+        }))
+        .filter((_, index) => index >= 3); // 1위부터 3위까지 제외
+
+      // 렌더링할 때 3개씩 나누어 보여주기
+      // const rows = [];
+      // for (let i = 0; i < adjustedRankings.length; i += 3) {
+      //   rows.push(adjustedRankings.slice(i, i + 3));
+      // }
 
       setRankings((prevRankings) => {
         // 기존 상태와 새 데이터를 합치고 중복 제거
         const uniqueRankings = Array.from(
-          new Map(adjustedRankings.map((item) => [item.id, item])).values(),
+          new Map(
+            [...prevRankings, ...adjustedRankings].map((item) => [
+              item.contentId,
+              item,
+            ]),
+          ).values(),
         );
-        return uniqueRankings;
+
+        return uniqueRankings.map((ranking, index) => ({
+          ...ranking,
+          rank: index + 4,
+          ageImage: ranking.age
+            ? ageImage(String(ranking.age), 'shared')
+            : null, // age 속성명 변경
+        }));
       });
     }
-  }, [data, type, ott]);
+  }, [data]);
 
   return (
     <section className={styles.container}>
@@ -88,7 +93,7 @@ const RankingSubListContainer: React.FC<RankingSubListContainerProps> = ({
         isImageRequired={true}
       />
       {/* 데이터를 ImageSubList로 전달 */}
-      <ImageSubList rankings={rankings} />
+      <ImageSubList content={rankings} />
       {isFetchingNextPage && <p>Loading more...</p>}
       <div ref={ref} />
     </section>

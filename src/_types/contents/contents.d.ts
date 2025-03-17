@@ -12,13 +12,9 @@ export type TodayPickContent = {
   contentId: string;
   title: string;
   age: string;
-  contentImg: string | null;
+  contentImg?: string;
   genres: string[];
   rank: number;
-};
-
-export type RankingMainSliderProps = {
-  slides: Slide[];
 };
 
 /* SectionSlider type */
@@ -37,7 +33,7 @@ export type SectionSliderProps = {
 
 export type SectionSlide = {
   id: number;
-  imgUrl: string;
+  imgUrl?: string;
   detailUrl: string;
 };
 
@@ -46,6 +42,29 @@ export type SectionsResponse = {
   totalPages: number;
   totalItems: number;
   sections: Section[];
+};
+
+/* Order type */
+export type OrderContent = {
+  contentId: string;
+  title: string;
+  age: string;
+  ageImage: string | null;
+  contentImg?: string;
+  imgUrl?: string;
+  genres: string[];
+  rank: number;
+  category: 'shared';
+};
+
+export type OrderResponse = {
+  content: OrderContent[];
+  page: {
+    size: number;
+    number: number;
+    totalElements: number;
+    totalPages: number;
+  };
 };
 
 /* BoardSectionSlider type */
@@ -87,41 +106,56 @@ export type DropDownStore = {
 
 /* DetailPage type */
 export type DetailData = {
-  id: string;
+  contentId: string;
   title: string;
-  info: InfoItem[];
-  description: string;
-  imageUrl: string;
+  summary: string;
+  genres: string[];
+  age: string;
+  ctype: string;
+  released: string;
+  imageUrl?: string;
+  actors?: string[];
+  director?: string;
+  runningTime?: string;
 };
 
-export type InfoItem = string | { type: 'image'; src: string; alt: string };
+export type OttPlatform = {
+  platform: string;
+  content_link: string;
+};
 
-// Ranking Data type
+/* Ranking Data type */
+
+// export type RankingMainSliderProps = {
+//   slides: Slide[];
+// };
 
 export type Ranking = {
-  id: number; // id 타입을 number로 변경
-  content_id: string;
-  content_img: string;
+  rank: number;
+  contentId: string;
+  contentImg?: string;
+  imgUrl?: string;
+  genres: string[];
   title: string;
-  subTitle?: string[];
-  ranking_num: number;
   age: string;
-  category: 'shared'; // category 속성 추가
+  ageImage: string | null;
+  category: 'shared';
 };
 
 export type RankingsResponse = {
-  pageNo: number;
-  totalPages: number;
-  totalItems: number;
-  rankings: Ranking[];
+  content: Ranking[]; // content 배열
+  page: {
+    size: number;
+    number: number;
+    totalElements: number;
+    totalPages: number;
+  };
 };
 
-// RankingSubListContainer type
 export type RankingSubListContainerProps = {
   rankings: Ranking[];
 };
 
-//RecommendedSlider Type
 export type RecommendedSection = {
   id: number;
   title: string;
@@ -136,7 +170,7 @@ export type RecommendedSliderProps = {
 
 export type RecommendedSlide = {
   id: number;
-  imgUrl: string;
+  imgUrl?: string;
   detailUrl: string;
 };
 
@@ -159,4 +193,106 @@ export type RecommendedResponse = {
 export type RecommendedMainSlide = {
   id: number;
   imgUrl?: string;
+};
+
+/* Category types */
+export type ContentCategory =
+  | 'action'
+  | 'comedy'
+  | 'horror'
+  | 'drama'
+  | 'romance'
+  | 'youth'
+  | 'fantasy'
+  | 'sf'
+  | 'musical'
+  | 'thriller'
+  | 'crime'
+  | 'animation'
+  | 'documentary'
+  | 'reality';
+
+export type CategoryContent = {
+  contentId: string;
+  title: string;
+  age: string;
+  contentImg?: string;
+  genres: string[];
+  summary?: string;
+};
+
+export type CategoryResponse = {
+  pageNo: number;
+  totalPages: number;
+  totalItems: number;
+  contents: CategoryContent[];
+};
+
+/* Filter Types */
+export type FilterItem = {
+  id: string;
+  label: string;
+  selected?: boolean;
+};
+
+export type FilterGroup = {
+  id: string;
+  label: string;
+  icon?: string;
+  items: FilterItem[];
+  isExpanded?: boolean;
+};
+
+/* Contents Types */
+export type ContentType = {
+  rank: number;
+  contentId: string;
+  contentImg?: string;
+  imgUrl?: string;
+  genres: string[];
+  title: string;
+  age: string;
+  ageImage: string | null;
+  category: 'shared';
+};
+
+export type ContentTypeResponse = {
+  content: ContentType[]; // content 배열
+  page: {
+    size: number;
+    number: number;
+    totalElements: number;
+    totalPages: number;
+  };
+};
+
+export type ContentTypeProps = {
+  types: ContentType[];
+};
+
+/* Contents Search */
+export type SearchContent = {
+  rank: number;
+  contentId: string;
+  contentImg?: string;
+  imgUrl?: string;
+  genres: string[];
+  title: string;
+  age: string;
+  ageImage: string | null;
+  category: 'shared';
+};
+
+export type SearchContentResponse = {
+  content: SearchContent[]; // content 배열
+  page: {
+    size: number;
+    number: number;
+    totalElements: number;
+    totalPages: number;
+  };
+};
+
+export type SearchContentProps = {
+  search: SearchContent[];
 };

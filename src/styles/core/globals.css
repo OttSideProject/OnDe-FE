@@ -87,6 +87,7 @@ html {
   --gray50: #e4e6e1;
   --gray100: #c2c4c0;
   --gray200: #a9aba6;
+  --gray300: #8a8c87;
   --gray400: #6c6e69;
   --gray500: #464844;
   --gray600: #393b38;
@@ -98,6 +99,8 @@ html {
   /* B&W */
   --primary-white: #f2f2f2; /* Text */
   --primary-black: #0b0b0b; /* Background */
+  --white: #fff;
+  --black: #000;
 
   /* Font Style */
   --primary-font: 'Pretendard-Regular', -apple-system, BlinkMacSystemFont,
@@ -106,7 +109,7 @@ html {
 
   --design-font: 'IBMPlexSansKR', sans-serif;
 
-	--title-font : 'Paperlogy', sans-serif;
+  --title-font: 'Paperlogy', sans-serif;
 }
 
 /* 텍스트 초기화 */
@@ -264,7 +267,7 @@ textarea:focus:not(:focus-visible) {
 /* scroll 커스텀 스타일 */
 .scrollbar::-webkit-scrollbar {
   width: 0;
-	height: 2px;
+  height: 2px;
 }
 .scrollbar::-webkit-scrollbar-thumb {
   background-color: var(--gray500);
@@ -291,7 +294,6 @@ textarea:focus:not(:focus-visible) {
   background-repeat: no-repeat;
   background-size: 100%;
 }
-
 
 /* 콘텐츠 커밍 순  */
 .coming-soon {

@@ -13,6 +13,7 @@ export type ButtonProps = {
   isActive?: boolean;
   children: React.ReactNode;
   onClick?: () => void;
+  className?: string;
 };
 
 export default function Button({
@@ -22,6 +23,7 @@ export default function Button({
   children,
   iconUrl,
   onClick,
+  className = '',
 }: ButtonProps) {
   const [active, setIsActive] = useState(() => isActive);
 
@@ -31,7 +33,7 @@ export default function Button({
   };
 
   return (
-		<BtnInner>
+		<BtnInner className={className}>
     <Btn variant={variant} size={size} active={active} onClick={handleClick}>
       {iconUrl && <Icon src={iconUrl} alt="icon" />}
       <span>{children}</span>

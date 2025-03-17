@@ -4,49 +4,75 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
-import { RankingMainSliderProps } from '@/_types/contents/contents';
+import { Ranking } from '@/_types/contents';
 /* Utils */
 import { ageImage } from '@/features/shared/utils';
 
-import {useCenterTopNumberList} from '@/entities/contents/hooks';
+import { useCenterTopNumberList } from '@/entities/contents/hooks';
+import { useRankingData } from '@/entities/contents/hooks';
 
 import styles from './RankingMainContainer.module.css';
 
-const RankingMainContainer: React.FC<RankingMainSliderProps> = ({ slides }) => {
+type RankingMainContainerProps = {
+  // category: string | null; // 카테고리
+  getImageSrc: (
+    title: string,
+    pageType: 'contentMain' | 'ranking' | 'recommended',
+  ) => string;
+};
+
+const RankingMainContainer: React.FC<RankingMainContainerProps> = ({
+  // category = '', // 기본값은 빈 문자열
+  getImageSrc,
+}) => {
   const [activeSlide, setActiveSlide] = useState<number>(0);
+  const { data } = useRankingData('');
 
   const router = useRouter();
 
-  const goLink = (id: number) => {
+  const goLink = (id: string) => {
     router.push(`/contents/detail/${id}`);
   };
 
-  // 재구성된 배열 가져오기
-  const centerTopNumberList = useCenterTopNumberList(slides);
+  // 상위 3개 랭킹 데이터만 가져오기
+  const topThreeRankings =
+    data?.pages[0]?.content.slice(0, 3).map((item) => ({
+      ...item,
+      id: String(item.contentId), // contentId를 id로 변환
+    })) || [];
+  const reorderedRankings = useCenterTopNumberList(topThreeRankings);
+
+  console.log('Ranking data:', data);
+  console.log('Top three rankings:', topThreeRankings);
+  console.log('Reordered rankings:', reorderedRankings);
 
   return (
     <article className={styles.container}>
       <div className={styles.list}>
-        {centerTopNumberList.map((slide, index) => (
-          <div key={index} className={styles.cardLink} onClick={() => goLink(slide.id)}>
+        {reorderedRankings.map((rank: Ranking, index) => (
+          <div
+            key={index}
+            className={styles.cardLink}
+            onClick={() => goLink(rank.contentId)}
+          >
             <figure
               className={`${styles.rankingItem} ${
                 activeSlide === index ? styles.activeSlide : ''
               }`}
             >
               <Image
-                src={slide.url}
-                alt={`Slide ${slide.title}`}
+                src={`https://picsum.photos/240/360?random=${index}`}
+                alt={rank.title}
                 width={113}
                 height={170}
               />
               <div className={styles.bottomContainer}>
                 <figcaption>
-                  <h3>{slide.title}</h3>
+                  <h3>{rank.title}</h3>
                   <h4>
-                    <span>{slide.subTitle.join(' · ')} · </span>
+                    <span>{rank.genres?.join(' · ')} · </span>
                     <Image
-                      src={ageImage(slide.age ?? '', 'shared')} // age는 이제 이미지 URL
+                      src={ageImage(String(rank.age), 'shared')}
                       alt="Age restriction"
                       width={20}
                       height={20}
@@ -55,7 +81,9 @@ const RankingMainContainer: React.FC<RankingMainSliderProps> = ({ slides }) => {
                 </figcaption>
               </div>
               <div className={styles.textContainer}>
-                <strong className={styles.topNumber}>{slide.id}</strong>
+                <strong className={styles.topNumber}>
+                  {index === 0 ? 2 : index === 1 ? 1 : 3}
+                </strong>
               </div>
             </figure>
           </div>

@@ -1,20 +1,42 @@
-import Api from '@/api/core/Api';
-import { AxiosHeaders, AxiosResponse } from 'axios';
-import { BoardSectionSlide } from '@/_types/contents/contents';
+import { PublicApi, type AxiosResponse, AxiosHeaders } from '@/api/core';
+import { BoardSectionSlide } from '@/_types/contents';
+
+type BoardSectionResponse = {
+  data: BoardSectionSlide[];
+  page: {
+    size: number;
+    number: number;
+    totalElements: number;
+    totalPages: number;
+  };
+};
+
+// 게시판 섹션 데이터 정렬 함수
+const sortBoardSections = (
+  a: BoardSectionSlide,
+  b: BoardSectionSlide,
+): number => {
+  const likeDiff = (b.likeCount || 0) - (a.likeCount || 0);
+  if (likeDiff !== 0) return likeDiff;
+  return (b.postViews || 0) - (a.postViews || 0);
+};
 
 export const fetchBoardSection = async (
   boardId: number = 1,
 ): Promise<AxiosResponse<BoardSectionSlide[]>> => {
   try {
-    const response = await Api.get<BoardSectionSlide[]>(`/board/${boardId}`); // 게시판 데이터 조회
-    const sortedData = response.data
-      .sort((a, b) => {
-        const likeDiff = (b.likeCount || 0) - (a.likeCount || 0);
-        if (likeDiff !== 0) return likeDiff;
-        return (b.postViews || 0) - (a.postViews || 0);
-      })
-      .slice(0, 3); // 상위 3개만 선택
-    return { ...response, data: sortedData };
+    const response = await PublicApi.get<BoardSectionResponse>(
+      `/board/${boardId}`,
+    ); // 게시판 데이터 조회
+
+    if (!response.data || !Array.isArray(response.data)) {
+      throw new Error('Invalid response format: data array expected');
+    }
+
+    return {
+      ...response,
+      data: response.data.sort(sortBoardSections).slice(0, 3), // 상위 3개만 선택
+    };
   } catch (error) {
     // 임시 더미 데이터
     const dummyData: BoardSectionSlide[] = [
@@ -79,5 +101,3 @@ export const fetchBoardSection = async (
     };
   }
 };
-
-

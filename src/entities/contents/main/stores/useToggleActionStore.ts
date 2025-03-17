@@ -1,6 +1,6 @@
-import { create } from "zustand";
+import { create } from 'zustand';
 
-import { ToggleActionStore } from '@/_types/contents/contents';
+import { ToggleActionStore } from '@/_types/contents';
 
 export const useToggleActionStore = create<ToggleActionStore>((set) => ({
   isActive: false,
@@ -8,5 +8,3 @@ export const useToggleActionStore = create<ToggleActionStore>((set) => ({
 }));
 
 export default useToggleActionStore;
-
-
