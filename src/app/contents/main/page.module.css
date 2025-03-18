@@ -1,5 +1,5 @@
 .container {
-  padding: 60px 0 15px;
+  padding: 60px 0 36px;
 }
 
 .recommendContainer {
@@ -37,5 +37,4 @@
 
 /* 반응형  */
 @media screen and (min-width: 576px) {
- 
 }

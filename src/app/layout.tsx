@@ -3,6 +3,8 @@ import localFont from 'next/font/local';
 
 import { ClientLayout, MSWInitializer } from '@/features/shared/lib';
 
+import { Navigation } from '@/features/shared/ui';
+
 import '@/styles/core/globals.css';
 import '@/styles/core/custom.css'; /* 슬라이더 커스텀 css */
 
@@ -49,6 +51,8 @@ export default function RootLayout({
       >
         <MSWInitializer />
         <ClientLayout>{children}</ClientLayout>
+        {/* 로그인 및 가입 페이지가 아닐 경우에만 네비게이션 표시 */}
+        <Navigation />
       </body>
     </html>
   );

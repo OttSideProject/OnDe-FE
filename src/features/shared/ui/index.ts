@@ -6,7 +6,6 @@ export { default as DropDownOptions } from './action-bar/DropDownOptions';
 
 // Button Group
 export { default as Button } from './button-group/Button';
-export { default as ButtonEx } from './button-group/ButtonEx';
 
 // Dimmed Background
 export { default as DimmedBackground } from './dimmed-background/DimmedBackground';
