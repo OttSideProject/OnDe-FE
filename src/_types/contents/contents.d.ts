@@ -28,7 +28,6 @@ export type Section = {
 
 export type SectionSliderProps = {
   sectionSlides: SectionSlide[];
-  showActionBar?: boolean;
 };
 
 export type SectionSlide = {
@@ -56,7 +55,6 @@ export type OrderContent = {
   genres: string[];
   rank: number;
   category: 'shared';
-	
 };
 
 export type OrderResponse = {

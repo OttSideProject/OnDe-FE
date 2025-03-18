@@ -2,23 +2,19 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 import Slider from 'react-slick';
 
-import { OrderContent } from '@/_types/contents';
-
-import { ActionBar } from '@/features/shared/ui/action-bar';
+import { SectionSlide } from '@/_types/contents';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import styles from './SectionSlider.module.css';
 
-const SectionSlider: React.FC<{
-  content: OrderContent[];
-  showActionBar: boolean;
-}> = ({ content, showActionBar }) => {
+const DummySlider: React.FC<{
+  sections: SectionSlide[];
+}> = ({ sections }) => {
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const [startX, setStartX] = useState<number>(0);
 
@@ -63,7 +59,7 @@ const SectionSlider: React.FC<{
     <article className={styles.container}>
       <div className={`${styles.slider} section-slider`}>
         <Slider {...settings}>
-          {content.map((sectionSlide, index) => (
+          {sections.map((sectionSlide, index) => (
             <div
               key={index}
               onMouseDown={handleMouseDown}
@@ -77,19 +73,17 @@ const SectionSlider: React.FC<{
                   if (isDragging) {
                     e.preventDefault();
                   }
-                  goLink(sectionSlide.contentId);
+                  goLink(sectionSlide.id.toString());
                 }}
               >
                 <figure className={styles.slide}>
                   <Image
-                    src={`https://picsum.photos/375/375?random=${sectionSlide.contentId}`}
-                    alt={`Slide ${sectionSlide.contentId}`}
+                    src={`https://picsum.photos/375/375?random=${sectionSlide.id}`}
+                    alt={`Slide ${sectionSlide.id}`}
                     width={105}
                     height={155}
                   />
                 </figure>
-                {/* userName이 있는 경우에만 ActionBar 표시 */}
-                {showActionBar && <ActionBar />}
               </button>
             </div>
           ))}
@@ -99,4 +93,4 @@ const SectionSlider: React.FC<{
   );
 };
 
-export default SectionSlider;
+export default DummySlider;
