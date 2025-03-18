@@ -33,3 +33,6 @@ export { default as ViewMore } from './view-more/ViewMoreButton';
 export { default as FilterButton } from './filter/FilterButton';
 export { default as FilterAccordion } from './filter/FilterAccordion';
 export { default as FilterModal } from './filter/FilterModal';
+
+// Navigation
+export { default as Navigation } from './navigation/Navigation';
