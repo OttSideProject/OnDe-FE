@@ -7,9 +7,9 @@ import { useRouter } from 'next/navigation';
 
 import Slider from 'react-slick';
 
-import { ActionBar } from '@/features/shared/ui/action-bar';
-
 import { OrderContent } from '@/_types/contents';
+
+import { ActionBar } from '@/features/shared/ui/action-bar';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
