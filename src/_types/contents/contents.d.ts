@@ -46,6 +46,7 @@ export type SectionsResponse = {
 
 /* Order type */
 export type OrderContent = {
+  // userName: string;
   contentId: string;
   title: string;
   age: string;
@@ -55,6 +56,7 @@ export type OrderContent = {
   genres: string[];
   rank: number;
   category: 'shared';
+	
 };
 
 export type OrderResponse = {

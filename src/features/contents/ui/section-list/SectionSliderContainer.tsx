@@ -1,4 +1,5 @@
 'use client';
+
 import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 
@@ -11,7 +12,7 @@ import { OrderContent } from '@/_types/contents';
 /* Utils */
 import { ageImage } from '@/features/shared/utils/ageImage';
 
-import { useOrderData } from '@/entities/contents/hooks/useOrderData';
+import { useOrderData } from '@/entities/contents/hooks'; // 주석 해제
 
 /* Components */
 import { SubHeader } from '@/features/contents/ui/header';
@@ -29,14 +30,18 @@ type SectionSliderContainerProps = {
     title: string,
     pageType: 'contentMain' | 'ranking' | 'recommended',
   ) => string;
+  latestContent: OrderContent[];
+  popularContent: OrderContent[];
 };
 
 const SectionSliderContainer: React.FC<SectionSliderContainerProps> = ({
   getImageSrc,
+  latestContent,
+  popularContent,
 }) => {
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
-    useOrderData('최신순');
-  const [orderData, setOrderData] = useState<OrderContent[]>([]);
+  const latestOrderQuery = useOrderData('최신순');
+  const popularOrderQuery = useOrderData('인기순');
+
   const { ref, inView } = useInView();
   const { isDropDownOpen, openDropDown, closeDropDown } = useDropDownStore();
 
@@ -52,10 +57,10 @@ const SectionSliderContainer: React.FC<SectionSliderContainerProps> = ({
   }, [isDropDownOpen]);
 
   useEffect(() => {
-    if (inView && hasNextPage) {
-      fetchNextPage();
+    if (inView && latestOrderQuery.hasNextPage) {
+      latestOrderQuery.fetchNextPage();
     }
-  }, [inView, hasNextPage, fetchNextPage]);
+  }, [inView, latestOrderQuery]);
 
   const options = [
     { id: 1, label: '에피소드 및 정보', url: '/assets/images/icons/info.svg' },
@@ -86,9 +91,6 @@ const SectionSliderContainer: React.FC<SectionSliderContainerProps> = ({
     closeDropDown();
   };
 
-  // if (loading) return <p>Loading...</p>;
-  // if (error) return <p>{error}</p>;
-
   return (
     <section className={styles.container}>
       {/* DropDown이 열려있을 때 DimmedBackground 표시 */}
@@ -104,26 +106,33 @@ const SectionSliderContainer: React.FC<SectionSliderContainerProps> = ({
           />
         </>
       )}
-      {/* 섹션 데이터 렌더링 */}
-      {/* SectionSlider */}
-      {orderData.map((section: OrderContent) => (
-        <section key={section.contentId}>
-          {/* 첫 번째 섹션일 때 사용자 이름을 추가 */}
-          <SubHeader
-            userName={section.id === 1 ? userName : ''} // userName 사용
-            recommendedTitle={section.id === 2 ? recommendedTitle : ''} // recommendedTitle 사용
-            imageTitle={section.title} // 항상 section.title을 사용
-            imagePath={getImageSrc(section.title, 'contentMain')}
-            linkText={section.linkText}
-            linkUrl={section.linkUrl}
-            isImageRequired={true} // contentMain 페이지는 항상 이미지가 필수
-          />
-          <SectionSlider
-            sectionSlides={section.sectionSlides}
-            showActionBar={section.id === 1}
-          />
-        </section>
-      ))}
+
+      {/* 최신순 섹션 */}
+      <section>
+        <SubHeader
+          imageTitle="NEW! 따끈따끈한 신작"
+          imagePath={getImageSrc('NEW! 따끈따끈한 신작', 'contentMain')}
+          isImageRequired={true}
+        />
+        <SectionSlider
+          content={latestContent}
+          showActionBar={false}
+        />
+      </section>
+
+      {/* 인기순 섹션 */}
+      <section>
+        <SubHeader
+          imageTitle="지금 가장 인기있는 영화"
+          imagePath={getImageSrc('지금 가장 인기있는 영화', 'contentMain')}
+          isImageRequired={true}
+        />
+        <SectionSlider
+          content={popularContent}
+          showActionBar={false}
+        />
+      </section>
+
       {/* 로딩 및 감지 영역 */}
       <div ref={ref} />
     </section>

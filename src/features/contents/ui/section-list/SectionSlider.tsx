@@ -3,21 +3,22 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 import Slider from 'react-slick';
 
 import { ActionBar } from '@/features/shared/ui/action-bar';
 
-import { SectionSliderProps } from '@/_types/contents';
+import { OrderContent } from '@/_types/contents';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import styles from './SectionSlider.module.css';
 
-const SectionSlider: React.FC<SectionSliderProps> = ({
-  sectionSlides,
-  showActionBar,
-}) => {
+const SectionSlider: React.FC<{
+  content: OrderContent[];
+  showActionBar: boolean;
+}> = ({ content, showActionBar }) => {
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const [startX, setStartX] = useState<number>(0);
 
@@ -52,42 +53,44 @@ const SectionSlider: React.FC<SectionSliderProps> = ({
     // initialSlide: 2,
   };
 
+  const router = useRouter();
+
+  const goLink = (id: string) => {
+    router.push(`/contents/detail/${id}`);
+  };
+
   return (
     <article className={styles.container}>
       <div className={`${styles.slider} section-slider`}>
         <Slider {...settings}>
-          {sectionSlides.map((sectionSlide, index) => (
+          {content.map((sectionSlide, index) => (
             <div
               key={index}
               onMouseDown={handleMouseDown}
               onMouseMove={handleMouseMove}
               onMouseUp={handleMouseUp}
             >
-              <Link
-                href={sectionSlide.detailUrl}
+              <button
+                type="button"
                 className={styles.cardLink}
                 onClick={(e) => {
                   if (isDragging) {
                     e.preventDefault();
                   }
+                  goLink(sectionSlide.contentId);
                 }}
               >
-                <figure
-                  className={`${styles.slide} ${
-                    !sectionSlide.imgUrl ? styles.emptySlide : ''
-                  }`}
-                >
-                  {sectionSlide.imgUrl && (
-                    <Image
-                      src={sectionSlide.imgUrl}
-                      alt={`Slide ${sectionSlide.id} ${index}`}
-                      width={105}
-                      height={155}
-                    />
-                  )}
+                <figure className={styles.slide}>
+                  <Image
+                    src={`https://picsum.photos/375/375?random=${sectionSlide.contentId}`}
+                    alt={`Slide ${sectionSlide.contentId}`}
+                    width={105}
+                    height={155}
+                  />
                 </figure>
-                {showActionBar && sectionSlide.imgUrl && <ActionBar />}
-              </Link>
+                {/* userName이 있는 경우에만 ActionBar 표시 */}
+                {/* {showActionBar && sectionSlide.userName && <ActionBar />} */}
+              </button>
             </div>
           ))}
         </Slider>

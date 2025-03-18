@@ -2,3 +2,4 @@
 export { useImageMapping } from './useImageMapping';
 export { useCenterTopNumberList } from './useCenterTopNumberList';
 export { useRankingData } from './useRankingData';
+export { useOrderData } from './useOrderData';
