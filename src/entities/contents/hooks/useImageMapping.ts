@@ -2,8 +2,7 @@
 
 import { useCallback } from 'react';
 import { imageMapping } from '@/features/shared/utils';
-
-type PageType = 'contentMain' | 'ranking' | 'recommended';
+import type { PageType } from '@/_types/contents';
 
 /**
  * 이미지 매핑을 위한 훅

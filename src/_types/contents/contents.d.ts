@@ -296,3 +296,6 @@ export type SearchContentResponse = {
 export type SearchContentProps = {
   search: SearchContent[];
 };
+
+/* Image Mapping */
+export type PageType = 'contentMain' | 'ranking' | 'recommended' | 'type' | '';
