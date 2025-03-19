@@ -28,8 +28,8 @@ const SubHeader: React.FC<SubHeaderProps> = ({
     <header className={styles.container}>
       <h3>
         {userName && <span>{userName}</span>}
-        {recommendedTitle && <span>{recommendedTitle}&nbsp;</span>}
-        {title && <span>{title}&nbsp;</span>}
+        {/* {recommendedTitle && <span>{recommendedTitle}&nbsp;</span>} */}
+        {!imageTitle && title && <span>{title}&nbsp;</span>}
         {imageTitle && (
           <SVGTitle
             imagePath={imagePath}

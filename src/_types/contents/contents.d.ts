@@ -28,7 +28,6 @@ export type Section = {
 
 export type SectionSliderProps = {
   sectionSlides: SectionSlide[];
-  showActionBar?: boolean;
 };
 
 export type SectionSlide = {
@@ -42,6 +41,30 @@ export type SectionsResponse = {
   totalPages: number;
   totalItems: number;
   sections: Section[];
+};
+
+/* Order type */
+export type OrderContent = {
+  // userName: string;
+  contentId: string;
+  title: string;
+  age: string;
+  ageImage: string | null;
+  contentImg?: string;
+  imgUrl?: string;
+  genres: string[];
+  rank: number;
+  category: 'shared';
+};
+
+export type OrderResponse = {
+  content: OrderContent[];
+  page: {
+    size: number;
+    number: number;
+    totalElements: number;
+    totalPages: number;
+  };
 };
 
 /* BoardSectionSlider type */
