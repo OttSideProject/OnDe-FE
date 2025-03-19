@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef } from 'react';
+import Link from 'next/link';
 import {
   fetchContents,
   fetchSearchContents,
@@ -133,18 +134,14 @@ const SearchModal = () => {
                   />
                 </span>
               </button>
-              <button
-                type="button"
-                className={styles.suggestionButton}
-                onClick={() => handleSearchByType('movie')}
-              >
+              <Link href="/contents/movies" className={styles.suggestionButton}>
                 <span className={styles.suggestionTag}>
                   <img
                     src="/assets/images/icons/type-movie-text.svg"
                     alt="영화"
                   />
                 </span>
-              </button>
+              </Link>
 
               <button
                 type="button"

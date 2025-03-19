@@ -5,13 +5,14 @@ import { useState } from 'react';
 import { StatusBar } from '@/features/shared/ui/status-bar';
 import { Header } from '@/features/contents/ui/header';
 import { useImageMapping } from '@/entities/contents/hooks';
+/* Types */
+import { Slide } from '@/_types/contents';
+
 import {
   RankingMainContainer,
   RankingTabContents,
 } from '@/features/contents/ui/ranking';
 
-/* Types */
-import { Slide } from '@/_types/contents';
 
 /* Styles */
 import styles from './page.module.css';
