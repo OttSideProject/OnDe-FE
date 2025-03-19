@@ -15,6 +15,7 @@ import MovieList from './MovieList';
 
 /* Styles */
 import styles from './MovieSubListContainer.module.css';
+import GenericContentList from './GenericContentList';
 
 type MovieSubListContainerProps = {
   type: string | null; // 카테고리
@@ -51,7 +52,7 @@ const MovieSubListContainer: React.FC<MovieSubListContainerProps> = ({
 
   return (
     <section className={styles.container}>
-      <MovieList content={movies} />
+      <GenericContentList items={movies} />
       {isFetchingNextPage && <p>Loading more...</p>}
       <div ref={ref} />
     </section>
