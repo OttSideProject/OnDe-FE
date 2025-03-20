@@ -103,11 +103,11 @@ const HomePage: React.FC = () => {
       }
     };
 
-  //   fetchData();
-  // }, []);
+    fetchData();
+  }, []);
 
-  // if (isLoading) return <Loading />;
-  // if (error) return <div>{error}</div>;
+  if (isLoading) return <Loading />;
+  if (error) return <div>{error}</div>;
 
   return (
     <main className={styles.container}>
