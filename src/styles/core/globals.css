@@ -136,7 +136,7 @@ body {
   min-width: 320px;
   min-height: 100%;
   margin: 0 auto;
-  /* padding: 8px 10px; */
+  padding-bottom: 80px;
   border: 1px solid #292524;
   background-color: var(--primary-black);
   color: var(--primary-white);

@@ -5,7 +5,7 @@ import { DetailData, Section } from '@/_types/contents';
 import { Tabs } from '@/features/shared/ui/tabs';
 import { ViewMoreButton } from '@/features/shared/ui/view-more';
 import { SubHeader } from '@/features/contents/ui/header';
-import { SectionSlider } from '@/features/contents/ui/section-list';
+import DummySlider from '../../section-list/DummySlider';
 import { getDummyData } from '@/entities/contents/main/api/fetchDetailData';
 import {
   ageImage,
@@ -33,7 +33,7 @@ const DetailContents = ({
   ];
 
   // 실제 데이터가 있는 필드는 바로 사용하고, 없는 필드만 더미 데이터 사용
-	// 감독, 배우 정보는 없는 경우가 있으므로 주석 처리
+  // 감독, 배우 정보는 없는 경우가 있으므로 주석 처리
   //   ${detailData?.actors?.join(', ') || ''}
   // ${detailData?.director || ''}
   const detailInfo = `타입: ${
@@ -101,7 +101,7 @@ const DetailContents = ({
               <div key={section.id} className={styles.container}>
                 <SubHeader title={`'${section.title}'과(와) 비슷한 작품`} />
                 <div className={styles.sliderContainer}>
-                  <SectionSlider sectionSlides={section.sectionSlides} />
+                  <DummySlider sections={section.sectionSlides} />
                 </div>
               </div>
             ))}

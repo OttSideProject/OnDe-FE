@@ -30,6 +30,7 @@
   -moz-border-radius: inherit;
   -ms-border-radius: inherit;
   -o-border-radius: inherit;
+  object-fit: cover;
 }
 
 .emptySlide {
