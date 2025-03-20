@@ -17,6 +17,7 @@ interface UserInfo {
   name: string;
   email: string;
   password: string;
+  termsAgree : boolean;
   confirmPassword: string;
   gender: string;
   age: number;
@@ -38,6 +39,7 @@ const initialState: State = {
   selectedIndexes: [],
   userInfo: {
     name: '',
+    termsAgree: false, // 추가
     email: '',
     password: '',
     confirmPassword: '',
@@ -224,7 +226,7 @@ const SignupProcess = () => {
                 height={20}
               />
             )}
-            <signup.HeaderInner>회원가입({step}/6)</signup.HeaderInner>
+            <signup.HeaderInner>회원가입({step}/7)</signup.HeaderInner>
             <signup.Close>
               <img
                 src="/assets/images/icons/iconamoon_close-light.svg"
@@ -269,7 +271,7 @@ const SignupProcess = () => {
             <SignupStep6 userInfo={userInfo} setUserInfo={setUserInfo} />
           )}
           {step === 7 && (
-            <SignupStep7 />
+            <SignupStep7 userInfo={userInfo} setUserInfo={setUserInfo} />
           )}
 
           {!loading && (

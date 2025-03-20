@@ -32,6 +32,7 @@ const Container2 = styled.div`
   align-items: center;
   color: #f2f2f2;
   justify-content: space-between;
+
 `;
 
 const Header = styled.div`
@@ -143,10 +144,32 @@ const ImageContainer2 = styled.div<{ isSelected: boolean }>`
   transition: opacity 0.3s ease;
 `;
 
+const ImageContainer7 = styled.div<{ isSelected: boolean }>`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  cursor: pointer;
+  background-color: #20211F; 
+  padding: 16px 24px 16px 16px;
+  gap: 0.4rem;  
+  margin: -1.2rem;
+  opacity: ${({ isSelected }) => (isSelected ? 1 : 0.5)};
+  transition: opacity 0.3s ease;
+
+  div {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    justify-content: center;
+  }
+`;
+
 const GenderLabel = styled.div<{ isSelected: boolean }>`
-  margin-top: 0.8rem; /* 8px -> 0.8rem */
-  font-size: 1.6rem; /* 16px -> 1.6rem */
+  font-size: 1.6rem;
   color: white;
+
+  display: flex;
   opacity: ${({ isSelected }) => (isSelected ? 1 : 0.5)};
   transition: opacity 0.3s ease;
 `;
@@ -312,6 +335,7 @@ const Overlay = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 1000;
    
 `;
 const Modal = styled.div`
@@ -338,7 +362,7 @@ const Modal = styled.div`
     text-align: left;
     font-size: 1.4rem;
     font-weight: 400;
-    padding-bottom: 100px;
+    padding-bottom: 2.4rem;
     width: 100%;
     max-height: 60vh;
     white-space: pre-wrap;
@@ -352,7 +376,7 @@ const ModalButton = styled.div`
     color: white;
     padding: 1rem 2rem;
     border: none;
-    border-radius: 0.4rem;
+    border-radius: 0.14rem;
     cursor: pointer;
     margin-top: 2rem;
 `;
@@ -389,7 +413,8 @@ const signup = {
   LoadingContainer,
   Overlay,
   Modal,
-  ModalButton
+  ModalButton,
+  ImageContainer7,
 
 };
 

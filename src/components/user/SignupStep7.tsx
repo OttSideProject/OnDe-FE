@@ -1,23 +1,28 @@
 import signup from '@/styles/user/signup';
 import React, { useEffect, useState } from 'react';
 
-const SignupStep7 = () => {
-  const [termsAgree, setTermsAgree] = useState(false);
+interface SignupStep7Props {
+  setUserInfo: (info: { termsAgree: boolean }) => void;
+  userInfo: { termsAgree: boolean };
+}
+
+const SignupStep7: React.FC<SignupStep7Props> = ({ setUserInfo, userInfo }) => {
+  const [termsAgree, setTermsAgree] = useState(userInfo.termsAgree || false);
+
   const [showModal, setShowModal] = useState(false);
   const [privacyPolicy, setPrivacyPolicy] = useState('');
 
   const handleTermsAgree = () => {
-    setShowModal(true); // 모달 표시
+    setShowModal(true); 
   };
 
   const handleCloseModal = () => {
-    setTermsAgree(true); // 체크박스를 선택 상태로 설정
-    setShowModal(false); // 모달 닫기
+    setTermsAgree(true);
+    setUserInfo({ termsAgree: true });
+    setShowModal(false); 
   };
 
-  // PrivacyPolicy 컴포넌트 대신 useEffect 내에서 파일을 읽어옴
   useEffect(() => {
-    // public 폴더 내의 privacy-policy.txt 파일을 가져옵니다
     fetch('/privacy-policy.txt')
       .then((response) => response.text())
       .then((data) => {
@@ -33,30 +38,43 @@ const SignupStep7 = () => {
         약관 동의를 해주세요.
       </signup.Title2>
 
-      <signup.ImageContainer2
+      <signup.ImageContainer7
         isSelected={termsAgree}
         onClick={handleTermsAgree}
       >
+        <div>
+          <img
+           src={
+            termsAgree
+              ? "/assets/images/icons/check-box-icon.svg"
+              : "/assets/images/icons/check-box-icon-before.svg" 
+            }
+            alt="check"
+            width={16}
+            height={16}
+          />
+          <signup.GenderLabel isSelected={termsAgree}>
+            [필수]개인정보수집 및 이용 동의  
+          </signup.GenderLabel>
+        </div>
         <img
-          src="/assets/images/icons/check.svg"
+          src="/assets/images/icons/next.svg"
           alt="check"
-          width={100}
-          height={100}
+          width={24}
+          height={24}
         />
-        <signup.GenderLabel isSelected={termsAgree}>
-          개인정보수집 및 이용 동의
-        </signup.GenderLabel>
-      </signup.ImageContainer2>
+      </signup.ImageContainer7>
 
       {/* 모달 */}
       {showModal && (
         <signup.Overlay>
           <signup.Modal>
             <h2>개인정보수집 및 이용 동의</h2>
-            <pre>{privacyPolicy}</pre> {/* 약관 내용 표시 */}
-            <signup.ModalButton onClick={handleCloseModal}>
-              동의하고 닫기
-            </signup.ModalButton>
+            <pre>{privacyPolicy}
+              <signup.Button onClick={handleCloseModal}     style={{backgroundColor:'#D7FF50'}}>
+                확인했어요
+              </signup.Button>
+            </pre>
           </signup.Modal>
         </signup.Overlay>
       )}
