@@ -45,10 +45,16 @@ const page = () => {
   });
 
   const getWeeklyBestPost = useCallback(() => {
-    const boardId = categoryTitle[selectedCategory];
-    Api.get(`/board/${boardId}`)
+    const parentId = categoryTitle[selectedCategory];
+    Api.get(`/board/top`, {
+      params: {
+        parentId,
+        type: 1,
+      },
+    })
       .then((response) => {
-        const data = response.data;
+        const data = response.data.content;
+        // debugger
         if (Array.isArray(data)) {
           const sortedPosts = data
             .sort((a: PostDetailType, b: PostDetailType) => {
@@ -77,6 +83,7 @@ const page = () => {
     console.log(idx);
     throw new Error('Function not implemented.');
   }
+
   return (
     <MainPageWrapper>
       <Container>
@@ -84,7 +91,13 @@ const page = () => {
           <signup.HeaderInner>게시판</signup.HeaderInner>
         </signup.Header>
         <CategoryWrapper>{categoryTitleMemo}</CategoryWrapper>
-        <BoardTitle>🏅Weekly Best</BoardTitle>
+        <BoardTitle>  
+          <img
+          src="/assets/images/icons/126-stars.svg"
+          width={26}
+          height={26}
+          />
+        Weekly Best</BoardTitle>
         <WeeklyBestPostContainer>
           {weeklyBestPost.length === 0 ? (
             <NullPost>게시글을 기다려주세요!</NullPost>

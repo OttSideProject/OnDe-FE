@@ -51,6 +51,7 @@ export const BoardTitle = styled.div`
   box-sizing: border-box;
   padding: 2.4rem 1rem;
   font-size: 18px;
+  font-family: var(--title-font);
   font-weight: 700;
 `;
 
@@ -100,7 +101,10 @@ export const PostDetailWrapper = styled.div`
 `;
 
 export const PostTitle = styled.div`
-  font-weight: 600;
+  font-weight: var(--primary-white);
+  color: (--text)
+  font-size: 1.6rem;
+  font-family: var(--primary-font);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -129,6 +133,7 @@ export const WeeklyBestPostNumber = styled.div`
   color: #bfff00;
   font-weight: 800;
   padding-right: 1rem;
+  font-family: var(--title-font);
 `;
 
 export const UserProfileImg = styled.img`
