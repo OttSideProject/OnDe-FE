@@ -4,12 +4,12 @@ import { Genre } from '../../app/users/signup/constants';
 interface SignupStep2Props {
   genres: Genre[];
   selectedIndexes: number[];
-  handleSelect: (index: number) => void;
+  handleSelect: (index: number, sentence: string) => void;
 }
 
 const SignupStep2 = ({
   genres,
-  selectedIndexes,
+  selectedIndexes = [],
   handleSelect,
 }: SignupStep2Props) => (
   <signup.Container>
@@ -29,7 +29,7 @@ const SignupStep2 = ({
                 ? `0.2rem solid ${genre.border}`
                 : `0.2rem solid transparent`,
           }}
-          onClick={() => handleSelect(index)}
+          onClick={() => handleSelect(index, genre.sentence)}
         >
           {genre.sentence}
         </signup.GenreStep2>

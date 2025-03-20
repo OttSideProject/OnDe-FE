@@ -22,7 +22,7 @@ interface UserInfo {
   gender: string;
   age: number;
   genres: string[];
-  sentence: string;
+  sentence: string[];
 }
 
 interface State {
@@ -46,7 +46,7 @@ const initialState: State = {
     gender: '',
     age: 2000,
     genres: [],
-    sentence: '',
+    sentence: [],
   },
   loading: false,
 };
@@ -113,7 +113,11 @@ const SignupProcess = () => {
     } else if (step === 2) {
       if (selectedIndexes.length < 3) {
         alert('문장을 3개 이상 선택해 주세요.');
-      } else {
+      }  else {
+        // 선택된 문장을 userInfo.sentence에 저장
+        const selectedSentences = selectedIndexes.map((index) => genres_setp2[index].sentence);
+        setUserInfo({ sentence: selectedSentences });
+  
         dispatch({ type: 'SET_STEP', payload: step + 1 });
       }
     } else if (step === 3) {
@@ -145,8 +149,8 @@ const SignupProcess = () => {
         dispatch({ type: 'SET_STEP', payload: step + 1 });
       }
     } else if (step === 7) {
-      if (!userInfo.name) {
-        alert('닉네임을 입력해주세요.');
+      if (!userInfo.termsAgree) {
+        alert('개인정보 수집 및 이용에 동의해주세요.');
       } else {
         const preferGenreList = selectedGenres.map((genre) => genre.genreId);
 
@@ -159,7 +163,11 @@ const SignupProcess = () => {
           nationality: 'korea',
           email: userInfo.email,
           preferGenreList: preferGenreList,
+          preferSentenceList: userInfo.sentence,
         };
+
+        // console.log(requestData)
+        // debugger;
 
         setLoading(true);
 
