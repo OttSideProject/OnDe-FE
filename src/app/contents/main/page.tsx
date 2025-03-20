@@ -70,15 +70,21 @@ const HomePage: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [latestOrderData, setLatestOrderData] = useState<OrderContent[]>([]);
   const [popularOrderData, setPopularOrderData] = useState<OrderContent[]>([]);
+  const [hasFetchedOrder, setHasFetchedOrder] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         setIsLoading(true);
-        const [todayResponse, boardResponse, latestResponse, popularResponse] =
-          await Promise.all([
-            fetchTodayPick(),
-            fetchBoardSection(),
+        const todayResponse = await fetchTodayPick();
+        const boardResponse = await fetchBoardSection();
+
+        setTodayPicks(todayResponse.data);
+        setBoardSections(boardResponse.data);
+
+        // fetchOrder 호출 여부 체크
+        if (!hasFetchedOrder) {
+          const [latestResponse, popularResponse] = await Promise.all([
             fetchOrder({
               order: '최신순',
               nowPage: 0,
@@ -91,10 +97,10 @@ const HomePage: React.FC = () => {
             }),
           ]);
 
-        setTodayPicks(todayResponse.data);
-        setBoardSections(boardResponse.data);
-        setLatestOrderData(latestResponse.content);
-        setPopularOrderData(popularResponse.content);
+          setLatestOrderData(latestResponse.content);
+          setPopularOrderData(popularResponse.content);
+          setHasFetchedOrder(true); // 호출 상태 업데이트
+        }
       } catch (err) {
         setError('데이터를 불러오는데 실패했습니다.');
         console.error('Error fetching data:', err);
@@ -104,7 +110,7 @@ const HomePage: React.FC = () => {
     };
 
     fetchData();
-  }, []);
+  }, [hasFetchedOrder]);
 
   if (isLoading) return <Loading />;
   if (error) return <div>{error}</div>;

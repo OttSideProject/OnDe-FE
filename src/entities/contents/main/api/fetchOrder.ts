@@ -57,11 +57,15 @@ const getResponseData = (
   };
 };
 
+let callCount = 0;
+
 export const fetchOrder = async ({
   order,
   nowPage = 0,
   pageCount = 20,
 }: FetchOrderParams): Promise<OrderResponse> => {
+  callCount++;
+  console.log('fetchOrder called - Total calls: ', callCount);
   try {
     const response = await PublicApi.post<OrderResponse>(
       `/contents/category?order=${encodeURIComponent(
