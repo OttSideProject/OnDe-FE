@@ -3,16 +3,19 @@
 import { StatusBar } from '@/features/shared/ui/status-bar';
 import { Header } from '@/features/contents/ui/header';
 import { useImageMapping } from '@/entities/contents/hooks';
+import { useTypeData } from '@/entities/contents/hooks';
 
 /* Types */
 import { ContentType } from '@/_types/contents';
 
 /* Styles */
 import styles from './page.module.css';
-import MovieSubListContainer from '@/features/shared/ui/type/MovieSubListContainer';
+import { GenericContentListContainer } from '@/features/shared/ui/type';
 
 const MoviesPage: React.FC = () => {
   const { getImageSrc } = useImageMapping();
+  const { data: moviesData } = useTypeData('movie');
+  const items = moviesData?.pages.flatMap((page) => page.content) || []; // 모든 페이지의 아이템을 가져옴
 
   const headerText = '온 세상 모든 영화는 온-디';
 
@@ -31,7 +34,7 @@ const MoviesPage: React.FC = () => {
           pageType="type"
           getImageSrc={getImageSrc}
         />
-        <MovieSubListContainer type="movie" />
+        <GenericContentListContainer type="movie" items={items} />
       </section>
     </main>
   );
