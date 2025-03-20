@@ -48,10 +48,10 @@ const SearchModal = () => {
     }
   };
 
-  const handleNavigate = async () => {
+  const handleNavigate = (type: string) => {
     setIsLoading(true);
     closeModal();
-    router.push('/contents/movies');
+    router.push(`/contents/${type}`);
     setIsLoading(false);
   };
 
@@ -137,7 +137,7 @@ const SearchModal = () => {
               <button
                 type="button"
                 className={styles.suggestionButton}
-                onClick={() => handleSearchByType('new')}
+                onClick={() => handleNavigate('new')}
               >
                 <span className={styles.suggestionTag}>
                   <img
@@ -147,7 +147,7 @@ const SearchModal = () => {
                 </span>
               </button>
               <button
-                onClick={handleNavigate}
+                onClick={() => handleNavigate('movie')}
                 className={styles.suggestionButton}
               >
                 <span className={styles.suggestionTag}>
@@ -161,7 +161,7 @@ const SearchModal = () => {
               <button
                 type="button"
                 className={styles.suggestionButton}
-                onClick={() => handleSearchByType('drama')}
+                onClick={() => handleNavigate('drama')}
               >
                 <span className={styles.suggestionTag}>
                   <img
@@ -173,7 +173,7 @@ const SearchModal = () => {
               <button
                 type="button"
                 className={styles.suggestionButton}
-                onClick={() => handleSearchByType('ani')}
+                onClick={() => handleNavigate('ani')}
               >
                 <span className={styles.suggestionTag}>
                   <img
@@ -185,7 +185,7 @@ const SearchModal = () => {
               <button
                 type="button"
                 className={styles.suggestionButton}
-                onClick={() => handleSearchByType('enter')}
+                onClick={() => handleNavigate('enter')}
               >
                 <span>
                   <img

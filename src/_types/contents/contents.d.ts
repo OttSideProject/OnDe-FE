@@ -253,6 +253,7 @@ export type ContentType = {
   title: string;
   age: string;
   ageImage: string | null;
+  category: 'shared';
   type: 'movie' | 'drama' | 'enter' | 'docu' | 'ani' | 'new';
 };
 
