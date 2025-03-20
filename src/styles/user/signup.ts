@@ -9,13 +9,17 @@ const Container = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   width: 100%;
+  max-height: 55rem;
+  padding-bottom: 15rem;
+  overflow-y: scroll;
+  overflow-x: hidden;
 
   ul {
     width: 100%;
   }
 
   li {
-    margin-bottom: 30px;
+    margin-bottom: 3rem; /* 30px -> 3rem */
   }
 `;
 
@@ -28,10 +32,11 @@ const Container2 = styled.div`
   align-items: center;
   color: #f2f2f2;
   justify-content: space-between;
+
 `;
 
 const Header = styled.div`
-  padding: 20px 0;
+  padding: 2rem 0; /* 20px -> 2rem */
   width: 100%;
   display: flex;
   justify-content: center;
@@ -49,27 +54,29 @@ const HeaderInner = styled.div`
 const Close = styled.div`
   font-size: 1.4rem;
   color: #e7e7e7;
-  min-width: 30px;
+  min-width: 3rem; /* 30px -> 3rem */
   display: flex;
 `;
 
 const Title2 = styled.h1`
-  padding: 2.5rem 0px;
+  padding: 2.5rem 0; /* 25px -> 2.5rem */
   font-size: 2.2rem;
   font-weight: 700;
-  line-height: 3rem;
+  line-height: 3rem; /* 30px -> 3rem */
   width: 100%;
   padding-bottom: 4rem;
+  font-family: var(--title-font);
 `;
 
 const Caption = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-  padding: 1.6rem;
-  font-weight: 300;
+  padding: 1.6rem; /* 16px -> 1.6rem */
+  font-weight: 400;
   text-align: center;
-  white-space: pre-wrap;
+  white-space: pre-wrap; 
+  word-wrap: break-word; 
 `;
 
 // Step 1 styles
@@ -91,12 +98,12 @@ const GenreLabel = styled.span`
   right: 0;
   font-weight: bold;
   text-align: center;
-  font-size: 16px;
+  font-size: 1.6rem; /* 16px -> 1.6rem */
 `;
 
 // Step 2 styles
 const Step2Container = styled.div`
-  /* padding: 0 20px; */
+  /* padding: 0 2rem; */
   text-align: center;
   display: grid;
 `;
@@ -107,14 +114,15 @@ const GenreStep2 = styled.p`
   border-radius: 5rem;
   color: black;
   font-size: 2.4rem;
-  font-weight: 300;
+  font-weight: 400;
   text-align: center;
   display: inline-block;
+  // font-family: var(--title-font);
 `;
 
 // Step 3 styles
 const Step3Container = styled.div`
-  padding: 12px 20px;
+  padding: 1.2rem 2rem; /* 12px -> 1.2rem, 20px -> 2rem */
   text-align: center;
   display: flex;
   left: 50%;
@@ -131,15 +139,37 @@ const ImageContainer2 = styled.div<{ isSelected: boolean }>`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  margin: 10px;
+  margin: 1rem; /* 10px -> 1rem */
   opacity: ${({ isSelected }) => (isSelected ? 1 : 0.5)};
   transition: opacity 0.3s ease;
 `;
 
+const ImageContainer7 = styled.div<{ isSelected: boolean }>`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  cursor: pointer;
+  background-color: #20211F; 
+  padding: 16px 24px 16px 16px;
+  gap: 0.4rem;  
+  margin: -1.2rem;
+  opacity: ${({ isSelected }) => (isSelected ? 1 : 0.5)};
+  transition: opacity 0.3s ease;
+
+  div {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    justify-content: center;
+  }
+`;
+
 const GenderLabel = styled.div<{ isSelected: boolean }>`
-  margin-top: 8px;
-  font-size: 16px;
+  font-size: 1.6rem;
   color: white;
+
+  display: flex;
   opacity: ${({ isSelected }) => (isSelected ? 1 : 0.5)};
   transition: opacity 0.3s ease;
 `;
@@ -151,24 +181,23 @@ const SelectContainer = styled.div`
 
   & > p {
     color: var(--primary);
-    font-family: Roboto;
-    font-size: 16px;
+    font-size: 1.6rem; /* 16px -> 1.6rem */
     font-style: normal;
     font-weight: 400;
-    line-height: 20.8px;
-    padding-bottom: 10px;
+    line-height: 2.08rem; /* 20.8px -> 2.08rem */
+    padding-bottom: 1rem; /* 10px -> 1rem */
   }
 `;
 
 const Select = styled.select`
   width: 100%;
-  font-size: 1.8rem;
+  font-size: 1.8rem; /* 18px -> 1.8rem */
   color: var(--gray-400, #6c6e68);
   background-color: var(--primary-black);
   border: none;
   border-bottom: 0.2rem solid var(--primary);
   appearance: none;
-  height: 4rem;
+  height: 4rem; /* 40px -> 4rem */
   align-self: stretch;
 
   &:focus {
@@ -179,12 +208,12 @@ const Select = styled.select`
 const DropdownArrow = styled.div`
   position: absolute;
   top: 70%;
-  bottom: 10px;
+  bottom: 1rem; /* 10px -> 1rem */
   right: 0px;
   transform: translateY(-50%);
   pointer-events: none;
-  width: 20px;
-  height: 20px;
+  width: 2rem; /* 20px -> 2rem */
+  height: 2rem; /* 20px -> 2rem */
 
   &::before {
     content: '';
@@ -197,25 +226,28 @@ const DropdownArrow = styled.div`
     color: var(--primary);
   }
 `;
+
 const BottomPoint = styled.div`
-  max-width: 60rem;
-  padding: 0 1rem;
+background: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+  padding: 1.6rem 1rem;
   width: 100%;
   position: fixed;
-  bottom: 2.4rem;
+  bottom: 10rem;
   left: 50%;
   transform: translateX(-50%);
+  z-index: 1;
 `;
 
 const Button = styled.button`
+  font-family: var(---primary-font)
   color: var(--primary-black);
   border: none;
   font-weight: 600;
-  padding: 1.7rem 7rem;
-  margin-top: 2rem;
-  font-size: 1.4rem;
+  padding: 1.7rem 7rem; /* 17px -> 1.7rem, 70px -> 7rem */
+  margin-top: 2rem; /* 20px -> 2rem */
+  font-size: 1.4rem; /* 14px -> 1.4rem */
   cursor: pointer;
-  border-radius: 1.4rem;
+  border-radius: 1.4rem; /* 14px -> 1.4rem */
   width: 100%;
 
   &:hover {
@@ -226,7 +258,7 @@ const Button = styled.button`
 const Genre = styled.div<{ selected: boolean }>`
   background-color: ${(props) => (props.selected ? '#FFD700' : '#666')};
   padding: 1rem 2rem;
-  border-radius: 1rem;
+  border-radius: 1rem; /* 10px -> 1rem */
   cursor: pointer;
   transition: background-color 0.3s;
 
@@ -238,38 +270,37 @@ const Genre = styled.div<{ selected: boolean }>`
 const Form = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 1rem; /* 10px -> 1rem */
 `;
 
 const Label = styled.label`
   color: var(--primary);
-  margin-bottom: 5px;
+  margin-bottom: 0.5rem; /* 5px -> 0.5rem */
 `;
 
 const Input = styled.input`
   width: 100%;
-  margin-top: 15px;
-  padding: 8px;
-  margin-bottom: 1px;
-  font-size: 16px;
+  margin-top: 1.5rem; /* 15px -> 1.5rem */
+  padding: 0.8rem; /* 8px -> 0.8rem */
+  margin-bottom: 0.1rem; /* 1px -> 0.1rem */
+  font-size: 1.6rem; /* 16px -> 1.6rem */
   color: #f2f2f2;
   background-color: var(--primary-black);
   border: none;
-  border-bottom: 2px solid var(--primary);
+  border-bottom: 0.2rem solid var(--primary);
 `;
 
 const EmailInput = styled.input`
   width: 100%;
-  margin-top: 15px;
-  padding: 8px;
-  margin-bottom: 1px;
-  font-size: 16px;
+  margin-top: 1.5rem; /* 15px -> 1.5rem */
+  padding: 0.8rem; /* 8px -> 0.8rem */
+  margin-bottom: 0.1rem; /* 1px -> 0.1rem */
+  font-size: 1.6rem; /* 16px -> 1.6rem */
   color: #f2f2f2;
   background-color: var(--primary-black);
   border: none;
-  border-bottom: 2px solid var(--primary);
+  border-bottom: 0.2rem solid var(--primary);
 `;
-
 const ErrorMessage = styled.span`
   color: red;
   font-size: 12px;
@@ -285,7 +316,6 @@ const LoadingContainer = styled.div`
   p {
     color: var(--Cod-Gray-50, #f6f6f6);
     text-align: center;
-    font-family: Pretendard;
     font-size: 24px;
     font-style: normal;
     font-weight: 700;
@@ -293,6 +323,64 @@ const LoadingContainer = styled.div`
     letter-spacing: 0.12px;
   }
 `;
+
+// Step 7 styleconst 
+const Overlay = styled.div`
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+   
+`;
+const Modal = styled.div`
+  border-radius: 14px 14px 0px 0px;
+  background: #191A18;
+  padding: 2rem;
+  max-width: 60rem;
+  text-align: center;
+  max-height: 85vh;
+  z-index: 1000;
+  bottom: 0px;
+  position: fixed;
+
+  h2 {
+    font-size: 1.8rem;
+    font-style: normal;
+    font-weight: 700;
+    padding: 0 0 1.8rem 0;
+  }
+
+  pre {
+    overflow-y: auto; /* 세로 스크롤 추가 */
+    font-family: var(--primary-font);
+    text-align: left;
+    font-size: 1.4rem;
+    font-weight: 400;
+    padding-bottom: 2.4rem;
+    width: 100%;
+    max-height: 60vh;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+`;
+
+
+const ModalButton = styled.div`
+    background-color: #4CAF50;
+    color: white;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 0.14rem;
+    cursor: pointer;
+    margin-top: 2rem;
+`;
+
 
 // Exporting all styles
 const signup = {
@@ -323,6 +411,11 @@ const signup = {
   ErrorMessage,
   BottomPoint,
   LoadingContainer,
+  Overlay,
+  Modal,
+  ModalButton,
+  ImageContainer7,
+
 };
 
 export default signup;

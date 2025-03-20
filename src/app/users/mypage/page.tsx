@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './mypage.module.css';
 
 const Setting = '/assets/images/icons/setting_icon.svg';
@@ -25,19 +25,41 @@ interface Post {
   comments: number;
 }
 
-interface UserProfile {
-  name: string;
-  avatar: string;
-  followers: number;
-  following: number;
-}
+// interface UserProfile {
+//   name: string;
+//   avatar: string;
+//   followers: number;
+//   following: number;
+// }
 
-const mockUser: UserProfile = {
-  name: '소년만화 처돌이',
-  avatar: 'https://picsum.photos/240/360?random=1',
-  followers: 77,
-  following: 777,
+const userId = localStorage.getItem('userId');
+
+// const avatarOptions = [
+//   "profile-angry.png",
+//   "profile-dizzy.png",
+//   "profile-girl.png",
+//   "profile-glasses.png",
+// ];
+
+const getCookie = (name: string) => {
+  const cookies = document.cookie.split("; ");
+  const cookie = cookies.find((row) => row.startsWith(`${name}=`));
+  return cookie ? cookie.split("=")[1] : null;
 };
+
+
+const getAvatarFromCookie = () => {
+  let avatar = getCookie("userAvatar");
+  // if (!avatar) {
+  //   // 쿠키에 없으면 랜덤으로 선택 후 쿠키에 저장
+  //   avatar = avatarOptions[Math.floor(Math.random() * avatarOptions.length)];
+  //   setCookie("userAvatar", avatar);
+  // }
+  // 제대로 경로를 반환하도록 수정
+  return `/assets/images/${avatar}`;
+};
+
+
 
 const mockGenres: Genre[] = [
   {
@@ -109,6 +131,20 @@ const mockPosts: Post[] = [
 ];
 
 const MyPage: React.FC = () => {
+  const [avatar, setAvatar] = useState("");
+
+  useEffect(() => {
+    setAvatar(getAvatarFromCookie());
+  }, []);
+
+  const mockUser = {
+    name: userId,
+    avatar: avatar,
+    followers: 0,
+    following: 0,
+  };
+
+  
   const [activeTab, setActiveTab] = useState<'collection' | 'board'>(
     'collection',
   );
@@ -116,7 +152,7 @@ const MyPage: React.FC = () => {
   return (
     <div className={styles.container}>
       <header className={styles.header}>
-        <span>Bread</span>
+        <span className={styles.headerName}>{userId}</span>
         <div className={styles.icons}>
           <span>
             <img src={Alert} />
@@ -127,7 +163,6 @@ const MyPage: React.FC = () => {
           </span>
         </div>
       </header>
-
       <div className={styles.profileSection}>
         <div className={styles.profileSectionSmall}>
           <img src={mockUser.avatar} alt="프로필" className={styles.avatar} />
@@ -146,6 +181,7 @@ const MyPage: React.FC = () => {
         <h2 className={styles.userName}>{mockUser.name}</h2>
       </div>
       <div className={styles.tabMenu}>
+        
         <button
           className={`${styles.tabButton} ${
             activeTab === 'collection' ? styles.active : ''
@@ -164,7 +200,13 @@ const MyPage: React.FC = () => {
         </button>
       </div>
       <div className={styles.tabContent}>
-        {activeTab === 'collection' && (
+      <div className="coming-soon">
+        <img
+          src="/assets/images/coming-soon-message.png"
+          alt="준비중 입니다..."
+        />
+      </div>
+        {/* {activeTab === 'collection' && (
           <div className={styles.collectionTab}>
             <div className={styles.movieList}>
               {mockGenres.map((genre) => (
@@ -212,7 +254,7 @@ const MyPage: React.FC = () => {
               </div>
             ))}
           </div>
-        )}
+        )} */}
       </div>
     </div>
   );

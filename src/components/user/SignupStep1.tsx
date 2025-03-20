@@ -3,12 +3,12 @@ import Image from 'next/image';
 import signup from '@/styles/user/signup';
 import { SvgGenre } from '../../app/users/signup/constants';
 import { useState } from 'react';
-import { headers } from 'next/headers';
+// import { headers } from 'next/headers';
 
-interface SelectedGenre {
-  genreId: number;
-  genreName: string;
-}
+// interface SelectedGenre {
+//   genreId: number;
+//   genreName: string;
+// }
 
 interface SignupStep1Props {
   genres: SvgGenre[];
@@ -18,7 +18,7 @@ interface SignupStep1Props {
 
 const SignupStep1 = ({
   genres,
-  selectedGenres,
+  // selectedGenres,
   toggleGenre,
 }: SignupStep1Props) => {
   const [svgGenres, setSvgGenres] = useState(genres);
@@ -44,6 +44,7 @@ const SignupStep1 = ({
       style={{
         width: '100%',
         maxHeight: '55rem',
+        paddingBottom: '10rem',
         overflowY: 'scroll',
         overflowX: 'hidden',
       }}

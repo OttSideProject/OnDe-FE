@@ -10,7 +10,7 @@ import {
   SocialContainer,
   SocialButton,
 } from './LoginStyles';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function LoginForm() {
   const [formData, setFormData] = useState({ userId: '', password: '' });
@@ -21,7 +21,6 @@ export default function LoginForm() {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
-  // console.log(formData);
 
   const handleLogin = () => {
     setError('');
@@ -36,11 +35,49 @@ export default function LoginForm() {
 
         // access-token을 localStorage에 저장
         localStorage.setItem('Access-Token', accessToken);
+        // 로그인한 사용자 아이디를 localStorage에 저장
+        debugger
+        const userId = formData.userId;
+        localStorage.setItem('userId', userId);  
 
         // API 요청 시 자동으로 Access-Toke 헤더 포함
         Api.defaults.headers.common['Access-Token'] = `${accessToken}`;
 
-        alert('로그인에 성공했습니다!');
+
+        const avatarOptions = [
+          "profile-angry.png",
+          "profile-dizzy.png",
+          "profile-girl.png",
+          "profile-glasses.png",
+        ];
+
+        const setCookie = (name: string, value: string, days = 30) => {
+          const expires = new Date();
+          expires.setDate(expires.getDate() + days);
+          document.cookie = `${name}=${value}; path=/; expires=${expires.toUTCString()}`;
+        };
+
+        const getCookie = (name: string) => {
+          const cookies = document.cookie.split("; ");
+          const cookie = cookies.find((row) => row.startsWith(`${name}=`));
+          return cookie ? cookie.split("=")[1] : null;
+        };
+
+        // 쿠키에서 avatar 가져오기, 없으면 랜덤으로 설정 후 쿠키에 저장
+        const getAvatarFromCookie = () => {
+          let avatar = getCookie("userAvatar");
+          if (!avatar) {
+            // 쿠키에 없으면 랜덤으로 선택 후 쿠키에 저장
+            avatar = avatarOptions[Math.floor(Math.random() * avatarOptions.length)];
+            setCookie("userAvatar", avatar);
+          }
+          return `/assets/images/${avatar}`;
+        };
+
+        const avatar = getAvatarFromCookie();
+
+        // 로그인 성공
+        // alert('로그인에 성공했습니다!');
         // setTimeout(() => {
         //   location.href = '/';
         // }, 1000);
@@ -83,14 +120,17 @@ export default function LoginForm() {
           {loading ? '로그인 중...' : '로그인'}
         </Button>
       </Form>
-      <Link>회원가입 하기</Link>
+      <Link
+        onClick={() => {
+          location.href = '/users/signup';
+        }}>회원가입 하기</Link>
       <SocialContainer>
         <div>
           <i></i>
           <p>다른 서비스 계정으로 로그인</p>
           <i></i>
         </div>
-        <div>
+        <div onClick={() => alert('준비 중입니다.')}>
           <SocialButton color="#fff">
             <img src="/assets/images/icons/google_logo.svg" alt="Google" />
           </SocialButton>
