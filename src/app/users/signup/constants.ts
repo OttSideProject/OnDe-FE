@@ -143,5 +143,5 @@ export interface UserInfo {
   gender: string;
   age: number;
   genres: string[];
-  sentence: string;
+  sentence: string[];
 }

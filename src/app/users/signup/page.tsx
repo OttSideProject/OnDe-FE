@@ -8,6 +8,7 @@ import SignupStep3 from '../../../components/user/SignupStep3';
 import SignupStep4 from '../../../components/user/SignupStep4';
 import SignupStep5 from '../../../components/user/SignupStep5';
 import SignupStep6 from '../../../components/user/SignupStep6';
+import SignupStep7 from '../../../components/user/SignupStep7';
 import signup from '@/styles/user/signup';
 import { initialGenres, genres_setp2 } from './constants';
 import Image from 'next/image';
@@ -16,11 +17,12 @@ interface UserInfo {
   name: string;
   email: string;
   password: string;
+  termsAgree : boolean;
   confirmPassword: string;
   gender: string;
   age: number;
   genres: string[];
-  sentence: string;
+  sentence: string[];
 }
 
 interface State {
@@ -37,13 +39,14 @@ const initialState: State = {
   selectedIndexes: [],
   userInfo: {
     name: '',
+    termsAgree: false, // 추가
     email: '',
     password: '',
     confirmPassword: '',
     gender: '',
     age: 2000,
     genres: [],
-    sentence: '',
+    sentence: [],
   },
   loading: false,
 };
@@ -110,7 +113,11 @@ const SignupProcess = () => {
     } else if (step === 2) {
       if (selectedIndexes.length < 3) {
         alert('문장을 3개 이상 선택해 주세요.');
-      } else {
+      }  else {
+        // 선택된 문장을 userInfo.sentence에 저장
+        const selectedSentences = selectedIndexes.map((index) => genres_setp2[index].sentence);
+        setUserInfo({ sentence: selectedSentences });
+  
         dispatch({ type: 'SET_STEP', payload: step + 1 });
       }
     } else if (step === 3) {
@@ -139,6 +146,12 @@ const SignupProcess = () => {
       if (!userInfo.name) {
         alert('닉네임을 입력해주세요.');
       } else {
+        dispatch({ type: 'SET_STEP', payload: step + 1 });
+      }
+    } else if (step === 7) {
+      if (!userInfo.termsAgree) {
+        alert('개인정보 수집 및 이용에 동의해주세요.');
+      } else {
         const preferGenreList = selectedGenres.map((genre) => genre.genreId);
 
         const requestData = {
@@ -150,12 +163,16 @@ const SignupProcess = () => {
           nationality: 'korea',
           email: userInfo.email,
           preferGenreList: preferGenreList,
+          preferSentenceList: userInfo.sentence,
         };
+
+        // console.log(requestData)
+        // debugger;
 
         setLoading(true);
 
         Api.post('users/join', requestData)
-          .then((response) => {
+          .then((response: { data: any; }) => {
             console.log('회원가입 완료:', response.data);
             alert('가입이 완료되었습니다!');
             setTimeout(() => {
@@ -217,7 +234,7 @@ const SignupProcess = () => {
                 height={20}
               />
             )}
-            <signup.HeaderInner>회원가입({step}/6)</signup.HeaderInner>
+            <signup.HeaderInner>회원가입({step}/7)</signup.HeaderInner>
             <signup.Close>
               <img
                 src="/assets/images/icons/iconamoon_close-light.svg"
@@ -261,12 +278,15 @@ const SignupProcess = () => {
           {step === 6 && (
             <SignupStep6 userInfo={userInfo} setUserInfo={setUserInfo} />
           )}
+          {step === 7 && (
+            <SignupStep7 userInfo={userInfo} setUserInfo={setUserInfo} />
+          )}
 
           {!loading && (
             <signup.BottomPoint>
               <signup.Caption>
-                {step === 4 &&
-                  '걱정 마세요, 개인정보는 콘텐츠를 추천하기 위해서만 사용할게요.'}
+                {step === 4 ||step === 7 &&
+                  '걱정 마세요, 개인정보는\n 콘텐츠를 추천하기 위해서만 사용할게요.'}
                 {step === 3 && '회원님께 딱맞는 콘텐츠를 추천해 드릴게요.'}
                 {step === 2 && '관심 있는 문장을 3개 이상 선택해 주세요.'}
                 {step === 1 && `관심 있는 장르를 3개 이상 선택해 주세요.`}
@@ -285,7 +305,7 @@ const SignupProcess = () => {
                       : '#d7ff50',
                 }}
               >
-                {step === 6 ? '완료!' : '다음'}
+                {step === 7 ? '완료!' : '다음'}
               </signup.Button>
             </signup.BottomPoint>
           )}
