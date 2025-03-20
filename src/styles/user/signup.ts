@@ -232,7 +232,7 @@ background: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
   padding: 1.6rem 1rem;
   width: 100%;
   position: fixed;
-  bottom: 0rem;
+  bottom: 10rem;
   left: 50%;
   transform: translateX(-50%);
   z-index: 1;

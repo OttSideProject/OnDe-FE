@@ -163,7 +163,6 @@ const MyPage: React.FC = () => {
           </span>
         </div>
       </header>
-
       <div className={styles.profileSection}>
         <div className={styles.profileSectionSmall}>
           <img src={mockUser.avatar} alt="프로필" className={styles.avatar} />
@@ -182,6 +181,7 @@ const MyPage: React.FC = () => {
         <h2 className={styles.userName}>{mockUser.name}</h2>
       </div>
       <div className={styles.tabMenu}>
+        
         <button
           className={`${styles.tabButton} ${
             activeTab === 'collection' ? styles.active : ''
@@ -200,7 +200,13 @@ const MyPage: React.FC = () => {
         </button>
       </div>
       <div className={styles.tabContent}>
-        {activeTab === 'collection' && (
+      <div className="coming-soon">
+        <img
+          src="/assets/images/coming-soon-message.png"
+          alt="준비중 입니다..."
+        />
+      </div>
+        {/* {activeTab === 'collection' && (
           <div className={styles.collectionTab}>
             <div className={styles.movieList}>
               {mockGenres.map((genre) => (
@@ -248,7 +254,7 @@ const MyPage: React.FC = () => {
               </div>
             ))}
           </div>
-        )}
+        )} */}
       </div>
     </div>
   );
