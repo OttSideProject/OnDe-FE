@@ -11,11 +11,10 @@ import { ageImage } from '@/features/shared/utils/ageImage';
 import { useTypeData } from '@/entities/contents/hooks';
 
 /* Components */
-import MovieList from './MovieList';
+import GenericContentList from './GenericContentList';
 
 /* Styles */
 import styles from './MovieSubListContainer.module.css';
-import GenericContentList from './GenericContentList';
 
 type MovieSubListContainerProps = {
   type: string | null; // 카테고리

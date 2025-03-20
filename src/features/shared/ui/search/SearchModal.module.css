@@ -185,6 +185,9 @@
 }
 
 .suggestionButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 32px;
   padding: 5px 10px;
   background-color: var(--gray50);

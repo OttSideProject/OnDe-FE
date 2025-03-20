@@ -9,7 +9,7 @@
 .list {
   display: flex;
   flex-wrap: wrap;
-  row-gap: 20px;
+  row-gap: 8px;
   /* column-gap: 7px; */
   justify-content: space-between;
   padding: 0 7px;

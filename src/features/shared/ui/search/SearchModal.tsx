@@ -1,19 +1,23 @@
 'use client';
 
-import { useRef } from 'react';
-import Link from 'next/link';
+import { useRef, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import {
   fetchContents,
   fetchSearchContents,
 } from '@/entities/contents/main/api';
 import { useModalStore } from '@/entities/modal/stores/useModalStore';
 import { useSearchStore } from '@/entities/search/stores/useSearchStore';
+import { Loading } from '../loading';
 import styles from './SearchModal.module.css';
 
 const SearchModal = () => {
   const { activeModal, closeModal } = useModalStore();
   const { searchTerm, setSearchTerm } = useSearchStore();
+  const [isLoading, setIsLoading] = useState(false);
   const inputRef = useRef<HTMLInputElement | null>(null);
+
+  const router = useRouter();
 
   if (activeModal !== 'search') return null;
 
@@ -44,8 +48,16 @@ const SearchModal = () => {
     }
   };
 
+  const handleNavigate = async () => {
+    setIsLoading(true);
+    closeModal();
+    router.push('/contents/movies');
+    setIsLoading(false);
+  };
+
   return (
     <div className={styles.modalOverlay}>
+      {isLoading && <Loading />}
       <div className={styles.modalContent}>
         <div className={styles.modalHeader}>
           <button
@@ -134,14 +146,17 @@ const SearchModal = () => {
                   />
                 </span>
               </button>
-              <Link href="/contents/movies" className={styles.suggestionButton}>
+              <button
+                onClick={handleNavigate}
+                className={styles.suggestionButton}
+              >
                 <span className={styles.suggestionTag}>
                   <img
                     src="/assets/images/icons/type-movie-text.svg"
                     alt="영화"
                   />
                 </span>
-              </Link>
+              </button>
 
               <button
                 type="button"
