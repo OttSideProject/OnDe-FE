@@ -1,6 +1,6 @@
 'use client';
 
-import type { FilterGroup } from '@/_types/contents';
+import type { FilterGroup } from '@/shared/types/contents';
 import { useFilterStore } from '@/entities/contents/filter';
 import styles from './FilterChips.module.css';
 
@@ -9,7 +9,8 @@ type FilterChipsProps = {
 };
 
 const FilterChips = ({ groups }: FilterChipsProps) => {
-  const { selectedChips, selectedFilters, setSelectedFilters } = useFilterStore();
+  const { selectedChips, selectedFilters, setSelectedFilters } =
+    useFilterStore();
   const getFilterLabel = (groupId: string, itemId: string) => {
     const group = groups.find((g) => g.id === groupId);
     const item = group?.items.find((i) => i.id === itemId);
@@ -23,7 +24,7 @@ const FilterChips = ({ groups }: FilterChipsProps) => {
           <button
             onClick={() => {
               const updatedItems = selectedFilters[groupId].filter(
-                (id: string) => id !== itemId
+                (id: string) => id !== itemId,
               );
               setSelectedFilters(groupId, updatedItems);
             }}

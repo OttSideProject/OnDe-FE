@@ -1,6 +1,6 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { fetchRankingByCategory } from '@/entities/contents/ranking';
-import { RankingsResponse } from '@/_types/contents';
+import { RankingsResponse } from '@/shared/types/contents';
 
 export const useRankingData = (category: string | null) => {
   return useInfiniteQuery<RankingsResponse, Error>({

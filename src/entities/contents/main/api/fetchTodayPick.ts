@@ -1,5 +1,5 @@
 import { PublicApi, type AxiosResponse, AxiosHeaders } from '@/api/core';
-import { TodayPickContent } from '@/_types/contents';
+import { TodayPickContent } from '@/shared/types/contents';
 
 type TodayPickResponse = {
   content: TodayPickContent[];

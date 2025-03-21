@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-import { ToggleActionStore } from '@/_types/contents';
+import { ToggleActionStore } from '@/shared/types/contents';
 
 export const useToggleActionStore = create<ToggleActionStore>((set) => ({
   isActive: false,

@@ -1,7 +1,7 @@
 // src/entities/contents/main/api/fetchContents.ts
 
 import { PublicApi, type AxiosResponse } from '@/api/core';
-import { ContentType, ContentTypeResponse } from '@/_types/contents';
+import { ContentType, ContentTypeResponse } from '@/shared/types/contents';
 
 export type FetchContentTypeCategoryParams = {
   type: string;

@@ -14,7 +14,7 @@ const MSWInitializer = () => {
       process.env.NEXT_PUBLIC_API_MOCKING === 'true'
     ) {
       const startWorker = async () => {
-        const { worker } = await import('../../../__mocks__/browser');
+        const { worker } = await import('../../__mocks__/browser');
         await worker.start();
       };
       startWorker();

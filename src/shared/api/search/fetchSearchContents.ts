@@ -1,7 +1,10 @@
-// src/entities/contents/main/api/searchContents.ts
-
-import { PublicApi, type AxiosResponse, type AxiosError } from '@/api/core';
-import { SearchContent, SearchContentResponse } from '@/_types/contents';
+import {
+  PublicApi,
+  type AxiosResponse,
+  type AxiosError,
+  isAxiosError,
+} from '@/api/core';
+import { SearchContent, SearchContentResponse } from '@/shared/types/contents';
 
 export type FetchSearchParams = {
   search: string;
@@ -74,7 +77,7 @@ export const fetchSearchContents = async ({
     console.error('API 호출 중 오류 발생:', error);
 
     // axios.isAxiosError를 사용한 타입 가드
-    if (axios.isAxiosError(error)) {
+    if (isAxiosError(error)) {
       // 서버에서 응답이 온 경우 (4xx, 5xx 에러)
       if (error.response) {
         console.error(

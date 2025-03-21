@@ -4,8 +4,8 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useFilterStore } from '@/entities/contents/filter';
 import { fetchRankingByCategory } from '@/entities/contents/ranking/api/fetchRankingByCategory';
-import { FilterAccordion, FilterChips } from '@/features/shared/ui/filter';
-import { Button } from '@/features/shared/ui/button-group';
+import { FilterAccordion, FilterChips } from '@/shared/ui/filter';
+import { Button } from '@/shared/ui/button-group';
 import { useModalStore } from '@/entities/modal/stores/useModalStore';
 import styles from './FilterModal.module.css';
 

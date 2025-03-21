@@ -7,7 +7,7 @@ import {
   BoardSectionSlide,
   OrderContent,
   Section,
-} from '@/_types/contents';
+} from '@/shared/types/contents';
 import {
   fetchTodayPick,
   fetchBoardSection,
@@ -16,8 +16,8 @@ import {
 import { useImageMapping } from '@/entities/contents/hooks';
 
 /* Components */
-import { Loading } from '@/features/shared/ui';
-import { StatusBar } from '@/features/shared/ui';
+import { Loading } from '@/shared/ui';
+import { StatusBar } from '@/shared/ui';
 import { Header } from '@/features/contents/ui/header';
 import { MainSlider } from '@/features/contents/ui/today-pick';
 import { BoardSectionSlider } from '@/features/contents/ui/board-section';

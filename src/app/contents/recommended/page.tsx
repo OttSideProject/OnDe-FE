@@ -3,14 +3,14 @@
 /* Components */
 import { Header } from '@/features/contents/ui/header';
 import { useImageMapping } from '@/entities/contents/hooks';
-import { StatusBar } from '@/features/shared/ui/status-bar';
+import { StatusBar } from '@/shared/ui/status-bar';
 import {
   RecommendedListContainer,
   RecommendedMainSlider,
 } from '@/features/contents/ui/recommended';
 
 /* Types */
-import { Slide, RecommendedSectionSlide } from '@/_types/contents';
+import { Slide, RecommendedSectionSlide } from '@/shared/types/contents';
 
 /* Styles */
 import styles from './page.module.css';

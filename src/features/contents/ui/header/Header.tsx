@@ -1,4 +1,4 @@
-import { imageMapping } from '@/features/shared/utils'; // import the mapping
+import { imageMapping } from '@/shared/utils'; // import the mapping
 import styles from './Header.module.css';
 
 /* Header type */

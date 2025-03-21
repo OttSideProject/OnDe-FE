@@ -12,7 +12,10 @@ import { RecommendedSlider } from '@/features/contents/ui/recommended';
 import { fetchRecommended } from '@/entities/contents/recommended';
 
 /* Types */
-import { RecommendedSection, RecommendedResponse } from '@/_types/contents';
+import {
+  RecommendedSection,
+  RecommendedResponse,
+} from '@/shared/types/contents';
 
 /* Styles */
 import styles from './RecommendedListContainer.module.css';

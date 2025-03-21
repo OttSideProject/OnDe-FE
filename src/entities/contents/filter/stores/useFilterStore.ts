@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import type { FilterGroup } from '@/_types/contents';
+import type { FilterGroup } from '@/shared/types/contents';
 
 type FilterChip = {
   groupId: string;
@@ -13,11 +13,11 @@ type LastSelectedItem = {
 } | null;
 
 type FilterStore = {
-    filterGroups: FilterGroup[];
+  filterGroups: FilterGroup[];
   selectedFilters: Record<string, string[]>;
   selectedChips: FilterChip[];
   lastSelectedItem: LastSelectedItem;
-    setSelectedFilters: (groupId: string, items: string[]) => void;
+  setSelectedFilters: (groupId: string, items: string[]) => void;
   setLastSelectedItem: (item: LastSelectedItem) => void;
 };
 
@@ -56,7 +56,7 @@ const updateLastSelectedItem = (
 };
 
 export const useFilterStore = create<FilterStore>((set) => ({
-    filterGroups: [
+  filterGroups: [
     {
       id: 'genre',
       label: '장르',
@@ -91,7 +91,7 @@ export const useFilterStore = create<FilterStore>((set) => ({
   selectedFilters: {},
   selectedChips: [],
   lastSelectedItem: null,
-    setSelectedFilters: (groupId, items) =>
+  setSelectedFilters: (groupId, items) =>
     set((state) => {
       const newSelectedFilters = {
         ...state.selectedFilters,

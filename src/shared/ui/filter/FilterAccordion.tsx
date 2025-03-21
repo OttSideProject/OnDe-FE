@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import type { FilterItem, FilterGroup } from '@/_types/contents';
+import type { FilterItem, FilterGroup } from '@/shared/types/contents';
 import { useFilterStore } from '@/entities/contents/filter';
 import styles from './FilterAccordion.module.css';
 
@@ -11,7 +11,8 @@ export type FilterAccordionProps = {
 
 const FilterAccordion = ({ groups = [] }: FilterAccordionProps) => {
   const [openGroupId, setOpenGroupId] = useState<string | null>(null);
-  const { selectedFilters, lastSelectedItem, setSelectedFilters } = useFilterStore();
+  const { selectedFilters, lastSelectedItem, setSelectedFilters } =
+    useFilterStore();
 
   const handleGroupClick = (groupId: string) => {
     setOpenGroupId(openGroupId === groupId ? null : groupId);

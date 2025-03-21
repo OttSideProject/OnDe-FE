@@ -1,6 +1,6 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { fetchContents } from '@/entities/contents/main';
-import { ContentTypeResponse } from '@/_types/contents';
+import { ContentTypeResponse } from '@/shared/types/contents';
 
 export const useTypeData = (type: string | null) => {
   return useInfiniteQuery<ContentTypeResponse, Error>({

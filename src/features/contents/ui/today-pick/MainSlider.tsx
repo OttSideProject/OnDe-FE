@@ -3,12 +3,12 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { ageImage } from '@/features/shared/utils/ageImage';
+import { ageImage } from '@/shared/utils/ageImage';
 import Slider from 'react-slick';
 
-import { Button } from '@/features/shared/ui/button-group';
+import { Button } from '@/shared/ui/button-group';
 
-import { TodayPickContent } from '@/_types/contents';
+import { TodayPickContent } from '@/shared/types/contents';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';

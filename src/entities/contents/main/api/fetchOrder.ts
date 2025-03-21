@@ -1,6 +1,6 @@
 // fetchOrder.ts
 import { PublicApi, type AxiosResponse } from '@/api/core';
-import { OrderContent, OrderResponse } from '@/_types/contents';
+import { OrderContent, OrderResponse } from '@/shared/types/contents';
 
 export type FetchOrderParams = {
   order: string;

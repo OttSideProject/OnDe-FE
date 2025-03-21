@@ -2,11 +2,11 @@
 
 import { useState } from 'react';
 /* Components */
-import { StatusBar } from '@/features/shared/ui/status-bar';
+import { StatusBar } from '@/shared/ui/status-bar';
 import { Header } from '@/features/contents/ui/header';
 import { useImageMapping } from '@/entities/contents/hooks';
 /* Types */
-import { Slide } from '@/_types/contents';
+import { Slide } from '@/shared/types/contents';
 
 import {
   RankingMainContainer,

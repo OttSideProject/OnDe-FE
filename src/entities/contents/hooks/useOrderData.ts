@@ -1,6 +1,6 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { fetchOrder } from '@/entities/contents/main';
-import { OrderResponse } from '@/_types/contents';
+import { OrderResponse } from '@/shared/types/contents';
 
 export const useOrderData = (order: string) => {
   return useInfiniteQuery<OrderResponse, Error>({

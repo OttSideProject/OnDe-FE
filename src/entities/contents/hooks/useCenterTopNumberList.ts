@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { Ranking } from '@/_types/contents';
+import { Ranking } from '@/shared/types/contents';
 
 export const useCenterTopNumberList = (items: Ranking[]) => {
   const centerTopNumberList = useMemo(() => {

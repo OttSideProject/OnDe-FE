@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link'; // Added Link import from next/link
 import Image from 'next/image';
 
-import { ContentType } from '@/_types/contents';
+import { ContentType } from '@/shared/types/contents';
 
 type GenericContentListProps = {
   items: ContentType[];

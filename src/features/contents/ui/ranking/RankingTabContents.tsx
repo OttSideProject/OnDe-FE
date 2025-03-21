@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { Tabs } from '@/features/shared/ui/tabs';
+import { Tabs } from '@/shared/ui/tabs';
 import { useModalStore } from '@/entities/modal/stores';
-import type { PageType } from '@/_types/contents';
+import type { PageType } from '@/shared/types/contents';
 import { OTTSelector } from '@/features/contents/ui/ott-selector';
 import { RankingSubListContainer } from '@/features/contents/ui/ranking';
-import { FilterButton, FilterModal } from '@/features/shared/ui';
+import { FilterButton, FilterModal } from '@/shared/ui';
 import styles from './RankingTabContents.module.css';
 
 type RankingTabContentsProps = {

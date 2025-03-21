@@ -1,9 +1,9 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useScrollEffect } from '@/features/shared/utils/handleScroll';
+import { useScrollEffect } from '@/shared/utils/handleScroll';
 import { useModalStore } from '@/entities/modal/stores';
-import { SearchModal } from '@/features/shared/ui/search';
+import { SearchModal } from '@/shared/ui/search';
 import styles from './StatusBar.module.css';
 
 type StatusBarProps = {

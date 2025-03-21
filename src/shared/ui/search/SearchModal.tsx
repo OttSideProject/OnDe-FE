@@ -6,8 +6,8 @@ import {
   fetchContents,
   fetchSearchContents,
 } from '@/entities/contents/main/api';
-import { useModalStore } from '@/entities/modal/stores/useModalStore';
-import { useSearchStore } from '@/entities/search/stores/useSearchStore';
+import { useModalStore } from '@/shared/lib/stores/modal';
+import { useSearchStore } from '@/shared/lib/stores/search/useSearchStore';
 import { Loading } from '../loading';
 import styles from './SearchModal.module.css';
 

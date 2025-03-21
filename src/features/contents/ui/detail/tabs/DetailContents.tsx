@@ -1,17 +1,13 @@
 'use client';
 
 import Image from 'next/image';
-import { DetailData, Section } from '@/_types/contents';
-import { Tabs } from '@/features/shared/ui/tabs';
-import { ViewMoreButton } from '@/features/shared/ui/view-more';
+import { DetailData, Section } from '@/shared/types/contents';
+import { Tabs } from '@/shared/ui/tabs';
+import { ViewMoreButton } from '@/shared/ui/view-more';
 import { SubHeader } from '@/features/contents/ui/header';
 import DummySlider from '../../section-list/DummySlider';
 import { getDummyData } from '@/entities/contents/main/api/fetchDetailData';
-import {
-  ageImage,
-  getDecade,
-  getKoreanContentType,
-} from '@/features/shared/utils';
+import { ageImage, getDecade, getKoreanContentType } from '@/shared/utils';
 import styles from './DetailContents.module.css';
 
 const DetailContents = ({

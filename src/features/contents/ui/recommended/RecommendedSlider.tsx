@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 import Slider from 'react-slick';
 
-import { RecommendedSliderProps } from '@/_types/contents';
+import { RecommendedSliderProps } from '@/shared/types/contents';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';

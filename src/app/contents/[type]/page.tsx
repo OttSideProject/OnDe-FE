@@ -1,12 +1,12 @@
 'use client';
 
-import { Loading } from '@/features/shared/ui';
-import { StatusBar } from '@/features/shared/ui';
+import { Loading } from '@/shared/ui';
+import { StatusBar } from '@/shared/ui';
 import { Header } from '@/features/contents/ui/header';
 import { useImageMapping } from '@/entities/contents/hooks';
 import { useTypeData } from '@/entities/contents/hooks';
 
-import { GenericContentListContainer } from '@/features/shared/ui/type';
+import { GenericContentListContainer } from '@/shared/ui/type';
 
 /* Styles */
 import styles from './page.module.css';

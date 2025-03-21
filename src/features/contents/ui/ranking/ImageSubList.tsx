@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { Ranking } from '@/_types/contents';
+import { Ranking } from '@/shared/types/contents';
 
 import styles from './ImageSubList.module.css';
 

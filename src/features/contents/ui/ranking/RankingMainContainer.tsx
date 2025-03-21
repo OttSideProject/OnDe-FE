@@ -4,9 +4,9 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
-import { Ranking } from '@/_types/contents';
+import { Ranking } from '@/shared/types/contents';
 /* Utils */
-import { ageImage } from '@/features/shared/utils';
+import { ageImage } from '@/shared/utils';
 
 import { useCenterTopNumberList } from '@/entities/contents/hooks';
 import { useRankingData } from '@/entities/contents/hooks';

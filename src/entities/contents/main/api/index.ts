@@ -5,5 +5,5 @@ export { fetchDetailData } from './fetchDetailData';
 export { fetchSections } from './fetchSections';
 export { fetchOttPlatforms } from './fetchOttPlatforms';
 export { fetchContents } from './fetchContents';
-export { fetchSearchContents } from './fetchSearchContents';
+export { fetchSearchContents } from '../../../../shared/api/search/fetchSearchContents';
 export { fetchOrder } from './fetchOrder';

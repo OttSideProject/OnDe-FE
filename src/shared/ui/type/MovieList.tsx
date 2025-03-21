@@ -3,10 +3,9 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 import styles from './MovieList.module.css';
-import { ContentType } from '@/_types/contents';
+import { ContentType } from '@/shared/types/contents';
 
 const MovieList: React.FC<{ content: ContentType[] }> = ({ content }) => {
-
   return (
     <div>
       <ul className={styles.list}>
