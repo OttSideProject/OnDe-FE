@@ -6,7 +6,7 @@ import { useFilterStore } from '@/entities/contents/filter';
 import { fetchRankingByCategory } from '@/entities/contents/ranking/api/fetchRankingByCategory';
 import { FilterAccordion, FilterChips } from '@/shared/ui/filter';
 import { Button } from '@/shared/ui/button-group';
-import { useModalStore } from '@/entities/modal/stores/useModalStore';
+import { useModalStore } from '@/shared/lib/stores';
 import styles from './FilterModal.module.css';
 
 const FilterModal = () => {

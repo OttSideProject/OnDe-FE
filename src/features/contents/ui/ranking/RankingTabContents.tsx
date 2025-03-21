@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Tabs } from '@/shared/ui/tabs';
-import { useModalStore } from '@/entities/modal/stores';
+import { useModalStore } from '@/shared/lib/stores';
 import type { PageType } from '@/shared/types/contents';
 import { OTTSelector } from '@/features/contents/ui/ott-selector';
 import { RankingSubListContainer } from '@/features/contents/ui/ranking';

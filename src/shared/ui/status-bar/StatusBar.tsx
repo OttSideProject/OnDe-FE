@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useScrollEffect } from '@/shared/utils/handleScroll';
-import { useModalStore } from '@/entities/modal/stores';
+import { useModalStore } from '@/shared/lib/stores';
 import { SearchModal } from '@/shared/ui/search';
 import styles from './StatusBar.module.css';
 

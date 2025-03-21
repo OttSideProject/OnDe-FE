@@ -1,19 +1,19 @@
 'use client';
 
 import { useFilterStore } from '@/entities/contents/filter';
-import { useModalStore } from '@/entities/modal/stores/useModalStore';
+import { useModalStore } from '@/shared/lib/stores';
 import styles from './FilterButton.module.css';
 
 type FilterButtonProps = {
-    className?: string;
-    onClick?: () => void;
+  className?: string;
+  onClick?: () => void;
 };
 
 const FilterButton = ({ className = '', onClick }: FilterButtonProps) => {
   const { selectedFilters } = useFilterStore();
-const { openModal } = useModalStore();
+  const { openModal } = useModalStore();
 
-    const totalSelectedCount = Object.values(selectedFilters).reduce(
+  const totalSelectedCount = Object.values(selectedFilters).reduce(
     (sum, items) => sum + items.length,
     0,
   );
