@@ -14,6 +14,7 @@ import {
   fetchOrder,
 } from '@/entities/contents/main/api';
 import { useImageMapping } from '@/entities/contents/hooks';
+import { useLoaderStore } from '@/shared/lib/stores';
 
 /* Components */
 import { Loading } from '@/shared/ui';
@@ -66,7 +67,7 @@ const HomePage: React.FC = () => {
   const [todayPicks, setTodayPicks] = useState<TodayPickContent[]>([]);
   const [boardSections, setBoardSections] = useState<BoardSectionSlide[]>([]);
   const [orderData, setOrderData] = useState<OrderContent[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const { isLoading, setIsLoading } = useLoaderStore();
   const [error, setError] = useState<string | null>(null);
   const [latestOrderData, setLatestOrderData] = useState<OrderContent[]>([]);
   const [popularOrderData, setPopularOrderData] = useState<OrderContent[]>([]);
@@ -75,7 +76,7 @@ const HomePage: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setIsLoading(true);
+        // setIsLoading(true);
         const todayResponse = await fetchTodayPick();
         const boardResponse = await fetchBoardSection();
 
@@ -105,14 +106,14 @@ const HomePage: React.FC = () => {
         setError('데이터를 불러오는데 실패했습니다.');
         console.error('Error fetching data:', err);
       } finally {
-        setIsLoading(false);
+        // setIsLoading(false);
       }
     };
 
     fetchData();
   }, [hasFetchedOrder]);
 
-  if (isLoading) return <Loading />;
+  // if (isLoading) return <Loading />;
   if (error) return <div>{error}</div>;
 
   return (

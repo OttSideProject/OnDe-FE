@@ -5,6 +5,7 @@ import { StatusBar } from '@/shared/ui';
 import { Header } from '@/features/contents/ui/header';
 import { useImageMapping } from '@/entities/contents/hooks';
 import { useTypeData } from '@/entities/contents/hooks';
+import { useLoaderStore } from '@/shared/lib/stores';
 
 import { GenericContentListContainer } from '@/shared/ui/type';
 
@@ -43,12 +44,12 @@ const ContentPage: React.FC<{ params: { type: string } }> = ({ params }) => {
   const { getImageSrc } = useImageMapping();
   const statusText = statusTextMap[params.type] || '영화';
   const headerText = headerTextMap[params.type] || '온 세상 모든 온-디';
-  const [isLoading, setIsLoading] = useState(true);
+  const { isLoading, setIsLoading } = useLoaderStore();
   const [error, setError] = useState<string | null>(null);
   const { data: contentData } = useTypeData(params.type);
   const items = contentData?.pages.flatMap((page) => page.content) || []; // 모든 페이지의 아이템을 가져옴
 
-  if (isLoading) return <Loading />;
+  // if (isLoading) return <Loading />;
   if (error) return <div>{error}</div>;
 
   return (
