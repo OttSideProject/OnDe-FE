@@ -1,6 +1,6 @@
 // src/entities/contents/main/api/searchContents.ts
 
-import { PublicApi, type AxiosResponse } from '@/api/core';
+import { PublicApi, type AxiosResponse, type AxiosError } from '@/api/core';
 import { SearchContent, SearchContentResponse } from '@/_types/contents';
 
 export type FetchSearchParams = {
@@ -70,17 +70,44 @@ export const fetchSearchContents = async ({
     console.log('Search response:', response.data);
 
     return getResponseData(response);
-  } catch (error) {
+  } catch (error: unknown) {
     console.error('API 호출 중 오류 발생:', error);
 
-    return {
-      content: dummyData(),
-      page: {
-        size: 50,
-        number: 0,
-        totalElements: dummyData().length,
-        totalPages: 1,
-      },
-    };
+    // axios.isAxiosError를 사용한 타입 가드
+    if (axios.isAxiosError(error)) {
+      // 서버에서 응답이 온 경우 (4xx, 5xx 에러)
+      if (error.response) {
+        console.error(
+          '서버 응답 에러:',
+          error.response.status,
+          error.response.data,
+        );
+        throw new Error(
+          `Server Error (${error.response.status}): ${JSON.stringify(
+            error.response.data,
+          )}`,
+        );
+      }
+      // 요청은 보냈지만 응답이 없는 경우
+      else if (error.request) {
+        console.error('요청은 전송되었지만 응답이 없습니다:', error.request);
+        throw new Error('No response received from server.');
+      }
+      // 요청 설정 중 에러가 발생한 경우
+      else {
+        console.error('요청 설정 중 오류 발생:', error.message);
+        throw new Error(`Request Setup Error: ${error.message}`);
+      }
+    }
+    // Axios 에러가 아닌 경우
+    else if (error instanceof Error) {
+      console.error('일반 에러:', error.message);
+      throw new Error(`Error: ${error.message}`);
+    }
+    // 알 수 없는 에러 타입
+    else {
+      console.error('알 수 없는 에러:', error);
+      throw new Error('An unknown error occurred');
+    }
   }
 };
