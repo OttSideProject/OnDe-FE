@@ -13,7 +13,6 @@ import {
   RankingTabContents,
 } from '@/features/contents/ui/ranking';
 
-
 /* Styles */
 import styles from './page.module.css';
 
@@ -25,6 +24,8 @@ const iconUrlList = [
   '/assets/images/icons/alert-icon.svg',
   '/assets/images/icons/find-icon.svg',
 ];
+
+const iconTypes = ['alert', 'search'];
 
 const rankingTopList: Slide[] = [
   {
@@ -76,7 +77,11 @@ const RankingPage: React.FC = () => {
   const { getImageSrc } = useImageMapping();
   return (
     <main className={styles.container}>
-      <StatusBar statusText="랭킹" iconUrlList={iconUrlList} />
+      <StatusBar
+        statusText="랭킹"
+        iconUrlList={iconUrlList}
+        iconTypes={iconTypes}
+      />
       <section>
         <Header
           headerText={headerText}

@@ -23,6 +23,8 @@ const iconUrlList = [
   '/assets/images/icons/find-icon.svg',
 ];
 
+const iconTypes = ['alert', 'search'];
+
 const recommendedSections: RecommendedSectionSlide[] = [
   {
     id: 1,
@@ -82,6 +84,7 @@ const RecommendedPage: React.FC = () => {
         <StatusBar
           statusText="추천"
           iconUrlList={iconUrlList}
+          iconTypes={iconTypes}
           pageType="recommended"
         />
         <div>

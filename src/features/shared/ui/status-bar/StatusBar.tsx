@@ -7,6 +7,7 @@ import { SearchModal } from '@/features/shared/ui/search';
 import styles from './StatusBar.module.css';
 
 type StatusBarProps = {
+  arrowIconUrl?: string;
   statusText?: string;
   logoUrl?: string;
   iconUrlList?: string[];
@@ -22,6 +23,7 @@ const ICON_TYPES = {
 
 const StatusBar: React.FC<StatusBarProps> = ({
   logoUrl,
+  arrowIconUrl,
   statusText = '',
   iconUrlList,
   iconTypes = [],
@@ -59,9 +61,18 @@ const StatusBar: React.FC<StatusBarProps> = ({
           hasGradient ? styles.gradientBackground : ''
         }`}
       >
+        {arrowIconUrl && (
+          <button type="button" onClick={() => window.history.back()}>
+            <img
+              src={arrowIconUrl}
+              alt="뒤로가기"
+              className={styles.arrowIcon}
+            />
+          </button>
+        )}
         <h2>
           {logoUrl && <img src={logoUrl} alt="로고" />}
-          {statusText && statusText}
+          <span>{statusText && statusText}</span>
         </h2>
         <div>
           {iconUrlList &&
