@@ -12,7 +12,7 @@ import { Loading } from '../loading';
 import SearchInput from './SearchInput';
 import SearchResultList from './SearchResultList';
 import TypeButton from './TypeButton';
-import { SearchSuggestions } from './server-components';
+import SearchSuggestions from './SearchSuggestions';
 import styles from './SearchModal.module.css';
 
 const SearchModal = () => {
@@ -85,6 +85,11 @@ const SearchModal = () => {
     router.push(`/contents/detail/${result.contentId}`);
   };
 
+  const handleSuggestionSelect = async (suggestion: string) => {
+    setSearchTerm(suggestion);
+    handleSearch();
+  };
+
   const showInitialUI = !searchTerm && !searchResults.length;
   const showSearchResults = searchResults.length > 0;
   const showSearchSuggestions = searchTerm && !searchResults.length;
@@ -117,7 +122,10 @@ const SearchModal = () => {
           )}
 
           {showSearchSuggestions && (
-            <SearchSuggestions searchTerm={searchTerm} />
+            <SearchSuggestions
+              searchTerm={searchTerm}
+              onSelect={handleSuggestionSelect}
+            />
           )}
 
           {showInitialUI && (
