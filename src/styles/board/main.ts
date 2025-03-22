@@ -25,10 +25,9 @@ export const Container = styled.div`
 
 export const CategoryWrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   text-align: center;
   box-sizing: border-box;
-  height: 74px;
   line-height: 48px;
   font-size: 14px;
   font-weight: 600;

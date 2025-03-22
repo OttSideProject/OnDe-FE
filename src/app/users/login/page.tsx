@@ -10,7 +10,7 @@ import {
   SocialContainer,
   SocialButton,
 } from './LoginStyles';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 export default function LoginForm() {
   const [formData, setFormData] = useState({ userId: '', password: '' });
@@ -30,25 +30,27 @@ export default function LoginForm() {
       .then((response) => {
         console.log('로그인 성공:', response.data);
 
-        const accessToken = response.data.result.accessToken;
-        console.log(accessToken);
+        const { accessToken, refreshToken } = response.data.result;
+        console.log('Access Token:', accessToken);
+        console.log('Refresh Token:', refreshToken);
 
-        // access-token을 localStorage에 저장
-        localStorage.setItem('Access-Token', accessToken);
-        // 로그인한 사용자 아이디를 localStorage에 저장
-        debugger
-        const userId = formData.userId;
-        localStorage.setItem('userId', userId);  
+        // ✅ accessToken과 refreshToken을 localStorage에 저장
+        localStorage.setItem('accessToken', accessToken);
+        localStorage.setItem('refreshToken', refreshToken);
 
-        // API 요청 시 자동으로 Access-Toke 헤더 포함
-        Api.defaults.headers.common['Access-Token'] = `${accessToken}`;
+        // ✅ API 요청 시 자동으로 accessToken과 refreshToken 포함
+        Api.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+        Api.defaults.headers.common['refreshToken'] = refreshToken;
 
+        // 로그인한 사용자 ID 저장
+        localStorage.setItem('userId', formData.userId);
 
+        // ✅ 쿠키에 아바타 정보 저장
         const avatarOptions = [
-          "profile-angry.png",
-          "profile-dizzy.png",
-          "profile-girl.png",
-          "profile-glasses.png",
+          'profile-angry.png',
+          'profile-dizzy.png',
+          'profile-girl.png',
+          'profile-glasses.png',
         ];
 
         const setCookie = (name: string, value: string, days = 30) => {
@@ -58,26 +60,25 @@ export default function LoginForm() {
         };
 
         const getCookie = (name: string) => {
-          const cookies = document.cookie.split("; ");
+          const cookies = document.cookie.split('; ');
           const cookie = cookies.find((row) => row.startsWith(`${name}=`));
-          return cookie ? cookie.split("=")[1] : null;
+          return cookie ? cookie.split('=')[1] : null;
         };
 
-        // 쿠키에서 avatar 가져오기, 없으면 랜덤으로 설정 후 쿠키에 저장
+        // 쿠키에서 아바타 가져오기 (없으면 랜덤 선택 후 저장)
         const getAvatarFromCookie = () => {
-          let avatar = getCookie("userAvatar");
+          let avatar = getCookie('userAvatar');
           if (!avatar) {
-            // 쿠키에 없으면 랜덤으로 선택 후 쿠키에 저장
-            avatar = avatarOptions[Math.floor(Math.random() * avatarOptions.length)];
-            setCookie("userAvatar", avatar);
+            avatar =
+              avatarOptions[Math.floor(Math.random() * avatarOptions.length)];
+            setCookie('userAvatar', avatar);
           }
           return `/assets/images/${avatar}`;
         };
 
         const avatar = getAvatarFromCookie();
 
-        // 로그인 성공
-        // alert('로그인에 성공했습니다!');
+        // ✅ 로그인 성공 후 리디렉션 (예제)
         // setTimeout(() => {
         //   location.href = '/';
         // }, 1000);
@@ -97,7 +98,7 @@ export default function LoginForm() {
         onClick={() => {
           location.href = '/';
         }}
-      ></Logo>
+      />
       <Form>
         <Input
           type="text"
@@ -123,7 +124,10 @@ export default function LoginForm() {
       <Link
         onClick={() => {
           location.href = '/users/signup';
-        }}>회원가입 하기</Link>
+        }}
+      >
+        회원가입 하기
+      </Link>
       <SocialContainer>
         <div>
           <i></i>

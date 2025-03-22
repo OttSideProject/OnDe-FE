@@ -3,7 +3,11 @@
 import { PostDetailType } from '@/_types/board/board';
 import PostList from '@/components/board/main/PostList';
 import WeeklyPostListItem from '@/components/board/main/WeeklyPostListItem';
+import styles from '@/app/users/mypage/mypage.module.css';
 import Api from '@/api/core/Api';
+const Setting = '/assets/images/icons/setting_icon.svg';
+const Alert = '/assets/images/icons/alert_icon.svg';
+
 import {
   MainPageWrapper,
   CategoryWrapper,
@@ -18,14 +22,14 @@ import signup from '@/styles/user/signup';
 import React, { useCallback, useEffect, useState } from 'react';
 
 const page = () => {
-  const [selectedCategory, setSelectedCategory] = useState<string>('홈');
+  const [selectedCategory, setSelectedCategory] = useState<string>('ON생각');
   const [weeklyBestPost, setWeeklyBestPost] = useState<PostDetailType[]>([]);
 
   const categoryTitle: { [key: string]: number } = {
-    홈: 1,
-    후기: 2,
-    토크On: 3,
-    'Q&A': 4,
+    // 홈: 1,
+    ON생각: 1,
+    ON톡: 2,
+    // 'Q&A': 4,
   };
 
   const handleSelectedCategory = useCallback((category: string) => {
@@ -88,16 +92,28 @@ const page = () => {
     <MainPageWrapper>
       <Container>
         <signup.Header>
-          <signup.HeaderInner>게시판</signup.HeaderInner>
+          <header className={styles.header}>
+            <span className={styles.headerName}>ON생각</span>
+            <div className={styles.icons}>
+              <span>
+                <img src={Alert} />
+              </span>
+              <span>
+                {' '}
+                <img src={Setting} />
+              </span>
+            </div>
+          </header>
         </signup.Header>
         <CategoryWrapper>{categoryTitleMemo}</CategoryWrapper>
-        <BoardTitle>  
+        <BoardTitle>
           <img
-          src="/assets/images/icons/126-stars.svg"
-          width={26}
-          height={26}
+            src="/assets/images/icons/126-stars.svg"
+            width={26}
+            height={26}
           />
-        Weekly Best</BoardTitle>
+          Weekly Best
+        </BoardTitle>
         <WeeklyBestPostContainer>
           {weeklyBestPost.length === 0 ? (
             <NullPost>게시글을 기다려주세요!</NullPost>
