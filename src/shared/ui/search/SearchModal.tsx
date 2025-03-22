@@ -12,6 +12,7 @@ import { Loading } from '../loading';
 import SearchInput from './SearchInput';
 import SearchResultList from './SearchResultList';
 import TypeButton from './TypeButton';
+import { SearchSuggestions } from './server-components';
 import styles from './SearchModal.module.css';
 
 const SearchModal = () => {
@@ -19,6 +20,7 @@ const SearchModal = () => {
     // 초기값은 localStorage에서 가져오되, 없으면 0(끄기)
     return Number(localStorage.getItem('autoSaveSearch') ?? '0');
   });
+  const [isTyping, setIsTyping] = useState(false);
   const autoStatus = ['켜기', '끄기']; // 순서 변경
 
   const toggleAutoSave = () => {
@@ -159,27 +161,6 @@ const SearchModal = () => {
                   </button>
                 ))}
               </div>
-
-              {/* <button type="button" className={styles.recentSearchItem}>
-                  <span>드라마</span>
-                  <img
-                    src="/assets/images/icons/delete-x-g.svg"
-                    alt="전체 삭제"
-                  />
-                </button>
-              </div> */}
-              {/* <div className={styles.clearButtonContainer}>
-                <button
-                  type="button"
-                  className={styles.clearButton}
-                  onClick={() => {
-                    setSearchTerm('');
-                    setSearchResults([]);
-                  }}
-                >
-                  전체 삭제
-                </button>
-              </div> */}
               <div className={styles.types}>
                 <h3>
                   <img
@@ -216,6 +197,9 @@ const SearchModal = () => {
                 </div>
               </div>
             </>
+          )}
+          {searchTerm && !searchResults.length && (
+            <SearchSuggestions searchTerm={searchTerm} />
           )}
         </div>
       </div>
