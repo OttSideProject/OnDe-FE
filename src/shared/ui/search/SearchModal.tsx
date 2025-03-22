@@ -85,6 +85,10 @@ const SearchModal = () => {
     router.push(`/contents/detail/${result.contentId}`);
   };
 
+  const showInitialUI = !searchTerm && !searchResults.length;
+  const showSearchResults = searchResults.length > 0;
+  const showSearchSuggestions = searchTerm && !searchResults.length;
+
   return (
     <div className={styles.modalOverlay}>
       <div className={styles.modalContent}>
@@ -102,7 +106,7 @@ const SearchModal = () => {
           </div>
         </div>
         <div className={styles.modalBody}>
-          {searchResults.length > 0 ? (
+          {showSearchResults && (
             <div className={styles.searchResultsContainer}>
               <h3>검색 결과</h3>
               <SearchResultList
@@ -110,7 +114,13 @@ const SearchModal = () => {
                 onResultClick={handleResultClick}
               />
             </div>
-          ) : (
+          )}
+
+          {showSearchSuggestions && (
+            <SearchSuggestions searchTerm={searchTerm} />
+          )}
+
+          {showInitialUI && (
             <>
               <div className={styles.recentSearch}>
                 <h3>
@@ -197,9 +207,6 @@ const SearchModal = () => {
                 </div>
               </div>
             </>
-          )}
-          {searchTerm && !searchResults.length && (
-            <SearchSuggestions searchTerm={searchTerm} />
           )}
         </div>
       </div>
