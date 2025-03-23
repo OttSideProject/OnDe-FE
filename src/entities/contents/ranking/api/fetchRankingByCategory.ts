@@ -1,5 +1,5 @@
 import { PublicApi, type AxiosResponse } from '@/api/core';
-import { Ranking, RankingsResponse } from '@/_types/contents';
+import { Ranking, RankingsResponse } from '@/shared/types/contents';
 
 export type FetchRankingByCategoryParams = {
   category: string;

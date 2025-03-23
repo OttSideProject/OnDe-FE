@@ -1,9 +1,8 @@
 'use client';
 
 import { useCallback } from 'react';
-import { imageMapping } from '@/features/shared/utils';
-
-type PageType = 'contentMain' | 'ranking' | 'recommended';
+import { imageMapping } from '@/shared/utils';
+import type { PageType } from '@/shared/types/contents';
 
 /**
  * 이미지 매핑을 위한 훅
@@ -14,7 +13,8 @@ type PageType = 'contentMain' | 'ranking' | 'recommended';
  */
 export const useImageMapping = () => {
   const getImageSrc = useCallback((title: string, pageType: PageType) => {
-    return imageMapping[pageType]?.[title] || '';
+    if (!title) return '';
+    return imageMapping[pageType as keyof typeof imageMapping]?.[title] || '';
   }, []);
 
   return { getImageSrc };

@@ -3,16 +3,16 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { DetailData } from '@/_types/contents';
-import { ageImage } from '@/features/shared/utils/ageImage';
+import { DetailData } from '@/shared/types/contents';
+import { ageImage } from '@/shared/utils/ageImage';
 import { useDropDownStore } from '@/entities/contents/main/stores';
 import { useOttPlatformStore } from '@/entities/contents/detail/stores';
 import { fetchOttPlatforms } from '@/entities/contents/main/api';
-import { BtnDetailInnerChildStyle } from '@/features/shared/ui/button-group';
-import { ToggleIconButton } from '@/features/shared/ui/toggle';
-import { Button } from '@/features/shared/ui/button-group';
-import { DropDownOptions } from '@/features/shared/ui/action-bar';
-import { DimmedBackground } from '@/features/shared/ui/dimmed-background';
+import { BtnDetailInnerChildStyle } from '@/shared/ui/button-group';
+import { ToggleIconButton } from '@/shared/ui/toggle';
+import { Button } from '@/shared/ui/button-group';
+import { DropDownOptions } from '@/shared/ui/action-bar';
+import { DimmedBackground } from '@/shared/ui/dimmed-background';
 import styles from './DetailComponent.module.css';
 
 type DetailComponentProps = {

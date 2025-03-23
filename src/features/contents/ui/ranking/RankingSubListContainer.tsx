@@ -3,10 +3,10 @@ import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 
 /* Types */
-import { Ranking } from '@/_types/contents';
+import { Ranking } from '@/shared/types/contents';
 
 /* Utils */
-import { ageImage } from '@/features/shared/utils/ageImage';
+import { ageImage } from '@/shared/utils/ageImage';
 
 import { useRankingData } from '@/entities/contents/hooks/useRankingData';
 

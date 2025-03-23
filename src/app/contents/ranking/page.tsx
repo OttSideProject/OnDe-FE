@@ -2,16 +2,16 @@
 
 import { useState } from 'react';
 /* Components */
-import { StatusBar } from '@/features/shared/ui/status-bar';
+import { StatusBar } from '@/shared/ui/status-bar';
 import { Header } from '@/features/contents/ui/header';
 import { useImageMapping } from '@/entities/contents/hooks';
+/* Types */
+import { Slide } from '@/shared/types/contents';
+
 import {
   RankingMainContainer,
   RankingTabContents,
 } from '@/features/contents/ui/ranking';
-
-/* Types */
-import { Slide } from '@/_types/contents';
 
 /* Styles */
 import styles from './page.module.css';
@@ -24,6 +24,8 @@ const iconUrlList = [
   '/assets/images/icons/alert-icon.svg',
   '/assets/images/icons/find-icon.svg',
 ];
+
+const iconTypes = ['alert', 'search'];
 
 const rankingTopList: Slide[] = [
   {
@@ -75,7 +77,11 @@ const RankingPage: React.FC = () => {
   const { getImageSrc } = useImageMapping();
   return (
     <main className={styles.container}>
-      <StatusBar statusText="랭킹" iconUrlList={iconUrlList} />
+      <StatusBar
+        statusText="랭킹"
+        iconUrlList={iconUrlList}
+        iconTypes={iconTypes}
+      />
       <section>
         <Header
           headerText={headerText}

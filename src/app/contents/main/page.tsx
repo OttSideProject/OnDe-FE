@@ -7,17 +7,18 @@ import {
   BoardSectionSlide,
   OrderContent,
   Section,
-} from '@/_types/contents';
+} from '@/shared/types/contents';
 import {
   fetchTodayPick,
   fetchBoardSection,
   fetchOrder,
 } from '@/entities/contents/main/api';
 import { useImageMapping } from '@/entities/contents/hooks';
+import { useLoaderStore } from '@/shared/lib/stores';
 
 /* Components */
-import { Loading } from '@/features/shared/ui';
-import { StatusBar } from '@/features/shared/ui';
+import { Loading } from '@/shared/ui';
+import { StatusBar } from '@/shared/ui';
 import { Header } from '@/features/contents/ui/header';
 import { MainSlider } from '@/features/contents/ui/today-pick';
 import { BoardSectionSlider } from '@/features/contents/ui/board-section';
@@ -66,19 +67,25 @@ const HomePage: React.FC = () => {
   const [todayPicks, setTodayPicks] = useState<TodayPickContent[]>([]);
   const [boardSections, setBoardSections] = useState<BoardSectionSlide[]>([]);
   const [orderData, setOrderData] = useState<OrderContent[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const { isLoading, setIsLoading } = useLoaderStore();
   const [error, setError] = useState<string | null>(null);
   const [latestOrderData, setLatestOrderData] = useState<OrderContent[]>([]);
   const [popularOrderData, setPopularOrderData] = useState<OrderContent[]>([]);
+  const [hasFetchedOrder, setHasFetchedOrder] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         setIsLoading(true);
-        const [todayResponse, boardResponse, latestResponse, popularResponse] =
-          await Promise.all([
-            fetchTodayPick(),
-            fetchBoardSection(),
+        const todayResponse = await fetchTodayPick();
+        const boardResponse = await fetchBoardSection();
+
+        setTodayPicks(todayResponse.data);
+        setBoardSections(boardResponse.data);
+
+        // fetchOrder 호출 여부 체크
+        if (!hasFetchedOrder) {
+          const [latestResponse, popularResponse] = await Promise.all([
             fetchOrder({
               order: '최신순',
               nowPage: 0,
@@ -91,10 +98,10 @@ const HomePage: React.FC = () => {
             }),
           ]);
 
-        setTodayPicks(todayResponse.data);
-        setBoardSections(boardResponse.data);
-        setLatestOrderData(latestResponse.content);
-        setPopularOrderData(popularResponse.content);
+          setLatestOrderData(latestResponse.content);
+          setPopularOrderData(popularResponse.content);
+          setHasFetchedOrder(true); // 호출 상태 업데이트
+        }
       } catch (err) {
         setError('데이터를 불러오는데 실패했습니다.');
         console.error('Error fetching data:', err);
@@ -104,7 +111,7 @@ const HomePage: React.FC = () => {
     };
 
     fetchData();
-  }, []);
+  }, [hasFetchedOrder]);
 
   if (isLoading) return <Loading />;
   if (error) return <div>{error}</div>;

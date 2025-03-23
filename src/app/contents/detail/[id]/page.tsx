@@ -1,12 +1,12 @@
 'use client';
 
 import { useParams } from 'next/navigation';
-import { DetailData } from '@/_types/contents';
-import { UseCustomQuery } from '@/features/shared/lib/hooks';
+import { DetailData } from '@/shared/types/contents';
+import { UseCustomQuery } from '@/shared/lib/hooks';
 import { fetchDetailData } from '@/entities/contents/main';
 import { DetailComponent } from '@/features/contents/ui/detail';
 import { DetailContents } from '@/features/contents/ui/detail/tabs';
-import { GoBack } from '@/features/shared/ui/go-back';
+import { GoBack } from '@/shared/ui/go-back';
 
 const DetailPage = () => {
   const { id } = useParams();

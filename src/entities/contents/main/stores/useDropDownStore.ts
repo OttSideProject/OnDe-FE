@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-import { DropDownStore } from '@/_types/contents';
+import { DropDownStore } from '@/shared/types/contents';
 
 export const useDropDownStore = create<DropDownStore>((set) => ({
   isDropDownOpen: false,

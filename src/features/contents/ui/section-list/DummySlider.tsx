@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 
 import Slider from 'react-slick';
 
-import { SectionSlide } from '@/_types/contents';
+import { SectionSlide } from '@/shared/types/contents';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';

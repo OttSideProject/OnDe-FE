@@ -1,12 +1,12 @@
 import { PublicApi, type AxiosResponse, AxiosHeaders } from '@/api/core';
-import { OttPlatform } from '@/_types/contents';
+import { OttPlatform } from '@/shared/types/contents';
 
 export const fetchOttPlatforms = async (
   contentId: string,
 ): Promise<AxiosResponse<OttPlatform[]>> => {
   try {
     const response = await PublicApi.post<OttPlatform[]>(
-      `/contents/ott?contentId=${contentId}`
+      `/contents/ott?contentId=${contentId}`,
     );
     console.log('API OTT Response:', response);
     return response;

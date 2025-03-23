@@ -1,17 +1,13 @@
 'use client';
 
 import Image from 'next/image';
-import { DetailData, Section } from '@/_types/contents';
-import { Tabs } from '@/features/shared/ui/tabs';
-import { ViewMoreButton } from '@/features/shared/ui/view-more';
+import { DetailData, Section } from '@/shared/types/contents';
+import { Tabs } from '@/shared/ui/tabs';
+import { ViewMoreButton } from '@/shared/ui/view-more';
 import { SubHeader } from '@/features/contents/ui/header';
 import DummySlider from '../../section-list/DummySlider';
 import { getDummyData } from '@/entities/contents/main/api/fetchDetailData';
-import {
-  ageImage,
-  getDecade,
-  getKoreanContentType,
-} from '@/features/shared/utils';
+import { ageImage, getDecade, getKoreanContentType } from '@/shared/utils';
 import styles from './DetailContents.module.css';
 
 const DetailContents = ({
@@ -39,19 +35,32 @@ const DetailContents = ({
   const detailInfo = `타입: ${
     getKoreanContentType(detailData.ctype) || dummyData.ctype
   }
-장르: ${detailData.genres.join(', ')}
+장르: ${
+    detailData.genres &&
+    Array.isArray(detailData.genres) &&
+    detailData.genres.length > 0 &&
+    !detailData.genres.includes('NoData')
+      ? detailData.genres.join(', ')
+      : ''
+  }
 연대별: ${getDecade(detailData.released)}
-러닝타임: ${detailData?.runningTime || dummyData.runningTime}분`;
+${
+  detailData.runningTime && detailData.runningTime !== 'NoData'
+    ? `러닝타임: ${detailData.runningTime}분`
+    : ''
+}`;
 
   const renderDetailInfo = () => (
     <>
       <span>{detailInfo}</span>
-      <Image
-        src={ageImage(detailData.age, 'detail')}
-        alt={`${detailData.age}세 이용가`}
-        width={20}
-        height={20}
-      />
+      {detailData.age && detailData.age !== 'NoData' && (
+        <Image
+          src={ageImage(detailData.age, 'detail')}
+          alt={`${detailData.age}세 이용가`}
+          width={20}
+          height={20}
+        />
+      )}
     </>
   );
 

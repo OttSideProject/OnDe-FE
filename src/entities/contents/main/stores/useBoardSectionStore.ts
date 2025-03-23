@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { BoardSectionStore } from '@/_types/contents';
+import { BoardSectionStore } from '@/shared/types/contents';
 import { boardSectionService } from '@/entities/boardSection';
 
 export const useBoardSectionStore = create<BoardSectionStore>((set) => ({

@@ -1,5 +1,5 @@
 import Api from '@/api/core/Api';
-import { RecommendedResponse } from '@/_types/contents';
+import { RecommendedResponse } from '@/shared/types/contents';
 import { fetchers } from '@/__mocks__/helpers/fetchers';
 
 export const fetchRecommended = async (

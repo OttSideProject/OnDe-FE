@@ -1,7 +1,7 @@
 // src/entities/contents/main/api/fetchContents.ts
 
 import { PublicApi, type AxiosResponse } from '@/api/core';
-import { ContentType, ContentTypeResponse } from '@/_types/contents';
+import { ContentType, ContentTypeResponse } from '@/shared/types/contents';
 
 export type FetchContentTypeCategoryParams = {
   type: string;
@@ -17,6 +17,7 @@ const dummyData = (): ContentType[] => [
     age: '7+',
     ageImage: null,
     category: 'shared',
+    type: 'movie',
     genres: ['action', 'comedy2'],
     contentImg: 'https://picsum.photos/240/360?random=1',
   },
@@ -27,6 +28,7 @@ const dummyData = (): ContentType[] => [
     age: '19+',
     ageImage: null,
     category: 'shared',
+    type: 'drama',
     genres: ['action', 'comedy'],
     contentImg: 'https://picsum.photos/240/360?random=2',
   },
@@ -37,6 +39,7 @@ const dummyData = (): ContentType[] => [
     age: '12+',
     ageImage: null,
     category: 'shared',
+    type: 'enter',
     genres: ['action', 'comedy'],
     contentImg: 'https://picsum.photos/240/360?random=3',
   },

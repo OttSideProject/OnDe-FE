@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { OttPlatform } from '@/_types/contents';
+import { OttPlatform } from '@/shared/types/contents';
 
 type OttPlatformStore = {
   platforms: OttPlatform[];
