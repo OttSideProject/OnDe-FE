@@ -36,7 +36,7 @@ export default function LoginForm() {
         // access-token을 localStorage에 저장
         localStorage.setItem('Access-Token', accessToken);
         // 로그인한 사용자 아이디를 localStorage에 저장
-        debugger
+        // debugger
         const userId = formData.userId;
         localStorage.setItem('userId', userId);  
 
@@ -77,10 +77,10 @@ export default function LoginForm() {
         const avatar = getAvatarFromCookie();
 
         // 로그인 성공
-        // alert('로그인에 성공했습니다!');
-        // setTimeout(() => {
-        //   location.href = '/';
-        // }, 1000);
+        alert('로그인에 성공했습니다!');
+        setTimeout(() => {
+          location.href = '/contents/main';
+        }, 1000);
       })
       .catch((error) => {
         console.error('로그인 실패:', error);

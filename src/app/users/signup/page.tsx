@@ -17,7 +17,7 @@ interface UserInfo {
   name: string;
   email: string;
   password: string;
-  termsAgree : boolean;
+  termsAgree: boolean;
   confirmPassword: string;
   gender: string;
   age: number;
@@ -113,11 +113,13 @@ const SignupProcess = () => {
     } else if (step === 2) {
       if (selectedIndexes.length < 3) {
         alert('문장을 3개 이상 선택해 주세요.');
-      }  else {
+      } else {
         // 선택된 문장을 userInfo.sentence에 저장
-        const selectedSentences = selectedIndexes.map((index) => genres_setp2[index].sentence);
+        const selectedSentences = selectedIndexes.map(
+          (index) => genres_setp2[index].sentence,
+        );
         setUserInfo({ sentence: selectedSentences });
-  
+
         dispatch({ type: 'SET_STEP', payload: step + 1 });
       }
     } else if (step === 3) {
@@ -172,11 +174,11 @@ const SignupProcess = () => {
         setLoading(true);
 
         Api.post('users/join', requestData)
-          .then((response: { data: any; }) => {
+          .then((response: { data: any }) => {
             console.log('회원가입 완료:', response.data);
             alert('가입이 완료되었습니다!');
             setTimeout(() => {
-              location.href = '/';
+              location.href = '/contents/main';
             }, 1000);
           })
           .catch((error) => {
@@ -239,7 +241,7 @@ const SignupProcess = () => {
               <img
                 src="/assets/images/icons/iconamoon_close-light.svg"
                 alt="메인으로"
-                onClick={() => (location.href = '/')}
+                onClick={() => (location.href = '/contents/main')}
                 width={20}
                 height={20}
               />
@@ -285,8 +287,9 @@ const SignupProcess = () => {
           {!loading && (
             <signup.BottomPoint>
               <signup.Caption>
-                {step === 4 ||step === 7 &&
-                  '걱정 마세요, 개인정보는\n 콘텐츠를 추천하기 위해서만 사용할게요.'}
+                {step === 4 ||
+                  (step === 7 &&
+                    '걱정 마세요, 개인정보는\n 콘텐츠를 추천하기 위해서만 사용할게요.')}
                 {step === 3 && '회원님께 딱맞는 콘텐츠를 추천해 드릴게요.'}
                 {step === 2 && '관심 있는 문장을 3개 이상 선택해 주세요.'}
                 {step === 1 && `관심 있는 장르를 3개 이상 선택해 주세요.`}
