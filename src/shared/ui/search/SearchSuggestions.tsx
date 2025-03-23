@@ -2,11 +2,12 @@
 
 import { useState, useEffect } from 'react';
 import { getSearchSuggestions } from '@/shared/api/actions';
+import { SearchSuggestion } from '@/shared/api/actions/searchSuggestions';
 import styles from './SearchSuggestions.module.css';
 
 type SearchSuggestionsProps = {
   searchTerm: string;
-  onSelect?: (suggestion: string) => void;
+  onSelect?: (suggestion: SearchSuggestion) => void;
 };
 
 // 검색어를 강조하는 함수 추가
@@ -44,7 +45,7 @@ const SearchSuggestions = ({
   searchTerm,
   onSelect,
 }: SearchSuggestionsProps) => {
-  const [suggestions, setSuggestions] = useState<string[]>([]);
+  const [suggestions, setSuggestions] = useState<SearchSuggestion[]>([]);
 
   useEffect(() => {
     const fetchSuggestions = async () => {
@@ -71,7 +72,7 @@ const SearchSuggestions = ({
             className={styles.suggestionItem}
             onClick={() => onSelect?.(suggestion)}
           >
-            <HighlightedText text={suggestion} highlight={searchTerm} />
+            <HighlightedText text={suggestion.title} highlight={searchTerm} />
           </li>
         ))}
       </ul>

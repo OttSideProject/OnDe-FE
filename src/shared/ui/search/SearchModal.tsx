@@ -8,6 +8,7 @@ import { SearchContent } from '@/shared/types/contents';
 import { useModalStore } from '@/shared/lib/stores/modal';
 import { useSearchStore } from '@/shared/lib/stores/search';
 import { useLoaderStore } from '@/shared/lib/stores/loading';
+import { SearchSuggestion } from '@/shared/api/actions/searchSuggestions';
 import { Loading } from '../loading';
 import SearchInput from './SearchInput';
 import SearchResultList from './SearchResultList';
@@ -46,7 +47,10 @@ const SearchModal = () => {
   const { isLoading, setIsLoading } = useLoaderStore();
   const router = useRouter();
 
+  // 검색어로 검색 실행
   const handleSearch = async (): Promise<void> => {
+    if (!searchTerm.trim()) return;
+
     try {
       setIsLoading(true);
       console.log('Current search term:', searchTerm);
@@ -56,10 +60,10 @@ const SearchModal = () => {
       }
       const response = await fetchSearchContents({ search: searchTerm });
       console.log('Fetched search contents:', response);
-      setSearchResults(response.content);
-      setSearchTerm(''); // 검색어 입력창 초기화
+      setSearchResults(response.content || []);
     } catch (error) {
       console.error('Error fetching search contents:', error);
+      setSearchResults([]);
     } finally {
       setIsLoading(false);
     }
@@ -85,14 +89,43 @@ const SearchModal = () => {
     router.push(`/contents/detail/${result.contentId}`);
   };
 
-  const handleSuggestionSelect = async (suggestion: string) => {
-    setSearchTerm(suggestion);
-    handleSearch();
+  // 검색 제안 선택 시 해당 콘텐츠만 결과 페이지에 표시
+  const handleSuggestionSelect = async (suggestion: SearchSuggestion) => {
+    // 자동 저장이 켜진 상태이면 검색어 저장
+    if (autoSaveIndex === 1) {
+      addRecentSearch(suggestion.title);
+    }
+
+    try {
+      setIsLoading(true);
+      // 선택한 제안에 해당하는 콘텐츠 정보만 가져오기
+      const response = await fetchSearchContents({ search: suggestion.title });
+
+      if (response && response.content) {
+        // 선택한 ID와 일치하는 콘텐츠만 필터링
+        const selectedContent = response.content.filter(
+          (item) => item.contentId === suggestion.id,
+        );
+
+        // 검색 결과 설정
+        setSearchResults(selectedContent);
+        // 검색어 입력창에 선택한 제안 표시
+        setSearchTerm(suggestion.title);
+      }
+    } catch (error) {
+      console.error('Error fetching selected content:', error);
+      setSearchResults([]);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const showInitialUI = !searchTerm && !searchResults.length;
   const showSearchResults = searchResults.length > 0;
-  const showSearchSuggestions = searchTerm && !searchResults.length;
+  const showSearchSuggestions =
+    searchTerm && !searchResults.length && !isLoading;
+  // 검색 결과가 있거나 검색어가 있고 로딩이 끝났을 때 결과 컨테이너를 표시
+  const showResultsContainer = searchResults.length > 0;
 
   return (
     <div className={styles.modalOverlay}>
@@ -101,7 +134,7 @@ const SearchModal = () => {
         <div className={styles.modalHeader}>
           <button
             type="button"
-            onClick={handleCloseModal} // closeModal -> handleCloseModal로 변경
+            onClick={handleCloseModal}
             className={styles.closeButton}
           >
             <img src="/assets/images/icons/close-x-w.svg" alt="close" />
@@ -111,7 +144,7 @@ const SearchModal = () => {
           </div>
         </div>
         <div className={styles.modalBody}>
-          {showSearchResults && (
+          {showResultsContainer && (
             <div className={styles.searchResultsContainer}>
               <h3>콘텐츠</h3>
               <SearchResultList
