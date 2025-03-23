@@ -61,7 +61,11 @@ const RankingMainContainer: React.FC<RankingMainContainerProps> = ({
               }`}
             >
               <Image
-                src={`https://picsum.photos/240/360?random=${index}`}
+                src={
+                  rank.contentImg && rank.contentImg !== 'NoData'
+                    ? rank.contentImg
+                    : `https://picsum.photos/240/360?random=${index}`
+                }
                 alt={rank.title}
                 width={113}
                 height={170}
@@ -70,9 +74,20 @@ const RankingMainContainer: React.FC<RankingMainContainerProps> = ({
                 <figcaption>
                   <h3>{rank.title}</h3>
                   <h4>
-                    <span>{rank.genres?.join(' · ')} · </span>
+                    <span>
+                      {rank.genres &&
+                      Array.isArray(rank.genres) &&
+                      rank.genres.length > 0 &&
+                      !rank.genres.includes('NoData')
+                        ? rank.genres.join(' · ')
+                        : ''}
+                      ·{' '}
+                    </span>
                     <Image
-                      src={ageImage(String(rank.age), 'shared')}
+                      src={ageImage(
+                        rank.age && rank.age !== 'NoData' ? rank.age : '',
+                        'shared',
+                      )}
                       alt="Age restriction"
                       width={20}
                       height={20}

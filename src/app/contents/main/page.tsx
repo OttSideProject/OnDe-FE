@@ -76,7 +76,7 @@ const HomePage: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // setIsLoading(true);
+        setIsLoading(true);
         const todayResponse = await fetchTodayPick();
         const boardResponse = await fetchBoardSection();
 
@@ -106,14 +106,14 @@ const HomePage: React.FC = () => {
         setError('데이터를 불러오는데 실패했습니다.');
         console.error('Error fetching data:', err);
       } finally {
-        // setIsLoading(false);
+        setIsLoading(false);
       }
     };
 
     fetchData();
   }, [hasFetchedOrder]);
 
-  // if (isLoading) return <Loading />;
+  if (isLoading) return <Loading />;
   if (error) return <div>{error}</div>;
 
   return (

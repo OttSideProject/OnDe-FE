@@ -23,7 +23,11 @@ const GenericContentList: React.FC<GenericContentListProps> = ({ items }) => {
             >
               <figure className={styles.contentItem}>
                 <Image
-                  src={`https://picsum.photos/375/375?random=${item.contentId}`}
+                  src={
+                    item.contentImg && item.contentImg !== 'NoData'
+                      ? item.contentImg
+                      : `https://picsum.photos/375/375?random=${item.contentId}`
+                  }
                   alt={item.title}
                   width={115}
                   height={167}
@@ -31,8 +35,15 @@ const GenericContentList: React.FC<GenericContentListProps> = ({ items }) => {
                 <figcaption>
                   <h3>{item.title}</h3>
                   <h4>
-                    <span>{item.genres.join(' · ')}</span>
-                    {item.age && (
+                    <span>
+                      {item.genres &&
+                      Array.isArray(item.genres) &&
+                      item.genres.length > 0 &&
+                      !item.genres.includes('NoData')
+                        ? item.genres.join(' · ')
+                        : ''}
+                    </span>
+                    {item.age && item.age !== 'NoData' && (
                       <img
                         src={ageImage(item.age, 'shared')}
                         alt="Age restriction"

@@ -69,19 +69,18 @@ const RecommendedSlider: React.FC<RecommendedSliderProps> = ({
                   }
                 }}
               >
-                <figure
-                  className={`${styles.slide} ${
-                    !recommendedSlide.imgUrl ? styles.emptySlide : ''
-                  }`}
-                >
-                  {recommendedSlide.imgUrl && (
-                    <Image
-                      src={recommendedSlide.imgUrl}
-                      alt={`Slide ${recommendedSlide.id} ${index}`}
-                      width={105}
-                      height={155}
-                    />
-                  )}
+                <figure className={styles.slide}>
+                  <Image
+                    src={
+                      recommendedSlide.contentImg &&
+                      recommendedSlide.contentImg !== 'NoData'
+                        ? recommendedSlide.contentImg
+                        : `https://picsum.photos/105/155?random=${index}`
+                    }
+                    alt={`Slide ${recommendedSlide.id} ${index}`}
+                    width={105}
+                    height={155}
+                  />
                 </figure>
               </Link>
             </div>

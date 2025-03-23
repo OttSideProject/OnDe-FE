@@ -84,6 +84,7 @@ export type BoardSectionSlide = {
   name: string;
   profileImg?: string;
   imgUrl?: string;
+	contentImg?: string;
   detailUrl?: string;
   title: string;
   contents: string;
@@ -135,10 +136,6 @@ export type OttPlatform = {
 
 /* Ranking Data type */
 
-// export type RankingMainSliderProps = {
-//   slides: Slide[];
-// };
-
 export type Ranking = {
   rank: number;
   contentId: string;
@@ -180,6 +177,7 @@ export type RecommendedSliderProps = {
 export type RecommendedSlide = {
   id: number;
   imgUrl?: string;
+	contentImg?: string;
   detailUrl: string;
 };
 
@@ -190,6 +188,7 @@ export type RecommendedSectionSliderProps = {
 export type RecommendedSectionSlide = {
   id: number;
   imgUrl?: string;
+  contentImg?: string;
 };
 
 export type RecommendedResponse = {
@@ -202,39 +201,7 @@ export type RecommendedResponse = {
 export type RecommendedMainSlide = {
   id: number;
   imgUrl?: string;
-};
-
-/* Category types */
-export type ContentCategory =
-  | 'action'
-  | 'comedy'
-  | 'horror'
-  | 'drama'
-  | 'romance'
-  | 'youth'
-  | 'fantasy'
-  | 'sf'
-  | 'musical'
-  | 'thriller'
-  | 'crime'
-  | 'animation'
-  | 'documentary'
-  | 'reality';
-
-export type CategoryContent = {
-  contentId: string;
-  title: string;
-  age: string;
   contentImg?: string;
-  genres: string[];
-  summary?: string;
-};
-
-export type CategoryResponse = {
-  pageNo: number;
-  totalPages: number;
-  totalItems: number;
-  contents: CategoryContent[];
 };
 
 /* Filter Types */

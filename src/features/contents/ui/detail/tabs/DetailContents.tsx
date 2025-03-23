@@ -35,19 +35,32 @@ const DetailContents = ({
   const detailInfo = `타입: ${
     getKoreanContentType(detailData.ctype) || dummyData.ctype
   }
-장르: ${detailData.genres.join(', ')}
+장르: ${
+    detailData.genres &&
+    Array.isArray(detailData.genres) &&
+    detailData.genres.length > 0 &&
+    !detailData.genres.includes('NoData')
+      ? detailData.genres.join(', ')
+      : ''
+  }
 연대별: ${getDecade(detailData.released)}
-러닝타임: ${detailData?.runningTime || dummyData.runningTime}분`;
+${
+  detailData.runningTime && detailData.runningTime !== 'NoData'
+    ? `러닝타임: ${detailData.runningTime}분`
+    : ''
+}`;
 
   const renderDetailInfo = () => (
     <>
       <span>{detailInfo}</span>
-      <Image
-        src={ageImage(detailData.age, 'detail')}
-        alt={`${detailData.age}세 이용가`}
-        width={20}
-        height={20}
-      />
+      {detailData.age && detailData.age !== 'NoData' && (
+        <Image
+          src={ageImage(detailData.age, 'detail')}
+          alt={`${detailData.age}세 이용가`}
+          width={20}
+          height={20}
+        />
+      )}
     </>
   );
 

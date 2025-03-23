@@ -12,7 +12,11 @@ const SearchResultItem = ({ result, onClick }: SearchResultItemProps) => {
   return (
     <button className={styles.resultItem} onClick={onClick}>
       <Image
-        src={`https://picsum.photos/240/360?random=${result.contentId}`}
+        src={
+          result.contentImg && result.contentImg !== 'NoData'
+            ? result.contentImg
+            : `https://picsum.photos/240/360?random=${result.contentId}`
+        }
         alt={result.title}
         width={87}
         height={128}
@@ -21,7 +25,13 @@ const SearchResultItem = ({ result, onClick }: SearchResultItemProps) => {
       <div className={styles.resultInfo}>
         <h4>{result.title}</h4>
         <p>
-          {result.category} | {result.genres.join(', ')}
+          {result.category} |{' '}
+          {result.genres &&
+          Array.isArray(result.genres) &&
+          result.genres.length > 0 &&
+          !result.genres.includes('NoData')
+            ? result.genres.join(', ')
+            : ''}
         </p>
       </div>
     </button>

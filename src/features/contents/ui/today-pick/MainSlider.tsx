@@ -60,8 +60,9 @@ const MainSlider: React.FC<MainSliderProps> = ({ slides }) => {
               >
                 <Image
                   src={
-                    slide.contentImg ||
-                    `https://picsum.photos/240/360?random=${index}`
+                    slide.contentImg && slide.contentImg !== 'NoData'
+                      ? slide.contentImg
+                      : `https://picsum.photos/240/360?random=${index}`
                   }
                   alt={`Slide ${slide.contentId}`}
                   width={238}
@@ -72,12 +73,23 @@ const MainSlider: React.FC<MainSliderProps> = ({ slides }) => {
                     <h3>{slide.title}</h3>
                     <h4>
                       <span>
-                        {slide.genres ? slide.genres.join(' · ') : ''} ·
+                        {slide.genres &&
+                        Array.isArray(slide.genres) &&
+                        slide.genres.length > 0 &&
+                        !slide.genres.includes('NoData')
+                          ? slide.genres.join(' · ')
+                          : ''}
+                        ·
                       </span>
                       <span className={styles.ageImageBackground}>
                         {' '}
                         <Image
-                          src={ageImage(slide.age, 'shared')}
+                          src={ageImage(
+                            slide.age && slide.age !== 'NoData'
+                              ? slide.age
+                              : '',
+                            'shared',
+                          )}
                           alt="Age restriction"
                           width={20}
                           height={20}
