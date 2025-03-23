@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { fetchContents } from '@/entities/contents/main/api';
 import { fetchSearchContents } from '@/shared/api';
@@ -17,17 +17,22 @@ import SearchSuggestions from './SearchSuggestions';
 import styles from './SearchModal.module.css';
 
 const SearchModal = () => {
-  const [autoSaveIndex, setAutoSaveIndex] = useState(() => {
-    // 초기값은 localStorage에서 가져오되, 없으면 0(끄기)
-    return Number(localStorage.getItem('autoSaveSearch') ?? '0');
-  });
+  const [autoSaveIndex, setAutoSaveIndex] = useState(0);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setAutoSaveIndex(Number(localStorage.getItem('autoSaveSearch') ?? '0'));
+    }
+  }, []);
   const [isTyping, setIsTyping] = useState(false);
   const autoStatus = ['켜기', '끄기']; // 순서 변경
 
   const toggleAutoSave = () => {
     setAutoSaveIndex((prevIndex) => {
       const newIndex = prevIndex === 0 ? 1 : 0;
-      localStorage.setItem('autoSaveSearch', String(newIndex));
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('autoSaveSearch', String(newIndex));
+      }
       return newIndex;
     });
   };

@@ -58,7 +58,15 @@ export type OrderContent = {
 };
 
 export type OrderResponse = {
-  data(data: any): unknown;
+  data: {
+    content: OrderContent[];
+    page: {
+      size: number;
+      number: number;
+      totalElements: number;
+      totalPages: number;
+    };
+  };
   content: OrderContent[];
   page: {
     size: number;
