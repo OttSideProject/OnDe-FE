@@ -34,3 +34,8 @@
   width: 16px;
   height: 16px;
 }
+
+/* 강조된 텍스트 스타일 */
+.highlightedText {
+  color: var(--primary);
+}

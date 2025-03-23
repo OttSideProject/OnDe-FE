@@ -3,6 +3,7 @@ import Link from 'next/link'; // Added Link import from next/link
 import Image from 'next/image';
 
 import { ContentType } from '@/shared/types/contents';
+import { ageImage } from '@/shared/utils';
 
 type GenericContentListProps = {
   items: ContentType[];
@@ -31,9 +32,9 @@ const GenericContentList: React.FC<GenericContentListProps> = ({ items }) => {
                   <h3>{item.title}</h3>
                   <h4>
                     <span>{item.genres.join(' · ')}</span>
-                    {item.ageImage && (
-                      <Image
-                        src={item.ageImage} // age는 이제 이미지 URL
+                    {item.age && (
+                      <img
+                        src={ageImage(item.age, 'shared')}
                         alt="Age restriction"
                         width={20}
                         height={20}
