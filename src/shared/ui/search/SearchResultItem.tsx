@@ -1,4 +1,5 @@
 // SearchResultItem.tsx
+import Image from 'next/image';
 import { SearchContent } from '@/shared/types/contents';
 import styles from './SearchResultItem.module.css';
 
@@ -9,10 +10,12 @@ type SearchResultItemProps = {
 
 const SearchResultItem = ({ result, onClick }: SearchResultItemProps) => {
   return (
-    <div className={styles.resultItem} onClick={onClick}>
-      <img
-        src={result.contentImg}
+    <button className={styles.resultItem} onClick={onClick}>
+      <Image
+        src={`https://picsum.photos/240/360?random=${result.contentId}`}
         alt={result.title}
+        width={87}
+        height={128}
         className={styles.resultImage}
       />
       <div className={styles.resultInfo}>
@@ -21,7 +24,7 @@ const SearchResultItem = ({ result, onClick }: SearchResultItemProps) => {
           {result.category} | {result.genres.join(', ')}
         </p>
       </div>
-    </div>
+    </button>
   );
 };
 

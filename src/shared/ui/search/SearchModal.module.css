@@ -163,3 +163,17 @@
   max-width: 216px;
   margin: 0 auto;
 }
+
+.noResults {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  text-align: center;
+  color: var(--gray300);
+}
+
+.noResults p {
+  margin: 10px 0;
+  font-size: 1.4rem;
+}
