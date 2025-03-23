@@ -49,7 +49,12 @@ const getResponseData = (
   }
 
   return {
-    ...response,
+    data: {
+      content: response.data.content.map((item: OrderContent) => ({
+        ...item,
+      })),
+      page: response.data.page
+    },
     content: response.data.content.map((item: OrderContent) => ({
       ...item,
     })),
@@ -78,8 +83,18 @@ export const fetchOrder = async ({
   } catch (error) {
     console.error('API 호출 중 오류 발생:', error);
 
+    const dummyContent = dummyData();
     return {
-      content: dummyData(),
+      data: {
+        content: dummyContent,
+        page: {
+          size: 20,
+          number: 0,
+          totalElements: dummyContent.length,
+          totalPages: Math.ceil(dummyContent.length / 20)
+        }
+      },
+      content: dummyContent,
       page: {
         size: 20,
         number: 0,

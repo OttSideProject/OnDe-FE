@@ -32,8 +32,6 @@ interface Post {
 //   following: number;
 // }
 
-const userId = localStorage.getItem('userId');
-
 // const avatarOptions = [
 //   "profile-angry.png",
 //   "profile-dizzy.png",
@@ -42,14 +40,13 @@ const userId = localStorage.getItem('userId');
 // ];
 
 const getCookie = (name: string) => {
-  const cookies = document.cookie.split("; ");
+  const cookies = document.cookie.split('; ');
   const cookie = cookies.find((row) => row.startsWith(`${name}=`));
-  return cookie ? cookie.split("=")[1] : null;
+  return cookie ? cookie.split('=')[1] : null;
 };
 
-
 const getAvatarFromCookie = () => {
-  let avatar = getCookie("userAvatar");
+  let avatar = getCookie('userAvatar');
   // if (!avatar) {
   //   // 쿠키에 없으면 랜덤으로 선택 후 쿠키에 저장
   //   avatar = avatarOptions[Math.floor(Math.random() * avatarOptions.length)];
@@ -58,8 +55,6 @@ const getAvatarFromCookie = () => {
   // 제대로 경로를 반환하도록 수정
   return `/assets/images/${avatar}`;
 };
-
-
 
 const mockGenres: Genre[] = [
   {
@@ -130,10 +125,15 @@ const mockPosts: Post[] = [
   },
 ];
 
-const MyPage: React.FC = () => {
-  const [avatar, setAvatar] = useState("");
+export default function MyPage() {
+  const [userId, setUserId] = useState<string | null>(null);
+  const [avatar, setAvatar] = useState('');
+  const [activeTab, setActiveTab] = useState<'collection' | 'board'>(
+    'collection',
+  );
 
   useEffect(() => {
+    setUserId(localStorage.getItem('userId'));
     setAvatar(getAvatarFromCookie());
   }, []);
 
@@ -143,11 +143,6 @@ const MyPage: React.FC = () => {
     followers: 0,
     following: 0,
   };
-
-  
-  const [activeTab, setActiveTab] = useState<'collection' | 'board'>(
-    'collection',
-  );
 
   return (
     <div className={styles.container}>
@@ -181,7 +176,6 @@ const MyPage: React.FC = () => {
         <h2 className={styles.userName}>{mockUser.name}</h2>
       </div>
       <div className={styles.tabMenu}>
-        
         <button
           className={`${styles.tabButton} ${
             activeTab === 'collection' ? styles.active : ''
@@ -200,12 +194,12 @@ const MyPage: React.FC = () => {
         </button>
       </div>
       <div className={styles.tabContent}>
-      <div className="coming-soon">
-        <img
-          src="/assets/images/coming-soon-message.png"
-          alt="준비중 입니다..."
-        />
-      </div>
+        <div className="coming-soon">
+          <img
+            src="/assets/images/coming-soon-message.png"
+            alt="준비중 입니다..."
+          />
+        </div>
         {/* {activeTab === 'collection' && (
           <div className={styles.collectionTab}>
             <div className={styles.movieList}>
@@ -258,6 +252,4 @@ const MyPage: React.FC = () => {
       </div>
     </div>
   );
-};
-
-export default MyPage;
+}

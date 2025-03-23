@@ -13,7 +13,8 @@ import type { PageType } from '@/shared/types/contents';
  */
 export const useImageMapping = () => {
   const getImageSrc = useCallback((title: string, pageType: PageType) => {
-    return imageMapping[pageType]?.[title] || '';
+    if (!title) return '';
+    return imageMapping[pageType as keyof typeof imageMapping]?.[title] || '';
   }, []);
 
   return { getImageSrc };
