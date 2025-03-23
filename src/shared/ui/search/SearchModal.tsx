@@ -113,7 +113,7 @@ const SearchModal = () => {
         <div className={styles.modalBody}>
           {showSearchResults && (
             <div className={styles.searchResultsContainer}>
-              <h3>검색 결과</h3>
+              <h3>콘텐츠</h3>
               <SearchResultList
                 results={searchResults}
                 onResultClick={handleResultClick}
