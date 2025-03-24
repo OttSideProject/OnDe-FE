@@ -65,7 +65,7 @@ export const fetchRankingByCategory = async ({
     const response = await PublicApi.post<RankingsResponse>(
       `/contents/ranking/category?category=${encodeURIComponent(
         category,
-      )}&nowPage=${nowPage}&pageCount=51`,
+      )}&nowPage=${nowPage}&pageCount=48`,
       {},
       { timeout: 3000 },
     );
@@ -78,7 +78,7 @@ export const fetchRankingByCategory = async ({
     return {
       content: dummyData(),
       page: {
-        size: 51,
+        size: 48,
         number: 0,
         totalElements: dummyData().length,
         totalPages: 1,

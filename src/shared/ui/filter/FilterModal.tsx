@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useFilterStore } from '@/entities/contents/filter';
-import { fetchRankingByCategory } from '@/entities/contents/ranking/api/fetchRankingByCategory';
+import { useInitGenres } from '@/entities/contents/hooks';
 import { FilterAccordion, FilterChips } from '@/shared/ui/filter';
 import { Button } from '@/shared/ui/button-group';
 import { useModalStore } from '@/shared/lib/stores';
@@ -12,7 +12,10 @@ import styles from './FilterModal.module.css';
 const FilterModal = () => {
   const router = useRouter();
   const { activeModal, closeModal } = useModalStore();
-  const { filterGroups, selectedFilters } = useFilterStore();
+  const { filterGroups, selectedFilters, resetFilters } = useFilterStore();
+
+  // 장르 목록을 API에서 가져오는 훅 사용
+  useInitGenres();
 
   useEffect(() => {
     const handleEscapeKey = (event: KeyboardEvent) => {
@@ -24,6 +27,52 @@ const FilterModal = () => {
   }, [closeModal]);
 
   if (activeModal !== 'filter') return null;
+
+  const handleApplyFilter = () => {
+    try {
+      // 선택된 모든 필터 항목의 라벨 수집
+      const filterParams: string[] = [];
+
+      Object.entries(selectedFilters).forEach(([groupId, itemIds]) => {
+        const group = filterGroups.find((g) => g.id === groupId);
+        if (!group) return;
+
+        itemIds.forEach((itemId) => {
+          const item = group.items.find((i) => i.id === itemId);
+          if (item) {
+            filterParams.push(item.label);
+          }
+        });
+      });
+
+      if (filterParams.length === 0) {
+        console.log('선택된 필터가 없습니다.');
+        closeModal();
+        return;
+      }
+
+      // 필터 파라미터 생성
+      const categoryParam = filterParams.join(',');
+
+      console.log('필터 적용 파라미터:', categoryParam);
+
+      // 현재 페이지에서 필터링된 결과를 보여주기 위해 이벤트 발생
+      const filterAppliedEvent = new CustomEvent('filterApplied', {
+        detail: { category: categoryParam },
+      });
+      window.dispatchEvent(filterAppliedEvent);
+
+      // 모달 닫기 (이벤트 발생 후에 닫아야 함)
+      closeModal();
+    } catch (error) {
+      console.error('필터 적용 중 오류 발생:', error);
+    }
+  };
+
+  const handleResetFilter = () => {
+    // 필터 초기화
+    resetFilters();
+  };
 
   return (
     <div className={styles.modalOverlay}>
@@ -45,57 +94,17 @@ const FilterModal = () => {
           <FilterAccordion groups={filterGroups} />
         </div>
         <div className={styles.btnContainer}>
-          <Button
-            variant="primary"
-            onClick={async () => {
-              try {
-                // 장르 필터 찾기
-                console.log('filterGroups:', filterGroups);
-                const genreGroup = filterGroups.find(
-                  (group) => group.label === '장르',
-                );
-                console.log('genreGroup:', genreGroup);
-                if (!genreGroup) return;
-
-                // 선택된 장르 가져오기
-                console.log('selectedFilters:', selectedFilters);
-                const selectedGenres = selectedFilters[genreGroup.id] || [];
-                console.log('selectedGenres:', selectedGenres);
-                if (selectedGenres.length === 0) return;
-
-                // 첫 번째 선택된 장르의 라벨 가져오기
-                console.log('genreGroup.items:', genreGroup.items);
-                const selectedGenre = genreGroup.items.find(
-                  (item) => item.id === selectedGenres[0],
-                );
-                console.log('selectedGenre:', selectedGenre);
-                if (!selectedGenre) return;
-
-                // API 호출
-                console.log('API 호출 파라미터:', {
-                  category: selectedGenre.label,
-                  nowPage: 0,
-                  pageCount: 20,
-                });
-                await fetchRankingByCategory({
-                  category: selectedGenre.label,
-                  nowPage: 0,
-                  pageCount: 20,
-                });
-
-                closeModal();
-                router.refresh(); // 페이지 새로고침
-              } catch (error) {
-                console.error('랭킹 데이터 조회 실패:', error);
-                console.error(
-                  '에러 상세:',
-                  error instanceof Error ? error.message : error,
-                );
-              }
-            }}
-          >
+          <Button variant="primary" onClick={handleApplyFilter}>
             필터 적용하기
           </Button>
+          {/* <div className={styles.resetBtnWrapper}>
+            <Button
+              variant="secondary"
+              onClick={handleResetFilter}
+            >
+              필터 초기화
+            </Button>
+          </div> */}
         </div>
       </div>
     </div>

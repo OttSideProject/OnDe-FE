@@ -14,7 +14,9 @@
   right: 0;
   bottom: 0;
   width: 100%;
-  max-width: 100%;
+  max-width: 600px;
+  min-width: 320px;
+  margin: 0 auto;
   background-color: var(--gray780);
   border-radius: 14px 14px 0px 0px;
   overflow: hidden;
@@ -50,9 +52,23 @@
   color: var(--white);
 }
 
+.filterContent {
+  height: calc(100% - 200px);
+  overflow-y: auto;
+  padding-bottom: 80px;
+}
+
 .btnContainer {
   position: absolute;
   bottom: 32px;
-  width: 100%;
   padding: 15px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.resetBtnWrapper {
+  margin-right: 10px;
 }

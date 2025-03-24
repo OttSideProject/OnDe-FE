@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 /* Components */
 import { StatusBar } from '@/shared/ui/status-bar';
 import { Header } from '@/features/contents/ui/header';
@@ -51,30 +51,55 @@ const rankingTopList: Slide[] = [
   },
 ];
 
-const handleOTTClick = async (ott: string) => {
-  const [activeOTT, setActiveOTT] = useState<string | null>(null);
-
-  if (activeOTT == ott) {
-    // 이미 활성화된 버튼 클릭 시 비활성화
-    setActiveOTT(null);
-    return;
-  }
-
-  setActiveOTT(ott); // 활성화된 버튼으로 설정
-
-  // API 호출 (활성화 시)
-  try {
-    const response = await fetch(`/api/data?ott=${ott}`);
-    const data = await response.json();
-    // API 호출 성공 시 데이터 출력
-    console.log(`${ott} 데이터 로드 성공:`, data);
-  } catch (error) {
-    console.error(`${ott} 데이터 로드 실패:`, error);
-  }
-};
-
 const RankingPage: React.FC = () => {
   const { getImageSrc } = useImageMapping();
+  const [currentCategory, setCurrentCategory] = useState<string>('');
+
+  // 필터 적용 이벤트 리스너 등록
+  useEffect(() => {
+    const handleFilterApplied = (event: CustomEvent<{ category: string }>) => {
+      console.log('Page: Filter applied event received:', event.detail);
+      const { category } = event.detail;
+      setCurrentCategory(category);
+    };
+
+    // 이벤트 리스너 등록
+    window.addEventListener(
+      'filterApplied',
+      handleFilterApplied as EventListener,
+    );
+
+    // 컴포넌트 언마운트 시 이벤트 리스너 제거
+    return () => {
+      window.removeEventListener(
+        'filterApplied',
+        handleFilterApplied as EventListener,
+      );
+    };
+  }, []);
+
+  // OTT 선택 이벤트 리스너 등록
+  useEffect(() => {
+    const handleOTTSelected = (event: CustomEvent<{ ott: string }>) => {
+      console.log('Page: OTT selected event received:', event.detail);
+      const { ott } = event.detail;
+
+      // OTT 선택 시 필터 초기화하고 OTT만 적용
+      setCurrentCategory(ott || '');
+    };
+
+    // 이벤트 리스너 등록
+    window.addEventListener('ottSelected', handleOTTSelected as EventListener);
+
+    // 컴포넌트 언마운트 시 이벤트 리스너 제거
+    return () => {
+      window.removeEventListener(
+        'ottSelected',
+        handleOTTSelected as EventListener,
+      );
+    };
+  }, []);
+
   return (
     <main className={styles.container}>
       <StatusBar
@@ -90,8 +115,14 @@ const RankingPage: React.FC = () => {
           pageType="ranking"
           getImageSrc={getImageSrc}
         />
-        <RankingMainContainer getImageSrc={getImageSrc} />
-        <RankingTabContents getImageSrc={getImageSrc} />
+        <RankingMainContainer
+          category={currentCategory}
+          getImageSrc={getImageSrc}
+        />
+        <RankingTabContents
+          getImageSrc={getImageSrc}
+          onCategoryChange={setCurrentCategory}
+        />
       </section>
     </main>
   );

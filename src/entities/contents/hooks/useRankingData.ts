@@ -6,24 +6,28 @@ export const useRankingData = (category: string | null) => {
   return useInfiniteQuery<RankingsResponse, Error>({
     queryKey: ['rankings', category], // category를 쿼리 키에 추가
     queryFn: async ({ pageParam = 0, queryKey }) => {
-      const [_, category] = queryKey;
-      console.log('category', category);
+      const [_, categoryParam] = queryKey;
+      console.log('Fetching rankings with category:', categoryParam);
+      
       return await fetchRankingByCategory({
-        category: category as string, // category가 있을 경우 해당 값을 사용, 없을 경우 빈 문자열 사용
+        category: categoryParam as string || '', // category가 있을 경우 해당 값을 사용, 없을 경우 빈 문자열 사용
         nowPage: pageParam as number, // nowPage를 pageParam으로 설정
-        pageCount: 51, // API 호출 시 51개 데이터 요청
+        pageCount: 48, // API 호출 시 48개 데이터 요청
       });
     },
     getNextPageParam: (lastPage) => {
-      return lastPage.page.number < lastPage.page.totalPages // 페이지 정보 수정
+      return lastPage.page.number < lastPage.page.totalPages - 1
         ? lastPage.page.number + 1
         : undefined;
     },
     getPreviousPageParam: (firstPage) => {
-      return firstPage.page.number > 0 // 페이지 정보 수정
+      return firstPage.page.number > 0
         ? firstPage.page.number - 1
         : undefined;
     },
-    initialPageParam: 0, // 첫번째 섹션의 ID
+    initialPageParam: 0,
+    refetchOnWindowFocus: false,
+    staleTime: 0, // 캐시 시간을 0으로 설정하여 항상 최신 데이터를 가져오도록 함
+    gcTime: 5 * 60 * 1000, // 5분 동안 가비지 컬렉션 전까지 캐시 유지
   });
 };

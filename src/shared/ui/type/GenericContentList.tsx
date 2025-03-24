@@ -15,7 +15,9 @@ const GenericContentList: React.FC<GenericContentListProps> = ({ items }) => {
   return (
     <div>
       {items.length === 0 ? (
-        <div className={styles.emptyMessage}>제공하는 콘텐츠가 없습니다.</div>
+        <div className={styles.emptyMessage}>
+          현재 이용 가능한 콘텐츠가 없습니다.
+        </div>
       ) : (
         <ul className={styles.list}>
           {items.map((item, index) => (

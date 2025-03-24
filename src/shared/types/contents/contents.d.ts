@@ -84,7 +84,7 @@ export type BoardSectionSlide = {
   name: string;
   profileImg?: string;
   imgUrl?: string;
-	contentImg?: string;
+  contentImg?: string;
   detailUrl?: string;
   title: string;
   contents: string;
@@ -177,7 +177,7 @@ export type RecommendedSliderProps = {
 export type RecommendedSlide = {
   id: number;
   imgUrl?: string;
-	contentImg?: string;
+  contentImg?: string;
   detailUrl: string;
 };
 
@@ -205,11 +205,21 @@ export type RecommendedMainSlide = {
 };
 
 /* Filter Types */
+export type GenreItem = {
+  id: string;
+  label: string;
+};
+
 export type FilterItem = {
   id: string;
   label: string;
   selected?: boolean;
 };
+
+export type GenreListResponse = {
+  genreId: number;
+  genre: string;
+}[];
 
 export type FilterGroup = {
   id: string;

@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import type { FilterGroup } from '@/shared/types/contents';
+import type { FilterGroup, FilterItem } from '@/shared/types/contents';
 
 type FilterChip = {
   groupId: string;
@@ -19,6 +19,8 @@ type FilterStore = {
   lastSelectedItem: LastSelectedItem;
   setSelectedFilters: (groupId: string, items: string[]) => void;
   setLastSelectedItem: (item: LastSelectedItem) => void;
+  initGenres: (genres: FilterItem[]) => void;
+  resetFilters: () => void;
 };
 
 const transformFiltersToChips = (
@@ -60,21 +62,7 @@ export const useFilterStore = create<FilterStore>((set) => ({
     {
       id: 'genre',
       label: '장르',
-      items: [
-        { id: 'action', label: '액션' },
-        { id: 'comedy', label: '코미디' },
-        { id: 'horror', label: '공포' },
-        { id: 'drama', label: '드라마' },
-        { id: 'romance', label: '로맨스' },
-        { id: 'sf', label: 'SF / 판타지' },
-        { id: 'youth', label: '청춘' },
-        { id: 'musical', label: '뮤지컬' },
-        { id: 'thriller', label: '스릴러' },
-        { id: 'animation', label: '애니' },
-        { id: 'documentary', label: '다큐' },
-        { id: 'crime', label: '범죄' },
-        { id: 'reality', label: '리얼리티' },
-      ],
+      items: [],
     },
     {
       id: 'type',
@@ -85,7 +73,7 @@ export const useFilterStore = create<FilterStore>((set) => ({
         { id: 'animation', label: '애니메이션' },
         { id: 'entertainment', label: '예능' },
         { id: 'documentary', label: '다큐멘터리' },
-      ],
+      ], // API에서 가져온 데이터로 채워질 예정
     },
   ],
   selectedFilters: {},
@@ -112,4 +100,26 @@ export const useFilterStore = create<FilterStore>((set) => ({
       };
     }),
   setLastSelectedItem: (item) => set({ lastSelectedItem: item }),
+  initGenres: (genres) =>
+    set((state) => {
+      const newFilterGroups = [...state.filterGroups];
+      const genreGroupIndex = newFilterGroups.findIndex(
+        (g) => g.id === 'genre',
+      );
+
+      if (genreGroupIndex !== -1) {
+        newFilterGroups[genreGroupIndex] = {
+          ...newFilterGroups[genreGroupIndex],
+          items: genres,
+        };
+      }
+
+      return { filterGroups: newFilterGroups };
+    }),
+  resetFilters: () =>
+    set((state) => ({
+      selectedFilters: {},
+      selectedChips: [],
+      lastSelectedItem: null,
+    })),
 }));

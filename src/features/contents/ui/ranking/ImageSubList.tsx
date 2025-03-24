@@ -8,6 +8,7 @@ import { ageImage } from '@/shared/utils';
 import styles from './ImageSubList.module.css';
 
 const ImageSubList: React.FC<{ content: Ranking[] }> = ({ content }) => {
+  // RankingSubListContainer에서 이미 빈 데이터 처리를 하므로 여기서는 단순히 데이터를 표시만 합니다.
   return (
     <div className={styles.list}>
       {content.map((rank, index) => (
