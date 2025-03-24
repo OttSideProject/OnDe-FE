@@ -66,7 +66,7 @@ const DummySlider: React.FC<{
               onMouseMove={handleMouseMove}
               onMouseUp={handleMouseUp}
             >
-              <button
+              {/* <button
                 type="button"
                 className={styles.cardLink}
                 onClick={(e) => {
@@ -75,7 +75,8 @@ const DummySlider: React.FC<{
                   }
                   goLink(sectionSlide.id.toString());
                 }}
-              >
+              > */}
+              <div className={styles.cardLink}>
                 <figure className={styles.slide}>
                   <Image
                     src={`https://picsum.photos/375/375?random=${sectionSlide.id}`}
@@ -84,7 +85,7 @@ const DummySlider: React.FC<{
                     height={155}
                   />
                 </figure>
-              </button>
+              </div>
             </div>
           ))}
         </Slider>

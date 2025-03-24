@@ -7,6 +7,7 @@ import { fetchDetailData } from '@/entities/contents/main';
 import { DetailComponent } from '@/features/contents/ui/detail';
 import { DetailContents } from '@/features/contents/ui/detail/tabs';
 import { GoBack } from '@/shared/ui/go-back';
+import { Loading } from '@/shared/ui';
 
 const DetailPage = () => {
   const { id } = useParams();
@@ -21,13 +22,7 @@ const DetailPage = () => {
     },
   );
 
-  if (isLoading) {
-    return (
-      <div className="loading-container">
-        <p>콘텐츠 정보를 불러오는 중...</p>
-      </div>
-    );
-  }
+  if (isLoading) return <Loading />;
 
   if (error) {
     return (

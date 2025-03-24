@@ -35,8 +35,10 @@ const MainSlider: React.FC<MainSliderProps> = ({ slides }) => {
 
   const router = useRouter();
 
-  const goMypage = () => {
-    router.push('/users/mypage');
+  const goMypage = (e: React.MouseEvent | React.TouchEvent) => {
+    // e.preventDefault();
+    alert('준비중입니다');
+    return;
   };
 
   const goLink = (id: string) => {
@@ -48,11 +50,7 @@ const MainSlider: React.FC<MainSliderProps> = ({ slides }) => {
       <div className={styles.slider}>
         <Slider {...settings}>
           {slides.map((slide, index) => (
-            <div
-              key={index}
-              className={styles.cardLink}
-              onClick={() => goLink(slide.contentId)}
-            >
+            <div key={index} className={styles.cardLink}>
               <figure
                 className={`${styles.slide} ${
                   activeSlide === index ? styles.activeSlide : ''
@@ -104,7 +102,8 @@ const MainSlider: React.FC<MainSliderProps> = ({ slides }) => {
                       size="small"
                       text="모아보기"
                       iconUrl="/assets/images/icons/collect-box.svg"
-                      onClick={goMypage}
+                      onClick={(e) => goMypage(e)}
+                      onTouchStart={(e) => goMypage(e)}
                     >
                       모아보기
                     </Button>

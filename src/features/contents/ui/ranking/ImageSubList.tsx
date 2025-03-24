@@ -11,7 +11,11 @@ const ImageSubList: React.FC<{ content: Ranking[] }> = ({ content }) => {
   return (
     <div className={styles.list}>
       {content.map((rank, index) => (
-        <div key={`${rank.contentId}-${index}`} className={styles.cardLink}>
+        <Link
+          href={`/contents/detail/${rank.contentId}`}
+          key={`${rank.contentId}-${index}`}
+          className={styles.cardLink}
+        >
           <figure className={styles.rankingItem}>
             <img
               src={
@@ -48,7 +52,7 @@ const ImageSubList: React.FC<{ content: Ranking[] }> = ({ content }) => {
               <strong className={styles.topNumber}>{rank.rank}</strong>
             </div>{' '}
           </figure>
-        </div>
+        </Link>
       ))}
     </div>
   );

@@ -12,7 +12,8 @@ export type ButtonProps = {
   iconUrl?: string;
   isActive?: boolean;
   children: React.ReactNode;
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  onTouchStart?: (e: React.TouchEvent<HTMLButtonElement>) => void;
   className?: string;
 };
 
@@ -33,10 +34,11 @@ export default function Button({
   };
 
   return (
-		<BtnInner className={className}>
-    <Btn variant={variant} size={size} active={active} onClick={handleClick}>
-      {iconUrl && <Icon src={iconUrl} alt="icon" />}
-      <span>{children}</span>
-    </Btn></BtnInner>
+    <BtnInner className={className}>
+      <Btn variant={variant} size={size} active={active} onClick={handleClick}>
+        {iconUrl && <Icon src={iconUrl} alt="icon" />}
+        <span>{children}</span>
+      </Btn>
+    </BtnInner>
   );
 }

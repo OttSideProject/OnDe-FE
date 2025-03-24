@@ -27,7 +27,7 @@ const NavItem = ({ iconName, label, href, isActive }: NavItemProps) => {
 
   const handleClick = (e: React.MouseEvent | React.TouchEvent) => {
     if (label === '추천') {
-      e.preventDefault(); // Prevent navigation
+      // e.preventDefault(); // Prevent navigation
       alert('준비중입니다');
       return; // Ensure no further action is taken
     }

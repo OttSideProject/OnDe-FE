@@ -64,8 +64,11 @@ const DetailComponent: React.FC<DetailComponentProps> = ({ detailData }) => {
     closeDropDown();
   };
 
-  const goMypage = () => {
-    router.push('/users/mypage');
+  const goMypage = (e: React.MouseEvent | React.TouchEvent) => {
+    // e.preventDefault();
+    alert('준비중입니다');
+    return;
+    // router.push('/users/mypage');
   };
 
   return (
@@ -114,7 +117,8 @@ const DetailComponent: React.FC<DetailComponentProps> = ({ detailData }) => {
           <Button
             variant="default"
             iconUrl="/assets/images/icons/collect-box.svg"
-            onClick={goMypage}
+            onClick={(e) => goMypage(e)}
+            onTouchStart={(e) => goMypage(e)}
           >
             모아보기
           </Button>
