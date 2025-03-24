@@ -8,10 +8,7 @@ import { Ranking } from '@/shared/types/contents';
 /* Utils */
 import { ageImage } from '@/shared/utils';
 
-import { useCenterTopNumberList } from '@/entities/contents/hooks';
-import { useRankingData } from '@/entities/contents/hooks';
-import { Loading } from '@/shared/ui/loading';
-import { useLoaderStore } from '@/shared/lib/stores';
+import { useRankingStore } from '@/entities/contents/stores/ranking';
 
 import styles from './RankingMainContainer.module.css';
 
@@ -33,58 +30,67 @@ const RankingMainContainer: React.FC<RankingMainContainerProps> = ({
   const [effectiveCategory, setEffectiveCategory] = useState<string>(
     category || '',
   );
-  const {
-    data,
-    refetch,
-    isLoading: isQueryLoading,
-    isFetching,
-  } = useRankingData(effectiveCategory);
+
+  // useRankingData 훅 대신 useRankingStore 사용
+  const { isLoading, dataState, getTopThreeRankings } = useRankingStore();
+
+  // 상위 3개 랭킹 데이터 가져오기
+  const topThreeRankings = getTopThreeRankings();
 
   const router = useRouter();
-
-  // 상위 3개 랭킹 데이터만 가져오기
-  const topThreeRankings =
-    data?.pages[0]?.content?.slice(0, 3).map((item) => ({
-      ...item,
-      id: String(item.contentId), // contentId를 id로 변환
-    })) || [];
-  const reorderedRankings = useCenterTopNumberList(topThreeRankings);
 
   // props로 전달된 category 변경 감지
   useEffect(() => {
     console.log('MainContainer: Category changed to:', category);
     setEffectiveCategory(category || '');
-    // 카테고리가 변경되면 데이터 다시 불러오기
-    refetch();
-  }, [category, refetch]);
+  }, [category]);
 
   // 쿼리 로딩 상태가 변경될 때 부모 컴포넌트에 알림
   useEffect(() => {
-    const queryIsLoading = isQueryLoading || isFetching;
+    const queryIsLoading = isLoading;
     const hasData = topThreeRankings && topThreeRankings.length > 0;
 
     // 데이터 상태 변경 시 부모 컴포넌트에 알림
     onDataStateChange?.(hasData, queryIsLoading);
-  }, [isQueryLoading, isFetching, onDataStateChange, topThreeRankings]);
+  }, [isLoading, onDataStateChange, topThreeRankings]);
 
   const goLink = (id: string) => {
     router.push(`/contents/detail/${id}`);
   };
 
-  console.log('MainContainer: Ranking data:', data);
-  console.log('MainContainer: Top three rankings:', topThreeRankings);
-  console.log('MainContainer: Reordered rankings:', reorderedRankings);
-  console.log('MainContainer: Loading state:', isQueryLoading || isFetching);
+  console.log('MainContainer: Ranking data:', topThreeRankings);
+  console.log('MainContainer: Loading state:', isLoading);
 
-  // 데이터가 없는 경우 빈 컨테이너 반환 (메시지는 페이지에서 처리)
+  // 데이터 상태에 따른 UI 렌더링
+  if (dataState === 'loading' || isLoading) {
+    return (
+      <div className={styles.loadingContainer}>
+        <div className={styles.loadingSpinner}></div>
+      </div>
+    );
+  }
+
+  if (dataState === 'no_data' || dataState === 'filtered_no_data') {
+    return (
+      <div className={styles.emptyContainer}>
+        <p>데이터가 없습니다.</p>
+      </div>
+    );
+  }
+
+  // 상위 3개 랭킹이 없는 경우
   if (!topThreeRankings || topThreeRankings.length === 0) {
-    return null; // 빈 컨테이너 대신 null 반환하여 렌더링하지 않음
+    return (
+      <div className={styles.emptyContainer}>
+        <p>랭킹 데이터가 없습니다.</p>
+      </div>
+    );
   }
 
   return (
     <article className={styles.container}>
       <div className={styles.list}>
-        {reorderedRankings.map((rank: Ranking, index) => (
+        {topThreeRankings.map((rank: Ranking, index) => (
           <div
             key={index}
             className={styles.cardLink}
@@ -130,7 +136,10 @@ const RankingMainContainer: React.FC<RankingMainContainerProps> = ({
                   </h4>
                 </figcaption>
                 <div className={styles.textContainer}>
-                  <strong className={styles.topNumber}>{index + 1}</strong>
+                  {/* 순위 매핑: 2위, 1위, 3위 순서로 표시 */}
+                  <strong className={styles.topNumber}>
+                    {index === 0 ? 2 : index === 1 ? 1 : 3}
+                  </strong>
                 </div>
               </div>
             </figure>

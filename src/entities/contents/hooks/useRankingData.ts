@@ -31,7 +31,7 @@ export const useRankingData = (category: string | null) => {
     },
     initialPageParam: 0,
     refetchOnWindowFocus: false,
-    staleTime: 0, // 캐시 시간을 0으로 설정하여 항상 최신 데이터를 가져오도록 함
-    gcTime: 5 * 60 * 1000, // 5분 동안 가비지 컬렉션 전까지 캐시 유지
+    staleTime: 5 * 60 * 1000, // 5분 동안 데이터를 신선한 상태로 유지 (이전: 0)
+    gcTime: 10 * 60 * 1000, // 10분 동안 가비지 컬렉션 전까지 캐시 유지 (이전: 5분)
   });
 };

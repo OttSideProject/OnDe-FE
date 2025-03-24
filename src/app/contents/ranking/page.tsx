@@ -17,7 +17,6 @@ import {
 
 /* Data Hooks & Stores */
 import { useRankingStore } from '@/entities/contents/stores/ranking';
-import { useRankingData } from '@/entities/contents/hooks';
 
 /* Styles */
 import styles from './page.module.css';
@@ -72,37 +71,43 @@ const RankingPage: React.FC = () => {
     handleOttSelected,
     handleDataStateChange,
     getEmptyMessage,
+    rankingData,
+    isLoading,
+    fetchRankingData,
+    fetchNextPage,
+    hasNextPage
   } = useRankingStore();
 
-  // React Query를 사용한 데이터 로드
-  const { 
-    data, 
-    isLoading, 
-    fetchNextPage, 
-    hasNextPage 
-  } = useRankingData(currentCategory);
-
-  // 컴포넌트 마운트 시 스토어 초기화
+  // 컴포넌트 마운트 시 스토어 초기화 및 데이터 로드
   useEffect(() => {
     console.log('Page: Initializing ranking store');
     initialize();
-  }, [initialize]);
+    
+    // 초기 데이터 로드
+    fetchRankingData('');
+  }, [initialize, fetchRankingData]);
 
-  // 데이터 로드 상태 변경 시 데이터 상태 업데이트
+  // 데이터 로드 상태 변경 시 전역 로딩 상태 업데이트
   useEffect(() => {
     console.log('Page: Data load status changed:', { 
       isLoading, 
-      hasData: data?.pages.length && data.pages[0].content.length > 0
+      hasData: rankingData?.length && rankingData[0].content.length > 0
     });
     
-    const hasData = data?.pages.length && data.pages[0].content.length > 0;
-    
-    // 데이터 상태 업데이트
-    handleDataStateChange(!!hasData, isLoading, currentCategory);
+    // 필터링된 데이터 콘솔에 출력
+    if (!isLoading && rankingData?.length && rankingData[0].content.length > 0) {
+      console.log('========== 필터링된 데이터 ==========');
+      console.log('현재 카테고리:', currentCategory);
+      console.log('데이터 상태:', dataState);
+      console.log('데이터 페이지 수:', rankingData?.length);
+      console.log('첫 페이지 콘텐츠 수:', rankingData[0].content.length);
+      console.log('첫 페이지 콘텐츠 전체:', rankingData[0].content);
+      console.log('====================================');
+    }
     
     // 전역 로딩 상태 업데이트
     setIsLoading(isLoading);
-  }, [data, isLoading, currentCategory, handleDataStateChange, setIsLoading]);
+  }, [rankingData, isLoading, currentCategory, setIsLoading]);
 
   // 필터 적용 이벤트 리스너 등록
   useEffect(() => {
@@ -131,20 +136,18 @@ const RankingPage: React.FC = () => {
 
   // OTT 선택 이벤트 리스너 등록
   useEffect(() => {
-    const handleOTTSelectedEvent = (event: CustomEvent<{ ott: string }>) => {
-      console.log('Page: OTT selected event received:', event.detail);
-      const { ott } = event.detail;
-      
-      // 이벤트 발생 소스 확인 로그
-      console.log('Event source:', event.target);
+    const handleOTTSelectedEvent = (event: CustomEvent<string[]>) => {
+      const otts = event.detail;
+      console.log('OTT selected event received:', otts);
       
       // OTT 선택 처리
-      handleOttSelected(ott);
+      handleOttSelected(otts);
       
-      // 데이터 강제 리페치 (React Query 캐시 무시)
+      // 데이터 강제 리페치 - fetchNextPage 대신 fetchRankingData 사용
       setTimeout(() => {
-        console.log('Forcing data refetch for category:', ott);
-        fetchNextPage({ cancelRefetch: false });
+        console.log('Forcing data refetch for categories:', otts);
+        // 현재 카테고리로 데이터 다시 가져오기
+        fetchRankingData(currentCategory);
       }, 0);
     };
 
@@ -161,7 +164,7 @@ const RankingPage: React.FC = () => {
         handleOTTSelectedEvent as EventListener,
       );
     };
-  }, [handleOttSelected, fetchNextPage]);
+  }, [handleOttSelected, fetchRankingData, currentCategory]);
 
   // 현재 카테고리 변경 시 데이터 리페치
   useEffect(() => {
@@ -170,12 +173,13 @@ const RankingPage: React.FC = () => {
       // 데이터 상태를 로딩으로 명시적 설정
       handleDataStateChange(false, true, currentCategory);
       
-      // 데이터 강제 리페치
+      // 데이터 강제 리페치 - fetchNextPage 대신 fetchRankingData 사용
       setTimeout(() => {
-        fetchNextPage({ cancelRefetch: false });
+        // 현재 카테고리로 데이터 다시 가져오기
+        fetchRankingData(currentCategory);
       }, 0);
     }
-  }, [currentCategory, fetchNextPage, handleDataStateChange]);
+  }, [currentCategory, fetchRankingData, handleDataStateChange]);
 
   // 로딩 중일 때 로딩 컴포넌트 표시
   if (isLoading && dataState === 'loading') return <Loading />;

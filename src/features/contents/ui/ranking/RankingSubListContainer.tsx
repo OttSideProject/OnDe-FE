@@ -2,12 +2,13 @@ import { useState, useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 
 /* Types */
-import { Ranking, RankingsResponse } from '@/shared/types/contents';
+import { Ranking } from '@/shared/types/contents';
 
 /* Utils */
 import { ageImage } from '@/shared/utils/ageImage';
 
-import { useRankingData } from '@/entities/contents/hooks/useRankingData';
+/* Stores */
+import { useRankingStore } from '@/entities/contents/stores/ranking';
 
 /* Components */
 import { SubHeader } from '@/features/contents/ui/header';
@@ -31,99 +32,84 @@ const RankingSubListContainer: React.FC<RankingSubListContainerProps> = ({
   const [effectiveCategory, setEffectiveCategory] = useState<string>(
     category || '',
   );
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, refetch } =
-    useRankingData(effectiveCategory);
-  const [rankings, setRankings] = useState<Ranking[]>([]); // 한 번에 로드된 랭킹 데이터
+
+  // useRankingStore 사용
+  const {
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    dataState,
+    isLoading,
+    getSubListRankings,
+  } = useRankingStore();
+
+  // 4위 이하 랭킹 데이터 가져오기
+  const subListRankings = getSubListRankings();
+
   const { ref, inView } = useInView(); // 무한 스크롤을 위한 IntersectionObserver
 
   // props로 전달된 category 변경 감지
   useEffect(() => {
-    console.log('Category changed to:', category);
+    console.log('SubListContainer: Category changed to:', category);
     setEffectiveCategory(category || '');
-    // category가 변경되면 rankings 초기화
-    setRankings([]);
-    // 카테고리가 변경되면 데이터 다시 불러오기
-    refetch();
-  }, [category, refetch]);
+  }, [category]);
 
+  // 무한 스크롤 처리
   useEffect(() => {
-    if (inView && hasNextPage) {
+    if (inView && hasNextPage && !isFetchingNextPage) {
+      console.log('SubListContainer: Loading next page...');
       fetchNextPage();
     }
-  }, [inView, hasNextPage, fetchNextPage]);
+  }, [inView, hasNextPage, fetchNextPage, isFetchingNextPage]);
 
-  // 페이지 데이터를 추적하여 중복을 방지
-  useEffect(() => {
-    console.log('Data changed:', data);
-    if (data?.pages && data.pages.length > 0) {
-      // 타입 안전하게 데이터 추출
-      const updatedRankings: Ranking[] = [];
+  // 데이터 상태에 따른 UI 렌더링
+  if (dataState === 'loading' || isLoading) {
+    return (
+      <div className={styles.loadingContainer}>
+        <div className={styles.loadingSpinner}></div>
+      </div>
+    );
+  }
 
-      data.pages.forEach((page: RankingsResponse) => {
-        if (page && page.content && Array.isArray(page.content)) {
-          updatedRankings.push(...page.content);
-        }
-      });
+  if (dataState === 'no_data' || dataState === 'filtered_no_data') {
+    return (
+      <div className={styles.emptyContainer}>
+        <p>데이터가 없습니다.</p>
+      </div>
+    );
+  }
 
-      console.log('Updated rankings:', updatedRankings.length);
+  // 4위 이하 랭킹이 없는 경우
+  if (!subListRankings || subListRankings.length === 0) {
+    return (
+      <div className={styles.emptyContainer}>
+        <p>추가 랭킹 데이터가 없습니다.</p>
+      </div>
+    );
+  }
 
-      if (updatedRankings.length === 0) {
-        console.log('No rankings found');
-        setRankings([]);
-        return;
-      }
-
-      // 상위 3개 항목 제외 (RankingMainContainer에서 표시됨)
-      const subListRankings = updatedRankings.slice(3, 48); // 3번 인덱스(4위)부터 시작
-
-      // 4위부터 데이터가 없는 경우 빈 배열 설정
-      if (subListRankings.length === 0) {
-        console.log('No rankings from 4th position');
-        setRankings([]);
-        return;
-      }
-
-      // 순위를 4부터 시작하도록 설정
-      const adjustedRankings = subListRankings.map((ranking, index) => ({
-        ...ranking,
-        rank: index + 4, // 순위가 4부터 시작 (인덱스 0이 4위)
-        ageImage: ranking.age ? ageImage(String(ranking.age), 'shared') : null, // age 속성명 변경
-      }));
-
-      console.log('Adjusted rankings:', adjustedRankings.length);
-
-      setRankings(adjustedRankings);
-    } else {
-      // 데이터가 없는 경우 빈 배열 설정
-      setRankings([]);
-    }
-  }, [data]);
-
-  // 현재 적용된 필터를 표시하기 위한 제목 생성
-  const getFilterTitle = () => {
-    if (!effectiveCategory) return '지금 가장 HOT한 콘텐츠';
-
-    const filters = effectiveCategory.split(',');
-    if (filters.length <= 2) {
-      return `${filters.join(', ')} 콘텐츠`;
-    } else {
-      return `${filters[0]}, ${filters[1]} 외 ${
-        filters.length - 2
-      }개 필터 적용`;
-    }
-  };
+  // 이미지 URL과 나이 제한 이미지를 포함한 랭킹 데이터 준비
+  const enrichedRankings = subListRankings.map((item) => ({
+    ...item,
+    contentImg: getImageSrc(item.title, 'ranking'),
+    ageImage: ageImage(item.age, 'shared'),
+  }));
 
   return (
     <div className={styles.container}>
       <SubHeader
-        imageTitle={getFilterTitle()}
+        imageTitle="지금 가장 HOT한 콘텐츠"
         imagePath={getImageSrc('지금 가장 HOT한 콘텐츠', 'ranking')}
         isImageRequired={true}
       />
-      {rankings.length > 0 ? <ImageSubList content={rankings} /> : null}
-      {hasNextPage && rankings.length > 0 && (
-        <div ref={ref} className={styles.loadingIndicator}>
-          {isFetchingNextPage && <p>Loading more...</p>}
+      <div className={styles.rankingContainer}>
+        {/* ImageSubList 컴포넌트에 content prop으로 전체 배열 전달 */}
+        <ImageSubList content={enrichedRankings} />
+      </div>
+      {/* 무한 스크롤을 위한 관찰 요소 */}
+      {hasNextPage && (
+        <div ref={ref} className={styles.loadMoreTrigger}>
+          {isFetchingNextPage && '로딩 중...'}
         </div>
       )}
     </div>
