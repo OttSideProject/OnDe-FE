@@ -8,9 +8,15 @@ export const useRankingData = (category: string | null) => {
     queryFn: async ({ pageParam = 0, queryKey }) => {
       const [_, categoryParam] = queryKey;
       console.log('Fetching rankings with category:', categoryParam);
-      
+
+      // 디버깅을 위한 추가 로그
+      console.log('Query function called with params:', {
+        pageParam,
+        categoryParam,
+      });
+
       return await fetchRankingByCategory({
-        category: categoryParam as string || '', // category가 있을 경우 해당 값을 사용, 없을 경우 빈 문자열 사용
+        category: (categoryParam as string) || '', // category가 있을 경우 해당 값을 사용, 없을 경우 빈 문자열 사용
         nowPage: pageParam as number, // nowPage를 pageParam으로 설정
         pageCount: 48, // API 호출 시 48개 데이터 요청
       });
@@ -21,9 +27,7 @@ export const useRankingData = (category: string | null) => {
         : undefined;
     },
     getPreviousPageParam: (firstPage) => {
-      return firstPage.page.number > 0
-        ? firstPage.page.number - 1
-        : undefined;
+      return firstPage.page.number > 0 ? firstPage.page.number - 1 : undefined;
     },
     initialPageParam: 0,
     refetchOnWindowFocus: false,

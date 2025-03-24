@@ -5,6 +5,7 @@ import type { PageType } from '@/shared/types/contents';
 import { OTTSelector } from '@/features/contents/ui/ott-selector';
 import { RankingSubListContainer, RankingMainContainer } from '@/features/contents/ui/ranking';
 import { FilterButton, FilterModal } from '@/shared/ui';
+import { useRankingStore } from '@/entities/contents/stores/ranking';
 import styles from './RankingTabContents.module.css';
 
 type RankingTabContentsProps = {
@@ -18,6 +19,29 @@ const RankingTabContents = ({ getImageSrc, onCategoryChange }: RankingTabContent
   const [appliedFilters, setAppliedFilters] = useState<string>('');
   const [hasMainData, setHasMainData] = useState<boolean>(true); // 메인 컨테이너에 데이터가 있는지 여부
   const { openModal } = useModalStore();
+  
+  // 랭킹 스토어에서 현재 카테고리 상태 가져오기
+  const { currentCategory } = useRankingStore();
+
+  // 스토어의 currentCategory가 변경될 때 selectedOTT 상태 동기화
+  useEffect(() => {
+    // OTT 플랫폼 목록
+    const ottPlatforms = ['netflix', 'tving', 'wavve', 'watcha'];
+    
+    // 현재 카테고리에서 OTT 플랫폼 부분 추출
+    const ottPart = currentCategory
+      .split(',')
+      .find(part => ottPlatforms.includes(part.trim()));
+    
+    if (ottPart) {
+      console.log('RankingTabContents: Syncing selectedOTT with store category part:', ottPart);
+      setSelectedOTT(ottPart);
+    } else if (!currentCategory) {
+      // 카테고리가 비어있으면 selectedOTT도 초기화
+      console.log('RankingTabContents: Resetting selectedOTT due to empty category');
+      setSelectedOTT('');
+    }
+  }, [currentCategory]);
 
   useEffect(() => {
     const handleFilterApplied = (event: CustomEvent<{ category: string }>) => {
@@ -37,21 +61,59 @@ const RankingTabContents = ({ getImageSrc, onCategoryChange }: RankingTabContent
   }, [selectedOTT, onCategoryChange]);
 
   const handleOTTSelect = (ott: string) => {
-    console.log('OTT selected:', ott);
+    console.log('RankingTabContents: OTT selected:', ott, 'Previous:', selectedOTT);
+    
+    // 토글 기능: 같은 OTT를 다시 선택한 경우 선택 해제
+    if (selectedOTT === ott) {
+      console.log('Same OTT selected, toggling off');
+      setSelectedOTT('');
+      setAppliedFilters('');
+      
+      // 이벤트 발송 (OTT 선택 해제)
+      try {
+        const ottSelectedEvent = new CustomEvent('ottSelected', {
+          detail: { ott: '' },
+          bubbles: true,
+          cancelable: true
+        });
+        
+        console.log('Dispatching ottSelected event with empty OTT');
+        window.dispatchEvent(ottSelectedEvent);
+        
+        // 카테고리 변경 콜백 호출 (빈 문자열)
+        onCategoryChange?.('');
+      } catch (error) {
+        console.error('Error dispatching ottSelected event:', error);
+      }
+      
+      return;
+    }
+    
+    // 새로운 OTT 선택 시 상태 업데이트
     setSelectedOTT(ott);
     setAppliedFilters(''); 
     
-    const ottSelectedEvent = new CustomEvent('ottSelected', {
-      detail: { ott }
-    });
-    window.dispatchEvent(ottSelectedEvent);
-    
-    onCategoryChange?.(ott);
+    // 이벤트 생성 및 발송
+    try {
+      const ottSelectedEvent = new CustomEvent('ottSelected', {
+        detail: { ott },
+        bubbles: true, // 이벤트 버블링 활성화
+        cancelable: true // 이벤트 취소 가능
+      });
+      
+      console.log('Dispatching ottSelected event with:', ott);
+      const dispatched = window.dispatchEvent(ottSelectedEvent);
+      console.log('Event dispatched successfully:', dispatched);
+      
+      // 카테고리 변경 콜백 호출
+      onCategoryChange?.(ott);
+    } catch (error) {
+      console.error('Error dispatching ottSelected event:', error);
+    }
   };
 
-  // 메인 컨테이너의 데이터 상태 변경 처리
   const handleMainDataStateChange = (hasData: boolean) => {
-    console.log('Main container data state changed:', hasData);
+    console.log('Main container data state changed:', { hasData });
     setHasMainData(hasData);
   };
 
@@ -92,7 +154,7 @@ const RankingTabContents = ({ getImageSrc, onCategoryChange }: RankingTabContent
             <RankingMainContainer
               category={effectiveCategory}
               getImageSrc={getImageSrc}
-              onDataStateChange={handleMainDataStateChange}
+              onDataStateChange={(hasData) => handleMainDataStateChange(hasData)}
             />
           </div>
         </div>

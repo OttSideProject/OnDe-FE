@@ -35,6 +35,22 @@
   text-align: center;
 }
 
+.emptyContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 250px;
+  padding: 20px;
+}
+
+.emptyMessage {
+  font-size: 1.6rem;
+  color: var(--primary80);
+  text-align: center;
+  font-weight: 500;
+}
+
 /* 반응형  */
 @media screen and (min-width: 576px) {
   .recommendContainer {

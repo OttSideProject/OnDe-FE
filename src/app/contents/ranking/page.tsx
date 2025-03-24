@@ -1,17 +1,23 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-/* Components */
-import { StatusBar } from '@/shared/ui/status-bar';
-import { Header } from '@/features/contents/ui/header';
-import { useImageMapping } from '@/entities/contents/hooks';
+import { useEffect } from 'react';
 /* Types */
 import { Slide } from '@/shared/types/contents';
 
+/* Components */
+import { useImageMapping } from '@/entities/contents/hooks';
+import { useLoaderStore } from '@/shared/lib/stores';
+import { Loading } from '@/shared/ui/loading';
+import { StatusBar } from '@/shared/ui/status-bar';
+import { Header } from '@/features/contents/ui/header';
 import {
   RankingMainContainer,
   RankingTabContents,
 } from '@/features/contents/ui/ranking';
+
+/* Data Hooks & Stores */
+import { useRankingStore } from '@/entities/contents/stores/ranking';
+import { useRankingData } from '@/entities/contents/hooks';
 
 /* Styles */
 import styles from './page.module.css';
@@ -53,52 +59,129 @@ const rankingTopList: Slide[] = [
 
 const RankingPage: React.FC = () => {
   const { getImageSrc } = useImageMapping();
-  const [currentCategory, setCurrentCategory] = useState<string>('');
+  const { setIsLoading } = useLoaderStore();
+
+  // 랭킹 스토어 사용
+  const {
+    currentCategory,
+    dataState,
+    error,
+    initialize,
+    initializeFromStorage,
+    handleFilterApplied,
+    handleOttSelected,
+    handleDataStateChange,
+    getEmptyMessage,
+  } = useRankingStore();
+
+  // React Query를 사용한 데이터 로드
+  const { 
+    data, 
+    isLoading, 
+    fetchNextPage, 
+    hasNextPage 
+  } = useRankingData(currentCategory);
+
+  // 컴포넌트 마운트 시 스토어 초기화
+  useEffect(() => {
+    console.log('Page: Initializing ranking store');
+    initialize();
+  }, [initialize]);
+
+  // 데이터 로드 상태 변경 시 데이터 상태 업데이트
+  useEffect(() => {
+    console.log('Page: Data load status changed:', { 
+      isLoading, 
+      hasData: data?.pages.length && data.pages[0].content.length > 0
+    });
+    
+    const hasData = data?.pages.length && data.pages[0].content.length > 0;
+    
+    // 데이터 상태 업데이트
+    handleDataStateChange(!!hasData, isLoading, currentCategory);
+    
+    // 전역 로딩 상태 업데이트
+    setIsLoading(isLoading);
+  }, [data, isLoading, currentCategory, handleDataStateChange, setIsLoading]);
 
   // 필터 적용 이벤트 리스너 등록
   useEffect(() => {
-    const handleFilterApplied = (event: CustomEvent<{ category: string }>) => {
+    const handleFilterAppliedEvent = (
+      event: CustomEvent<{ category: string }>,
+    ) => {
       console.log('Page: Filter applied event received:', event.detail);
       const { category } = event.detail;
-      setCurrentCategory(category);
+      handleFilterApplied(category);
     };
 
     // 이벤트 리스너 등록
     window.addEventListener(
       'filterApplied',
-      handleFilterApplied as EventListener,
+      handleFilterAppliedEvent as EventListener,
     );
 
     // 컴포넌트 언마운트 시 이벤트 리스너 제거
     return () => {
       window.removeEventListener(
         'filterApplied',
-        handleFilterApplied as EventListener,
+        handleFilterAppliedEvent as EventListener,
       );
     };
-  }, []);
+  }, [handleFilterApplied]);
 
   // OTT 선택 이벤트 리스너 등록
   useEffect(() => {
-    const handleOTTSelected = (event: CustomEvent<{ ott: string }>) => {
+    const handleOTTSelectedEvent = (event: CustomEvent<{ ott: string }>) => {
       console.log('Page: OTT selected event received:', event.detail);
       const { ott } = event.detail;
-
-      // OTT 선택 시 필터 초기화하고 OTT만 적용
-      setCurrentCategory(ott || '');
+      
+      // 이벤트 발생 소스 확인 로그
+      console.log('Event source:', event.target);
+      
+      // OTT 선택 처리
+      handleOttSelected(ott);
+      
+      // 데이터 강제 리페치 (React Query 캐시 무시)
+      setTimeout(() => {
+        console.log('Forcing data refetch for category:', ott);
+        fetchNextPage({ cancelRefetch: false });
+      }, 0);
     };
 
     // 이벤트 리스너 등록
-    window.addEventListener('ottSelected', handleOTTSelected as EventListener);
+    window.addEventListener(
+      'ottSelected',
+      handleOTTSelectedEvent as EventListener,
+    );
 
     // 컴포넌트 언마운트 시 이벤트 리스너 제거
     return () => {
       window.removeEventListener(
         'ottSelected',
-        handleOTTSelected as EventListener,
+        handleOTTSelectedEvent as EventListener,
       );
     };
-  }, []);
+  }, [handleOttSelected, fetchNextPage]);
+
+  // 현재 카테고리 변경 시 데이터 리페치
+  useEffect(() => {
+    if (currentCategory) {
+      console.log('Page: Current category changed, refetching data:', currentCategory);
+      // 데이터 상태를 로딩으로 명시적 설정
+      handleDataStateChange(false, true, currentCategory);
+      
+      // 데이터 강제 리페치
+      setTimeout(() => {
+        fetchNextPage({ cancelRefetch: false });
+      }, 0);
+    }
+  }, [currentCategory, fetchNextPage, handleDataStateChange]);
+
+  // 로딩 중일 때 로딩 컴포넌트 표시
+  if (isLoading && dataState === 'loading') return <Loading />;
+
+  // 에러가 있을 때 에러 메시지 표시
+  if (error) return <div className={styles.errorContainer}>{error}</div>;
 
   return (
     <main className={styles.container}>
@@ -115,14 +198,27 @@ const RankingPage: React.FC = () => {
           pageType="ranking"
           getImageSrc={getImageSrc}
         />
-        <RankingMainContainer
-          category={currentCategory}
-          getImageSrc={getImageSrc}
-        />
-        <RankingTabContents
-          getImageSrc={getImageSrc}
-          onCategoryChange={setCurrentCategory}
-        />
+
+        {dataState === 'no_data' || dataState === 'filtered_no_data' ? (
+          <div className={styles.emptyContainer}>
+            <p className={styles.emptyMessage}>{getEmptyMessage()}</p>
+          </div>
+        ) : (
+          <>
+            <RankingMainContainer
+              category={currentCategory}
+              getImageSrc={getImageSrc}
+              onDataStateChange={(dataExists, loading) => {
+                console.log('RankingMainContainer data state change:', { dataExists, loading });
+                handleDataStateChange(dataExists, loading, currentCategory);
+              }}
+            />
+            <RankingTabContents
+              getImageSrc={getImageSrc}
+              onCategoryChange={handleFilterApplied}
+            />
+          </>
+        )}
       </section>
     </main>
   );

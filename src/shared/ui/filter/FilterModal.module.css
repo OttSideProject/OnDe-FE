@@ -62,11 +62,9 @@
   position: absolute;
   bottom: 32px;
   padding: 15px 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 10px;
   width: 100%;
+  text-align: center;
+  margin: 0 auto;
 }
 
 .resetBtnWrapper {

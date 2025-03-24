@@ -10,6 +10,8 @@ import { ageImage } from '@/shared/utils';
 
 import { useCenterTopNumberList } from '@/entities/contents/hooks';
 import { useRankingData } from '@/entities/contents/hooks';
+import { Loading } from '@/shared/ui/loading';
+import { useLoaderStore } from '@/shared/lib/stores';
 
 import styles from './RankingMainContainer.module.css';
 
@@ -19,7 +21,7 @@ type RankingMainContainerProps = {
     title: string,
     pageType: 'contentMain' | 'ranking' | 'recommended',
   ) => string;
-  onDataStateChange?: (hasData: boolean) => void; // 데이터 상태 변경 콜백 추가
+  onDataStateChange?: (hasData: boolean, isLoading: boolean) => void; // 로딩 상태도 함께 전달
 };
 
 const RankingMainContainer: React.FC<RankingMainContainerProps> = ({
@@ -28,22 +30,17 @@ const RankingMainContainer: React.FC<RankingMainContainerProps> = ({
   onDataStateChange,
 }) => {
   const [activeSlide, setActiveSlide] = useState<number>(0);
-  const [effectiveCategory, setEffectiveCategory] = useState<string>(category || '');
-  const { data, refetch } = useRankingData(effectiveCategory);
+  const [effectiveCategory, setEffectiveCategory] = useState<string>(
+    category || '',
+  );
+  const {
+    data,
+    refetch,
+    isLoading: isQueryLoading,
+    isFetching,
+  } = useRankingData(effectiveCategory);
 
   const router = useRouter();
-
-  // props로 전달된 category 변경 감지
-  useEffect(() => {
-    console.log('MainContainer: Category changed to:', category);
-    setEffectiveCategory(category || '');
-    // 카테고리가 변경되면 데이터 다시 불러오기
-    refetch();
-  }, [category, refetch]);
-
-  const goLink = (id: string) => {
-    router.push(`/contents/detail/${id}`);
-  };
 
   // 상위 3개 랭킹 데이터만 가져오기
   const topThreeRankings =
@@ -53,25 +50,35 @@ const RankingMainContainer: React.FC<RankingMainContainerProps> = ({
     })) || [];
   const reorderedRankings = useCenterTopNumberList(topThreeRankings);
 
+  // props로 전달된 category 변경 감지
+  useEffect(() => {
+    console.log('MainContainer: Category changed to:', category);
+    setEffectiveCategory(category || '');
+    // 카테고리가 변경되면 데이터 다시 불러오기
+    refetch();
+  }, [category, refetch]);
+
+  // 쿼리 로딩 상태가 변경될 때 부모 컴포넌트에 알림
+  useEffect(() => {
+    const queryIsLoading = isQueryLoading || isFetching;
+    const hasData = topThreeRankings && topThreeRankings.length > 0;
+
+    // 데이터 상태 변경 시 부모 컴포넌트에 알림
+    onDataStateChange?.(hasData, queryIsLoading);
+  }, [isQueryLoading, isFetching, onDataStateChange, topThreeRankings]);
+
+  const goLink = (id: string) => {
+    router.push(`/contents/detail/${id}`);
+  };
+
   console.log('MainContainer: Ranking data:', data);
   console.log('MainContainer: Top three rankings:', topThreeRankings);
   console.log('MainContainer: Reordered rankings:', reorderedRankings);
+  console.log('MainContainer: Loading state:', isQueryLoading || isFetching);
 
-  // 데이터 상태 변경 시 부모 컴포넌트에 알림
-  useEffect(() => {
-    const hasData = reorderedRankings && reorderedRankings.length > 0;
-    onDataStateChange?.(hasData);
-  }, [reorderedRankings, onDataStateChange]);
-
-  // 데이터가 없는 경우 메시지 표시
-  if (!reorderedRankings || reorderedRankings.length === 0) {
-    return (
-      <article className={styles.container}>
-        <div className={styles.emptyContainer}>
-          <p className={styles.emptyMessage}>현재 이용 가능한 콘텐츠가 없습니다.</p>
-        </div>
-      </article>
-    );
+  // 데이터가 없는 경우 빈 컨테이너 반환 (메시지는 페이지에서 처리)
+  if (!topThreeRankings || topThreeRankings.length === 0) {
+    return null; // 빈 컨테이너 대신 null 반환하여 렌더링하지 않음
   }
 
   return (
