@@ -150,7 +150,7 @@ const HomePage: React.FC = () => {
       <Link
         href="/contents/recommended"
         title="추천 바로가기"
-        className={styles.fullButton}
+        className={`${styles.fullButton} disabled`}
       >
         추천 바로가기
       </Link>
