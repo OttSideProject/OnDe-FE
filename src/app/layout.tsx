@@ -50,7 +50,9 @@ export const metadata: Metadata = {
     description:
       '쉽고 간편한 검색과 다양한 추천 서비스를 제공하는 OTT 정보 플랫폼 서비스입니다.',
     siteName: 'OnD',
-    images: { url: '/assets/images/ond-open-graph.png' },
+    images: {
+      url: 'https://www.ondemandia.com/assets/images/ond-open-graph.png',
+    },
     url: 'https://www.ondemandia.com/contents/main',
     type: 'website',
   },
