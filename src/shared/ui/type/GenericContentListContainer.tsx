@@ -35,9 +35,12 @@ const GenericContentListContainer = <T extends ContentType>({
     }
   }, [inView, hasNextPage, fetchNextPage]);
 
+  // 데이터가 없거나 빈 배열인 경우에도 GenericContentList에 빈 배열을 전달
+  const contentItems = items && items.length > 0 ? items : [];
+
   return (
     <div className={styles.container}>
-      <GenericContentList items={items} />
+      <GenericContentList items={contentItems} />
       {isFetchingNextPage && <div>Loading...</div>}
       <div ref={ref} /> {/* 이 div가 보일 때 다음 페이지를 로드 */}
     </div>

@@ -1,1 +1,1 @@
-export { default as MoviesPage } from './page';
+export { default as ContentPage } from './page';

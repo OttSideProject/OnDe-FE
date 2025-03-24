@@ -49,7 +49,7 @@ const ContentPage: React.FC<{ params: { type: string } }> = ({ params }) => {
   const { data: contentData } = useTypeData(params.type);
   const items = contentData?.pages.flatMap((page) => page.content) || []; // 모든 페이지의 아이템을 가져옴
 
-  // if (isLoading) return <Loading />;
+  if (isLoading) return <Loading />;
   if (error) return <div>{error}</div>;
 
   return (
