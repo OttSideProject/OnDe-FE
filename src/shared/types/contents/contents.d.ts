@@ -90,6 +90,7 @@ export type BoardSectionSlide = {
   contents: string;
   postViews: number;
   likeCount: number;
+  commentCount: number;
   createdAt: string;
   modifiedAt: string;
 };

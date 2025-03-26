@@ -1,8 +1,15 @@
-import { PublicApi, type AxiosResponse, AxiosHeaders } from '@/api/core';
+import {
+  PublicApi,
+  type AxiosResponse,
+  type AxiosError,
+  isAxiosError,
+  AxiosHeaders,
+} from '@/api/core';
 import { BoardSectionSlide } from '@/shared/types/contents';
 
+// API 응답 구조에 맞게 타입 정의 수정
 type BoardSectionResponse = {
-  data: BoardSectionSlide[];
+  content: BoardSectionSlide[];
   page: {
     size: number;
     number: number;
@@ -11,93 +18,65 @@ type BoardSectionResponse = {
   };
 };
 
-// 게시판 섹션 데이터 정렬 함수
-const sortBoardSections = (
-  a: BoardSectionSlide,
-  b: BoardSectionSlide,
-): number => {
-  const likeDiff = (b.likeCount || 0) - (a.likeCount || 0);
-  if (likeDiff !== 0) return likeDiff;
-  return (b.postViews || 0) - (a.postViews || 0);
-};
-
 export const fetchBoardSection = async (
   boardId: number = 1,
 ): Promise<AxiosResponse<BoardSectionSlide[]>> => {
   try {
     const response = await PublicApi.get<BoardSectionResponse>(
-      `/board/${boardId}`,
-    ); // 게시판 데이터 조회
+      `/board/top?parentId=${boardId}`,
+    );
 
-    if (!response.data || !Array.isArray(response.data)) {
-      throw new Error('Invalid response format: data array expected');
+    // 응답 구조 확인
+    if (!response.data || !response.data.content || !Array.isArray(response.data.content)) {
+      console.error('예상치 못한 응답 구조:', response.data);
+      throw new Error('Invalid response format: content array expected');
     }
+
+    // content 배열 추출
+    const boardData = response.data.content;
 
     return {
       ...response,
-      data: response.data.sort(sortBoardSections).slice(0, 3), // 상위 3개만 선택
+      data: boardData,
     };
-  } catch (error) {
-    // 임시 더미 데이터
-    const dummyData: BoardSectionSlide[] = [
-      {
-        boardId: 1,
-        postIdx: 11,
-        userIdx: 26,
-        name: '가나1',
-        title: '제목업데이트',
-        contents:
-          '본문입니다. 본문입니다. 본문입니다. 본문입니다.본문입니다. 본문입니다.본문입니다. 본문입니다. 본문입니다.본문입니다.본문입니다. 본문입니다. 본문입니다.본문입니다.본문입니다. 본문입니다. 본문입니다.',
-        profileImg:
-          'https://image.dongascience.com/Photo/2020/03/5bddba7b6574b95d37b6079c199d7101.jpg',
-        imgUrl: 'https://picsum.photos/60/90?random=1',
-        postViews: 0,
-        likeCount: 0,
-        createdAt: '2024-12-23T20:48:03',
-        modifiedAt: '2024-12-23T20:51:03',
-      },
-      {
-        boardId: 1,
-        postIdx: 12,
-        userIdx: 27,
-        name: '가나1',
-        title: '두번째 게시글',
-        contents: '두번째 본문',
-        profileImg:
-          'https://image.dongascience.com/Photo/2020/03/5bddba7b6574b95d37b6079c199d7101.jpg',
-        imgUrl: 'https://picsum.photos/60/90?random=2',
-        postViews: 5,
-        likeCount: 3,
-        createdAt: '2024-12-23T20:48:03',
-        modifiedAt: '2024-12-23T20:51:03',
-      },
-      {
-        boardId: 1,
-        postIdx: 13,
-        userIdx: 28,
-        name: '가나3',
-        title: '세번째 게시글',
-        contents: '세번째 본문',
-        profileImg:
-          'https://image.dongascience.com/Photo/2020/03/5bddba7b6574b95d37b6079c199d7101.jpg',
-        imgUrl: 'https://picsum.photos/60/90?random=3',
-        postViews: 5,
-        likeCount: 3,
-        createdAt: '2024-12-23T20:48:03',
-        modifiedAt: '2024-12-23T20:51:03',
-      },
-    ];
+  } catch (error: unknown) {
+    console.error('API 호출 중 오류 발생:', error);
 
-    return {
-      data: dummyData,
-      status: 200,
-      statusText: 'OK',
-      headers: new AxiosHeaders(),
-      config: {
-        headers: new AxiosHeaders(),
-        method: 'GET',
-        url: `/board/${boardId}`,
-      },
-    };
+    // axios.isAxiosError를 사용한 타입 가드
+    if (isAxiosError(error)) {
+      // 서버에서 응답이 온 경우 (4xx, 5xx 에러)
+      if (error.response) {
+        console.error(
+          '서버 응답 에러:',
+          error.response.status,
+          error.response.data,
+        );
+        throw new Error(
+          `Server Error (${error.response.status}): ${JSON.stringify(
+            error.response.data,
+          )}`,
+        );
+      }
+      // 요청은 보냈지만 응답이 없는 경우
+      else if (error.request) {
+        console.error('요청은 전송되었지만 응답이 없습니다:', error.request);
+        throw new Error('No response received from server.');
+      }
+      // 요청 설정 중 에러가 발생한 경우
+      else {
+        console.error('요청 설정 중 오류 발생:', error.message);
+        throw new Error(`Request Setup Error: ${error.message}`);
+      }
+    }
+    // Axios 에러가 아닌 경우
+    else if (error instanceof Error) {
+      console.error('일반 에러:', error.message);
+      throw new Error(`Error: ${error.message}`);
+    }
+    // 알 수 없는 에러 타입
+    else {
+      console.error('알 수 없는 에러:', error);
+      throw new Error('An unknown error occurred');
+    }
   }
 };

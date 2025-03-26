@@ -51,10 +51,20 @@ const BoardSectionSlider: React.FC<BoardSectionSliderProps> = ({
     }, 100);
   };
 
+  const handleClick = (e: React.MouseEvent | React.TouchEvent) => {
+    if (isDragging) {
+      e.preventDefault();
+      return;
+    }
+
+    e.preventDefault(); // 기본 링크 동작 방지
+    alert('준비중입니다');
+  };
+
   const settings = {
     infinite: true,
     speed: 500,
-    slidesToShow: 5,
+    slidesToShow: 3,
     slidesToScroll: 1,
     swipeToSlide: true,
     // initialSlide: 1,
@@ -86,6 +96,9 @@ const BoardSectionSlider: React.FC<BoardSectionSliderProps> = ({
                 onClick={(e) => {
                   if (isDragging) {
                     e.preventDefault();
+                  } else {
+                    e.preventDefault();
+                    alert('준비중입니다');
                   }
                 }}
               >
@@ -137,24 +150,28 @@ const BoardSectionSlider: React.FC<BoardSectionSliderProps> = ({
                         </div>
                       </div>
                       <div className={styles.bottomContainer}>
-                        <div>
-                          <img
-                            src="/assets/images/icons/heart-gray.svg"
-                            alt="좋아요 아이콘"
-                          />
-                          <span className={styles.likeCount}>
-                            {boardSectionSlide.likeCount}
-                          </span>
-                        </div>
-                        {/* <div>
-                          <img
-                            src="/assets/images/icons/message-gray-circle.svg"
-                            alt="메시지 아이콘"
-                          />
-                          <span className={styles.messageCount}>
-                            {boardSectionSlide.messageCount}
-                          </span>
-                        </div> */}
+                        {boardSectionSlide.likeCount > 0 && (
+                          <div>
+                            <img
+                              src="/assets/images/icons/heart-gray.svg"
+                              alt="좋아요 아이콘"
+                            />
+                            <span className={styles.likeCount}>
+                              {boardSectionSlide.likeCount}
+                            </span>
+                          </div>
+                        )}
+                        {boardSectionSlide.commentCount > 0 && (
+                          <div>
+                            <img
+                              src="/assets/images/icons/message-gray-circle.svg"
+                              alt="메시지 아이콘"
+                            />
+                            <span className={styles.commentCount}>
+                              {boardSectionSlide.commentCount}
+                            </span>
+                          </div>
+                        )}
                       </div>
                     </>
                   }

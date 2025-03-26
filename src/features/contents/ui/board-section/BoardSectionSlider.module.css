@@ -17,6 +17,7 @@
   background-image: url('/assets/images/slide-bg.svg');
   background-size: 270px 200px;
   background-repeat: no-repeat;
+  cursor: not-allowed;
 }
 
 .cardLink::after {
