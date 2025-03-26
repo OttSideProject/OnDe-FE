@@ -51,16 +51,6 @@ const BoardSectionSlider: React.FC<BoardSectionSliderProps> = ({
     }, 100);
   };
 
-  const handleClick = (e: React.MouseEvent | React.TouchEvent) => {
-    if (isDragging) {
-      e.preventDefault();
-      return;
-    }
-
-    e.preventDefault(); // 기본 링크 동작 방지
-    alert('준비중입니다');
-  };
-
   const settings = {
     infinite: true,
     speed: 500,
@@ -86,6 +76,7 @@ const BoardSectionSlider: React.FC<BoardSectionSliderProps> = ({
           {boardSectionSlides.map((boardSectionSlide, postIdx) => (
             <div
               key={postIdx}
+              className={styles.boardSectionSlide}
               onMouseDown={handleMouseDown}
               onMouseMove={handleMouseMove}
               onMouseUp={handleMouseUp}
