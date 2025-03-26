@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
@@ -16,6 +16,8 @@ type NavItemProps = {
 };
 
 const NavItem = ({ iconName, label, href, isActive }: NavItemProps) => {
+  const [lastAlertTime, setLastAlertTime] = useState<number>(0);
+  
   const iconSrc = isActive
     ? `/assets/images/nav/${iconName}-on.svg`
     : `/assets/images/nav/${iconName}.svg`;
@@ -28,6 +30,11 @@ const NavItem = ({ iconName, label, href, isActive }: NavItemProps) => {
   const handleClick = (e: React.MouseEvent | React.TouchEvent) => {
     if (label === '추천') {
       e.preventDefault(); // Prevent navigation
+      
+      const now = Date.now();
+      if (now - lastAlertTime < 500) return; // 500ms 내에 중복 알림 방지
+      
+      setLastAlertTime(now);
       alert('준비중입니다');
       return; // Ensure no further action is taken
     }
@@ -48,7 +55,6 @@ const NavItem = ({ iconName, label, href, isActive }: NavItemProps) => {
       href={href}
       className={`${styles.navLink} ${isActive ? styles.on : ''}`}
       onClick={handleClick}
-      onTouchStart={handleClick} // Handle touch events
     >
       <img src={iconSrc} alt={label} />
       <span style={labelStyle}>{label}</span>

@@ -20,6 +20,7 @@ export type MainSliderProps = {
 
 const MainSlider: React.FC<MainSliderProps> = ({ slides }) => {
   const [activeSlide, setActiveSlide] = useState<number>(0);
+  const [lastAlertTime, setLastAlertTime] = useState<number>(0);
 
   const settings = {
     dots: true,
@@ -36,7 +37,11 @@ const MainSlider: React.FC<MainSliderProps> = ({ slides }) => {
   const router = useRouter();
 
   const goMypage = (e: React.MouseEvent | React.TouchEvent) => {
-    // e.preventDefault();
+    e.preventDefault();
+    const now = Date.now();
+    if (now - lastAlertTime < 500) return; // 500ms 내에 중복 알림 방지
+
+    setLastAlertTime(now);
     alert('준비중입니다');
     return;
   };

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { DetailData } from '@/shared/types/contents';
@@ -34,6 +34,7 @@ const DetailComponent: React.FC<DetailComponentProps> = ({ detailData }) => {
   const { isDropDownOpen, openDropDown, closeDropDown } = useDropDownStore();
   const { platforms, setPlatforms } = useOttPlatformStore();
   const router = useRouter();
+  const [lastAlertTime, setLastAlertTime] = useState<number>(0);
 
   useEffect(() => {
     const fetchPlatforms = async () => {
@@ -65,7 +66,11 @@ const DetailComponent: React.FC<DetailComponentProps> = ({ detailData }) => {
   };
 
   const goMypage = (e: React.MouseEvent | React.TouchEvent) => {
-    // e.preventDefault();
+    e.preventDefault();
+    const now = Date.now();
+    if (now - lastAlertTime < 500) return; // 500ms 내에 중복 알림 방지
+    
+    setLastAlertTime(now);
     alert('준비중입니다');
     return;
     // router.push('/users/mypage');

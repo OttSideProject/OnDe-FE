@@ -28,6 +28,7 @@ const BoardSectionSlider: React.FC<BoardSectionSliderProps> = ({
 }) => {
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const [startX, setStartX] = useState<number>(0);
+  const [lastAlertTime, setLastAlertTime] = useState<number>(0);
 
   const handleMouseDown = (e: React.MouseEvent) => {
     setIsDragging(false);
@@ -89,7 +90,21 @@ const BoardSectionSlider: React.FC<BoardSectionSliderProps> = ({
                     e.preventDefault();
                   } else {
                     e.preventDefault();
-                    alert('준비중입니다');
+                    // 데스크톱에서는 항상 알림 표시, 모바일에서는 중복 방지
+                    if (
+                      typeof window !== 'undefined' &&
+                      'ontouchstart' in window
+                    ) {
+                      // 모바일에서만 중복 방지 로직 적용
+                      const now = Date.now();
+                      if (now - lastAlertTime > 500) {
+                        setLastAlertTime(now);
+                        alert('준비중입니다');
+                      }
+                    } else {
+                      // 데스크톱에서는 항상 알림 표시
+                      alert('준비중입니다');
+                    }
                   }
                 }}
               >
