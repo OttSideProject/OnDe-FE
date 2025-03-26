@@ -123,7 +123,6 @@ const DetailComponent: React.FC<DetailComponentProps> = ({ detailData }) => {
             variant="default"
             iconUrl="/assets/images/icons/collect-box.svg"
             onClick={(e) => goMypage(e)}
-            onTouchStart={(e) => goMypage(e)}
           >
             모아보기
           </Button>

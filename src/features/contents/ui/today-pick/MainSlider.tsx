@@ -108,7 +108,6 @@ const MainSlider: React.FC<MainSliderProps> = ({ slides }) => {
                       text="모아보기"
                       iconUrl="/assets/images/icons/collect-box.svg"
                       onClick={(e) => goMypage(e)}
-                      onTouchStart={(e) => goMypage(e)}
                     >
                       모아보기
                     </Button>
