@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { fetchDetailData } from '@/entities/contents/main/api';
 import { DetailData } from '@/shared/types/contents';
+import { getKoreanContentType } from '@/shared/utils';
 import { Loading } from '../loading';
 import styles from './SearchResultPreview.module.css';
 
@@ -92,13 +93,19 @@ const SearchResultPreview: React.FC<SearchResultPreviewProps> = ({
             {detailData.released && (
               <span className={styles.year}>{detailData.released}</span>
             )}
-            ·
+
             {detailData.runtime && (
-              <span className={styles.runtime}>{detailData.runtime}</span>
+              <>
+                {' '}
+                <span> · </span>
+                <span className={styles.runtime}>{detailData.runtime}</span>
+              </>
             )}
           </div>
           {detailData.ctype && (
-            <span className={styles.type}>{detailData.ctype}</span>
+            <span className={styles.type}>
+              {getKoreanContentType(detailData.ctype)}
+            </span>
           )}
         </figcaption>
       </div>
