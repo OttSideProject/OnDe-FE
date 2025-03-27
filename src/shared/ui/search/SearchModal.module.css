@@ -7,7 +7,7 @@
   justify-content: center;
 }
 
-.modalContent {
+.modalContainer {
   position: absolute;
   top: 0;
   left: 0;
@@ -39,6 +39,7 @@
 }
 
 .recentSearchList {
+  overflow-x: auto;
   display: flex;
   gap: 8px;
   align-items: center;
@@ -50,11 +51,22 @@
   justify-content: space-between;
   align-items: center;
   gap: 5px;
-  background-color: var(--gray750);
+  max-width: 140px;
+  height: 28px;
   padding: 4px 8px 4px 12px;
   border-radius: 16px;
   font-size: 1.4rem;
   color: var(--gray50);
+  background-color: var(--gray750);
+}
+
+.recentSearchItem span {
+  max-width: 90%;
+}
+
+.recentSearchItem img {
+  width: 8px;
+  height: 8px;
 }
 
 .recentSearch {

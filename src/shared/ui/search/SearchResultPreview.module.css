@@ -1,4 +1,15 @@
-.resultItem {
+.previewContainer {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 20px;
+}
+
+.previewContainer h3 {
+  font-family: var(--title-font);
+  font-size: 1.6rem;
+}
+
+.imageContainer {
   display: flex;
   align-items: flex-start;
   gap: 15px;
@@ -6,19 +17,19 @@
   transition: background-color 0.3s ease;
 }
 
-.resultItem img {
+.imageContainer img {
   width: 87px;
   min-width: 87px;
   border-radius: 3.3px;
 }
 
-.resultInfo {
+.contentInfo {
   width: 100%;
   color: var(--primary-white);
   text-align: left;
 }
 
-.resultInfo h4 {
+.title {
   margin: 10px 0;
   font-size: 1.8rem;
 }
@@ -36,19 +47,11 @@
   color: var(--gray300);
 }
 
-.genreContainer {
-  display: flex;
-  flex-wrap: wrap;
-  column-gap: 6px;
-}
-
-.genreButton {
+.type {
   display: inline-block;
   padding: 3px 6px;
   font-size: 1.2rem;
   color: var(--gray100);
   background-color: var(--gray700);
   border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
 }

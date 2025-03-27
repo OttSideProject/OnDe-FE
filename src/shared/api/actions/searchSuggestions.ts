@@ -12,7 +12,13 @@ export type SearchSuggestion = {
 export async function getSearchSuggestions(
   searchTerm: string,
 ): Promise<SearchSuggestion[]> {
-  const response = await fetchSearchContents({ search: searchTerm });
+  // 검색어 전처리: 앞뒤 공백 제거 및 연속된 공백을 하나로 통일
+  const normalizedSearchTerm = searchTerm.trim().replace(/\s+/g, ' ');
+
+  const response = await fetchSearchContents({
+    search: normalizedSearchTerm,
+    id: '',
+  });
   if (!response || !response.content) {
     return [];
   }

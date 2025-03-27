@@ -25,6 +25,7 @@ const SearchResultList = ({
   // 검색 결과가 있을 때 결과 목록 표시
   return (
     <div className={styles.resultsList}>
+      <h3>콘텐츠</h3>
       {results.map((result) => (
         <SearchResultItem
           key={result.contentId}

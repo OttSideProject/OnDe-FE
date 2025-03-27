@@ -8,6 +8,7 @@ import styles from './SearchSuggestions.module.css';
 type SearchSuggestionsProps = {
   searchTerm: string;
   onSelect?: (suggestion: SearchSuggestion) => void;
+  showSuggestions?: boolean;
 };
 
 // 검색어를 강조하는 함수 추가
@@ -44,12 +45,13 @@ const HighlightedText = ({
 const SearchSuggestions = ({
   searchTerm,
   onSelect,
+  showSuggestions = true,
 }: SearchSuggestionsProps) => {
   const [suggestions, setSuggestions] = useState<SearchSuggestion[]>([]);
 
   useEffect(() => {
     const fetchSuggestions = async () => {
-      if (searchTerm.trim()) {
+      if (searchTerm.trim() && showSuggestions) {
         const result = await getSearchSuggestions(searchTerm);
         setSuggestions(result);
       } else {
@@ -57,9 +59,9 @@ const SearchSuggestions = ({
       }
     };
     fetchSuggestions();
-  }, [searchTerm]);
+  }, [searchTerm, showSuggestions]);
 
-  if (!suggestions.length) {
+  if (!suggestions.length || !showSuggestions) {
     return null;
   }
 

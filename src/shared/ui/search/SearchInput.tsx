@@ -3,12 +3,21 @@ import { useRef } from 'react';
 import { useSearchStore } from '@/shared/lib/stores/search';
 import styles from './SearchInput.module.css';
 
-const SearchInput = ({ onSearch }: { onSearch: () => void }) => {
+type SearchInputProps = {
+  onSearch: () => void;
+  onChange?: (value: string) => void;
+};
+
+const SearchInput = ({ onSearch, onChange }: SearchInputProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const { searchTerm, setSearchTerm } = useSearchStore();
 
   const handleSearchTermChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(e.target.value);
+    const newValue = e.target.value;
+    setSearchTerm(newValue);
+    if (onChange) {
+      onChange(newValue);
+    }
   };
 
   return (

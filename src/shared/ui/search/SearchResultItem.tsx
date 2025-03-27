@@ -10,31 +10,39 @@ type SearchResultItemProps = {
 
 const SearchResultItem = ({ result, onClick }: SearchResultItemProps) => {
   return (
-    <button className={styles.resultItem} onClick={onClick}>
-      <Image
-        src={
-          result.contentImg && result.contentImg !== 'NoData'
-            ? result.contentImg
-            : `https://picsum.photos/240/360?random=${result.contentId}`
-        }
-        alt={result.title}
-        width={87}
-        height={128}
-        className={styles.resultImage}
-      />
-      <div className={styles.resultInfo}>
+    <div role="button" className={styles.resultItem} onClick={onClick}>
+      <figure>
+        <Image
+          src={
+            result.contentImg && result.contentImg !== 'NoData'
+              ? result.contentImg
+              : `https://picsum.photos/240/360?random=${result.contentId}`
+          }
+          alt={result.title}
+          width={87}
+          height={128}
+          className={styles.resultImage}
+        />
+      </figure>
+      <figcaption className={styles.resultInfo}>
         <h4>{result.title}</h4>
-        <p>
-          {result.category} |{' '}
+        <div className={styles.metaInfo}>
+          {result.category && <span>{result.category}</span>}
           {result.genres &&
-          Array.isArray(result.genres) &&
-          result.genres.length > 0 &&
-          !result.genres.includes('NoData')
-            ? result.genres.join(', ')
-            : ''}
-        </p>
-      </div>
-    </button>
+            Array.isArray(result.genres) &&
+            result.genres.length > 0 &&
+            !result.genres.includes('NoData') && (
+              <div className={styles.genreContainer}>
+                {result.genres.map((genre, index) => (
+                  <span key={index} className={styles.genreButton}>
+                    {genre}
+                  </span>
+                ))}
+              </div>
+            )}
+        </div>
+      </figcaption>
+    </div>
   );
 };
 

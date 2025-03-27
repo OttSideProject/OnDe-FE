@@ -127,7 +127,7 @@ export type DetailData = {
   imageUrl?: string;
   actors?: string[];
   director?: string;
-  runningTime?: string;
+  runtime?: string;
 };
 
 export type OttPlatform = {

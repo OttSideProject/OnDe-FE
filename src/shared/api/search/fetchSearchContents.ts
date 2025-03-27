@@ -8,6 +8,7 @@ import { SearchContent, SearchContentResponse } from '@/shared/types/contents';
 
 export type FetchSearchParams = {
   search: string;
+  id: string;
 };
 
 const dummyData = (): SearchContent[] => [
@@ -64,10 +65,16 @@ const getResponseData = (
 // 콘텐츠 검색 함수
 export const fetchSearchContents = async ({
   search,
+  id,
 }: FetchSearchParams): Promise<SearchContentResponse> => {
   try {
+    // id가 제공된 경우 해당 ID로 검색 쿼리에 추가
+    const queryParams = id 
+      ? `search=${encodeURIComponent(search)}&contentId=${id}`
+      : `search=${encodeURIComponent(search)}`;
+      
     const response = await PublicApi.post<SearchContentResponse>(
-      `/contents/search?search=${encodeURIComponent(search)}`,
+      `/contents/search?${queryParams}`,
     );
 
     console.log('Search response:', response.data);
