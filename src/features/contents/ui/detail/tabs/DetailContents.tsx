@@ -45,8 +45,8 @@ const DetailContents = ({
   }
 연대별: ${getDecade(detailData.released)}
 ${
-  detailData.runningTime && detailData.runningTime !== 'NoData'
-    ? `러닝타임: ${detailData.runningTime}분`
+  detailData.runtime && detailData.runtime !== 'NoData'
+    ? `러닝타임: ${detailData.runtime}`
     : ''
 }`;
 

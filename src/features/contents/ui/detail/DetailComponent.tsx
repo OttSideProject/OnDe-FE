@@ -69,7 +69,7 @@ const DetailComponent: React.FC<DetailComponentProps> = ({ detailData }) => {
     e.preventDefault();
     const now = Date.now();
     if (now - lastAlertTime < 500) return; // 500ms 내에 중복 알림 방지
-    
+
     setLastAlertTime(now);
     alert('준비중입니다');
     return;
@@ -112,7 +112,7 @@ const DetailComponent: React.FC<DetailComponentProps> = ({ detailData }) => {
                 height={20}
               />
             </span>
-            {detailData.runningTime && `${detailData.runningTime}분`}
+            {detailData.runtime && `${detailData.runtime}`}
           </h2>
           <p className={styles.description}>{detailData.summary}</p>
         </figcaption>
