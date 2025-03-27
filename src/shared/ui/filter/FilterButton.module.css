@@ -40,4 +40,6 @@
   display: flex;
   align-items: center;
   gap: 4px;
+  color: var(--primary-white);
+  font-weight: 700;
 }

@@ -62,6 +62,11 @@
   transition: transform 0.3s ease-in-out;
 }
 
+.rankingItem h4 span {
+  width: 70px;
+  word-break: break-all;
+}
+
 .rankingItem > img {
   width: inherit;
   max-width: inherit;
@@ -117,11 +122,11 @@
 }
 
 .topNumber {
-  color: var(--gray50);
+  color: var(--primary-black);
   text-align: center;
   font-family: var(--title-font);
   -webkit-text-stroke-width: 2.2px;
-  -webkit-text-stroke-color: var(--primary-black);
+  -webkit-text-stroke-color: var(--primary-white);
   font-size: 4rem;
   font-weight: 800;
 }

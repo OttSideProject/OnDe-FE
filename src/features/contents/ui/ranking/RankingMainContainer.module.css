@@ -97,6 +97,11 @@
   -o-border-radius: inherit;
 }
 
+.rankingItem h4 span {
+  max-width: 70px;
+  word-break: keep-all;
+}
+
 .rankingItem > img {
   position: relative;
   width: inherit;

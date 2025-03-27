@@ -4,11 +4,11 @@
   height: 100%;
   min-height: 32px;
   padding: 10px 16px;
-  border-radius: 10px;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  -ms-border-radius: 10px;
-  -o-border-radius: 10px;
+  border-radius: 100px;
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+  -ms-border-radius: 100px;
+  -o-border-radius: 100px;
   background-color: var(--gray780);
   filter: grayscale(1);
 }

@@ -42,7 +42,7 @@ Api.interceptors.response.use(
       } catch (refreshError) {
         console.error('🔴 refresh-token도 만료 로그아웃 필요');
         localStorage.removeItem('Access-Token');
-        location.href = '/login';
+        location.href = '/users/login';
         return Promise.reject(refreshError);
       }
     }
