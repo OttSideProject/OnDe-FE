@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     images: {
       url: 'https://www.ondemandia.com/assets/images/ond-open-graph.png',
     },
-    url: 'https://www.ondemandia.com/contents/main',
+    url: 'https://www.ondemandia.com',
     type: 'website',
   },
 };

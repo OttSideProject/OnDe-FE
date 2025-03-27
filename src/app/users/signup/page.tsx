@@ -178,7 +178,7 @@ const SignupProcess = () => {
             console.log('회원가입 완료:', response.data);
             alert('가입이 완료되었습니다!');
             setTimeout(() => {
-              location.href = '/contents/main';
+              location.href = '/';
             }, 1000);
           })
           .catch((error) => {
@@ -241,7 +241,7 @@ const SignupProcess = () => {
               <img
                 src="/assets/images/icons/iconamoon_close-light.svg"
                 alt="메인으로"
-                onClick={() => (location.href = '/contents/main')}
+                onClick={() => (location.href = '/')}
                 width={20}
                 height={20}
               />

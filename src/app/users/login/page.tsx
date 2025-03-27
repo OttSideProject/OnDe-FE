@@ -38,17 +38,16 @@ export default function LoginForm() {
         // 로그인한 사용자 아이디를 localStorage에 저장
         // debugger
         const userId = formData.userId;
-        localStorage.setItem('userId', userId);  
+        localStorage.setItem('userId', userId);
 
         // API 요청 시 자동으로 Access-Toke 헤더 포함
         Api.defaults.headers.common['Access-Token'] = `${accessToken}`;
 
-
         const avatarOptions = [
-          "profile-angry.png",
-          "profile-dizzy.png",
-          "profile-girl.png",
-          "profile-glasses.png",
+          'profile-angry.png',
+          'profile-dizzy.png',
+          'profile-girl.png',
+          'profile-glasses.png',
         ];
 
         const setCookie = (name: string, value: string, days = 30) => {
@@ -58,18 +57,19 @@ export default function LoginForm() {
         };
 
         const getCookie = (name: string) => {
-          const cookies = document.cookie.split("; ");
+          const cookies = document.cookie.split('; ');
           const cookie = cookies.find((row) => row.startsWith(`${name}=`));
-          return cookie ? cookie.split("=")[1] : null;
+          return cookie ? cookie.split('=')[1] : null;
         };
 
         // 쿠키에서 avatar 가져오기, 없으면 랜덤으로 설정 후 쿠키에 저장
         const getAvatarFromCookie = () => {
-          let avatar = getCookie("userAvatar");
+          let avatar = getCookie('userAvatar');
           if (!avatar) {
             // 쿠키에 없으면 랜덤으로 선택 후 쿠키에 저장
-            avatar = avatarOptions[Math.floor(Math.random() * avatarOptions.length)];
-            setCookie("userAvatar", avatar);
+            avatar =
+              avatarOptions[Math.floor(Math.random() * avatarOptions.length)];
+            setCookie('userAvatar', avatar);
           }
           return `/assets/images/${avatar}`;
         };
@@ -77,9 +77,9 @@ export default function LoginForm() {
         const avatar = getAvatarFromCookie();
 
         // 로그인 성공
-        alert('로그인에 성공했습니다!');
+        // alert('로그인에 성공했습니다!');
         setTimeout(() => {
-          location.href = '/contents/main';
+          location.href = '/';
         }, 1000);
       })
       .catch((error) => {
@@ -123,7 +123,10 @@ export default function LoginForm() {
       <Link
         onClick={() => {
           location.href = '/users/signup';
-        }}>회원가입 하기</Link>
+        }}
+      >
+        회원가입 하기
+      </Link>
       <SocialContainer>
         <div>
           <i></i>
