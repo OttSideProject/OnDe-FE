@@ -94,7 +94,6 @@ const SearchModal = () => {
     router.push(`/contents/detail/${result.contentId}`);
   };
 
-  // 검색 제안 선택 시 해당 콘텐츠만 결과 페이지에 표시
   const handleSuggestionSelect = async (suggestion: SearchSuggestion) => {
     // 자동 저장이 켜진 상태이면 검색어 저장
     if (autoSaveIndex === 1) {
