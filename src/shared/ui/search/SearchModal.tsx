@@ -7,7 +7,7 @@ import { useSearchStore } from '@/shared/lib/stores/search';
 import { fetchSearchContents } from '@/shared/api/search';
 import { FetchSearchParams } from '@/shared/api/search/fetchSearchContents';
 import { SearchSuggestion } from '@/shared/api/actions/searchSuggestions';
-import { SearchContent, SearchContentResponse } from '@/shared/types/contents';
+import { SearchContent } from '@/shared/types/contents/contents';
 import SearchInput from './SearchInput';
 import SearchResultList from './SearchResultList';
 import SearchSuggestions from './SearchSuggestions';
@@ -16,7 +16,7 @@ import TypeButton from './TypeButton';
 import styles from './SearchModal.module.css';
 
 const SearchModal = () => {
-  const [autoSaveIndex, setAutoSaveIndex] = useState(0);
+  const [autoSaveIndex, setAutoSaveIndex] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
 
   // 모달 스토어에서 필요한 상태와 액션 가져오기
@@ -50,11 +50,41 @@ const SearchModal = () => {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const autoSaveValue = localStorage.getItem('autoSaveSearch');
-      if (autoSaveValue) {
+      if (autoSaveValue === null) {
+        localStorage.setItem('autoSaveSearch', '1');
+        setAutoSaveIndex(1);
+      } else {
         setAutoSaveIndex(parseInt(autoSaveValue, 10));
       }
+
+      // 디버깅용: 로컬 스토리지 내용 확인
+      console.log('Auto Save Setting:', autoSaveValue);
+      console.log('Recent Searches:', localStorage.getItem('search-storage'));
+
+      // 로컬 스토리지에서 최근 검색어 로드
+      try {
+        const storageData = localStorage.getItem('search-storage');
+        if (storageData) {
+          const parsedData = JSON.parse(storageData);
+          const storedSearches = parsedData.state?.recentSearches || [];
+
+          // Zustand 스토어에 최근 검색어 설정
+          if (storedSearches.length > 0 && Array.isArray(storedSearches)) {
+            console.log('로컬 스토리지에서 최근 검색어 로드:', storedSearches);
+
+            // 각 검색어를 개별적으로 추가
+            storedSearches.forEach((term: string) => {
+              if (term && term.trim() !== '') {
+                addRecentSearch(term);
+              }
+            });
+          }
+        }
+      } catch (error) {
+        console.error('로컬 스토리지에서 최근 검색어 로드 중 오류:', error);
+      }
     }
-  }, []);
+  }, [addRecentSearch]);
 
   // 검색 모달이 열릴 때 초기 상태로 설정
   useEffect(() => {
@@ -86,8 +116,42 @@ const SearchModal = () => {
     try {
       setIsLoading(true);
       // 검색어 저장 (자동 저장 설정이 켜져 있을 때만)
-      if (autoSaveIndex === 1) {
+      if (autoSaveIndex === 1 && searchTerm.trim()) {
+        console.log('최근 검색어 저장 시도:', searchTerm);
+
+        // Zustand 스토어의 addRecentSearch 함수 직접 호출
         addRecentSearch(searchTerm);
+
+        // 디버깅용: 저장 후 로컬 스토리지 확인 (1초 후 확인)
+        setTimeout(() => {
+          const storageData = localStorage.getItem('search-storage');
+          console.log('저장 후 로컬 스토리지 내용:', storageData);
+
+          // 로컬 스토리지에 직접 저장 (백업 메커니즘)
+          if (!storageData || !storageData.includes(searchTerm)) {
+            console.log('로컬 스토리지에 저장되지 않음, 직접 저장 시도');
+            try {
+              const currentData = storageData
+                ? JSON.parse(storageData)
+                : { state: { recentSearches: [] }, version: 0 };
+              const currentSearches = currentData.state?.recentSearches || [];
+              const filteredSearches = currentSearches.filter(
+                (item: string) => item !== searchTerm,
+              );
+              const newSearches = [searchTerm, ...filteredSearches].slice(0, 5);
+
+              const newData = {
+                state: { recentSearches: newSearches },
+                version: 0,
+              };
+
+              localStorage.setItem('search-storage', JSON.stringify(newData));
+              console.log('직접 저장 완료:', newData);
+            } catch (error) {
+              console.error('로컬 스토리지 직접 저장 중 오류:', error);
+            }
+          }
+        }, 1000);
       }
 
       // 검색 API 호출
@@ -98,11 +162,11 @@ const SearchModal = () => {
       const response = await fetchSearchContents(params);
 
       // 응답 구조에 따라 적절히 처리
-      if (response && Array.isArray(response.content)) {
-        setSearchResults(response.content);
+      if (response && Array.isArray(response)) {
+        setSearchResults(response);
 
         // 검색 결과가 있으면 제안 리스트 숨김
-        if (response.content.length > 0) {
+        if (response.length > 0) {
           setShowSuggestionList(false);
         }
       } else {
@@ -185,9 +249,7 @@ const SearchModal = () => {
           </div>
         </div>
         <div className={styles.modalBody}>
-          {isLoading && (
-            <div className={styles.loadingIndicator}>검색 중...</div>
-          )}
+          {isLoading && <p className={styles.loadingIndicator}>검색 중...</p>}
 
           {/* 검색어가 없고 검색 결과도 없을 때 초기 UI 표시 */}
           {showInitialUI && (
@@ -281,7 +343,7 @@ const SearchModal = () => {
 
           {/* 프리뷰가 비활성화되었을 때만 검색 결과 표시 */}
           {!showPreview && showResultsContainer && (
-            <div className={styles.searchResultsContainer}>
+            <div className={`${styles.searchResultsContainer} scrollbar`}>
               <SearchResultList
                 results={searchResults}
                 onResultClick={handleResultClick}
