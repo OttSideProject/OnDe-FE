@@ -1,5 +1,7 @@
 .suggestionsContainer {
   padding: 16px;
+  max-height: calc(100vh - 120px); /* 헤더 높이와 여백을 고려한 값 */
+  overflow-y: auto;
 }
 
 .suggestionsContainer h3 {
@@ -12,6 +14,7 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+  padding-bottom: 16px; /* 하단 여백 추가 */
 }
 
 .suggestionItem {
@@ -28,6 +31,10 @@
 .suggestionItem:hover {
   background-color: var(--gray700);
   border-radius: 8px;
+}
+
+.suggestionItem span {
+  word-break: keep-all;
 }
 
 .suggestionItem img {

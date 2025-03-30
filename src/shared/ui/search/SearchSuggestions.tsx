@@ -66,7 +66,7 @@ const SearchSuggestions = ({
   }
 
   return (
-    <div className={styles.suggestionsContainer}>
+    <div className={`${styles.suggestionsContainer} scrollbar`}>
       <ul className={styles.suggestionsList}>
         {suggestions.map((suggestion, index) => (
           <li

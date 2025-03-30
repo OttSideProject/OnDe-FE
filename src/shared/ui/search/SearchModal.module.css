@@ -5,6 +5,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  max-width: 600px;
+  min-width: 320px;
+  min-height: 100%;
+  margin: 0 auto;
 }
 
 .modalContainer {
@@ -188,4 +192,9 @@
 .noResults p {
   margin: 10px 0;
   font-size: 1.4rem;
+}
+
+.searchResultsContainer {
+  max-height: calc(100vh - 120px); /* 헤더 높이와 여백을 고려한 값 */
+  overflow-y: auto;
 }

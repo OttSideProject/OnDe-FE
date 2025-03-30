@@ -2,6 +2,8 @@
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   gap: 20px;
+  width: 100%;
+  padding-bottom: 20px; /* 하단 여백 추가 */
 }
 
 .resultsList h3 {
