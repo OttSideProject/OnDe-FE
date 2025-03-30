@@ -32,7 +32,10 @@ const initializeStorage = () => {
   if (typeof window !== 'undefined') {
     // 로컬 스토리지에 search-storage 키가 없으면 초기화
     if (!localStorage.getItem('search-storage')) {
-      localStorage.setItem('search-storage', JSON.stringify({ state: { recentSearches: [] }, version: 0 }));
+      localStorage.setItem(
+        'search-storage',
+        JSON.stringify({ state: { recentSearches: [] }, version: 0 }),
+      );
     }
   }
 };
@@ -50,67 +53,83 @@ export const useSearchStore = create<SearchStore>()(
       showPreview: false,
       showSuggestionList: true,
       selectedContentId: null,
-      
+
       // 최근 검색어 추가 함수
       addRecentSearch: (term: string) => {
         if (term.trim() === '') return;
-        
+
         // 현재 상태 가져오기
         const currentState = get();
         const currentSearches = currentState.recentSearches;
-        
+
         // 중복 제거 및 최신 검색어를 맨 앞으로
-        const filteredSearches = currentSearches.filter(item => item !== term);
+        const filteredSearches = currentSearches.filter(
+          (item) => item !== term,
+        );
         const newSearches = [term, ...filteredSearches].slice(0, 5);
-        
+
         console.log('최근 검색어 추가:', term);
         console.log('새 최근 검색어 목록:', newSearches);
-        
+
         // 상태 업데이트
         set({ recentSearches: newSearches });
-        
+
         // 로컬 스토리지에 직접 저장 (디버깅용)
         if (typeof window !== 'undefined') {
           const storageData = {
             state: { recentSearches: newSearches },
-            version: 0
+            version: 0,
           };
           localStorage.setItem('search-storage', JSON.stringify(storageData));
           console.log('로컬 스토리지에 직접 저장:', storageData);
         }
       },
-      
+
       removeRecentSearch: (term: string) =>
         set((state) => ({
           recentSearches: state.recentSearches.filter((item) => item !== term),
         })),
-        
+
       setSearchTerm: (term: string) => set({ searchTerm: term }),
-      
+
       setSearchResults: (results: SearchContent[]) =>
         set({ searchResults: results }),
-        
+
       clearResults: () => set({ searchResults: [] }),
-      
+
       clearRecentSearches: () => set({ recentSearches: [] }),
-      
+
       setIsTyping: (isTyping: boolean) => set({ isTyping }),
-      
+
       setShowPreview: (show: boolean) => set({ showPreview: show }),
-      
-      setShowSuggestionList: (show: boolean) => set({ showSuggestionList: show }),
-      
-      setSelectedContentId: (id: string | null) => set({ selectedContentId: id }),
-      
-      handleSuggestionSelect: (suggestion: SearchSuggestion) =>
+
+      setShowSuggestionList: (show: boolean) =>
+        set({ showSuggestionList: show }),
+
+      setSelectedContentId: (id: string | null) =>
+        set({ selectedContentId: id }),
+
+      handleSuggestionSelect: (suggestion: SearchSuggestion) => {
+        // 현재 상태 가져오기
+        const currentState = get();
+
+        // 새 상태 설정
         set({
           showSuggestionList: false,
           selectedContentId: suggestion.id,
           showPreview: true,
           searchTerm: suggestion.title,
           isTyping: false,
-        }),
-        
+        });
+
+        // 검색어 저장 추가 (중요: set 이후에 호출해야 함)
+        if (suggestion.title.trim()) {
+          // 최신 상태에서 addRecentSearch 함수 직접 호출
+          get().addRecentSearch(suggestion.title);
+          console.log('제안 선택에서 검색어 저장:', suggestion.title);
+        }
+      },
+
       resetSearchState: () =>
         set({
           searchTerm: '',
