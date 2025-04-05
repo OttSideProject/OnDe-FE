@@ -75,27 +75,31 @@ const RankingPage: React.FC = () => {
     isLoading,
     fetchRankingData,
     fetchNextPage,
-    hasNextPage
+    hasNextPage,
   } = useRankingStore();
 
   // 컴포넌트 마운트 시 스토어 초기화 및 데이터 로드
   useEffect(() => {
     console.log('Page: Initializing ranking store');
     initialize();
-    
+
     // 초기 데이터 로드
     fetchRankingData('');
   }, [initialize, fetchRankingData]);
 
   // 데이터 로드 상태 변경 시 전역 로딩 상태 업데이트
   useEffect(() => {
-    console.log('Page: Data load status changed:', { 
-      isLoading, 
-      hasData: rankingData?.length && rankingData[0].content.length > 0
+    console.log('Page: Data load status changed:', {
+      isLoading,
+      hasData: rankingData?.length && rankingData[0].content.length > 0,
     });
-    
+
     // 필터링된 데이터 콘솔에 출력
-    if (!isLoading && rankingData?.length && rankingData[0].content.length > 0) {
+    if (
+      !isLoading &&
+      rankingData?.length &&
+      rankingData[0].content.length > 0
+    ) {
       console.log('========== 필터링된 데이터 ==========');
       console.log('현재 카테고리:', currentCategory);
       console.log('데이터 상태:', dataState);
@@ -104,7 +108,7 @@ const RankingPage: React.FC = () => {
       console.log('첫 페이지 콘텐츠 전체:', rankingData[0].content);
       console.log('====================================');
     }
-    
+
     // 전역 로딩 상태 업데이트
     setIsLoading(isLoading);
   }, [rankingData, isLoading, currentCategory, setIsLoading]);
@@ -139,10 +143,10 @@ const RankingPage: React.FC = () => {
     const handleOTTSelectedEvent = (event: CustomEvent<string[]>) => {
       const otts = event.detail;
       console.log('OTT selected event received:', otts);
-      
+
       // OTT 선택 처리
       handleOttSelected(otts);
-      
+
       // 데이터 강제 리페치 - fetchNextPage 대신 fetchRankingData 사용
       setTimeout(() => {
         console.log('Forcing data refetch for categories:', otts);
@@ -169,10 +173,13 @@ const RankingPage: React.FC = () => {
   // 현재 카테고리 변경 시 데이터 리페치
   useEffect(() => {
     if (currentCategory) {
-      console.log('Page: Current category changed, refetching data:', currentCategory);
+      console.log(
+        'Page: Current category changed, refetching data:',
+        currentCategory,
+      );
       // 데이터 상태를 로딩으로 명시적 설정
       handleDataStateChange(false, true, currentCategory);
-      
+
       // 데이터 강제 리페치 - fetchNextPage 대신 fetchRankingData 사용
       setTimeout(() => {
         // 현재 카테고리로 데이터 다시 가져오기
@@ -212,10 +219,6 @@ const RankingPage: React.FC = () => {
             <RankingMainContainer
               category={currentCategory}
               getImageSrc={getImageSrc}
-              onDataStateChange={(dataExists, loading) => {
-                console.log('RankingMainContainer data state change:', { dataExists, loading });
-                handleDataStateChange(dataExists, loading, currentCategory);
-              }}
             />
             <RankingTabContents
               getImageSrc={getImageSrc}

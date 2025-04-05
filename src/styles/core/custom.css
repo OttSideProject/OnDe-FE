@@ -58,6 +58,17 @@
   height: 200px;
 }
 
+/* ranking sub main slider */
+.ranking-sub-main .slick-list {
+  width: 431px;
+  height: 168px;
+  padding-left: 26px;
+}
+
+.ranking-sub-main .slick-slide {
+  width: 147px !important;
+}
+
 @media screen and (max-width: 500px) and (min-width: 481px) {
   .section-slider .slick-list {
     width: 1280px;

@@ -98,8 +98,8 @@ const RankingSubListContainer: React.FC<RankingSubListContainerProps> = ({
   return (
     <div className={styles.container}>
       <SubHeader
-        imageTitle="지금 가장 HOT한 콘텐츠"
-        imagePath={getImageSrc('지금 가장 HOT한 콘텐츠', 'ranking')}
+        imageTitle="4위 이하 콘텐츠 랭킹"
+        imagePath={getImageSrc('4위 이하 콘텐츠 랭킹', 'ranking')}
         isImageRequired={true}
       />
       <div className={styles.rankingContainer}>

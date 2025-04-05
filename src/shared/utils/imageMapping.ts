@@ -2,7 +2,7 @@ type ImageMapping = {
   contentMain: { [key: string]: string };
   ranking: { [key: string]: string };
   recommended: { [key: string]: string };
-	type: { [key: string]: string };
+  type: { [key: string]: string };
 };
 
 export const imageMapping: ImageMapping = {
@@ -20,6 +20,9 @@ export const imageMapping: ImageMapping = {
   ranking: {
     '지금 가장 HOT한 콘텐츠': '/assets/images/sub_titles/ranking-hot.svg',
     '전체 콘텐츠 랭킹': '/assets/images/sub_titles/ranking-all.svg',
+    '콘텐츠 필터 기준 TOP 3':
+      '/assets/images/sub_titles/content-filter-top3.svg',
+    '4위 이하 콘텐츠 랭킹': '/assets/images/sub_titles/ranking4-and-below.svg',
     // ... 모든 ranking 매핑 추가
   },
   recommended: {
