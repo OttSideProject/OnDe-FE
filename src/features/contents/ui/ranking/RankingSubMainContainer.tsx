@@ -108,7 +108,7 @@ const RankingSubMainContainer: React.FC<RankingSubMainContainerProps> = ({
   return (
     <>
       <SubHeader
-        imageTitle="콘텐츠 필터 기준 TOP 3"
+        imageTitle="콘텐츠 필터 기준 TOP 3 "
         imagePath={getImageSrc('콘텐츠 필터 기준 TOP 3', 'ranking')}
         isImageRequired={true}
       />
