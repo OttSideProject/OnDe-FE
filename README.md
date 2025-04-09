@@ -90,7 +90,7 @@ https://github.com/OttSideProject/OnDe-FE/pulls
 [**Next.js와 React-Slick을 이용한 슬라이더 드래그 문제 해결하기**](https://tomorrowcho.notion.site/Next-js-React-Slick-1281c66258d480f3b893c7f72a00d1e3?pvs=4)
 
 
-## 배포
+## 배포 (보안그룹 이슈로 일시 중단)
 https://www.ondemandia.com
 
 ## 프로젝트 구조 (Tree)
