@@ -5,14 +5,14 @@ import styles from './OTTSelector.module.css';
 const otts = ['netflix', 'tving', 'wavve', 'watcha']; // 플랫폼 리스트
 
 type OTTSelectorProps = {
-  // 활성화 된 OTT
-  activeOTT: string | null;
+  // 활성화 된 OTT 목록 (여러 개 선택 가능)
+  activeOTTs: string[];
   // OTT 플랫폼 선택 시 호출되는 콜백 함수
   onSelectOTT: (ott: string) => void;
 };
 
 const OTTSelector: React.FC<OTTSelectorProps> = ({
-  activeOTT,
+  activeOTTs,
   onSelectOTT,
 }) => {
   return (
@@ -21,7 +21,7 @@ const OTTSelector: React.FC<OTTSelectorProps> = ({
         <OTTButton
           key={ott} // 각 버튼에 고유 key 지정
           ott={ott}
-          isActive={activeOTT === ott} // 활성화 상태 전달
+          isActive={activeOTTs.includes(ott)} // 배열에 포함되어 있는지 확인
           onClick={()=> onSelectOTT(ott)} // 이벤트 핸들러를 상위에서 받아서 전달
         />
       ))}

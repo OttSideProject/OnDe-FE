@@ -8,10 +8,24 @@ type OTTButtonProps = {
 };
 
 const OTTButton: React.FC<OTTButtonProps> = ({ ott, isActive, onClick }) => {
+  // 클릭 이벤트 핸들러 수정
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    // 기본 이벤트 동작 방지
+    e.preventDefault();
+    e.stopPropagation();
+    
+    // 디버깅 로그
+    console.log('OTT Button clicked:', ott, 'isActive:', isActive);
+    
+    // 즉시 onClick 호출
+    onClick(ott);
+  };
+
   return (
     <button
+      type="button" // 명시적으로 button 타입 지정
       className={`${styles.ottBtn} ${isActive ? `${styles.active}` : ''}`}
-      onClick={() => onClick(ott)}
+      onClick={handleClick}
       aria-pressed={isActive} // 스크린 리더에 활성/비활성 상태 전달
       style={{
         backgroundImage: `url(/assets/images/ott_logos/${ott}-logo${

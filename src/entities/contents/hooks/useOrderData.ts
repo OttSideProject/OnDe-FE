@@ -1,13 +1,11 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { fetchOrder } from '@/entities/contents/main';
-import { OrderResponse } from '@/_types/contents';
+import { OrderResponse } from '@/shared/types/contents';
 
 export const useOrderData = (order: string) => {
   return useInfiniteQuery<OrderResponse, Error>({
-    queryKey: ['order'],
-    queryFn: async ({ pageParam = 0, queryKey }) => {
-      const [_, order] = queryKey;
-      console.log('order', order);
+    queryKey: ['order', order],
+    queryFn: async ({ pageParam = 0 }) => {
       return await fetchOrder({
         order: order as string,
         nowPage: pageParam as number,
@@ -15,7 +13,7 @@ export const useOrderData = (order: string) => {
       });
     },
     getNextPageParam: (lastPage) => {
-      return lastPage.page.number < lastPage.page.totalPages
+      return lastPage.page.number < lastPage.page.totalPages - 1
         ? lastPage.page.number + 1
         : undefined;
     },

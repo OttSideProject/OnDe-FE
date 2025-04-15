@@ -1,5 +1,5 @@
 import { PublicApi, type AxiosResponse, AxiosHeaders } from '@/api/core';
-import { DetailData } from '@/_types/contents';
+import { DetailData } from '@/shared/types/contents';
 
 export const getDummyData = (): DetailData => ({
   contentId: 'C_1450489',
@@ -13,7 +13,7 @@ export const getDummyData = (): DetailData => ({
   imageUrl: 'https://picsum.photos/375/375?random=1',
   // actors: ['도하석', '김예운', '조윤우', '고민주', '신혜원'],
   // director: '피트 닥터',
-  runningTime: '96',
+  runtime: '96',
 });
 
 export const fetchDetailData = async (

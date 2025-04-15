@@ -1,4 +1,4 @@
-import { BoardSectionStore } from '@/_types/contents';
+import { BoardSectionStore } from '@/shared/types/contents';
 import { fetchBoardSection } from '@/entities/contents/main';
 
 export const boardSectionService = {

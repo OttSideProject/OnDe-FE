@@ -1,6 +1,6 @@
 // fetchOrder.ts
 import { PublicApi, type AxiosResponse } from '@/api/core';
-import { OrderContent, OrderResponse } from '@/_types/contents';
+import { OrderContent, OrderResponse } from '@/shared/types/contents';
 
 export type FetchOrderParams = {
   order: string;
@@ -49,7 +49,12 @@ const getResponseData = (
   }
 
   return {
-    ...response,
+    data: {
+      content: response.data.content.map((item: OrderContent) => ({
+        ...item,
+      })),
+      page: response.data.page
+    },
     content: response.data.content.map((item: OrderContent) => ({
       ...item,
     })),
@@ -57,11 +62,15 @@ const getResponseData = (
   };
 };
 
+let callCount = 0;
+
 export const fetchOrder = async ({
   order,
   nowPage = 0,
   pageCount = 20,
 }: FetchOrderParams): Promise<OrderResponse> => {
+  callCount++;
+  console.log('fetchOrder called - Total calls: ', callCount);
   try {
     const response = await PublicApi.post<OrderResponse>(
       `/contents/category?order=${encodeURIComponent(
@@ -74,8 +83,18 @@ export const fetchOrder = async ({
   } catch (error) {
     console.error('API 호출 중 오류 발생:', error);
 
+    const dummyContent = dummyData();
     return {
-      content: dummyData(),
+      data: {
+        content: dummyContent,
+        page: {
+          size: 20,
+          number: 0,
+          totalElements: dummyContent.length,
+          totalPages: Math.ceil(dummyContent.length / 20)
+        }
+      },
+      content: dummyContent,
       page: {
         size: 20,
         number: 0,

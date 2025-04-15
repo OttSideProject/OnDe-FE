@@ -2,18 +2,28 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { Ranking } from '@/_types/contents';
+import { Ranking } from '@/shared/types/contents';
+import { ageImage } from '@/shared/utils';
 
 import styles from './ImageSubList.module.css';
 
 const ImageSubList: React.FC<{ content: Ranking[] }> = ({ content }) => {
+  // RankingSubListContainer에서 이미 빈 데이터 처리를 하므로 여기서는 단순히 데이터를 표시만 합니다.
   return (
     <div className={styles.list}>
       {content.map((rank, index) => (
-        <div key={`${rank.contentId}-${index}`} className={styles.cardLink}>
+        <Link
+          href={`/contents/detail/${rank.contentId}`}
+          key={`${rank.contentId}-${index}`}
+          className={styles.cardLink}
+        >
           <figure className={styles.rankingItem}>
             <img
-              src={`https://picsum.photos/375/375?random=${rank.contentId}`}
+              src={
+                rank.contentImg && rank.contentImg !== 'NoData'
+                  ? rank.contentImg
+                  : `https://picsum.photos/375/375?random=${rank.contentId}`
+              }
               alt={rank.title}
               width={110}
               height={160}
@@ -21,10 +31,17 @@ const ImageSubList: React.FC<{ content: Ranking[] }> = ({ content }) => {
             <figcaption>
               <h3>{rank.title}</h3>
               <h4>
-                <span>{rank.genres.join(' · ')}</span>
-                {rank.ageImage && (
+                <span>
+                  {rank.genres &&
+                  Array.isArray(rank.genres) &&
+                  rank.genres.length > 0 &&
+                  !rank.genres.includes('NoData')
+                    ? rank.genres.join(' · ')
+                    : ''}
+                </span>
+                {rank.ageImage && rank.ageImage !== 'NoData' && (
                   <Image
-                    src={rank.ageImage} // age는 이제 이미지 URL
+                    src={ageImage(rank.age, 'shared')}
                     alt="Age restriction"
                     width={20}
                     height={20}
@@ -36,7 +53,7 @@ const ImageSubList: React.FC<{ content: Ranking[] }> = ({ content }) => {
               <strong className={styles.topNumber}>{rank.rank}</strong>
             </div>{' '}
           </figure>
-        </div>
+        </Link>
       ))}
     </div>
   );

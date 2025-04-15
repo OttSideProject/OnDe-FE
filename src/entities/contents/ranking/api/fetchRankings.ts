@@ -1,6 +1,6 @@
 import { PublicApi } from '@/api/core';
 import { fetchers } from '@/__mocks__/helpers/fetchers';
-import { RankingsResponse } from '@/_types/contents';
+import { RankingsResponse } from '@/shared/types/contents';
 
 export const fetchRankings = async (
   type: string,

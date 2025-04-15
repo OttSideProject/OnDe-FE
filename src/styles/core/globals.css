@@ -276,6 +276,13 @@ textarea:focus:not(:focus-visible) {
   background-color: var(--gray500);
 }
 
+/* disabled */
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
 /* 반응형 */
 @media (min-width: 576px) {
   body {

@@ -3,14 +3,14 @@
 /* Components */
 import { Header } from '@/features/contents/ui/header';
 import { useImageMapping } from '@/entities/contents/hooks';
-import { StatusBar } from '@/features/shared/ui/status-bar';
+import { StatusBar } from '@/shared/ui/status-bar';
 import {
   RecommendedListContainer,
   RecommendedMainSlider,
 } from '@/features/contents/ui/recommended';
 
 /* Types */
-import { Slide, RecommendedSectionSlide } from '@/_types/contents';
+import { Slide, RecommendedSectionSlide } from '@/shared/types/contents';
 
 /* Styles */
 import styles from './page.module.css';
@@ -22,6 +22,8 @@ const iconUrlList = [
   '/assets/images/icons/alert-icon.svg',
   '/assets/images/icons/find-icon.svg',
 ];
+
+const iconTypes = ['alert', 'search'];
 
 const recommendedSections: RecommendedSectionSlide[] = [
   {
@@ -82,6 +84,7 @@ const RecommendedPage: React.FC = () => {
         <StatusBar
           statusText="추천"
           iconUrlList={iconUrlList}
+          iconTypes={iconTypes}
           pageType="recommended"
         />
         <div>

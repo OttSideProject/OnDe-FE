@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 
-import { ClientLayout, MSWInitializer } from '@/features/shared/lib';
+import { ClientLayout, MSWInitializer } from '@/shared/lib';
 
-import { Navigation } from '@/features/shared/ui';
+import { Navigation } from '@/shared/ui';
 
 import '@/styles/core/globals.css';
 import '@/styles/core/custom.css'; /* 슬라이더 커스텀 css */
@@ -37,6 +37,25 @@ export const metadata: Metadata = {
   description:
     '쉽고 간편한 검색과 다양한 추천 서비스를 제공하는 OTT 정보 플랫폼 서비스입니다. ',
   icons: '/favicon.svg',
+  keywords: [
+    'ONDE',
+    'OND',
+    '온 세상 모든 온-디',
+    '온디',
+    'OTT 큐레이션',
+    'ott 정보 사이트',
+  ],
+  openGraph: {
+    title: '당신이 필요한 콘텐츠를 ON!',
+    description:
+      '쉽고 간편한 검색과 다양한 추천 서비스를 제공하는 OTT 정보 플랫폼 서비스입니다.',
+    siteName: 'OnD',
+    images: {
+      url: 'https://www.ondemandia.com/assets/images/ond-open-graph.png',
+    },
+    url: 'https://www.ondemandia.com',
+    type: 'website',
+  },
 };
 
 export default function RootLayout({

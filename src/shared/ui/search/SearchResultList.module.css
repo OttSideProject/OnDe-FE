@@ -1,0 +1,26 @@
+.resultsList {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 20px;
+  width: 100%;
+  padding-bottom: 20px; /* 하단 여백 추가 */
+}
+
+.resultsList h3 {
+  font-family: var(--title-font);
+  font-size: 1.6rem;
+}
+
+.noResults {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  text-align: center;
+  color: var(--gray300);
+}
+
+.noResults p {
+  margin: 10px 0;
+  font-size: 1.4rem;
+}

@@ -3,12 +3,12 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { ageImage } from '@/features/shared/utils/ageImage';
+import { ageImage } from '@/shared/utils/ageImage';
 import Slider from 'react-slick';
 
-import { Button } from '@/features/shared/ui/button-group';
+import { Button } from '@/shared/ui/button-group';
 
-import { TodayPickContent } from '@/_types/contents';
+import { TodayPickContent } from '@/shared/types/contents';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -20,6 +20,7 @@ export type MainSliderProps = {
 
 const MainSlider: React.FC<MainSliderProps> = ({ slides }) => {
   const [activeSlide, setActiveSlide] = useState<number>(0);
+  const [lastAlertTime, setLastAlertTime] = useState<number>(0);
 
   const settings = {
     dots: true,
@@ -35,8 +36,14 @@ const MainSlider: React.FC<MainSliderProps> = ({ slides }) => {
 
   const router = useRouter();
 
-  const goMypage = () => {
-    router.push('/users/mypage');
+  const goMypage = (e: React.MouseEvent | React.TouchEvent) => {
+    e.preventDefault();
+    const now = Date.now();
+    if (now - lastAlertTime < 500) return; // 500ms 내에 중복 알림 방지
+
+    setLastAlertTime(now);
+    alert('준비중입니다');
+    return;
   };
 
   const goLink = (id: string) => {
@@ -48,11 +55,7 @@ const MainSlider: React.FC<MainSliderProps> = ({ slides }) => {
       <div className={styles.slider}>
         <Slider {...settings}>
           {slides.map((slide, index) => (
-            <div
-              key={index}
-              className={styles.cardLink}
-              onClick={() => goLink(slide.contentId)}
-            >
+            <div key={index} className={styles.cardLink}>
               <figure
                 className={`${styles.slide} ${
                   activeSlide === index ? styles.activeSlide : ''
@@ -60,8 +63,9 @@ const MainSlider: React.FC<MainSliderProps> = ({ slides }) => {
               >
                 <Image
                   src={
-                    slide.contentImg ||
-                    `https://picsum.photos/240/360?random=${index}`
+                    slide.contentImg && slide.contentImg !== 'NoData'
+                      ? slide.contentImg
+                      : `https://picsum.photos/240/360?random=${index}`
                   }
                   alt={`Slide ${slide.contentId}`}
                   width={238}
@@ -72,12 +76,23 @@ const MainSlider: React.FC<MainSliderProps> = ({ slides }) => {
                     <h3>{slide.title}</h3>
                     <h4>
                       <span>
-                        {slide.genres ? slide.genres.join(' · ') : ''} ·
+                        {slide.genres &&
+                        Array.isArray(slide.genres) &&
+                        slide.genres.length > 0 &&
+                        !slide.genres.includes('NoData')
+                          ? slide.genres.join(' · ')
+                          : ''}
+                        ·
                       </span>
                       <span className={styles.ageImageBackground}>
                         {' '}
                         <Image
-                          src={ageImage(slide.age, 'shared')}
+                          src={ageImage(
+                            slide.age && slide.age !== 'NoData'
+                              ? slide.age
+                              : '',
+                            'shared',
+                          )}
                           alt="Age restriction"
                           width={20}
                           height={20}
@@ -92,7 +107,7 @@ const MainSlider: React.FC<MainSliderProps> = ({ slides }) => {
                       size="small"
                       text="모아보기"
                       iconUrl="/assets/images/icons/collect-box.svg"
-                      onClick={goMypage}
+                      onClick={(e) => goMypage(e)}
                     >
                       모아보기
                     </Button>

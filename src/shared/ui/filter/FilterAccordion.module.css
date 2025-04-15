@@ -1,0 +1,140 @@
+.accordion {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  background-color: var(--gray780);
+}
+
+.inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.scrollBar {
+  overflow-y: auto;
+  width: 100%;
+  height: 100%;
+}
+
+.group {
+  border-bottom: 1px solid var(--gray700);
+}
+
+.group:last-child {
+  border-bottom: none;
+}
+
+.groupHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  cursor: pointer;
+  color: var(--white);
+}
+
+.headerRight {
+  font-family: var(--title-font);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  min-width: 80px;
+  font-size: 1.6rem;
+}
+
+.headerRight span {
+  font-size: inherit;
+}
+
+.selectedItem,
+.selectedSummary,
+.allSelected {
+  font-size: 1.4rem;
+  margin-right: 4px;
+}
+
+.selectedSummary {
+  color: var(--primary);
+}
+
+.allSelected {
+  color: var(--white);
+}
+
+.arrow {
+  transition: transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+}
+
+.arrow img {
+  width: 100%;
+  height: 100%;
+}
+
+.arrow.open {
+  transform: rotate(180deg);
+}
+
+.itemList {
+  position: relative;
+  padding: 0 0 0 54px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background-color: var(--gray750);
+  max-height: 50vh; /* 뷰포트 높이의 50%로 설정 */
+  overflow-y: auto; /* 세로 스크롤 추가 */
+}
+
+.item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 15px 0 0;
+  color: var(--gray300);
+  font-size: 1.4rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* .item:hover {
+  background-color: var(--gray700);
+} */
+
+.item.selected {
+  color: var(--primary-white);
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  margin: -18px 10px 0 0;
+  padding: 3px;
+}
+
+.checkbox img {
+  width: 100%;
+  height: 100%;
+}
+
+.label {
+  width: 100%;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--gray700);
+}
+
+.btnContainer {
+  position: absolute;
+  width: 100%;
+  bottom: 32px;
+  padding: 15px 10px;
+}

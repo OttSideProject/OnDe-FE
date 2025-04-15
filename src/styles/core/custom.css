@@ -72,10 +72,10 @@
     width: 902px;
     min-height: 156px;
   }
-  .board-section-slider .slick-list {
+  /* .board-section-slider .slick-list {
     width: 1392px;
     min-height: 200px;
-  }
+  } */
 
   .board-section-slider .slick-slide {
     /* width: unset !important; */

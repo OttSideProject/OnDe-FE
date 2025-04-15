@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 import Slider from 'react-slick';
 
-import { BoardSectionSlide } from '@/_types/contents';
+import { BoardSectionSlide } from '@/shared/types/contents';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -28,6 +28,7 @@ const BoardSectionSlider: React.FC<BoardSectionSliderProps> = ({
 }) => {
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const [startX, setStartX] = useState<number>(0);
+  const [lastAlertTime, setLastAlertTime] = useState<number>(0);
 
   const handleMouseDown = (e: React.MouseEvent) => {
     setIsDragging(false);
@@ -54,7 +55,7 @@ const BoardSectionSlider: React.FC<BoardSectionSliderProps> = ({
   const settings = {
     infinite: true,
     speed: 500,
-    slidesToShow: 5,
+    slidesToShow: 3,
     slidesToScroll: 1,
     swipeToSlide: true,
     // initialSlide: 1,
@@ -76,6 +77,7 @@ const BoardSectionSlider: React.FC<BoardSectionSliderProps> = ({
           {boardSectionSlides.map((boardSectionSlide, postIdx) => (
             <div
               key={postIdx}
+              className={styles.boardSectionSlide}
               onMouseDown={handleMouseDown}
               onMouseMove={handleMouseMove}
               onMouseUp={handleMouseUp}
@@ -86,6 +88,23 @@ const BoardSectionSlider: React.FC<BoardSectionSliderProps> = ({
                 onClick={(e) => {
                   if (isDragging) {
                     e.preventDefault();
+                  } else {
+                    e.preventDefault();
+                    // 데스크톱에서는 항상 알림 표시, 모바일에서는 중복 방지
+                    if (
+                      typeof window !== 'undefined' &&
+                      'ontouchstart' in window
+                    ) {
+                      // 모바일에서만 중복 방지 로직 적용
+                      const now = Date.now();
+                      if (now - lastAlertTime > 500) {
+                        setLastAlertTime(now);
+                        alert('준비중입니다');
+                      }
+                    } else {
+                      // 데스크톱에서는 항상 알림 표시
+                      alert('준비중입니다');
+                    }
                   }
                 }}
               >
@@ -137,24 +156,28 @@ const BoardSectionSlider: React.FC<BoardSectionSliderProps> = ({
                         </div>
                       </div>
                       <div className={styles.bottomContainer}>
-                        <div>
-                          <img
-                            src="/assets/images/icons/heart-gray.svg"
-                            alt="좋아요 아이콘"
-                          />
-                          <span className={styles.likeCount}>
-                            {boardSectionSlide.likeCount}
-                          </span>
-                        </div>
-                        {/* <div>
-                          <img
-                            src="/assets/images/icons/message-gray-circle.svg"
-                            alt="메시지 아이콘"
-                          />
-                          <span className={styles.messageCount}>
-                            {boardSectionSlide.messageCount}
-                          </span>
-                        </div> */}
+                        {boardSectionSlide.likeCount > 0 && (
+                          <div>
+                            <img
+                              src="/assets/images/icons/heart-gray.svg"
+                              alt="좋아요 아이콘"
+                            />
+                            <span className={styles.likeCount}>
+                              {boardSectionSlide.likeCount}
+                            </span>
+                          </div>
+                        )}
+                        {boardSectionSlide.commentCount > 0 && (
+                          <div>
+                            <img
+                              src="/assets/images/icons/message-gray-circle.svg"
+                              alt="메시지 아이콘"
+                            />
+                            <span className={styles.commentCount}>
+                              {boardSectionSlide.commentCount}
+                            </span>
+                          </div>
+                        )}
                       </div>
                     </>
                   }

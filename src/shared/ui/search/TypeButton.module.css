@@ -1,0 +1,20 @@
+.typeButtonGroup {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  row-gap: 16px;
+  column-gap: 10px;
+  max-width: 216px;
+  margin: 0 auto;
+}
+
+.typeButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  padding: 5px 10px;
+  background-color: var(--gray50);
+  border-radius: 10px;
+  font-size: 1.4rem;
+}

@@ -58,6 +58,8 @@ Api.interceptors.response.use(
         localStorage.removeItem('accessToken');
         localStorage.removeItem('refreshToken'); // refreshToken도 삭제
         location.href = '/login';
+        localStorage.removeItem('Access-Token');
+        location.href = '/users/login';
         return Promise.reject(refreshError);
       }
     }

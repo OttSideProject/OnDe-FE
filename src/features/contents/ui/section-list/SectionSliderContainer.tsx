@@ -7,18 +7,18 @@ import { useInView } from 'react-intersection-observer';
 import { useDropDownStore } from '@/entities/contents/main';
 
 /* Types */
-import { OrderContent } from '@/_types/contents';
+import { OrderContent } from '@/shared/types/contents';
 
 /* Utils */
-import { ageImage } from '@/features/shared/utils/ageImage';
+import { ageImage } from '@/shared/utils/ageImage';
 
 import { useOrderData } from '@/entities/contents/hooks'; // 주석 해제
 
 /* Components */
 import { SubHeader } from '@/features/contents/ui/header';
 import { SectionSlider } from '@/features/contents/ui/section-list';
-import { DimmedBackground } from '@/features/shared/ui/dimmed-background';
-import { DropDownOptions } from '@/features/shared/ui/action-bar';
+import { DimmedBackground } from '@/shared/ui/dimmed-background';
+import { DropDownOptions } from '@/shared/ui/action-bar';
 
 /* Styles */
 import styles from './SectionSliderContainer.module.css';
@@ -114,10 +114,7 @@ const SectionSliderContainer: React.FC<SectionSliderContainerProps> = ({
           imagePath={getImageSrc('NEW! 따끈따끈한 신작', 'contentMain')}
           isImageRequired={true}
         />
-        <SectionSlider
-          content={latestContent}
-          showActionBar={false}
-        />
+        <SectionSlider content={latestContent} showActionBar={false} />
       </section>
 
       {/* 인기순 섹션 */}
@@ -127,10 +124,7 @@ const SectionSliderContainer: React.FC<SectionSliderContainerProps> = ({
           imagePath={getImageSrc('지금 가장 인기있는 영화', 'contentMain')}
           isImageRequired={true}
         />
-        <SectionSlider
-          content={popularContent}
-          showActionBar={false}
-        />
+        <SectionSlider content={popularContent} showActionBar={false} />
       </section>
 
       {/* 로딩 및 감지 영역 */}

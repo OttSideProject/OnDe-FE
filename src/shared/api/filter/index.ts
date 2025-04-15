@@ -1,0 +1,1 @@
+export { fetchGenreList } from './fetchGenreList';

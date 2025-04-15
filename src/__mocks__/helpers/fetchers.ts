@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { SectionsResponse, RecommendedResponse } from '@/_types/contents';
+import { SectionsResponse, RecommendedResponse } from '@/shared/types/contents';
 
 const fetchSections = async (id: number): Promise<SectionsResponse> => {
   const response = await axios.get('/api/sections', {

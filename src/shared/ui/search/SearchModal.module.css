@@ -1,0 +1,200 @@
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 600px;
+  min-width: 320px;
+  min-height: 100%;
+  margin: 0 auto;
+}
+
+.modalContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: 100%;
+  background-color: var(--primary-black);
+  /* color: var(--primary-white); */
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  padding: 16px 15px 16px 4px;
+}
+
+.closeButton {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.searchContent {
+  width: 100%;
+}
+
+.modalBody {
+  padding: 4px 15px;
+}
+
+.recentSearchList {
+  overflow-x: auto;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.recentSearchItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5px;
+  max-width: 140px;
+  height: 28px;
+  padding: 4px 8px 4px 12px;
+  border-radius: 16px;
+  font-size: 1.4rem;
+  color: var(--gray50);
+  background-color: var(--gray750);
+}
+
+.recentSearchItem span {
+  max-width: 90%;
+}
+
+.recentSearchItem img {
+  width: 8px;
+  height: 8px;
+}
+
+.recentSearch {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 10px;
+}
+
+.recentSearch h3 {
+  margin-bottom: 12px;
+  font-size: 1.4rem;
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.clearAllButton {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 3px;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: var(--gray300);
+  cursor: pointer;
+}
+
+.bar {
+  margin: 0 8px;
+  color: var(--gray700);
+}
+
+.autoSaveToggle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 36px;
+  font-size: 1.2rem;
+  color: var(--gray100);
+}
+
+.autoSaveToggle span {
+  font-size: inherit;
+}
+
+.statusText {
+  margin-left: 4px;
+}
+
+.toggleSwitch {
+  display: none;
+}
+
+.toggleLabel {
+  width: 24px;
+  height: 12px;
+  background-color: var(--gray700);
+  border-radius: 10px;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.toggleLabel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 11px;
+  height: 11px;
+  background-color: var(--primary-white);
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+.toggleSwitch:checked + .toggleLabel {
+  background-color: var(--secondary);
+}
+
+.toggleSwitch:checked + .toggleLabel::before {
+  transform: translateX(13px);
+}
+
+.types {
+  margin: 12px 0;
+}
+
+.types h3 {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  font-size: 1.4rem;
+}
+
+.typeButtonGroup {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  row-gap: 16px;
+  column-gap: 10px;
+  max-width: 216px;
+  margin: 0 auto;
+}
+
+.noResults {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  text-align: center;
+  color: var(--gray300);
+}
+
+.noResults p {
+  margin: 10px 0;
+  font-size: 1.4rem;
+}
+
+.searchResultsContainer {
+  max-height: calc(100vh - 120px); /* 헤더 높이와 여백을 고려한 값 */
+  overflow-y: auto;
+}

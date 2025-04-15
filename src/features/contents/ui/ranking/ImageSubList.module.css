@@ -13,6 +13,22 @@
   padding: 0 7px;
 }
 
+.emptyContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  padding: 20px;
+}
+
+.emptyMessage {
+  font-size: 1.6rem;
+  color: #888;
+  text-align: center;
+  font-weight: 500;
+}
+
 .cardLink {
   position: relative;
   display: block;
@@ -44,6 +60,11 @@
   -ms-border-radius: inherit;
   -o-border-radius: inherit;
   transition: transform 0.3s ease-in-out;
+}
+
+.rankingItem h4 span {
+  width: 70px;
+  word-break: break-all;
 }
 
 .rankingItem > img {
@@ -101,11 +122,11 @@
 }
 
 .topNumber {
-  color: var(--gray50);
+  color: var(--primary-black);
   text-align: center;
   font-family: var(--title-font);
   -webkit-text-stroke-width: 2.2px;
-  -webkit-text-stroke-color: var(--primary-black);
+  -webkit-text-stroke-color: var(--primary-white);
   font-size: 4rem;
   font-weight: 800;
 }
