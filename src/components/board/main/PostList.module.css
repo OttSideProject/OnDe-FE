@@ -1,6 +1,13 @@
 .sortBoardContainer {
-  padding: 2rem 1rem 2rem 1rem;
-  position: relative;
+  padding: 0 1rem;
+  /* position: relative; */
+  justify-content: end;
+  align-items: center;
+  display: flex;
+  position: fixed;
+  bottom: 0rem;
+  z-index: 100;
+  width: 100%;
 }
 .sortBoardText {
   padding-right: 0.1rem;
@@ -10,7 +17,7 @@
 .floatButton {
   position: fixed;
   right: 1.7rem;
-  bottom: 1rem;
+  bottom: 10rem;
   cursor: pointer;
 }
 

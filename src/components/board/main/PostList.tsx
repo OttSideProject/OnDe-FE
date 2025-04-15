@@ -16,26 +16,38 @@ const PostList: React.FC<PostListProps> = ({ selectedCategoryNumber }) => {
   const router = useRouter();
 
   useEffect(() => {
-    setIsClient(true); // 클라이언트 렌더링 여부를 설정
+    setIsClient(true);
   }, []);
 
   const [sortBoardText, setsortBoardText] = useState<string>('인기순');
   const [isDropDownClicked, setisDropDownClicked] = useState(false);
   const DropDownMenu: { [key: string]: number } = {
-    인기순: 1,
     최신순: 2,
     좋아요순: 3,
+    인기순: 1,
   };
   const [isSortDESC, setIsSortDESC] = useState(true);
+
   const [sortedPostList, setSortedPostList] = useState<PostDetailType[]>([]);
 
   const getPostList = useCallback(() => {
-    Api.get(`board/${selectedCategoryNumber}`)
+    Api.get(`board/category`, {
+      params: {
+        boardId: selectedCategoryNumber,
+        type: DropDownMenu[sortBoardText],
+        nowPage: 0,
+        pageSize: 10,
+      },
+    })
       .then((res) => {
-        setSortedPostList(res.data);
+        if (res.data && res.data && Array.isArray(res.data.content)) {
+          setSortedPostList(res.data.content);
+        } else {
+          console.log('응답 데이터가 예상과 다릅니다:', res.data);
+        }
       })
       .catch((err) => console.log('에러', err));
-  }, [selectedCategoryNumber]);
+  }, [selectedCategoryNumber, sortBoardText]);
 
   const handleToggleDropDown = useCallback(() => {
     setisDropDownClicked((prev) => !prev);
@@ -46,9 +58,9 @@ const PostList: React.FC<PostListProps> = ({ selectedCategoryNumber }) => {
     setisDropDownClicked(false);
   }, []);
 
-  const handleSortDESC = useCallback(() => {
+  const handleSortDESC = () => {
     setIsSortDESC((prev) => !prev);
-  }, []);
+  };
 
   useEffect(() => {
     getPostList();
@@ -59,29 +71,48 @@ const PostList: React.FC<PostListProps> = ({ selectedCategoryNumber }) => {
       router.push('/board/create');
     }
   };
+
   return (
     <div>
-      <div className={styles.sortBoardContainer}>
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'end',
+          padding: '1rem',
+        }}
+      >
+        <img
+          src="assets/images/icons/sort.svg"
+          alt=""
+          onClick={navigateToPostCreation}
+        />
         <span className={styles.sortBoardText} onClick={handleToggleDropDown}>
           {sortBoardText}
         </span>
-        {isSortDESC ? (
+        {/* {isSortDESC ? (
           <span onClick={handleSortDESC}>↓</span>
         ) : (
           <span onClick={handleSortDESC}>↑</span>
-        )}
-
+        )} */}
+      </div>
+      <div className={styles.sortBoardContainer}>
         {isDropDownClicked && (
           <DropDown
             DropDownMenu={DropDownMenu}
             handleSortBoardText={handleSortBoardText}
+            selectedSort={sortBoardText}
           />
         )}
       </div>
       <div className={styles.postWrapper}>
-        {sortedPostList.map((post, idx) => (
-          <PostListItem key={idx} post={post} />
-        ))}
+        {Array.isArray(sortedPostList) && sortedPostList.length > 0 ? (
+          sortedPostList.map((post, idx) => (
+            <PostListItem key={idx} post={post} />
+          ))
+        ) : (
+          <p>게시물이 없습니다.</p>
+        )}
       </div>
       <img
         className={styles.floatButton}

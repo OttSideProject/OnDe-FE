@@ -1,10 +1,19 @@
 .dropDownContainer {
-  display: flex;
+  /* position: fixed; */
   background-color: var(--gray780);
   width: 12rem;
   z-index: 100;
-  justify-content: center;
+  height: 40rem;
+  padding: 1rem;
   align-items: center;
   position: absolute;
-  top: 5rem;
+  /* top: 3rem; */
+  width: 100%;
+  bottom: 0rem;
+}
+
+.dropDownContainer div {
+  font-size: 1.8rem;
+  font-weight: 600;
+  padding: 1rem;
 }

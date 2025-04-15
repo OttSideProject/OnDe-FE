@@ -25,10 +25,9 @@ export const Container = styled.div`
 
 export const CategoryWrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   text-align: center;
   box-sizing: border-box;
-  height: 74px;
   line-height: 48px;
   font-size: 14px;
   font-weight: 600;
@@ -51,6 +50,7 @@ export const BoardTitle = styled.div`
   box-sizing: border-box;
   padding: 2.4rem 1rem;
   font-size: 18px;
+  font-family: var(--title-font);
   font-weight: 700;
 `;
 
@@ -100,7 +100,10 @@ export const PostDetailWrapper = styled.div`
 `;
 
 export const PostTitle = styled.div`
-  font-weight: 600;
+  font-weight: var(--primary-white);
+  color: (--text)
+  font-size: 1.6rem;
+  font-family: var(--primary-font);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -129,6 +132,7 @@ export const WeeklyBestPostNumber = styled.div`
   color: #bfff00;
   font-weight: 800;
   padding-right: 1rem;
+  font-family: var(--title-font);
 `;
 
 export const UserProfileImg = styled.img`

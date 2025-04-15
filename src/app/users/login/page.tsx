@@ -10,7 +10,7 @@ import {
   SocialContainer,
   SocialButton,
 } from './LoginStyles';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 export default function LoginForm() {
   const [formData, setFormData] = useState({ userId: '', password: '' });
@@ -30,8 +30,9 @@ export default function LoginForm() {
       .then((response) => {
         console.log('로그인 성공:', response.data);
 
-        const accessToken = response.data.result.accessToken;
-        console.log(accessToken);
+        const { accessToken, refreshToken } = response.data.result;
+        console.log('Access Token:', accessToken);
+        console.log('Refresh Token:', refreshToken);
 
         // access-token을 localStorage에 저장
         localStorage.setItem('Access-Token', accessToken);
@@ -39,11 +40,23 @@ export default function LoginForm() {
         // debugger
         const userId = formData.userId;
         localStorage.setItem('userId', userId);
+        // ✅ accessToken과 refreshToken을 localStorage에 저장
+        localStorage.setItem('accessToken', accessToken);
+        localStorage.setItem('refreshToken', refreshToken);
 
-        // API 요청 시 자동으로 Access-Toke 헤더 포함
-        Api.defaults.headers.common['Access-Token'] = `${accessToken}`;
+        // ✅ API 요청 시 자동으로 accessToken과 refreshToken 포함
+        Api.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+        Api.defaults.headers.common['refreshToken'] = refreshToken;
 
+        // 로그인한 사용자 ID 저장
+        localStorage.setItem('userId', formData.userId);
+
+        // ✅ 쿠키에 아바타 정보 저장
         const avatarOptions = [
+          'profile-angry.png',
+          'profile-dizzy.png',
+          'profile-girl.png',
+          'profile-glasses.png',
           'profile-angry.png',
           'profile-dizzy.png',
           'profile-girl.png',
@@ -62,7 +75,7 @@ export default function LoginForm() {
           return cookie ? cookie.split('=')[1] : null;
         };
 
-        // 쿠키에서 avatar 가져오기, 없으면 랜덤으로 설정 후 쿠키에 저장
+        // 쿠키에서 아바타 가져오기 (없으면 랜덤 선택 후 저장)
         const getAvatarFromCookie = () => {
           let avatar = getCookie('userAvatar');
           if (!avatar) {
@@ -97,7 +110,7 @@ export default function LoginForm() {
         onClick={() => {
           location.href = '/';
         }}
-      ></Logo>
+      />
       <Form>
         <Input
           type="text"

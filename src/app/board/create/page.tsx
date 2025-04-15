@@ -2,7 +2,7 @@
 
 import Api from '@/api/core/Api';
 import styles from './page.module.css';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import signup from '@/styles/user/signup';
 import { useRouter } from 'next/navigation';
 
@@ -12,16 +12,19 @@ const PostCreate = () => {
   const router = useRouter();
   const [boardId, setboradId] = useState('');
   const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
+  const [contents, setContents] = useState('');
 
   const handleSubmit = async () => {
     try {
-      const response = await Api.post('/board/create', {
-        boardId,
-        title,
-        content,
-      });
-      // console.log(response);
+      const response = await Api.post(
+        `https://api.ondemandia.com/board/create`,
+        {
+          boardId,
+          title,
+          contents,
+        },
+      );
+      console.log(response);
 
       if (response.status === 200) {
         alert('Post created successfully!');
@@ -61,9 +64,9 @@ const PostCreate = () => {
             <option value="" disabled>
               카테고리를 선택해주세요
             </option>
-            <option value="1">후기</option>
-            <option value="2">토크</option>
-            <option value="3">QnA</option>
+            <option value="1">ON생각</option>
+            <option value="2">ON톡</option>
+            {/* <option value="3">QnA</option> */}
           </select>
           <div className={styles.arrowIcon} />
         </div>
@@ -84,8 +87,8 @@ const PostCreate = () => {
         <textarea
           className={styles.textArea}
           placeholder="본문을 작성해 주세요"
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
+          value={contents}
+          onChange={(e) => setContents(e.target.value)}
         ></textarea>
         <div className={styles.flex}>
           <img
