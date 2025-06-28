@@ -1,19 +1,18 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { useModalStore } from '@/shared/lib/stores/modal';
-import { useSearchStore } from '@/shared/lib/stores/search';
 import { fetchSearchContents } from '@/shared/api/search';
 import { FetchSearchParams } from '@/shared/api/search/fetchSearchContents';
-import { SearchSuggestion } from '@/shared/api/actions/searchSuggestions';
+import { useModalStore } from '@/shared/lib/stores/modal';
+import { useSearchStore } from '@/shared/lib/stores/search';
 import { SearchContent } from '@/shared/types/contents/contents';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import SearchInput from './SearchInput';
-import SearchResultList from './SearchResultList';
-import SearchSuggestions from './SearchSuggestions';
-import SearchResultPreview from './SearchResultPreview';
-import TypeButton from './TypeButton';
 import styles from './SearchModal.module.css';
+import SearchResultList from './SearchResultList';
+import SearchResultPreview from './SearchResultPreview';
+import SearchSuggestions from './SearchSuggestions';
+import TypeButton from './TypeButton';
 
 const SearchModal = () => {
   const [autoSaveIndex, setAutoSaveIndex] = useState(1);
@@ -325,6 +324,11 @@ const SearchModal = () => {
                     type="drama"
                     iconSrc="/assets/images/icons/type-drama-text.svg"
                     altText="드라마"
+                  />
+                  <TypeButton
+                    type="docu"
+                    iconSrc="/assets/images/icons/type-docu-text.svg"
+                    altText="다큐멘터리"
                   />
                   <TypeButton
                     type="ani"

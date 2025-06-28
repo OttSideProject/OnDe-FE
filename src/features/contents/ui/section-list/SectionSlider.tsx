@@ -3,17 +3,17 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 
 import Slider from 'react-slick';
 
-import { OrderContent } from '@/shared/types/contents';
+import { ActionBar } from '@/features/shared/ui/action-bar';
 
-import { ActionBar } from '@/shared/ui/action-bar';
+import { OrderContent } from '@/_types/contents';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import styles from './SectionSlider.module.css';
+import { useRouter } from 'next/navigation';
 
 const SectionSlider: React.FC<{
   content: OrderContent[];
@@ -89,7 +89,7 @@ const SectionSlider: React.FC<{
                   />
                 </figure>
                 {/* userName이 있는 경우에만 ActionBar 표시 */}
-                {showActionBar && <ActionBar />}
+                {showActionBar && sectionSlide.userName && <ActionBar />}
               </button>
             </div>
           ))}

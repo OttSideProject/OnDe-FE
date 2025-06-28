@@ -7,18 +7,18 @@ import { useInView } from 'react-intersection-observer';
 import { useDropDownStore } from '@/entities/contents/main';
 
 /* Types */
-import { OrderContent } from '@/shared/types/contents';
+import { OrderContent } from '@/_types/contents';
 
 /* Utils */
-import { ageImage } from '@/shared/utils/ageImage';
+import { ageImage } from '@/features/shared/utils/ageImage';
 
-import { useOrderData } from '@/entities/contents/hooks'; // 주석 해제
+import { useOrderData } from '@/entities/contents/hooks/useOrderData'; // 주석 해제
 
 /* Components */
 import { SubHeader } from '@/features/contents/ui/header';
 import { SectionSlider } from '@/features/contents/ui/section-list';
-import { DimmedBackground } from '@/shared/ui/dimmed-background';
-import { DropDownOptions } from '@/shared/ui/action-bar';
+import { DimmedBackground } from '@/features/shared/ui/dimmed-background';
+import { DropDownOptions } from '@/features/shared/ui/action-bar';
 
 /* Styles */
 import styles from './SectionSliderContainer.module.css';
@@ -30,18 +30,14 @@ type SectionSliderContainerProps = {
     title: string,
     pageType: 'contentMain' | 'ranking' | 'recommended',
   ) => string;
-  latestContent: OrderContent[];
-  popularContent: OrderContent[];
 };
 
 const SectionSliderContainer: React.FC<SectionSliderContainerProps> = ({
   getImageSrc,
-  latestContent,
-  popularContent,
 }) => {
-  const latestOrderQuery = useOrderData('최신순');
-  const popularOrderQuery = useOrderData('인기순');
-
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
+    useOrderData('최신순'); // 주석 해제
+  const [orderData, setOrderData] = useState<OrderContent[]>([]);
   const { ref, inView } = useInView();
   const { isDropDownOpen, openDropDown, closeDropDown } = useDropDownStore();
 
@@ -57,10 +53,18 @@ const SectionSliderContainer: React.FC<SectionSliderContainerProps> = ({
   }, [isDropDownOpen]);
 
   useEffect(() => {
-    if (inView && latestOrderQuery.hasNextPage) {
-      latestOrderQuery.fetchNextPage();
+    if (inView && hasNextPage) {
+      fetchNextPage();
     }
-  }, [inView, latestOrderQuery]);
+  }, [inView, hasNextPage, fetchNextPage]); // 주석 해제
+
+  useEffect(() => {
+    if (data?.pages) {
+      const updatedOrderData = data.pages.flatMap((page) => page.content);
+      console.log('updatedOrderData:', updatedOrderData);
+      setOrderData(updatedOrderData);
+    }
+  }, [data]);
 
   const options = [
     { id: 1, label: '에피소드 및 정보', url: '/assets/images/icons/info.svg' },
@@ -106,27 +110,28 @@ const SectionSliderContainer: React.FC<SectionSliderContainerProps> = ({
           />
         </>
       )}
-
-      {/* 최신순 섹션 */}
-      <section>
-        <SubHeader
-          imageTitle="NEW! 따끈따끈한 신작"
-          imagePath={getImageSrc('NEW! 따끈따끈한 신작', 'contentMain')}
-          isImageRequired={true}
-        />
-        <SectionSlider content={latestContent} showActionBar={false} />
-      </section>
-
-      {/* 인기순 섹션 */}
-      <section>
-        <SubHeader
-          imageTitle="지금 가장 인기있는 영화"
-          imagePath={getImageSrc('지금 가장 인기있는 영화', 'contentMain')}
-          isImageRequired={true}
-        />
-        <SectionSlider content={popularContent} showActionBar={false} />
-      </section>
-
+      {/* 섹션 데이터 렌더링 */}
+      {/* SectionSlider */}
+      {orderData.map((section: OrderContent) => (
+        <section key={section.contentId}>
+          {/* 첫 번째 섹션일 때 사용자 이름을 추가 */}
+          {userName && recommendedTitle && (
+            <SubHeader
+              userName={userName}
+              recommendedTitle={recommendedTitle}
+              imageTitle={section.title}
+              imagePath={getImageSrc(section.title, 'contentMain')}
+              // linkText={section.linkText}
+              // linkUrl={section.linkUrl}
+              isImageRequired={true}
+            />
+          )}
+          <SectionSlider
+            content={orderData}
+            showActionBar={Boolean(userName)}
+          />
+        </section>
+      ))}
       {/* 로딩 및 감지 영역 */}
       <div ref={ref} />
     </section>
