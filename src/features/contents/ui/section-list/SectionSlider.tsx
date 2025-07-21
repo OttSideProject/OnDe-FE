@@ -6,9 +6,9 @@ import Link from 'next/link';
 
 import Slider from 'react-slick';
 
-import { ActionBar } from '@/features/shared/ui/action-bar';
+import { ActionBar } from '@/shared/ui/action-bar';
 
-import { OrderContent } from '@/_types/contents';
+import { OrderContent } from '@/shared/types/contents';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -89,7 +89,7 @@ const SectionSlider: React.FC<{
                   />
                 </figure>
                 {/* userName이 있는 경우에만 ActionBar 표시 */}
-                {showActionBar && sectionSlide.userName && <ActionBar />}
+                {/* {showActionBar && sectionSlide.userName && <ActionBar />} */}
               </button>
             </div>
           ))}

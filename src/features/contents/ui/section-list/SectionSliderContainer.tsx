@@ -17,8 +17,8 @@ import { useOrderData } from '@/entities/contents/hooks/useOrderData'; // 주석
 /* Components */
 import { SubHeader } from '@/features/contents/ui/header';
 import { SectionSlider } from '@/features/contents/ui/section-list';
-import { DimmedBackground } from '@/features/shared/ui/dimmed-background';
-import { DropDownOptions } from '@/features/shared/ui/action-bar';
+import { DimmedBackground } from '@/shared/ui/dimmed-background';
+import { DropDownOptions } from '@/shared/ui/action-bar';
 
 /* Styles */
 import styles from './SectionSliderContainer.module.css';
