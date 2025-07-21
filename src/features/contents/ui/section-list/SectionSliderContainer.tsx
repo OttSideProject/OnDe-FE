@@ -7,10 +7,10 @@ import { useInView } from 'react-intersection-observer';
 import { useDropDownStore } from '@/entities/contents/main';
 
 /* Types */
-import { OrderContent } from '@/_types/contents';
+import { OrderContent } from '@/shared/types/contents';
 
 /* Utils */
-import { ageImage } from '@/features/shared/utils/ageImage';
+import { ageImage } from '@/shared/utils/ageImage';
 
 import { useOrderData } from '@/entities/contents/hooks/useOrderData'; // 주석 해제
 
