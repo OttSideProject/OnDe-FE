@@ -50,15 +50,24 @@ const SearchSuggestions = ({
   const [suggestions, setSuggestions] = useState<SearchSuggestion[]>([]);
 
   useEffect(() => {
-    const fetchSuggestions = async () => {
-      if (searchTerm.trim() && showSuggestions) {
-        const result = await getSearchSuggestions(searchTerm);
-        setSuggestions(result);
-      } else {
-        setSuggestions([]);
-      }
+    // 1. setTimeout으로 API 호출을 딜레이시킵니다.
+    const debounceTimer = setTimeout(() => {
+      const fetchSuggestions = async () => {
+        if (searchTerm.trim() && showSuggestions) {
+          const result = await getSearchSuggestions(searchTerm);
+          setSuggestions(result);
+        } else {
+          setSuggestions([]);
+        }
+      };
+      fetchSuggestions();
+    }, 300); // 300ms (0.3초) 후에 검색을 실행합니다.
+
+    // 2. useEffect의 cleanup 함수에서 타이머를 취소합니다.
+    // 사용자가 0.3초 안에 새로운 글자를 입력하면 이전 타이머는 취소되고 새 타이머가 설정됩니다.
+    return () => {
+      clearTimeout(debounceTimer);
     };
-    fetchSuggestions();
   }, [searchTerm, showSuggestions]);
 
   if (!suggestions.length || !showSuggestions) {
