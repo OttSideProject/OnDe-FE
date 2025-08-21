@@ -8,6 +8,7 @@ import { SearchContent } from '@/shared/types/contents/contents';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import SearchInput from './SearchInput';
+import SearchSnackbar from './SearchSnackbar';
 import styles from './SearchModal.module.css';
 import SearchResultList from './SearchResultList';
 import SearchResultPreview from './SearchResultPreview';
@@ -17,6 +18,7 @@ import TypeButton from './TypeButton';
 const SearchModal = () => {
   const [autoSaveIndex, setAutoSaveIndex] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
+  const [showSnackbar, setShowSnackbar] = useState(true);
 
   // 모달 스토어에서 필요한 상태와 액션 가져오기
   const { activeModal, closeModal: originalCloseModal } = useModalStore();
@@ -90,6 +92,7 @@ const SearchModal = () => {
     if (activeModal === 'search') {
       // 모달이 열릴 때 초기 상태 설정
       resetSearchState();
+      setShowSnackbar(true); // 모달이 열릴 때마다 스낵바 표시
     }
   }, [activeModal, resetSearchState]);
 
@@ -215,6 +218,11 @@ const SearchModal = () => {
     });
   };
 
+  // 스낵바 닫기 핸들러
+  const handleCloseSnackbar = () => {
+    setShowSnackbar(false);
+  };
+
   // UI 표시 조건
   const showInitialUI = !searchTerm && !searchResults.length;
   const showSearchResults = searchResults.length > 0;
@@ -248,6 +256,17 @@ const SearchModal = () => {
           </div>
         </div>
         <div className={styles.modalBody}>
+          {/* 스낵바 표시 */}
+          {showSnackbar && (
+            <SearchSnackbar
+              message={`기분 따라 콘텐츠를 추천받아 보세요!
+원하는 분위기를 #문장으로 검색할 수 있어요.
+한 번 더 탭하면 일반 검색으로 바뀌어요.`}
+              onClose={handleCloseSnackbar}
+              autoHide={false}
+            />
+          )}
+
           {isLoading && <p className={styles.loadingIndicator}>검색 중...</p>}
 
           {/* 검색어가 없고 검색 결과도 없을 때 초기 UI 표시 */}
