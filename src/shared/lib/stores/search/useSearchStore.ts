@@ -113,8 +113,7 @@ export const useSearchStore = create<SearchStore>()(
       setSelectedContentId: (id: string | null) =>
         set({ selectedContentId: id }),
 
-      setIsHashtagMode: (isHashtagMode: boolean) =>
-        set({ isHashtagMode }),
+      setIsHashtagMode: (isHashtagMode: boolean) => set({ isHashtagMode }),
 
       toggleHashtagMode: () =>
         set((state) => ({ isHashtagMode: !state.isHashtagMode })),

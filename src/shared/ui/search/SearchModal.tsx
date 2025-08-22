@@ -19,7 +19,6 @@ const SearchModal = () => {
   const [autoSaveIndex, setAutoSaveIndex] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
 
-
   // 모달 스토어에서 필요한 상태와 액션 가져오기
   const { activeModal, closeModal: originalCloseModal } = useModalStore();
 
@@ -218,8 +217,6 @@ const SearchModal = () => {
       return newIndex;
     });
   };
-
-
 
   // UI 표시 조건
   const showInitialUI = !searchTerm && !searchResults.length;
