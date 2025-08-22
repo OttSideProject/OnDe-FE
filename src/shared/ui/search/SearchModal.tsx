@@ -261,7 +261,7 @@ const SearchModal = () => {
             <SearchSnackbar
               message={`기분 따라 콘텐츠를 추천받아 보세요!
 원하는 분위기를 #문장으로 검색할 수 있어요.
-한 번 더 탭하면 일반 검색으로 바뀌어요.`}
+한 번 더 클릭하면 일반 검색으로 바뀌어요.`}
               onClose={handleCloseSnackbar}
               autoHide={false}
             />

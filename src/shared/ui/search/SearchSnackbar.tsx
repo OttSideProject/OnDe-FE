@@ -32,12 +32,16 @@ const SearchSnackbar: React.FC<SearchSnackbarProps> = ({
 
   return (
     <div className={`${styles.snackbarContainer} ${styles.decorativeElements}`}>
-      <div className={styles.snackbarContent}>
-        {onClose && (
+			{onClose && (
           <button
             type="button"
             className={styles.closeButton}
-            onClick={onClose}
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              console.log('Close button clicked!');
+              onClose();
+            }}
           >
             <Image
               src="/assets/images/icons/close-x-g.svg"
@@ -47,11 +51,21 @@ const SearchSnackbar: React.FC<SearchSnackbarProps> = ({
             />
           </button>
         )}
+      <div className={styles.snackbarContent}>
+        
 
         <div className={styles.snackbarBody}>
           {message.split('\n').map((line, index) => (
             <span key={index} className={styles.messageLine}>
-              {line}
+              {line.includes('#문장으로 검색') ? (
+                <>
+                  {line.split('#문장으로 검색')[0]}
+                  <span className={styles.gradientText}>#문장으로 검색</span>
+                  {line.split('#문장으로 검색')[1]}
+                </>
+              ) : (
+                line
+              )}
             </span>
           ))}
         </div>
