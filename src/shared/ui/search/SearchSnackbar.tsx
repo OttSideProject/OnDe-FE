@@ -32,28 +32,26 @@ const SearchSnackbar: React.FC<SearchSnackbarProps> = ({
 
   return (
     <div className={`${styles.snackbarContainer} ${styles.decorativeElements}`}>
-			{onClose && (
-          <button
-            type="button"
-            className={styles.closeButton}
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              console.log('Close button clicked!');
-              onClose();
-            }}
-          >
-            <Image
-              src="/assets/images/icons/close-x-g.svg"
-              alt="close"
-              width={24}
-              height={24}
-            />
-          </button>
-        )}
+      {onClose && (
+        <button
+          type="button"
+          className={styles.closeButton}
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log('Close button clicked!');
+            onClose();
+          }}
+        >
+          <Image
+            src="/assets/images/icons/close-x-g.svg"
+            alt="close"
+            width={24}
+            height={24}
+          />
+        </button>
+      )}
       <div className={styles.snackbarContent}>
-        
-
         <div className={styles.snackbarBody}>
           {message.split('\n').map((line, index) => (
             <span key={index} className={styles.messageLine}>

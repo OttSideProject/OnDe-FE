@@ -18,7 +18,7 @@ import TypeButton from './TypeButton';
 const SearchModal = () => {
   const [autoSaveIndex, setAutoSaveIndex] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
-  const [showSnackbar, setShowSnackbar] = useState(true);
+
 
   // 모달 스토어에서 필요한 상태와 액션 가져오기
   const { activeModal, closeModal: originalCloseModal } = useModalStore();
@@ -38,6 +38,7 @@ const SearchModal = () => {
     showPreview,
     showSuggestionList,
     selectedContentId,
+    isHashtagMode,
     setIsTyping,
     setShowPreview,
     setShowSuggestionList,
@@ -92,7 +93,7 @@ const SearchModal = () => {
     if (activeModal === 'search') {
       // 모달이 열릴 때 초기 상태 설정
       resetSearchState();
-      setShowSnackbar(true); // 모달이 열릴 때마다 스낵바 표시
+      // 스낵바는 해시태그 모드 상태에 따라 자동으로 표시됨
     }
   }, [activeModal, resetSearchState]);
 
@@ -218,10 +219,7 @@ const SearchModal = () => {
     });
   };
 
-  // 스낵바 닫기 핸들러
-  const handleCloseSnackbar = () => {
-    setShowSnackbar(false);
-  };
+
 
   // UI 표시 조건
   const showInitialUI = !searchTerm && !searchResults.length;
@@ -256,13 +254,17 @@ const SearchModal = () => {
           </div>
         </div>
         <div className={styles.modalBody}>
-          {/* 스낵바 표시 */}
-          {showSnackbar && (
+          {/* 해시태그 모드일 때만 스낵바 표시 */}
+          {isHashtagMode && (
             <SearchSnackbar
               message={`기분 따라 콘텐츠를 추천받아 보세요!
 원하는 분위기를 #문장으로 검색할 수 있어요.
 한 번 더 클릭하면 일반 검색으로 바뀌어요.`}
-              onClose={handleCloseSnackbar}
+              onClose={() => {
+                // 스낵바 클로즈 버튼을 누르면 해시태그 모드를 비활성화
+                const { setIsHashtagMode } = useSearchStore.getState();
+                setIsHashtagMode(false);
+              }}
               autoHide={false}
             />
           )}

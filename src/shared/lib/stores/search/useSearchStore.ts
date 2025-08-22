@@ -12,6 +12,7 @@ type SearchStore = {
   showPreview: boolean;
   showSuggestionList: boolean;
   selectedContentId: string | null;
+  isHashtagMode: boolean;
   setSearchTerm: (term: string) => void;
   setSearchResults: (results: SearchContent[]) => void;
   addRecentSearch: (term: string) => void;
@@ -22,6 +23,8 @@ type SearchStore = {
   setShowPreview: (show: boolean) => void;
   setShowSuggestionList: (show: boolean) => void;
   setSelectedContentId: (id: string | null) => void;
+  setIsHashtagMode: (isHashtagMode: boolean) => void;
+  toggleHashtagMode: () => void;
   handleSuggestionSelect: (suggestion: SearchSuggestion) => void;
   resetSearchState: () => void;
 };
@@ -53,6 +56,7 @@ export const useSearchStore = create<SearchStore>()(
       showPreview: false,
       showSuggestionList: true,
       selectedContentId: null,
+      isHashtagMode: true,
 
       // 최근 검색어 추가 함수
       addRecentSearch: (term: string) => {
@@ -108,6 +112,12 @@ export const useSearchStore = create<SearchStore>()(
 
       setSelectedContentId: (id: string | null) =>
         set({ selectedContentId: id }),
+
+      setIsHashtagMode: (isHashtagMode: boolean) =>
+        set({ isHashtagMode }),
+
+      toggleHashtagMode: () =>
+        set((state) => ({ isHashtagMode: !state.isHashtagMode })),
 
       handleSuggestionSelect: (suggestion: SearchSuggestion) => {
         // 현재 상태 가져오기
