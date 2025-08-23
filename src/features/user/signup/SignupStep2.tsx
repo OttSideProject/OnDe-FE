@@ -1,5 +1,5 @@
 import signup from '@/styles/user/signup';
-import { Genre } from '../../app/users/signup/constants';
+import { Genre } from './constants';
 
 interface SignupStep2Props {
   genres: Genre[];

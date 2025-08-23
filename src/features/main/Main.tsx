@@ -4,7 +4,7 @@
 import styled from '@emotion/styled';
 import Link from 'next/link';
 
-import Header from '@/components/header/Header';
+import Header from '@/features/header/Header';
 
 const TestStyle = styled.div`
   li {

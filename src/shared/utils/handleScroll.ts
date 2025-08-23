@@ -1,8 +1,10 @@
+import { useEffect } from 'react';
+
 type ScrollCallback = (isWithinThreshold: boolean) => void;
 
 export const createScrollHandler = (
   threshold: number,
-  callback: ScrollCallback
+  callback: ScrollCallback,
 ) => {
   return () => {
     const scrollPosition = window.scrollY;
@@ -13,11 +15,21 @@ export const createScrollHandler = (
 export const useScrollEffect = (
   threshold: number,
   callback: ScrollCallback,
-  enabled: boolean = true
+  enabled: boolean = true,
 ) => {
-  if (!enabled) return;
-  
-  const handleScroll = createScrollHandler(threshold, callback);
-  window.addEventListener('scroll', handleScroll);
-  return () => window.removeEventListener('scroll', handleScroll);
-}; 
+  useEffect(() => {
+    if (!enabled) {
+      return;
+    }
+
+    const handleScroll = createScrollHandler(threshold, callback);
+
+    window.addEventListener('scroll', handleScroll);
+
+    handleScroll();
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [enabled, threshold, callback]);
+};

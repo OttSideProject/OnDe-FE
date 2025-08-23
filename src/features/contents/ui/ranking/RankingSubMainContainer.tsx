@@ -19,7 +19,6 @@ import styles from './RankingSubMainContainer.module.css';
 
 type RankingSubMainContainerProps = {
   category: string | null; // 카테고리 추가
-  slides: Ranking[];
   getImageSrc: (
     title: string,
     pageType: 'contentMain' | 'ranking' | 'recommended',

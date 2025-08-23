@@ -132,8 +132,6 @@ const HomePage: React.FC = () => {
         />
         <SectionSliderContainer
           getImageSrc={getImageSrc}
-          latestContent={latestOrderData}
-          popularContent={popularOrderData}
         />
       </section>
       <div className={styles.recommendContainer}>

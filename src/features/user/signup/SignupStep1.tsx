@@ -1,7 +1,7 @@
 // components/SignupStep1.tsx
 import Image from 'next/image';
 import signup from '@/styles/user/signup';
-import { SvgGenre } from '../../app/users/signup/constants';
+import { SvgGenre } from './constants';
 import { useState } from 'react';
 // import { headers } from 'next/headers';
 

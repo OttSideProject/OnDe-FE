@@ -1,16 +1,16 @@
 'use client';
-import LoadingIndicator from '../../../components/user/LoadingIndicator';
+import LoadingIndicator from '@/shared/ui/LoadingIndicator';
 import Api from '@/api/core/Api';
 import { useReducer } from 'react';
-import SignupStep1 from '../../../components/user/SignupStep1';
-import SignupStep2 from '../../../components/user/SignupStep2';
-import SignupStep3 from '../../../components/user/SignupStep3';
-import SignupStep4 from '../../../components/user/SignupStep4';
-import SignupStep5 from '../../../components/user/SignupStep5';
-import SignupStep6 from '../../../components/user/SignupStep6';
-import SignupStep7 from '../../../components/user/SignupStep7';
+import SignupStep1 from '@/features/user/signup/SignupStep1';
+import SignupStep2 from '@/features/user/signup/SignupStep2';
+import SignupStep3 from '@/features/user/signup/SignupStep3';
+import SignupStep4 from '@/features/user/signup/SignupStep4';
+import SignupStep5 from '@/features/user/signup/SignupStep5';
+import SignupStep6 from '@/features/user/signup/SignupStep6';
+import SignupStep7 from '@/features/user/signup/SignupStep7';
 import signup from '@/styles/user/signup';
-import { initialGenres, genres_setp2 } from './constants';
+import { initialGenres, genres_setp2 } from '@/features/user/signup/constants';
 import Image from 'next/image';
 
 interface UserInfo {

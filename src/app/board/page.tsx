@@ -1,8 +1,8 @@
 'use client';
 
 import { PostDetailType } from '@/_types/board/board';
-import PostList from '@/components/board/main/PostList';
-import WeeklyPostListItem from '@/components/board/main/WeeklyPostListItem';
+import PostList from '@/features/board/main/PostList';
+import WeeklyPostListItem from '@/features/board/main/WeeklyPostListItem';
 import styles from '@/app/users/mypage/mypage.module.css';
 import Api from '@/api/core/Api';
 const Setting = '/assets/images/icons/setting_icon.svg';
@@ -21,7 +21,7 @@ import {
 import signup from '@/styles/user/signup';
 import React, { useCallback, useEffect, useState } from 'react';
 
-const page = () => {
+const Page = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('ON생각');
   const [weeklyBestPost, setWeeklyBestPost] = useState<PostDetailType[]>([]);
 
@@ -141,4 +141,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

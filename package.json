@@ -43,11 +43,6 @@
     "lint": "next lint",
     "test": "jest"
   },
-  "eslintConfig": {
-    "extends": [
-      "next/core-web-vitals"
-    ]
-  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -61,6 +56,8 @@
     ]
   },
   "devDependencies": {
+    "eslint": "^8.57.1",
+    "eslint-config-next": "^15.5.0",
     "msw": "^2.7.0"
   },
   "msw": {

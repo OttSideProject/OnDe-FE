@@ -33,11 +33,7 @@ const StatusBar: React.FC<StatusBarProps> = ({
   const [hasGradient, setHasGradient] = useState(pageType === 'recommended');
   const { activeModal, openModal, closeModal } = useModalStore();
 
-  useEffect(() => {
-    if (pageType === 'recommended') {
-      return useScrollEffect(100, setHasGradient);
-    }
-  }, [pageType]);
+  useScrollEffect(100, setHasGradient, pageType === 'recommended');
 
   const handleAlert = (index: number) => {
     const currentIconType = iconTypes[index];
